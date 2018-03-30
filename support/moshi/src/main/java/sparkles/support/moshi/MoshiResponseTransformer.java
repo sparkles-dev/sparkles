@@ -5,6 +5,7 @@ import com.squareup.moshi.JsonAdapter;
 import java.util.Arrays;
 import java.util.List;
 import spark.ResponseTransformer;
+import static sparkles.support.moshi.DefaultMoshi.newMoshi;
 
 public class MoshiResponseTransformer<T> implements ResponseTransformer  {
 
@@ -19,7 +20,7 @@ public class MoshiResponseTransformer<T> implements ResponseTransformer  {
   @Override
   public String render(Object model) {
     final JsonAdapter jsonAdapter = this.types.stream()
-      .filter(type -> model.getClass().isAssignableFrom(type))
+      .filter(type -> type.isAssignableFrom(model.getClass()))
       .findFirst()
       .map(type -> moshi.adapter(type))
       .orElseThrow(() -> new RuntimeException("No adapter registered for " + model.getClass().getCanonicalName()));
@@ -29,7 +30,7 @@ public class MoshiResponseTransformer<T> implements ResponseTransformer  {
 
   public static <T> MoshiResponseTransformer<T> moshiTransformer(Class<T> type) {
     return moshiTransformer(
-      new Moshi.Builder().build(),
+      newMoshi().build(),
       type
     );
   }
@@ -45,6 +46,20 @@ public class MoshiResponseTransformer<T> implements ResponseTransformer  {
     return new MoshiResponseTransformer(
       moshi,
       Arrays.asList(type, type2)
+    );
+  }
+
+  public static MoshiResponseTransformer<?> moshiTransformer(Moshi moshi, Class<?> type, Class<?> type2, Class<?> type3) {
+    return new MoshiResponseTransformer(
+      moshi,
+      Arrays.asList(type, type2, type3)
+    );
+  }
+
+  public static MoshiResponseTransformer<?> moshiTransformer(Moshi moshi, Class<?> type, Class<?> type2, Class<?> type3, Class<?> type4) {
+    return new MoshiResponseTransformer(
+      moshi,
+      Arrays.asList(type, type2, type3, type4)
     );
   }
 
