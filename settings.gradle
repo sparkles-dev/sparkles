@@ -1,1 +1,3 @@
+include ':support:moshi'
+
 rootProject.name = 'sparkles'
