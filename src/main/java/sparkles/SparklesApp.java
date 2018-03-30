@@ -12,6 +12,10 @@ import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequest;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
 
 public class SparklesApp {
+  static {
+    System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, Environment.logLevel());
+  }
+
   private static final Logger LOG = LoggerFactory.getLogger(SparklesApp.class);
 
   public static void main(String[] args) throws IOException {
@@ -20,6 +24,7 @@ public class SparklesApp {
     String publicKey = Resources.toString(Resources.getResource("jwt/public.key"), Charset.forName("UTF-8"));
     filterAuthenticatedRequest(new SimplePublicKeyProvider(publicKey));
 
+    LOG.debug("Initializing routes...");
     get("/", (req, res) -> {
       return "hello from sparkjava.com";
     });

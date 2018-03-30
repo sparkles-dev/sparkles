@@ -21,4 +21,8 @@ public enum Environment {
     return PRODUCTION;
   }
 
+  public static String logLevel() {
+    return environment() == DEVELOP ? "debug" : "info";
+  }
+
 }
