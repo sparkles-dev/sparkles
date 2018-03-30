@@ -1,28 +1,29 @@
 package sparkles;
 
-import com.google.common.io.Resources;
 import com.squareup.moshi.Moshi;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sparkles.support.jwt.SimplePublicKeyProvider;
+import spark.servlet.SparkApplication;
+
 import static spark.Spark.*;
-import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequest;
+import static sparkles.auth.Authentication.initAuth;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
 
-public class SparklesApp {
+public class SparklesApp implements SparkApplication {
   static {
     System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, Environment.logLevel());
   }
 
   private static final Logger LOG = LoggerFactory.getLogger(SparklesApp.class);
 
-  public static void main(String[] args) throws IOException {
-    LOG.info("SparklesApp running in {} environment.", Environment.environment());
+  public static void main(String[] args) {
+    new SparklesApp().init();
+  }
 
-    String publicKey = Resources.toString(Resources.getResource("jwt/public.key"), Charset.forName("UTF-8"));
-    filterAuthenticatedRequest(new SimplePublicKeyProvider(publicKey));
+  @Override
+  public void init() {
+    LOG.info("SparklesApp running in {} environment.", Environment.environment());
+    initAuth();
 
     LOG.debug("Initializing routes...");
     get("/", (req, res) -> {
@@ -44,7 +45,6 @@ public class SparklesApp {
         return 9876;
       }
     }, moshiTransformer(new Moshi.Builder().build(), String.class, Integer.class));
-
   }
 
 }

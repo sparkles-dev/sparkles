@@ -1,3 +1,7 @@
+include ':apps:01-hello-world'
+include ':apps:02-hello-moshi'
+include ':apps:03-hello-jwt'
+include ':apps:04-environment-and-logging'
 include ':support:jwt'
 include ':support:moshi'
 

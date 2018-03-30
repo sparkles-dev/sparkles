@@ -4,36 +4,3 @@ allprojects  {
     mavenCentral()
   }
 }
-
-apply plugin: 'java'
-apply plugin: 'application'
-
-group = 'sparkles'
-version = '1.0-SNAPSHOT'
-description = 'Examples for Spark Java Microframework'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-mainClassName = 'sparkles.SparklesApp'
-
-run.doFirst {
-  environment 'ENVIRONMENT', 'develop'
-}
-
-dependencies {
-  // 3rd party
-  compile 'com.google.guava:guava:24.1-jre'
-  compile 'com.sparkjava:spark-core:2.7.1'
-  compile 'com.squareup.moshi:moshi:1.5.0'
-  compile 'com.squareup.okhttp3:okhttp:3.9.1'
-  compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-  compile 'com.squareup.retrofit2:retrofit:2.3.0'
-  compile 'com.squareup.retrofit2:converter-moshi:2.3.0'
-  compile 'org.slf4j:slf4j-api:1.7.25'
-  compile 'org.slf4j:slf4j-simple:1.7.25'
-  // project
-  compile project(':support:jwt')
-  compile project(':support:moshi')
-  // testing
-  testCompile group: 'junit', name: 'junit', version: '4.+'
-}
