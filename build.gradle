@@ -16,6 +16,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 mainClassName = 'sparkles.SparklesApp'
 
+run.doFirst {
+  environment 'ENVIRONMENT', 'develop'
+}
+
 dependencies {
   // 3rd party
   compile 'com.google.guava:guava:24.1-jre'
