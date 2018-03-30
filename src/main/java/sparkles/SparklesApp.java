@@ -1,14 +1,22 @@
 package sparkles;
 
+import com.google.common.io.Resources;
 import com.squareup.moshi.Moshi;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import sparkles.support.jwt.SimplePublicKeyProvider;
 import static spark.Spark.*;
+import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequest;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
 
 public class SparklesApp {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
+    String publicKey = Resources.toString(Resources.getResource("jwt/public.key"), Charset.forName("UTF-8"));
+    filterAuthenticatedRequest(new SimplePublicKeyProvider(publicKey));
+
     get("/", (req, res) -> {
-        return "hello from sparkjava.com";
+      return "hello from sparkjava.com";
     });
 
     get("/hello-moshi", (req, res) -> {
