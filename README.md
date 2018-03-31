@@ -7,9 +7,10 @@ This repository contains a collection of code examples demonstrating a web tech 
 ## Preface
 
 All examples are my personal **resolution** of what I found productive and production-ready and reliable and responsible.
-No dilutions on what slices are being mixed and no restraints to reproduce it in the exact same way.
+No dilutions and no restraints as it doesn't matter **what** you do.
+It matters **how you get there**.
 
-Motivations:
+Drawbacks of adopting this technology stack:
 
  - I like wasting hours reading source code on GitHub in the web browser
  - I like frustration about minimalism and missing features
@@ -17,6 +18,17 @@ Motivations:
  - I like to feel responsible
  - When the world goes bust, I try again and try a little better
 
-I am not trying to promote something _'easy'_, _'popular'_, _'painless'_, _'modern'_, _'rich'_, _'proven'_, bla bla bla.
-It doesn't matter **what** you do.
-It matters **how you get there**.
+Reasons for this technology stack:
+
+ - I feel calm and serene with the above limitations.
+
+
+## How It Ended Up To Be
+
+Slices included in the mix:
+
+ - [Spark](http://sparkjava.com/documentation#getting-started)
+ - [Moshi](https://github.com/square/moshi)
+ - [jjwt](https://github.com/jwtk/jjwt#quickstart)
+ - [Flyway](https://flywaydb.org/documentation/migrations#versioned-migrations)
+ - [Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
