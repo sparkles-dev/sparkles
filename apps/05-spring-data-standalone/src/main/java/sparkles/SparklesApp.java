@@ -19,6 +19,7 @@ import static spark.Spark.*;
 import static sparkles.support.flyway.FlywaySupport.runMigrations;
 import static sparkles.support.moshi.MoshiRoute.moshiRoute;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
+import static sparkles.support.moshi.errorpages.ErrorPages.addErrorPages;
 import static sparkles.support.springdata.Auditing.enableAuditing;
 import static sparkles.support.springdata.SpringDataSupport.initPersistence;
 import static sparkles.support.springdata.SpringDataSupport.repository;
@@ -37,6 +38,7 @@ public class SparklesApp implements SparkApplication {
   @Override
   public void init() {
     LOG.info("SparklesApp running in {} environment.", Environment.environment());
+    addErrorPages();
 
     enableAuditing((req, res) -> {
       return req.headers("Authorization").substring(0, 32);
