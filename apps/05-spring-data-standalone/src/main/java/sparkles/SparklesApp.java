@@ -45,9 +45,10 @@ public class SparklesApp implements SparkApplication {
     });
 
     LOG.debug("Initializing persistence layer...");
-    DataSource dataSource = createDataSource();
+    final DataSource dataSource = createDataSource();
     runMigrations(dataSource, "persistence/migrations/flyway");
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("drinks", createHibernateProperties(dataSource));
+    final EntityManagerFactory factory = Persistence.createEntityManagerFactory("drinks",
+      createHibernateProperties(dataSource));
     initPersistence(factory);
 
     LOG.debug("Initializing routes...");

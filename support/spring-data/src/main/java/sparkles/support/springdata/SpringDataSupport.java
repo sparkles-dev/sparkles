@@ -18,11 +18,11 @@ import static spark.Spark.before;
 import static spark.Spark.afterAfter;
 
 public final class SpringDataSupport {
-  private static EntityManagerFactory entityManagerFactory;
+  private EntityManagerFactory entityManagerFactory;
 
-  public static void initPersistence(EntityManagerFactory entityManagerFactory) {
-    // EntityManagerFactory is application-scoped, keep it static
-    SpringDataSupport.entityManagerFactory = entityManagerFactory;
+  void init(EntityManagerFactory entityManagerFactory) {
+    // EntityManagerFactory is application-scoped
+    this.entityManagerFactory = entityManagerFactory;
 
     before((request, response) -> {
       // EntityManager and the factory are request scoped
@@ -32,7 +32,7 @@ public final class SpringDataSupport {
       request.attribute("persistence.entityManager", entityManager);
       request.attribute("persistence.jpaRepositoryFactory", jpaRepositoryFactory);
 
-      // automatically begin a transaction for request scope
+      // automatically begin a transaction for a request
       entityManager.getTransaction().begin();
     });
 
@@ -41,13 +41,20 @@ public final class SpringDataSupport {
 
       // close transaction
       entityManager.getTransaction().commit();
-
       closeEntityManager(entityManager);
     });
   }
 
-  public static void shutdownPersistence() {
+  void shutdown() {
     closeEntityManagerFactory(entityManagerFactory);
+  }
+
+  public static void initPersistence(EntityManagerFactory entityManagerFactory) {
+    getInstance().init(entityManagerFactory);
+  }
+
+  public static void shutdownPersistence() {
+    getInstance().shutdown();
   }
 
   public static void closeEntityManagerFactory(EntityManagerFactory factory) {
@@ -74,4 +81,13 @@ public final class SpringDataSupport {
     return jpaRepositoryFactory(request).getRepository(repositoryClazz);
   }
 
+  private SpringDataSupport() {}
+
+  private static class SingletonHolder {
+    private static final SpringDataSupport INSTANCE = new SpringDataSupport();
+  }
+
+  private static SpringDataSupport getInstance() {
+    return SingletonHolder.INSTANCE;
+  }
 }
