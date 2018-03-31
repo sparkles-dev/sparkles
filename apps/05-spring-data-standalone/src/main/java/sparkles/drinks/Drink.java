@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import sparkles.support.persistence.AuditingEntityListener;
+import sparkles.support.springdata.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)

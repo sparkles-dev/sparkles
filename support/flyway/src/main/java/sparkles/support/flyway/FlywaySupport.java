@@ -1,9 +1,9 @@
-package sparkles.support.persistence.migrations;
+package sparkles.support.flyway;
 
 import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;
 
-public final class MigrationSupport {
+public final class FlywaySupport {
 
   public static Flyway createFlyway(DataSource dataSource, String locationOnClassPath) {
     Flyway flyway = new Flyway();

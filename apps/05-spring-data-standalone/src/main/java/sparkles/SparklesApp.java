@@ -16,12 +16,12 @@ import sparkles.drinks.Drink;
 import sparkles.drinks.DrinkRepository;
 
 import static spark.Spark.*;
+import static sparkles.support.flyway.FlywaySupport.runMigrations;
 import static sparkles.support.moshi.MoshiRoute.moshiRoute;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
-import static sparkles.support.persistence.migrations.MigrationSupport.runMigrations;
-import static sparkles.support.persistence.Auditing.enableAuditing;
-import static sparkles.support.persistence.SpringDataSupport.initPersistence;
-import static sparkles.support.persistence.SpringDataSupport.repository;
+import static sparkles.support.springdata.Auditing.enableAuditing;
+import static sparkles.support.springdata.SpringDataSupport.initPersistence;
+import static sparkles.support.springdata.SpringDataSupport.repository;
 
 public class SparklesApp implements SparkApplication {
   static {

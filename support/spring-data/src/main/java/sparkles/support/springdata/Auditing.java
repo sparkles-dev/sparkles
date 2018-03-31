@@ -1,4 +1,4 @@
-package sparkles.support.persistence;
+package sparkles.support.springdata;
 
 import java.util.Collections;
 import java.util.Optional;

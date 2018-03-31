@@ -1,4 +1,4 @@
-package sparkles.support.persistence;
+package sparkles.support.springdata;
 
 import spark.Request;
 import spark.Response;
