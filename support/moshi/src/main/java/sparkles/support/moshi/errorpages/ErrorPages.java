@@ -4,13 +4,12 @@ import com.squareup.moshi.JsonAdapter;
 import spark.Request;
 import spark.Response;
 
-import static sparkles.support.moshi.DefaultMoshi.newMoshi;
+import static sparkles.support.moshi.DefaultMoshi.defaultMoshi;
 import static spark.Spark.internalServerError;
 import static spark.Spark.notFound;
 
 public final class ErrorPages {
-  private static final JsonAdapter<Error> jsonAdapter = newMoshi().build()
-    .adapter(Error.class);
+  private static final JsonAdapter<Error> jsonAdapter = defaultMoshi().adapter(Error.class);
 
   public static void addErrorPages() {
 
