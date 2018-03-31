@@ -16,8 +16,10 @@ import sparkles.drinks.Drink;
 import sparkles.drinks.DrinkRepository;
 
 import static spark.Spark.*;
+import static sparkles.support.moshi.MoshiRoute.moshiRoute;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
 import static sparkles.support.persistence.migrations.MigrationSupport.runMigrations;
+import static sparkles.support.persistence.Auditing.enableAuditing;
 import static sparkles.support.persistence.SpringDataSupport.initPersistence;
 import static sparkles.support.persistence.SpringDataSupport.repository;
 
@@ -35,6 +37,10 @@ public class SparklesApp implements SparkApplication {
   @Override
   public void init() {
     LOG.info("SparklesApp running in {} environment.", Environment.environment());
+
+    enableAuditing((req, res) -> {
+      return req.headers("Authorization").substring(0, 32);
+    });
 
     LOG.debug("Initializing persistence layer...");
     DataSource dataSource = createDataSource();
@@ -57,14 +63,14 @@ public class SparklesApp implements SparkApplication {
         .orElseThrow(() -> new RuntimeException("Not Found"));
     }, moshiTransformer(Drink.class));
 
-    post("/", (req, res) -> {
+    post("/", moshiRoute((req, res, drink) -> {
       LOG.debug("Request body: {}", req.body());
+      LOG.debug("Request entity: {}", drink);
       final DrinkRepository repository = repository(req, DrinkRepository.class);
 
-      return repository.save(new Drink().withName("foo"));
-    }, moshiTransformer(Drink.class));
+      return repository.save(drink);
+    }, Drink.class), moshiTransformer(Drink.class));
   }
-
 
   public static DataSource createDataSource() {
     JDBCDataSource ds = new JDBCDataSource();
