@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonAdapter;
 import java.util.Arrays;
 import java.util.List;
 import spark.ResponseTransformer;
-import static sparkles.support.moshi.DefaultMoshi.newMoshi;
+import static sparkles.support.moshi.DefaultMoshi.defaultMoshi;
 
 public class MoshiResponseTransformer<T> implements ResponseTransformer  {
 
@@ -30,7 +30,7 @@ public class MoshiResponseTransformer<T> implements ResponseTransformer  {
 
   public static <T> MoshiResponseTransformer<T> moshiTransformer(Class<T> type) {
     return moshiTransformer(
-      newMoshi().build(),
+      defaultMoshi(),
       type
     );
   }

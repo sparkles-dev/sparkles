@@ -6,7 +6,7 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-import static sparkles.support.moshi.DefaultMoshi.newMoshi;
+import static sparkles.support.moshi.DefaultMoshi.defaultMoshi;
 
 @FunctionalInterface
 public interface MoshiRoute<T, R> {
@@ -14,7 +14,7 @@ public interface MoshiRoute<T, R> {
   R handle(Request req, Response res, T entity) throws Exception;
 
   public static<T, R> Route moshiRoute(MoshiRoute<T, R> route, Class<T> type) {
-    return moshiRoute(route, type, newMoshi().build());
+    return moshiRoute(route, type, defaultMoshi());
   }
 
   public static<T, R> Route moshiRoute(MoshiRoute<T, R> route, Class<T> type, Moshi moshi) {
