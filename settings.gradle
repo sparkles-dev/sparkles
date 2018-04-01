@@ -7,5 +7,6 @@ include ':support:flyway'
 include ':support:jwt'
 include ':support:moshi'
 include ':support:spring-data'
+include ':support:testing'
 
 rootProject.name = 'sparkles'
