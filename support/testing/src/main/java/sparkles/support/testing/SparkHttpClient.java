@@ -3,6 +3,7 @@ package sparkles.support.testing;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 public final class SparkHttpClient {
 
@@ -18,13 +19,28 @@ public final class SparkHttpClient {
     return requestTemplate.newBuilder();
   }
 
+  public Request newRequest(String method, String path, RequestBody body) {
+    return newRequest()
+      .method(method, body)
+      .url(requestTemplate.url()
+        .newBuilder()
+        .addPathSegment(path)
+        .build())
+      .build();
+  }
+
   public Call newCall(String method, String path) {
     return okHttp.newCall(newRequest()
       .method(method, null)
-      .url(requestTemplate.url().newBuilder()
+      .url(requestTemplate.url()
+        .newBuilder()
         .addPathSegment(path)
         .build())
       .build());
+  }
+
+  public Call newCall(Request request) {
+    return okHttp.newCall(request);
   }
 
   public void release() {

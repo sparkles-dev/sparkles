@@ -10,6 +10,7 @@ import java.util.Base64;
 public class SimplePublicKeyProvider implements PublicKeyProvider {
 
   private final String base64PublicKey;
+
   public SimplePublicKeyProvider(String publicKey) {
     this.base64PublicKey = publicKey
       .replaceAll("\\n", "")
