@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import spark.servlet.SparkApplication;
 
 import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
 import static sparkles.auth.Authentication.initAuth;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
 
@@ -45,6 +46,10 @@ public class SparklesApp implements SparkApplication {
         return 9876;
       }
     }, moshiTransformer(new Moshi.Builder().build(), String.class, Integer.class));
+
+    if (Environment.environment() == Environment.DEVELOP) {
+      enableDebugScreen();
+    }
   }
 
 }

@@ -32,3 +32,5 @@ Slices included in the mix:
  - [jjwt](https://github.com/jwtk/jjwt#quickstart)
  - [Flyway](https://flywaydb.org/documentation/migrations#versioned-migrations)
  - [Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+ - [AssertJ](http://joel-costigliola.github.io/assertj/index.html)
+ - [OkHttp](https://github.com/square/okhttp/wiki/Recipes)
