@@ -8,5 +8,6 @@ include ':support:jwt'
 include ':support:moshi'
 include ':support:spring-data'
 include ':support:testing'
+include ':support:xsrf'
 
 rootProject.name = 'sparkles'

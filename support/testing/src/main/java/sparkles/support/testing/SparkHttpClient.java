@@ -43,6 +43,26 @@ public final class SparkHttpClient {
     return okHttp.newCall(request);
   }
 
+  public Call get(String path) {
+    return newCall(newRequest("GET", path, null));
+  }
+
+  public Call head(String path) {
+    return newCall(newRequest("HEAD", path, null));
+  }
+
+  public Call post(String path, RequestBody body) {
+    return newCall(newRequest("POST", path, body));
+  }
+
+  public Call put(String path, RequestBody body) {
+    return newCall(newRequest("PUT", path, body));
+  }
+
+  public Call delete(String path) {
+    return newCall(newRequest("DELETE", path, null));
+  }
+
   public void release() {
     okHttp.dispatcher().executorService().shutdown();
     okHttp.connectionPool().evictAll();
