@@ -22,8 +22,7 @@ public final class Auditing {
     THREAD_LOCAL;
   }
 
-  private static AuditingHandler auditingHandler;
-  private static StrategyHandler<Object> strategyHandler;
+  private static AuditingAdapter<?> adapter;
 
   private Auditing() {}
 
@@ -40,45 +39,53 @@ public final class Auditing {
   }
 
   public static <T> void enableAuditing(AuditorResolver<T> resolver, AuditingHandler handler, Strategy strategy) {
-    if (strategy == Strategy.INHERITED_THREAD_LOCAL) {
-      strategyHandler = new InheritableThreadLocalStrategy();
-    } else if (strategy == Strategy.GLOBAL) {
-      strategyHandler = new GlobalStrategy();
-    } else if (strategy == Strategy.THREAD_LOCAL) {
-      strategyHandler = new ThreadLocalStrategy();
-    } else {
-      LOG.warn("No auditing strategy.");
-    }
-
-    auditingHandler = handler;
+    adapter = new AuditingAdapter(handler, resolver);
+    adapter.setStrategy(strategy);
 
     before((request, response) -> {
-      T auditor = resolver.resolve(request, response);
-      strategyHandler.clear();
-
-      @SuppressWarnings("unchecked")
-      final Object value = auditor;
-      strategyHandler.update(value);
+      T auditor = ((AuditingAdapter<T>) adapter).resolver.resolve(request, response);
+      ((AuditingAdapter<T>) adapter).aware.clear();
+      ((AuditingAdapter<T>) adapter).aware.update(auditor);
     });
 
     afterAfter((request, response) -> {
-      strategyHandler.clear();
+      ((AuditingAdapter<T>) adapter).aware.clear();
     });
   }
 
+  @SuppressWarnings("unchecked")
   public static <T> AuditorAware<T> currentAuditor() {
-    return new AuditorAware() {
-      public Optional<T> getCurrentAuditor() {
-        return (Optional<T>) strategyHandler.get();
-      }
-    };
+    return (AuditorAware<T>) adapter.aware;
   }
 
   public static AuditingHandler handler() {
-    return auditingHandler;
+    return adapter.handler;
   }
 
-  static interface StrategyHandler<T> extends AuditorAware<T> {
+  private static class AuditingAdapter<T> {
+    private AuditorAwareStrategy<T> aware;
+    private final AuditingHandler handler;
+    private final AuditorResolver<T> resolver;
+
+    private AuditingAdapter(AuditingHandler handler, AuditorResolver<T> resolver) {
+      this.handler = handler;
+      this.resolver = resolver;
+    }
+
+    private void setStrategy(Strategy strategy) {
+      if (strategy == Strategy.INHERITED_THREAD_LOCAL) {
+        aware = new InheritableThreadLocalStrategy();
+      } else if (strategy == Strategy.GLOBAL) {
+        aware = new GlobalStrategy();
+      } else if (strategy == Strategy.THREAD_LOCAL) {
+        aware = new ThreadLocalStrategy();
+      } else {
+        LOG.warn("No auditing strategy.");
+      }
+    }
+  }
+
+  static interface AuditorAwareStrategy<T> extends AuditorAware<T> {
     void clear();
     Optional<T> get();
     void update(T auditor);
@@ -86,8 +93,8 @@ public final class Auditing {
     Optional<T> getCurrentAuditor();
   }
 
-  static class InheritableThreadLocalStrategy implements StrategyHandler<Object> {
-    private static final ThreadLocal<Object> holder = new InheritableThreadLocal<>();
+  static class InheritableThreadLocalStrategy<T> implements AuditorAwareStrategy<T> {
+    private final ThreadLocal<T> holder = new InheritableThreadLocal<>();
 
     @Override
     public void clear() {
@@ -95,23 +102,23 @@ public final class Auditing {
     }
 
     @Override
-    public void update(Object auditor) {
+    public void update(T auditor) {
       holder.set(auditor);
     }
 
     @Override
-    public Optional<Object> get() {
+    public Optional<T> get() {
       return Optional.ofNullable(holder.get());
     }
 
     @Override
-    public Optional<Object> getCurrentAuditor() {
+    public Optional<T> getCurrentAuditor() {
       return get();
     }
   }
 
-  static class ThreadLocalStrategy implements StrategyHandler<Object> {
-    private static final ThreadLocal<Object> holder = new ThreadLocal<>();
+  static class ThreadLocalStrategy<T> implements AuditorAwareStrategy<T> {
+    private final ThreadLocal<T> holder = new ThreadLocal<>();
 
     @Override
     public void clear() {
@@ -119,23 +126,23 @@ public final class Auditing {
     }
 
     @Override
-    public void update(Object auditor) {
+    public void update(T auditor) {
       holder.set(auditor);
     }
 
     @Override
-    public Optional<Object> get() {
+    public Optional<T> get() {
       return Optional.ofNullable(holder.get());
     }
 
     @Override
-    public Optional<Object> getCurrentAuditor() {
+    public Optional<T> getCurrentAuditor() {
       return get();
     }
   }
 
-  static class GlobalStrategy implements StrategyHandler<Object> {
-    private static Object holder;
+  static class GlobalStrategy<T> implements AuditorAwareStrategy<T> {
+    private T holder;
 
     @Override
     public void clear() {
@@ -143,17 +150,17 @@ public final class Auditing {
     }
 
     @Override
-    public void update(Object auditor) {
+    public void update(T auditor) {
       holder = auditor;
     }
 
     @Override
-    public Optional<Object> get() {
+    public Optional<T> get() {
       return Optional.ofNullable(holder);
     }
 
     @Override
-    public Optional<Object> getCurrentAuditor() {
+    public Optional<T> getCurrentAuditor() {
       return get();
     }
   }
