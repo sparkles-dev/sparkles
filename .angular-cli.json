@@ -23,6 +23,13 @@
   },
   "apps": [
     {
+      "name": "domain",
+      "root": "libs/domain/src",
+      "test": "../../../test.js",
+      "appRoot": "",
+      "tags": []
+    },
+    {
       "name": "$workspaceRoot",
       "root": ".",
       "appRoot": ""
