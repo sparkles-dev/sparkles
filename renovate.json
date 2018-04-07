@@ -4,5 +4,6 @@
   ],
   "pinVersions": false,
   "semanticCommits": true,
-  "semanticCommitScope": "build"
+  "semanticCommitType": "build",
+  "semanticCommitScope": ""
 }
