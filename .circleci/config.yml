@@ -8,9 +8,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: sparkles-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}-{{ checksum  "yarn.lock" }}
+          key: sparkles-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}-{{ checksum  "yarn.lock" }}
       - run: ./gradlew test
       - save_cache:
-        paths:
-          - ~/app/node_modules
-        key: sparkles-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}-{{ checksum  "yarn.lock" }}
+          paths:
+            - ~/app/node_modules
+          key: sparkles-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}-{{ checksum  "yarn.lock" }}
