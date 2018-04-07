@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "pinVersions": false,
+  "semanticCommits": true,
+  "semanticCommitType": "build",
+  "semanticCommitScope": ""
+}
