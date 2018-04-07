@@ -95,7 +95,7 @@ jsonSchema2Pojo {
   //  - gson (apply annotations from the Gson library)
   //  - moshi1 (apply annotations from the Moshi 1.x library)
   //  - none (apply no annotations at all)
-  annotationStyle = 'moshi1'
+  annotationStyle = 'jackson2'
 
   // A fully qualified class name, referring to a custom annotator class that implements
   // org.jsonschema2pojo.Annotator and will be used in addition to the one chosen
