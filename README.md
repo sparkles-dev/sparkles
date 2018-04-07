@@ -34,3 +34,6 @@ Slices included in the mix:
  - [Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
  - [AssertJ](http://joel-costigliola.github.io/assertj/index.html)
  - [OkHttp](https://github.com/square/okhttp/wiki/Recipes)
+ - [Angular](http://angular.io/)
+ - [Jackson](https://github.com/FasterXML)
+ - [jsonschema2pojo](http://www.jsonschema2pojo.org/)
