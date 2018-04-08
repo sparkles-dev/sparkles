@@ -3,15 +3,19 @@ package sparkles.paypal;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 import sparkles.support.okhttp.BasicAuthenticator;
+import sparkles.paypal.oauth2.TokenAuthentication;
 import sparkles.paypal.oauth2.OAuth2Api;
 import sparkles.paypal.payments.PaymentsApi;
 
 public interface PaypalClient {
+  public static final String SANDBOX = "https://api.sandbox.paypal.com";
+  public static final String LIVE = "https://api.paypal.com";
 
   OAuth2Api oAuth2Api();
 
@@ -71,17 +75,28 @@ public interface PaypalClient {
         .create(OAuth2Api.class);
 
       // Token-based authentication
-      final OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
-        .addInterceptor(new TokenInterceptor(new TokenInterceptor.TokenAuthentication(oAuth2Api)));
-
+      // final OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
+      //  .addInterceptor(new TokenInterceptor(new TokenInterceptor.TokenAuthentication(oAuth2Api)));
+      final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
       if (logging != null) {
-        okHttpClient.addInterceptor(logging);
+        clientBuilder.addInterceptor(logging);
       }
+
+      final OkHttpClient.Builder oAuthClient = new TokenAuthentication.Builder()
+        .baseUrl(HttpUrl.parse(baseUrl)
+          .newBuilder()
+          .addPathSegments("v1/oauth2")
+          .build())
+        .clientId(clientId)
+        .secret(secret)
+        .okHttpClient(clientBuilder.build())
+        .build()
+        .newBuilder();
 
       final Retrofit retrofit = new Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
         .baseUrl(baseUrl)
-        .client(okHttpClient.build())
+        .client(oAuthClient.build())
         .build();
 
       return new PaypalClientImpl(oAuth2Api, retrofit);
