@@ -4,6 +4,6 @@
   ],
   "pinVersions": false,
   "semanticCommits": true,
-  "semanticCommitType": "build",
-  "semanticCommitScope": null
+  "semanticPrefix": "build:",
+  "commitMessage": "{{semanticPrefix}}update {{depName}} to version {{newVersion}}"
 }
