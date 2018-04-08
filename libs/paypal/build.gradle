@@ -9,6 +9,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.16.20'
 	testCompileOnly 'org.projectlombok:lombok:1.16.20'
 
+  compile 'com.google.guava:guava:24.1-jre'
   compile 'com.squareup.okhttp3:okhttp:3.10.0'
   compile 'com.squareup.okhttp3:logging-interceptor:3.10.0'
   //compile 'com.squareup.okio:okio:1.14.0'
@@ -18,7 +19,6 @@ dependencies {
   compile 'org.slf4j:slf4j-simple:1.7.25'
   compile project(':support:okhttp')
 
-  testCompile 'com.google.guava:guava:24.1-jre'
   testCompile 'io.fabric8:mockwebserver:0.1.0'
   testCompile 'junit:junit:4.+'
   testCompile 'org.assertj:assertj-core:3.9.0'
