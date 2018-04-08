@@ -3,9 +3,10 @@ package sparkles.paypal;
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.junit.Test;
-import org.junit.Before;
 import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import retrofit2.Call;
 import retrofit2.Response;
 import sparkles.paypal.oauth2.OAuth2Api;
@@ -23,6 +24,7 @@ import sparkles.paypal.payments.Transaction;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Ignore
 @Slf4j
 public class PaypalSandboxTests {
 
