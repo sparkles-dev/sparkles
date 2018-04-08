@@ -38,8 +38,8 @@ public class PaypalSandboxTests {
     logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
     final PaypalClient client = new PaypalClient.Builder()
-      .baseUrl("https://api.sandbox.paypal.com/")
-      .appClient(
+      .sandbox()
+      .paypalApp(
         "AYY8ITH_oiNQnnNrVo4vjijlKihYZ_SZ_KXp5vXuFtDR-AQVqrzzMdoe9w2Z5fHPqevIwpr70Yw1Be67",
         "EG4LznSjt-CBlFjqtRs52Y_FU3Bz4vqCuCZH65aB7hUelMMBYoIxw1w_DzLRPGmBEZnYyXu9EBAqHBPB"
       )
