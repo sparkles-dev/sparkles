@@ -1,0 +1,29 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger' version '1.2.0'
+  id 'net.ltgt.apt' version '0.10'
+}
+
+dependencies {
+	apt 'org.projectlombok:lombok:1.16.20'
+	compileOnly 'org.projectlombok:lombok:1.16.20'
+	testCompileOnly 'org.projectlombok:lombok:1.16.20'
+
+  compile 'com.squareup.okhttp3:okhttp:3.10.0'
+  compile 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+  //compile 'com.squareup.okio:okio:1.14.0'
+  compile 'com.squareup.retrofit2:retrofit:2.4.0'
+  compile 'com.squareup.retrofit2:converter-moshi:2.4.0'
+
+  testCompile 'com.google.guava:guava:24.1-jre'
+  testCompile 'io.fabric8:mockwebserver:0.1.0'
+  testCompile 'junit:junit:4.+'
+  testCompile 'org.assertj:assertj-core:3.9.0'
+  testCompile 'org.slf4j:slf4j-api:1.7.25'
+  testCompile 'org.slf4j:slf4j-simple:1.7.25'
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}

@@ -37,3 +37,6 @@ Slices included in the mix:
  - [Angular](http://angular.io/)
  - [Jackson](https://github.com/FasterXML)
  - [jsonschema2pojo](http://www.jsonschema2pojo.org/)
+ - [Retrofit](http://square.github.io/retrofit/)
+ - [Lombok](https://projectlombok.org/features/all)
+ - [Guava](https://github.com/google/guava/wiki)
