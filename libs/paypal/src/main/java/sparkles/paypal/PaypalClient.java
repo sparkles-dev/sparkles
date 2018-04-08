@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
+import sparkles.support.okhttp.BasicAuthenticator;
 import sparkles.paypal.oauth2.OAuth2Api;
 import sparkles.paypal.payments.PaymentsApi;
 

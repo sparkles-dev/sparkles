@@ -1,4 +1,4 @@
-package sparkles.paypal;
+package sparkles.support.okhttp;
 
 import java.io.IOException;
 import lombok.Data;
