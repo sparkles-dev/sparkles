@@ -9,8 +9,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 import sparkles.support.okhttp.BasicAuthenticator;
-import sparkles.paypal.oauth2.TokenAuthentication;
 import sparkles.paypal.oauth2.OAuth2Api;
+import sparkles.paypal.oauth2.OAuth2ApiTokenAdapter;
+import sparkles.paypal.oauth2.TokenAuthentication;
+import sparkles.paypal.oauth2.TokenInterceptor;
 import sparkles.paypal.payments.PaymentsApi;
 
 public interface PaypalClient {
@@ -73,25 +75,26 @@ public interface PaypalClient {
           .build())
         .build()
         .create(OAuth2Api.class);
-
       // Token-based authentication
       // final OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
-      //  .addInterceptor(new TokenInterceptor(new TokenInterceptor.TokenAuthentication(oAuth2Api)));
-      final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+      //  .addInterceptor(new TokenInterceptor(new OAuth2ApiTokenAdapter(oAuth2Api)));
+
+      final OkHttpClient.Builder oAuthClient = new OkHttpClient.Builder();
       if (logging != null) {
-        clientBuilder.addInterceptor(logging);
+        oAuthClient.addInterceptor(logging);
       }
 
-      final OkHttpClient.Builder oAuthClient = new TokenAuthentication.Builder()
+      final TokenAuthentication tokenAuth = new TokenAuthentication.Builder()
         .baseUrl(HttpUrl.parse(baseUrl)
           .newBuilder()
           .addPathSegments("v1/oauth2")
           .build())
         .clientId(clientId)
         .secret(secret)
-        .okHttpClient(clientBuilder.build())
-        .build()
-        .newBuilder();
+        .okHttpClient(oAuthClient.build())
+        .build();
+
+      oAuthClient.addNetworkInterceptor(new TokenInterceptor(tokenAuth));
 
       final Retrofit retrofit = new Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())

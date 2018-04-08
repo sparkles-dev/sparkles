@@ -18,106 +18,73 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public interface TokenAuthentication {
+@RequiredArgsConstructor
+@Slf4j
+public class TokenAuthentication implements TokenInterceptor.Adapter {
+  private final HttpUrl baseUrl;
+  private final String clientId;
+  private final String secret;
+  private final OkHttpClient okHttpClient;
 
-  TokenGrant peekToken();
+  private final JsonAdapter<TokenGrant> jsonAdapter = new Moshi.Builder().build()
+    .adapter(TokenGrant.class);
 
-  TokenGrant fetchToken();
+  private TokenInterceptor.Response tokenResponse;
 
-  @Data
-  static class TokenResponse {
-    public final Response response;
-    public final TokenGrant token;
+  @Override
+  public TokenInterceptor.Response fetchToken() {
+    try {
+      updateAccessToken();
+    } catch (IOException e) {
+      log.error("Cannot fetch access token", e);
+    }
+
+    return tokenResponse;
   }
 
-  @RequiredArgsConstructor
-  @Slf4j
-  static class TokenAuthenticationImpl implements TokenAuthentication, Interceptor {
-    private final HttpUrl baseUrl;
-    private final String clientId;
-    private final String secret;
-    private final OkHttpClient okHttpClient;
+  @Override
+  public boolean isTokenExpired() {
+    if (tokenResponse != null) {
+      // Verify ttl
+      final long expiresIn = TimeUnit.SECONDS.toMillis(tokenResponse.grant().expiresIn());
 
-    private final JsonAdapter<TokenGrant> tokenAdapter = new Moshi.Builder().build()
-      .adapter(TokenGrant.class);
-
-    private TokenResponse tokenResponse;
-
-    @Override
-    public TokenGrant peekToken() {
-      return tokenResponse != null ? tokenResponse.token : null;
+      return System.currentTimeMillis() > (tokenResponse.response().sentRequestAtMillis() + expiresIn);
+    } else {
+      // No Response, need to fetch a new one
+      return true;
     }
+  }
 
-    @Override
-    public TokenGrant fetchToken() {
-      try {
-        updateAccessToken();
-      } catch (IOException e) {
-        log.error("Cannot fetch access token", e);
-      }
+  @Override
+  public TokenGrant peekToken() {
+    return tokenResponse != null ? tokenResponse.grant() : null;
+  }
 
-      return peekToken();
-    }
+  private Request getAccessToken() {
+    return new Request.Builder()
+      .url(baseUrl.newBuilder()
+        .addPathSegment("token")
+        .build()
+      )
+      .post(new FormBody.Builder()
+        .add("grant_type", "client_credentials")
+        .build())
+      .header("Accept", "application/json")
+      .header("Content-Type", "application/x-www-form-urlencoded")
+      .header("Authorization", Credentials.basic(clientId, secret))
+      .build();
+  }
 
-    private Request getAccessToken() {
-      return new Request.Builder()
-        .url(baseUrl.newBuilder()
-          .addPathSegment("token")
-          .build()
-        )
-        .post(new FormBody.Builder()
-          .add("grant_type", "client_credentials")
-          .build())
-        .header("Accept", "application/json")
-        .header("Content-Type", "application/x-www-form-urlencoded")
-        .header("Authorization", Credentials.basic(clientId, secret))
-        .build();
-    }
+  private void updateAccessToken() throws IOException {
+    if (isTokenExpired()) {
+      final Request request = getAccessToken();
 
-    private void updateAccessToken() throws IOException {
-      if (isTokenExpired()) {
-        final Request request = getAccessToken();
-
-        try (final Response response = okHttpClient.newCall(request).execute()) {
-          if (response.isSuccessful()) {
-            tokenResponse = new TokenResponse(response, tokenAdapter.fromJson(response.body().source()));
-          } else {
-            tokenResponse = new TokenResponse(response, null);
-          }
+      try (final Response response = okHttpClient.newCall(request).execute()) {
+        if (response.isSuccessful()) {
+          tokenResponse = new TokenInterceptor.Response(jsonAdapter.fromJson(response.body().source()), response);
+        } else {
+          tokenResponse = new TokenInterceptor.Response(null, response);
         }
-      }
-    }
-
-    private boolean isTokenExpired() {
-      if (tokenResponse != null) {
-        // Verify ttl
-        final long expiresIn = TimeUnit.SECONDS.toMillis(tokenResponse.token.expiresIn());
-
-        return System.currentTimeMillis() > (tokenResponse.response.sentRequestAtMillis() + expiresIn);
-      } else {
-        // No Response, need to fetch a new one
-        return true;
-      }
-    }
-
-    @Override
-    public Response intercept(Interceptor.Chain chain) throws IOException {
-      final Request originalRequest = chain.request();
-      if (originalRequest.header("Authorization") != null) {
-        return chain.proceed(originalRequest);
-      }
-
-      updateAccessToken();
-      if (tokenResponse != null && tokenResponse.token != null) {
-        final TokenGrant token = tokenResponse.token;
-
-        return chain.proceed(originalRequest.newBuilder()
-          .header("Authorization", String.format("%s %s", token.tokenType(), token.accessToken()))
-          .build());
-      } else if (tokenResponse != null) {
-        return tokenResponse.response;
-      } else {
-        return chain.proceed(originalRequest);
       }
     }
   }
@@ -137,15 +104,14 @@ public interface TokenAuthentication {
     @Setter
     private OkHttpClient okHttpClient;
 
-    public OkHttpClient build() {
-      return okHttpClient.newBuilder()
-        .addNetworkInterceptor(new TokenAuthenticationImpl(
-          baseUrl,
-          clientId,
-          secret,
-          okHttpClient
-        ))
-        .build();
+    public TokenAuthentication build() {
+
+      return new TokenAuthentication(
+        baseUrl,
+        clientId,
+        secret,
+        okHttpClient
+      );
     }
   }
 
