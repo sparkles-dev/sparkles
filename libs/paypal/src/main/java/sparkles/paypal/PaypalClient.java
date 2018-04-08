@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 import sparkles.support.okhttp.BasicAuthenticator;
 import sparkles.paypal.oauth2.OAuth2Api;
 import sparkles.paypal.oauth2.OAuth2ApiTokenAdapter;
-import sparkles.paypal.oauth2.TokenAuthentication;
+import sparkles.paypal.oauth2.AppAuthentication;
 import sparkles.paypal.oauth2.TokenInterceptor;
 import sparkles.paypal.payments.PaymentsApi;
 
@@ -84,7 +84,7 @@ public interface PaypalClient {
         oAuthClient.addInterceptor(logging);
       }
 
-      final TokenAuthentication tokenAuth = new TokenAuthentication.Builder()
+      final AppAuthentication tokenAuth = new AppAuthentication.Builder()
         .baseUrl(HttpUrl.parse(baseUrl)
           .newBuilder()
           .addPathSegments("v1/oauth2")

@@ -20,7 +20,7 @@ import okhttp3.Response;
 
 @RequiredArgsConstructor
 @Slf4j
-public class TokenAuthentication implements TokenInterceptor.Adapter {
+public class AppAuthentication implements TokenInterceptor.Adapter {
   private final HttpUrl baseUrl;
   private final String clientId;
   private final String secret;
@@ -104,9 +104,9 @@ public class TokenAuthentication implements TokenInterceptor.Adapter {
     @Setter
     private OkHttpClient okHttpClient;
 
-    public TokenAuthentication build() {
+    public AppAuthentication build() {
 
-      return new TokenAuthentication(
+      return new AppAuthentication(
         baseUrl,
         clientId,
         secret,
