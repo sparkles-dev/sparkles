@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "./node_modules/.bin/nx affected apps",
     "affected:build": "./node_modules/.bin/nx affected build",
@@ -18,7 +18,10 @@
     "update": "./node_modules/.bin/nx update",
     "update:check": "./node_modules/.bin/nx update check",
     "update:skip": "./node_modules/.bin/nx update skip",
-    "postinstall": "./node_modules/.bin/nx postinstall"
+    "postinstall": "./node_modules/.bin/nx postinstall",
+    "dep-graph": "./node_modules/.bin/nx dep-graph",
+    "affected:dep-graph": "./node_modules/.bin/nx affected dep-graph",
+    "workspace-schematic": "./node_modules/.bin/nx workspace-schematic"
   },
   "private": true,
   "dependencies": {
