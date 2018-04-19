@@ -1,6 +1,7 @@
 .gradle
 /build/
 build/
+local.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -63,3 +64,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
