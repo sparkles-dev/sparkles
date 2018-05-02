@@ -5,10 +5,10 @@ plugins {
 
 dependencies {
   compile project(':support:javalin')
-  compile project(':support:javalin-jwt')
+  compile project(':support:javalin:jwt')
   compile project(':support:keycloak')
 
-  testCompile project(':support:testing')
+  testCompile project(':support:javalin-testing')
 }
 
 testlogger {
