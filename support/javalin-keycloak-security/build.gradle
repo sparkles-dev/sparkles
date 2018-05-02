@@ -1,0 +1,16 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger' version '1.2.0'
+}
+
+dependencies {
+  compile project(':support:javalin')
+  compile project(':support:javalin-jwt')
+  compile project(':support:keycloak')
+
+  testCompile project(':support:testing')
+}
+
+testlogger {
+  theme 'mocha'
+}
