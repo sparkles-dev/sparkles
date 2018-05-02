@@ -22,8 +22,8 @@ dependencies {
   compile 'org.slf4j:slf4j-simple:1.7.25'
   // project
   compile project(':support:flyway')
-  compile project(':support:moshi')
-  compile project(':support:spring-data')
+  compile project(':support:spark:moshi')
+  compile project(':support:spark:spring-data')
   // testing
   testCompile group: 'junit', name: 'junit', version: '4.+'
 }
