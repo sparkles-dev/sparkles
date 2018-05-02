@@ -11,7 +11,7 @@ dependencies {
   testCompile 'org.assertj:assertj-core:3.9.0'
   testCompile 'com.google.guava:guava:24.1-jre'
   testCompile 'com.squareup.okhttp3:okhttp:3.10.0'
-  testCompile project(':support:testing')
+  testCompile project(':support:spark:testing')
 }
 
 testlogger {
