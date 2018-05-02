@@ -15,7 +15,7 @@ dependencies {
   testCompile 'junit:junit:4.+'
   testCompile 'org.assertj:assertj-core:3.9.0'
   testCompile 'com.squareup.okhttp3:okhttp:3.10.0'
-  testCompile project(':support:testing')
+  testCompile project(':support:spark:testing')
 }
 
 testlogger {
