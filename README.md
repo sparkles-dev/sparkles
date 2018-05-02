@@ -28,6 +28,7 @@ Reasons for this technology stack:
 Slices included in the mix:
 
  - [Spark](http://sparkjava.com/documentation#getting-started)
+ - [Javalin](https://javalin.io/documentation#getting-started)
  - [Moshi](https://github.com/square/moshi)
  - [jjwt](https://github.com/jwtk/jjwt#quickstart)
  - [Flyway](https://flywaydb.org/documentation/migrations#versioned-migrations)
