@@ -11,13 +11,16 @@ import org.springframework.data.mapping.context.PersistentEntities;
 public final class Auditing {
   private static final Logger LOG = LoggerFactory.getLogger(Auditing.class);
 
+  public static final String CTX_ENTITY_MANAGER = "persistence.entityManager";
+  public static final String CTX_JPA_REPOSITORY_FACTORY = "persistence.jpaRepositoryFactory";
+
   public enum Strategy {
     GLOBAL,
     INHERITED_THREAD_LOCAL,
     THREAD_LOCAL;
   }
 
-  private static AuditingAdapter<?> adapter;
+  private static AuditingContext<?> context;
 
   private Auditing() {}
 
@@ -34,8 +37,8 @@ public final class Auditing {
   }
 
   public static <T> void enableAuditing(AuditorResolver<T> resolver, AuditingHandler handler, Strategy strategy) {
-    adapter = new AuditingAdapter(handler, resolver);
-    adapter.setStrategy(strategy);
+    context = new AuditingContext(handler, resolver);
+    context.setStrategy(strategy);
 
     // TODO: register before() and after() handler
     /**
@@ -52,38 +55,22 @@ public final class Auditing {
   }
 
   @SuppressWarnings("unchecked")
+  public static <T> AuditingContext<T> context() {
+    return (AuditingContext<T>) context;
+  }
+
+  /** @deprecated */
+  @SuppressWarnings("unchecked")
   public static <T> AuditorAware<T> currentAuditor() {
-    return (AuditorAware<T>) adapter.aware;
+    return (AuditorAware<T>) context.getAware();
   }
 
+  /** @deprecated */
   public static AuditingHandler handler() {
-    return adapter.handler;
+    return context.getHandler();
   }
 
-  private static class AuditingAdapter<T> {
-    private AuditorAwareStrategy<T> aware;
-    private final AuditingHandler handler;
-    private final AuditorResolver<T> resolver;
-
-    private AuditingAdapter(AuditingHandler handler, AuditorResolver<T> resolver) {
-      this.handler = handler;
-      this.resolver = resolver;
-    }
-
-    private void setStrategy(Strategy strategy) {
-      if (strategy == Strategy.INHERITED_THREAD_LOCAL) {
-        aware = new InheritableThreadLocalStrategy();
-      } else if (strategy == Strategy.GLOBAL) {
-        aware = new GlobalStrategy();
-      } else if (strategy == Strategy.THREAD_LOCAL) {
-        aware = new ThreadLocalStrategy();
-      } else {
-        LOG.warn("No auditing strategy.");
-      }
-    }
-  }
-
-  static interface AuditorAwareStrategy<T> extends AuditorAware<T> {
+  interface AuditorAwareStrategy<T> extends AuditorAware<T> {
     void clear();
     Optional<T> get();
     void update(T auditor);

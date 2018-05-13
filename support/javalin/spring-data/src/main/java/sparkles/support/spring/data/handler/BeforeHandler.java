@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 
 import io.javalin.Context;
 import io.javalin.Handler;
+import sparkles.support.spring.data.Auditing;
 
 import static sparkles.support.spring.data.SpringDataSupport.createEntityManager;
 import static sparkles.support.spring.data.SpringDataSupport.createJpaRepositoryFactory;
@@ -24,8 +25,8 @@ public class BeforeHandler implements Handler {
     EntityManager entityManager = createEntityManager(entityManagerFactory);
     JpaRepositoryFactory jpaRepositoryFactory = createJpaRepositoryFactory(entityManager);
 
-    ctx.attribute("persistence.entityManager", entityManager);
-    ctx.attribute("persistence.jpaRepositoryFactory", jpaRepositoryFactory);
+    ctx.attribute(Auditing.CTX_ENTITY_MANAGER, entityManager);
+    ctx.attribute(Auditing.CTX_JPA_REPOSITORY_FACTORY, jpaRepositoryFactory);
 
     // automatically begin a transaction for a request
     entityManager.getTransaction().begin();

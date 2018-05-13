@@ -47,7 +47,7 @@ public final class SpringDataSupport {
   }
 
   public static JpaRepositoryFactory jpaRepositoryFactory(Context ctx) {
-    return ctx.attribute("persistence.jpaRepositoryFactory");
+    return ctx.attribute(Auditing.CTX_JPA_REPOSITORY_FACTORY);
   }
 
   public static <T extends Repository> T repository(Context ctx, Class<T> repositoryClazz) {
