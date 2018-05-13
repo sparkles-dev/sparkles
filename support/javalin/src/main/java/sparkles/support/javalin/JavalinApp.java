@@ -1,29 +1,38 @@
 package sparkles.support.javalin;
 
-public class JavalinApp extends Javalin {
+import java.util.HashMap;
+import java.util.Map;
 
+import io.javalin.Javalin;
+
+public class JavalinApp {
+
+  private final Javalin javalin;
   private final Map<Class<?>, Extension> extensions = new HashMap<>();
 
-  /**
-   * Registers an anonymous {@link Extension} with the Javalin application.
-   *
-   * @param extension You're free to implement the extension as a class or a lambda expression
-   * @return Self instance for fluent, method-chaining API
-   */
-  public Javalin extension(Extension extension) {
-    extension.register(this);
+  protected JavalinApp(Javalin javalin) {
+    this.javalin = javalin;
+  }
 
-    return this;
+  public static JavalinApp create() {
+    return new JavalinApp(Javalin.create());
+  }
+
+  public Javalin app() {
+    return javalin;
   }
 
   /**
    * Registers an {@link Extension} with the Javalin application.
    *
-   * @param extClazz The extension key
+   * If the extension is a lambda expression or an anonymous class, it's considered an anonymous
+   * extension.
+   *
    * @param extension You're free to implement the extension as a class or a lambda expression
    * @return Self instance for fluent, method-chaining API
    */
-  public Javalin extension(Class<?> extClazz, Extension extension) {
+  public JavalinApp extension(Extension extension) {
+    Class<?> extClazz = extension.getClass();
     if (extClazz == null) {
       throw new IllegalArgumentException("Extension key extClazz must not be null");
     }
@@ -44,4 +53,5 @@ public class JavalinApp extends Javalin {
 
     return (T) extensions.get(extClazz);
   }
+
 }

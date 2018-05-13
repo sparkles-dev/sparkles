@@ -3,40 +3,44 @@ package sparkles.support.spring.data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.auditing.AuditingHandler;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.mapping.context.PersistentEntities;
 
-public class AuditingContext<T> {
+import java.util.Collections;
+import java.util.Optional;
+
+public class AuditingContext<T> implements AuditorAware<T> {
   private static final Logger LOG = LoggerFactory.getLogger(AuditingContext.class);
 
-  private Auditing.AuditorAwareStrategy<T> aware;
-  private final AuditingHandler handler;
-  private final AuditorResolver<T> resolver;
+  private AuditingHandler handler;
+  private T currentAuditor;
 
-  AuditingContext(AuditingHandler handler, AuditorResolver<T> resolver) {
+  protected AuditingContext() {
+    this(new AuditingHandler(new PersistentEntities(Collections.emptyList())));
+  }
+
+  protected AuditingContext(AuditingHandler handler) {
     this.handler = handler;
-    this.resolver = resolver;
-  }
-
-  public void setStrategy(Auditing.Strategy strategy) {
-    if (strategy == Auditing.Strategy.INHERITED_THREAD_LOCAL) {
-      aware = new Auditing.InheritableThreadLocalStrategy<T>();
-    } else if (strategy == Auditing.Strategy.GLOBAL) {
-      aware = new Auditing.GlobalStrategy<T>();
-    } else if (strategy == Auditing.Strategy.THREAD_LOCAL) {
-      aware = new Auditing.ThreadLocalStrategy<T>();
-    } else {
-      LOG.warn("No auditing strategy.");
-    }
-  }
-
-  public Auditing.AuditorAwareStrategy<T> getAware() {
-    return aware;
   }
 
   public AuditingHandler getHandler() {
     return handler;
   }
 
-  public AuditorResolver<T> getResolver() {
-    return resolver;
+  public void setHandler(AuditingHandler handler) {
+    this.handler = handler;
+  }
+
+  @Override
+  public Optional<T> getCurrentAuditor() {
+    return Optional.ofNullable(currentAuditor);
+  }
+
+  public void clearCurrentAuditor() {
+    currentAuditor = null;
+  }
+
+  public void setCurrentAuditor(T currentAuditor) {
+    this.currentAuditor = currentAuditor;
   }
 }

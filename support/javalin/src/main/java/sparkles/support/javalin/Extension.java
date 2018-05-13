@@ -13,5 +13,5 @@ package sparkles.support.javalin;
 @FunctionalInterface
 public interface Extension {
 
-  void register(Javalin app);
+  void register(JavalinApp app);
 }

@@ -26,9 +26,10 @@ public class AuditingEntityListener {
   public void touchForCreate(Object target) {
     Assert.notNull(target, "Entity must not be null!");
 
-    AuditingHandler handler = Auditing.handler();
+    AuditingContext context = Auditing.getStrategy().resolveCurrentContext();
+    AuditingHandler handler = context.getHandler();
     if (handler != null) {
-      handler.setAuditorAware(Auditing.currentAuditor());
+      handler.setAuditorAware(context);
       handler.markCreated(target);
     }
   }
@@ -37,9 +38,10 @@ public class AuditingEntityListener {
   public void touchForUpdate(Object target) {
     Assert.notNull(target, "Entity must not be null!");
 
-    AuditingHandler handler = Auditing.handler();
+    AuditingContext context = Auditing.getStrategy().resolveCurrentContext();
+    AuditingHandler handler = context.getHandler();
     if (handler != null) {
-      handler.setAuditorAware(Auditing.currentAuditor());
+      handler.setAuditorAware(context);
       handler.markModified(target);
     }
   }
