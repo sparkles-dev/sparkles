@@ -153,25 +153,25 @@
   dependencies:
     tslib "^1.7.1"
 
-"@ngrx/effects@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-5.2.0.tgz#aa762b69cb6fd4644d724a1cecd265caa42baf09"
+"@ngrx/effects@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-6.0.0.tgz#da1baa08514179ee07df81f81b297f1c98e0f1ff"
 
-"@ngrx/router-store@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-5.2.0.tgz#bf4b174ce19a36eba8211fc1ddeaf1e35ae74368"
+"@ngrx/router-store@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-6.0.0.tgz#f42d3348ed364760100d29fcb77891705be85460"
 
 "@ngrx/schematics@5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-5.2.0.tgz#ab7180d79f0ec68bd4ac3ef4ec83b9348d18d26c"
 
-"@ngrx/store-devtools@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-5.2.0.tgz#2fff916a9aa349375826772b359dbb64b9e5d622"
+"@ngrx/store-devtools@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-6.0.0.tgz#20abbcb555857479075cb42b5d2258e557830927"
 
-"@ngrx/store@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-5.2.0.tgz#627ed74c9cd95462930485d912a557117b23903e"
+"@ngrx/store@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-6.0.0.tgz#fcb9ba6ea6ff4bbc7a3c0dd8adf844042bcfd2be"
 
 "@ngtools/json-schema@1.2.0":
   version "1.2.0"
