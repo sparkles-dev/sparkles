@@ -217,13 +217,13 @@
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
-"@nrwl/nx@6.0.0-rc.3":
-  version "6.0.0-rc.3"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@nrwl/nx/-/nx-6.0.0-rc.3.tgz#a9d76194afb18ce937c4e0f5e2ac3531ff0c6eb6"
+"@nrwl/nx@6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-6.0.2.tgz#c1f85560d9733af068c86d41ade5f8d8c9db5b27"
 
-"@nrwl/schematics@6.0.0":
-  version "6.0.0"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@nrwl/schematics/-/schematics-6.0.0.tgz#1ee05e610337854b69d4cb4aca00f5166f91b705"
+"@nrwl/schematics@6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-6.0.2.tgz#131662c000891fbb1b632904a91c340a9569e63b"
   dependencies:
     "@angular-devkit/schematics" "0.6.1"
     "@ngrx/schematics" "5.2.0"
