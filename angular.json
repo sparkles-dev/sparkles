@@ -39,6 +39,7 @@
     "warnings": {
       "typescriptMismatch": false
     },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "yarn"
   }
 }
