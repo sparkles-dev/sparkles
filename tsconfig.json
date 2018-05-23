@@ -18,6 +18,9 @@
     "paths": {
       "@foo/*": [
         "libs/*"
+      ],
+      "@foo/domain": [
+        "libs/domain/src/index.ts"
       ]
     }
   },

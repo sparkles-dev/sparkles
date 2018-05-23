@@ -1,0 +1,8 @@
+{
+  "npmScope": "foo",
+  "projects": {
+    "domain": {
+      "tags": []
+    }
+  }
+}
