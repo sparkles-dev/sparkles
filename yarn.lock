@@ -5765,9 +5765,9 @@ rxjs-compat@6.0.0:
   version "6.0.0"
   resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/rxjs-compat/-/rxjs-compat-6.0.0.tgz#2496403f74042d07899faeeac0bd703e4bce6710"
 
-rxjs@6.0.0:
-  version "6.0.0"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/rxjs/-/rxjs-6.0.0.tgz#d647e029b5854617f994c82fe57a4c6747b352da"
+rxjs@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.0.tgz#e024d0e180b72756a83c2aaea8f25423751ba978"
   dependencies:
     tslib "^1.9.0"
 
