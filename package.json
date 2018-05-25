@@ -41,7 +41,7 @@
     "@nrwl/nx": "6.0.2",
     "core-js": "^2.5.4",
     "ngrx-store-freeze": "^0.2.1",
-    "rxjs": "6.0.0",
+    "rxjs": "6.2.0",
     "zone.js": "^0.8.26",
     "rxjs-compat": "6.0.0"
   },
