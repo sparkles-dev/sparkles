@@ -1,11 +1,25 @@
 {
   "extends": [
     "config:base",
-    "default:pinDigestsDisabled",
-    ":semanticCommitType(build)"
+    "monorepo:angular",
+    "monorepo:commitlint",
+    "monorepo:ngrx",
+    "monorepo:nrwl",
+    "schedule:nonOfficeHours",
+    ":maintainLockFilesWeekly",
+    ":label(renovate)",
+    ":pinDigestsDisabled",
+    ":semanticCommitScopeDisabled"
   ],
-  "pinVersions": false,
-  "semanticCommits": true,
-  "semanticPrefix": "build:",
-  "commitMessage": "{{semanticPrefix}}update {{depName}} to version {{newVersion}}"
+  "packageRules": [
+    {
+      "packagePatterns": ["*"],
+      "semanticCommitType": "build"
+    },
+    {
+      "depTypeList": ["dependencies"],
+      "semanticCommitType": "fix"
+    }
+  ],
+  "pinVersions": false
 }
