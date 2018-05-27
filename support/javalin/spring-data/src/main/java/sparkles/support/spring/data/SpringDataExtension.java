@@ -22,8 +22,7 @@ public class SpringDataExtension implements Extension {
   @Override
   public void register(JavalinApp app) {
 
-    app.app()
-      .before(new EntityBeforeHandler(entityManagerFactory))
+    app.before(new EntityBeforeHandler(entityManagerFactory))
       .after(new EntityAfterHandler())
       .event(EventType.SERVER_STOPPING, (evt) -> {
         entityManagerFactory.close();

@@ -5,21 +5,16 @@ import java.util.Map;
 
 import io.javalin.Javalin;
 
-public class JavalinApp {
+public class JavalinApp extends Javalin {
 
-  private final Javalin javalin;
   private final Map<Class<?>, Extension> extensions = new HashMap<>();
 
-  protected JavalinApp(Javalin javalin) {
-    this.javalin = javalin;
+  protected JavalinApp() {
+    super();
   }
 
   public static JavalinApp create() {
-    return new JavalinApp(Javalin.create());
-  }
-
-  public Javalin app() {
-    return javalin;
+    return new JavalinApp();
   }
 
   /**
@@ -34,7 +29,7 @@ public class JavalinApp {
   public JavalinApp extension(Extension extension) {
     Class<?> extClazz = extension.getClass();
     if (extClazz == null) {
-      throw new IllegalArgumentException("Extension key extClazz must not be null");
+      throw new IllegalArgumentException("Extension must have a class to be registered");
     }
     extension.register(this);
     extensions.put(extClazz, extension);

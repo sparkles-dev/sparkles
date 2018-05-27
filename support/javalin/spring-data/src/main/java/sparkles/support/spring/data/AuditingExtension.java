@@ -14,8 +14,7 @@ public class AuditingExtension<T> implements Extension {
   @Override
   public void register(JavalinApp app) {
 
-    app.app()
-      .before((ctx) -> {
+    app.before((ctx) -> {
         T currentAuditor = resolver.resolve(ctx);
 
         Auditing.getStrategy().resolveCurrentContext().clearCurrentAuditor();
