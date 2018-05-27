@@ -16,10 +16,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@foo/*": [
+      "@sparkles/*": [
         "libs/*"
       ],
-      "@foo/domain": [
+      "@sparkles/domain": [
         "libs/domain/src/index.ts"
       ]
     }
