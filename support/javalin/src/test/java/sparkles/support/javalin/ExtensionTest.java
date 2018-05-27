@@ -1,38 +1,37 @@
 package sparkles.support.javalin;
 
-/*
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-*/
+
+import io.javalin.HaltException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExtensionTest {
 
-  /*
-  private static Javalin app;
+  private static JavalinApp app;
   private static String origin = null;
+  private static OkHttpClient okhttp = new OkHttpClient.Builder().build();
 
   @BeforeClass
   public static void setup() throws IOException {
-    app = Javalin.create()
-      .port(0)
-      .start();
+    app = JavalinApp.create();
+    app.port(0).start();
     origin = "http://localhost:" + app.port();
   }
 
   @After
   public void clear() {
-    app.clearMatcherAndMappers();
+    //app.clearMatcherAndMappers();
   }
 
   @AfterClass
@@ -49,22 +48,31 @@ public class ExtensionTest {
       app.get("/", ctx -> ctx.result("Hello world"));
     });
 
-    HttpResponse<String> response = Unirest.get(origin + "/").asString();
-    assertThat(response.getStatus(), is(200));
-    assertThat(response.getBody(), is("Hello world"));
+    Response response = okhttp.newCall(new Request.Builder()
+      .get()
+      .url(origin + "/").build()
+    ).execute();
+    assertThat(response.code()).isEqualTo(200);
+    assertThat(response.body().string()).isEqualTo("Hello world");
 
-    HttpResponse<String> response2 = Unirest.get(origin + "/protected").asString();
-    assertThat(response2.getStatus(), is(401));
-    assertThat(response2.getBody(), is("Protected"));
+    Response response2 = okhttp.newCall(new Request.Builder()
+      .get()
+      .url(origin + "/protected").build()
+    ).execute();
+    assertThat(response2.code()).isEqualTo(401);
+    assertThat(response2.body().string()).isEqualTo("Protected");
   }
 
   @Test
   public void test_javaClassExtension() throws Exception {
     app.extension(new JavaClassExtension("Foobar!"));
 
-    HttpResponse<String> response = Unirest.get(origin + "/").asString();
-    assertThat(response.getStatus(), is(400));
-    assertThat(response.getBody(), is("Foobar!"));
+    Response response = okhttp.newCall(new Request.Builder()
+      .get()
+      .url(origin + "/").build()
+    ).execute();
+    assertThat(response.code()).isEqualTo(400);
+    assertThat(response.body().string()).isEqualTo("Foobar!");
   }
 
   static class JavaClassExtension implements Extension {
@@ -79,7 +87,7 @@ public class ExtensionTest {
     }
 
     @Override
-    public void register(Javalin app) {
+    public void register(JavalinApp app) {
       app.before(ctx -> {
         throw new HaltException(400, magicValue);
       });
@@ -88,9 +96,9 @@ public class ExtensionTest {
 
   @Test
   public void test_javaClassExtensions() {
-    app.extension(JavaClassExtension.class, new JavaClassExtension("Foobar!"))
+    app.extension(new JavaClassExtension("Foobar!"))
       .extension((app) -> {
-        assertThat(app.extension(JavaClassExtension.class).getMagicValue(), is("Foobar!"));
+        assertThat(app.extension(JavaClassExtension.class).getMagicValue()).isEqualTo("Foobar!");
       });
   }
 
@@ -100,9 +108,8 @@ public class ExtensionTest {
     app.extension(app -> { values.add(1); })
       .extension(app -> { values.add(2); });
 
-    assertThat(values.get(0), is(1));
-    assertThat(values.get(1), is(2));
+    assertThat(values.get(0)).isEqualTo(1);
+    assertThat(values.get(1)).isEqualTo(2);
   }
-  */
 
 }
