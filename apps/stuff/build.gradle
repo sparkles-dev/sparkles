@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = 'sparkles'
+version = '1.0-SNAPSHOT'
+description = 'A stuffing application that does stuff'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'sparkles.StuffApp'
+
+run.doFirst {
+  environment 'ENVIRONMENT', 'develop'
+}
+
+dependencies {
+  // 3rd party
+  compile 'com.google.guava:guava:24.1-jre'
+  compile 'org.hsqldb:hsqldb:2.2.9'
+  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'org.slf4j:slf4j-simple:1.7.25'
+  // project
+  compile project(':support:javalin')
+  compile project(':support:javalin:keycloak-security')
+  compile project(':support:javalin:spring-data')
+  compile project(':support:flyway')
+  // testing
+  compile project(':support:javalin:testing')
+}

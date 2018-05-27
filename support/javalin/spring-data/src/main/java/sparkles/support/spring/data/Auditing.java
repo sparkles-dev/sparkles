@@ -25,7 +25,13 @@ public final class Auditing {
 
       @Override
       public AuditingContext resolveCurrentContext() {
-        return holder.get();
+        AuditingContext ctx = holder.get();
+        if (ctx == null) {
+          ctx = new AuditingContext();
+          holder.set(ctx);
+        }
+
+        return ctx;
       }
     },
     THREAD_LOCAL {

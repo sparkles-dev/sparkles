@@ -1,7 +1,11 @@
 package sparkles.support.spring.data;
 
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import io.javalin.Context;
 import io.javalin.event.EventType;
 import sparkles.support.javalin.Extension;
 import sparkles.support.javalin.JavalinApp;
@@ -30,4 +34,15 @@ public class SpringDataExtension implements Extension {
 
   }
 
+  public static EntityManager entityManager(Context ctx) {
+    return ctx.attribute(CTX_ENTITY_MANAGER);
+  }
+
+  public static JpaRepositoryFactory jpaRepositoryFactory(Context ctx) {
+    return ctx.attribute(CTX_JPA_REPOSITORY_FACTORY);
+  }
+
+  public static <T> T createRepository(Context ctx, Class<T> repositoryClazz) {
+    return jpaRepositoryFactory(ctx).getRepository(repositoryClazz);
+  }
 }
