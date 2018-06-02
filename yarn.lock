@@ -327,13 +327,9 @@
   version "6.0.111"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.111.tgz#85f880a1bab78d395a5de9bcb5319e73a0c31400"
 
-"@types/node@^8.0.50":
+"@types/node@^8.0.50", "@types/node@~8.10.0":
   version "8.10.17"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.17.tgz#d48cf10f0dc6dcf59f827f5a3fc7a4a6004318d3"
-
-"@types/node@~8.9.4":
-  version "8.9.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.9.5.tgz#162b864bc70be077e6db212b322754917929e976"
 
 "@types/prettier@^1.7.2":
   version "1.12.4"
