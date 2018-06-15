@@ -217,13 +217,13 @@
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
-"@nrwl/nx@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-6.0.4.tgz#4541bd3130dda1bb1ef9a44a6ff03cf96e8f9b59"
+"@nrwl/nx@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-6.1.0.tgz#a2bc3c94f6cc7529932702b4aa3e433b60377fa6"
 
-"@nrwl/schematics@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-6.0.4.tgz#fa51993672d9890b2c7bfb6794446d9554a5dd02"
+"@nrwl/schematics@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-6.1.0.tgz#bb0fde94f1fcfad323952ada2dbea1616cdf161f"
   dependencies:
     "@angular-devkit/schematics" "0.6.1"
     "@ngrx/schematics" "5.2.0"
