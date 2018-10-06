@@ -211,13 +211,13 @@
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
-"@nrwl/nx@6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-6.2.1.tgz#b75a5c35bab53675a89320e1d8d16f40b70e66d1"
+"@nrwl/nx@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-6.4.0.tgz#f04b6a405982c6c489fb3f227a7c66afb0359128"
 
-"@nrwl/schematics@6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-6.2.1.tgz#11473af8f5f3c078b65ebd47fb8bfbde93912163"
+"@nrwl/schematics@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-6.4.0.tgz#90f32d8ed2f5d9f556441027df9c1e75fade017e"
   dependencies:
     "@types/yargs" "^11.0.0"
     app-root-path "^2.0.1"
