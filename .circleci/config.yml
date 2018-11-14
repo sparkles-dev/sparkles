@@ -1,16 +1,33 @@
 version: 2
 jobs:
-  build:
+
+  # Backend only
+  build_backend:
     working_directory: ~/app
     docker:
-      - image: circleci/openjdk:8-jdk-browsers@sha256:550515ad7eafb917fde7b291c76a7647163769d290e06f7b792363961c2779ac
-
+      - image: gradle:4.10.2-jdk8
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}-{{ checksum  "yarn.lock" }}
+          key: sparkles-master-{{ checksum "settings.gradle" }}
       - run: ./gradlew test
       - save_cache:
-          paths:
-            - ~/app/node_modules
-          key: sparkles-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}-{{ checksum  "yarn.lock" }}
+          key: sparkles-master-{{ checksum "settings.gradle" }}
+
+  build_frontend:
+    docker:
+    - image: angular/ngcontainer:latest
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          key: sparkles-master-{{ checksum  "yarn.lock" }}
+      - run: yarn build
+      - save_cache:
+          key: sparkles-master-{{ checksum "yarn.gradle" }}
+
+
+#  build_frontend:
+#    working_directory: ~/app
+#    docker:
+#    - image: sparkles/testcontainer:latest
