@@ -1,8 +1,6 @@
 # Sparkles
 
-> Examples for Spark Java Microframework
-
-This repository contains a collection of code examples demonstrating a web tech stack built entirely on open source.
+> A web tech stack built entirely on open source.
 
 ## How It Ended Up To Be
 
