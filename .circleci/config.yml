@@ -31,3 +31,11 @@ jobs:
 #    working_directory: ~/app
 #    docker:
 #    - image: sparkles/testcontainer:latest
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+    - build_backend
+    - build_frontend
