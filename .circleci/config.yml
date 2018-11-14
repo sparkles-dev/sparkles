@@ -1,7 +1,7 @@
 version: 2
 jobs:
 
-  # Backend only
+  # Backend (Java, Gradle)
   build_backend:
     working_directory: ~/app
     docker:
@@ -13,7 +13,10 @@ jobs:
       - run: ./gradlew test
       - save_cache:
           key: sparkles-master-{{ checksum "settings.gradle" }}
+          paths:
+          - ~/app/.gradle
 
+  # Frontend (Angular)
   build_frontend:
     docker:
     - image: angular/ngcontainer:latest
@@ -25,13 +28,13 @@ jobs:
       - run: yarn build
       - save_cache:
           key: sparkles-master-{{ checksum "yarn.gradle" }}
-
+          paths:
+          - ~/app/node_modules
 
 #  build_frontend:
 #    working_directory: ~/app
 #    docker:
 #    - image: sparkles/testcontainer:latest
-
 
 workflows:
   version: 2
