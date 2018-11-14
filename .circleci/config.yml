@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/openjdk:8-jdk-browsers@sha256:550515ad7eafb917fde7b291c76a7647163769d290e06f7b792363961c2779ac
+      - image: circleci/openjdk:8-jdk-browsers@sha256:05577915c0d0b645f1f9441df25d76758fb779ea2540ca5a9abf79be69013e6f
 
     steps:
       - checkout
