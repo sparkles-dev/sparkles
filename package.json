@@ -71,6 +71,12 @@
     "typescript": "~3.1.6",
     "@angular-devkit/build-angular": "~0.10.0",
     "@ngrx/schematics": "7.0.0-beta.0",
-    "jasmine-marbles": "0.4.0"
+    "jasmine-marbles": "0.4.0",
+    "cypress": "^3.1.0",
+    "@types/jquery": "3.3.6",
+    "@nrwl/builders": "7.0.2",
+    "jest": "^23.0.0",
+    "@types/jest": "^23.0.0",
+    "jest-preset-angular": "6.0.1"
   }
 }

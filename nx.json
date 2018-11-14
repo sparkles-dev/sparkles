@@ -3,6 +3,12 @@
   "projects": {
     "domain": {
       "tags": []
+    },
+    "sparkles": {
+      "tags": []
+    },
+    "sparkles-e2e": {
+      "tags": []
     }
   }
 }
