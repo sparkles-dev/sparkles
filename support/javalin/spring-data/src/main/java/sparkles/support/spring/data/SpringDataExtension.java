@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import io.javalin.Context;
-import io.javalin.event.EventType;
+import io.javalin.JavalinEvent;
 import sparkles.support.javalin.Extension;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.spring.data.handler.EntityAfterHandler;
@@ -28,7 +28,7 @@ public class SpringDataExtension implements Extension {
 
     app.before(new EntityBeforeHandler(entityManagerFactory))
       .after(new EntityAfterHandler())
-      .event(EventType.SERVER_STOPPING, (evt) -> {
+      .event(JavalinEvent.SERVER_STOPPING, () -> {
         entityManagerFactory.close();
       });
 

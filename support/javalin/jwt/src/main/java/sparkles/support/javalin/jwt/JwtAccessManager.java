@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.List;
+import java.util.Set;
 
 import io.javalin.Context;
 import io.javalin.Handler;
@@ -33,7 +33,7 @@ public class JwtAccessManager implements AccessManager {
   }
 
   @Override
-  public void manage(Handler handler, Context ctx, List<Role> permittedRoles) throws Exception {
+  public void manage(Handler handler, Context ctx, Set<Role> permittedRoles) throws Exception {
     final String authorizationHeader = ctx.header("Authorization");
 
     if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(BEARER)) {
