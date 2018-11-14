@@ -9,7 +9,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import io.javalin.HaltException;
+import io.javalin.BadRequestResponse;
+import io.javalin.UnauthorizedResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,7 +44,7 @@ public class ExtensionTest {
   public void test_helloWorldExtension() throws Exception {
     app.extension((app) -> {
       app.before("/protected", ctx -> {
-        throw new HaltException(401, "Protected");
+        throw new UnauthorizedResponse("Protected");
       });
       app.get("/", ctx -> ctx.result("Hello world"));
     });
@@ -89,7 +90,7 @@ public class ExtensionTest {
     @Override
     public void register(JavalinApp app) {
       app.before(ctx -> {
-        throw new HaltException(400, magicValue);
+        throw new BadRequestResponse(magicValue);
       });
     }
   }

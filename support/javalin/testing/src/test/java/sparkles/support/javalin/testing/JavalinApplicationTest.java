@@ -16,7 +16,7 @@ public class JavalinApplicationTest {
   @TestApp
   private Javalin testApp() {
     return Javalin.create()
-      .get("/", (ctx) -> ctx.response().getWriter().print("foobar"))
+      .get("/", (ctx) -> ctx.res.getWriter().print("foobar"))
       .start();
   }
 
