@@ -283,30 +283,30 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@ngrx/effects@6.1.2":
-  version "6.1.2"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/effects/-/effects-6.1.2.tgz#602f3ee9798e00179075ddef030ded88c28b1aa1"
-  integrity sha512-RUuQ5/7ofxGEZnRRdlC1oE9ugVlTYGm92MVj7c6IirHrVN9W5yQjjMTYEYceVCDOYsiXP7Pyw0dcPp6J5wD2EQ==
+"@ngrx/effects@7.0.0-beta.0":
+  version "7.0.0-beta.0"
+  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/effects/-/effects-7.0.0-beta.0.tgz#b3985513f994d40f7c101ffc93d67e8ddb5537c7"
+  integrity sha512-yw0NXseLZltUY7ImUwPC0E9pR6FYiicY1mujjV5OdzIL1N4CMF56siuB+V9N3TzmWp61ZO2edmdECxPV3eXftg==
 
-"@ngrx/router-store@6.1.2":
-  version "6.1.2"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/router-store/-/router-store-6.1.2.tgz#63bfcd3710c53ea2c5456b82c57fd433e5af25bc"
-  integrity sha512-sj083ZYrx0aY+vU/t8Ub0KYDHcMpatXJIOJR/eDNSuH54fPiBM9MrdI3hs/XHoXHxSaHOJoZ7f6I8XcUeptxyA==
+"@ngrx/router-store@7.0.0-beta.0":
+  version "7.0.0-beta.0"
+  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/router-store/-/router-store-7.0.0-beta.0.tgz#3e5dc3ff1e7d227b5cea8ac6b49aca6c63d5fe9a"
+  integrity sha512-jMutiraSDx3s9ASw1py3WApAyOPfoxBp6mxJ01/TieuUCi677zC+nWUr5SgJZnjT0a+dMnbnKC19jYaEY31q7A==
 
-"@ngrx/schematics@6.1.2":
-  version "6.1.2"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/schematics/-/schematics-6.1.2.tgz#52dce7f2d4275791732805576eaf007d1043ef58"
-  integrity sha512-hiu8rdYAJIfIoJHPlAJr+mBkXab7OLRyg8Z/i5lUpmE382yvESfcVI9hqYsGXWBbyfY5Al+BGzGhBth5gc5AvA==
+"@ngrx/schematics@7.0.0-beta.0":
+  version "7.0.0-beta.0"
+  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/schematics/-/schematics-7.0.0-beta.0.tgz#1ac305416483506028f17438ee8366cd579c4667"
+  integrity sha512-ahJ/WgZdT5UloSq00BzaOfK175Co6adSQGzW9ZdtzJU8+9hhu97Q0SFUHNOBmSD1OBZjf283CmXWtpjZDNDkNQ==
 
-"@ngrx/store-devtools@6.1.2":
-  version "6.1.2"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/store-devtools/-/store-devtools-6.1.2.tgz#b9cb8d6bcd7ee0d171dde86c9bdd5e6a5bc5563a"
-  integrity sha512-hvWMKcRIAtAFb2lb4woRenPHPgOiLFjy8R2PtCiw4uP3WrBVB4JHqUuP230/iRMcU5XmySp+LhNqhkk1zsoUqQ==
+"@ngrx/store-devtools@7.0.0-beta.0":
+  version "7.0.0-beta.0"
+  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/store-devtools/-/store-devtools-7.0.0-beta.0.tgz#849274a67fad1fca25a1a683f486b2f0e5542752"
+  integrity sha512-AZOioU7Shsiz2HHEiFHLTR5BNlD9vHuAod/Nn7gJs8hk9GXE25RtXvGP+v6el178YcErUtp6OPfr9joNVWurJg==
 
-"@ngrx/store@6.1.2":
-  version "6.1.2"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/store/-/store-6.1.2.tgz#20fb5ab4d79571b804a348093aa11a167fe2946f"
-  integrity sha512-W9MbXrwhIRmN1BlINF9BT+rHR046e1HNk7GqykcDJrK9wW74PJW3aE5iuPb2sTPipBMjPHsXzc73E4U/+OTAyw==
+"@ngrx/store@7.0.0-beta.0":
+  version "7.0.0-beta.0"
+  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/@ngrx/store/-/store-7.0.0-beta.0.tgz#0e174ced7aace3b6544a1f3d34ec902642e8d127"
+  integrity sha512-349HWy74Pn00x2OQTErxt7cidkw8lV7ocdbK7AFJvu/LqGVS1hzM93JJQ3qHYAbsfeeMZXsIMpyeg6LSHQjnPw==
 
 "@ngtools/webpack@7.0.5":
   version "7.0.5"
@@ -6644,15 +6644,10 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@3.1.6:
+typescript@3.1.6, typescript@~3.1.6:
   version "3.1.6"
   resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
   integrity sha512-tDMYfVtvpb96msS1lDX9MEdHrW4yOuZ4Kdc4Him9oU796XldPYF/t2+uKoX0BBa0hXXwDlqYQbXY5Rzjzc5hBA==
-
-typescript@~2.9.2:
-  version "2.9.2"
-  resolved "https://trr-orbis-maven.dev.agfahealthcare.com/nexus/repository/npm-all/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
-  integrity sha512-Gr4p6nFNaoufRIY4NMdpQRNmgxVIGMs4Fcu/ujdYk3nAZqk7supzBE9idmvfZIlH/Cuj//dvi+019qEue9lV0w==
 
 uglify-es@^3.3.4:
   version "3.3.9"
