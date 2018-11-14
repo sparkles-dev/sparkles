@@ -25,6 +25,7 @@ jobs:
       - checkout
       - restore_cache:
           key: sparkles-master-{{ checksum  "yarn.lock" }}
+      - run: yarn install
       - run: yarn build
       - save_cache:
           key: sparkles-master-{{ checksum "yarn.gradle" }}
