@@ -1,5 +1,7 @@
 {
-  "name": "foo",
+  "name": "sparkles",
+  "description": "A web tech stark build entirely on open source.",
+  "private": true,
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -26,7 +28,6 @@
     "affected:test": "./node_modules/.bin/nx affected:test",
     "generate:schema": "ts-node tools/json-schema/generate.ts"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "7.0.3",
     "@angular/common": "7.0.3",
