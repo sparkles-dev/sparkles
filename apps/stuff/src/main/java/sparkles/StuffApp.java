@@ -64,7 +64,7 @@ public class StuffApp {
         }
 
         ctx.result("count: " + stuffs.size());
-      }, Collections.singletonList(KeycloakRoles.ANYONE))
+      }, Collections.singleton(KeycloakRoles.ANYONE))
       .post("/", (ctx) -> {
         Object auditor = Auditing.getStrategy().resolveCurrentContext().getCurrentAuditor().get();
         LOG.info("Current auditor is {}", auditor);
