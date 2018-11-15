@@ -27,6 +27,7 @@ jobs:
           key: sparkles-master-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: yarn build
+      - run: xvfb-run -a yarn test
       - save_cache:
           key: sparkles-master-{{ checksum "yarn.lock" }}
           paths:

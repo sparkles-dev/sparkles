@@ -16,7 +16,8 @@
             "scripts": [],
             "styles": [],
             "assets": [],
-            "tsConfig": "libs/domain/tsconfig.spec.json"
+            "tsConfig": "libs/domain/tsconfig.spec.json",
+            "watch": false
           }
         },
         "lint": {
@@ -122,7 +123,8 @@
           "options": {
             "jestConfig": "apps/sparkles/jest.config.js",
             "tsConfig": "apps/sparkles/tsconfig.spec.json",
-            "setupFile": "apps/sparkles/src/test-setup.ts"
+            "setupFile": "apps/sparkles/src/test-setup.ts",
+            "watch": false
           }
         }
       }
