@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
 dependencies {
-  compile project(':support:javalin')
+  compile project(':support:javalin:common')
 
   compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   compile 'org.hibernate:hibernate-core:5.2.14.Final'

@@ -14,16 +14,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
+import sparkles.support.flyway.FlywaySupport;
 import sparkles.support.javalin.Environment;
 import sparkles.support.javalin.JavalinApp;
-import sparkles.support.keycloak.security.KeycloakAccessManager;
-import sparkles.support.keycloak.security.KeycloakRoles;
-import sparkles.support.spring.data.Auditing;
-import sparkles.support.spring.data.AuditingExtension;
-import sparkles.support.spring.data.SpringDataExtension;
+import sparkles.support.javalin.keycloak.security.KeycloakAccessManager;
+import sparkles.support.javalin.keycloak.security.KeycloakRoles;
+import sparkles.support.javalin.spring.data.Auditing;
+import sparkles.support.javalin.spring.data.AuditingExtension;
+import sparkles.support.javalin.spring.data.SpringDataExtension;
 
-import static sparkles.support.flyway.FlywaySupport.runMigrations;
-import static sparkles.support.spring.data.SpringDataExtension.springData;
+import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 
 public class StuffApp {
   static {
@@ -36,7 +36,7 @@ public class StuffApp {
     LOG.debug("Initializing persistence layer...");
     final DataSource dataSource = createDataSource();
     LOG.debug("Running Flyway database migrations...");
-    runMigrations(dataSource, "persistence/migrations/flyway");
+    FlywaySupport.create(dataSource, "persistence/migrations/flyway").migrate();
     LOG.debug("Initializing Hibernate...");
     final EntityManagerFactory factory = Persistence.createEntityManagerFactory("stuff",
       createHibernateProperties(dataSource));

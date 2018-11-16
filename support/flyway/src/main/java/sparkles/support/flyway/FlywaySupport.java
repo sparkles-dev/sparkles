@@ -5,7 +5,7 @@ import org.flywaydb.core.Flyway;
 
 public final class FlywaySupport {
 
-  public static Flyway createFlyway(DataSource dataSource, String locationOnClassPath) {
+  public static Flyway create(DataSource dataSource, String locationOnClassPath) {
     Flyway flyway = new Flyway();
     flyway.setDataSource(dataSource);
     flyway.setBaselineOnMigrate(true);
@@ -17,7 +17,7 @@ public final class FlywaySupport {
   }
 
   public static void runMigrations(DataSource dataSource, String migrationScriptsLocation) {
-    createFlyway(dataSource, migrationScriptsLocation).migrate();
+    create(dataSource, migrationScriptsLocation).migrate();
   }
 
 }

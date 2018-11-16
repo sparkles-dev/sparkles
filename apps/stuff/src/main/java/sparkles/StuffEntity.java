@@ -13,7 +13,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import sparkles.support.spring.data.AuditingEntityListener;
+import sparkles.support.javalin.spring.data.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)

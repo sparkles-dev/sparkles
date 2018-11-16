@@ -1,10 +1,10 @@
 plugins {
   id 'java-library'
-  id 'com.adarshr.test-logger'
+  id 'com.adarshr.test-logger' version '1.5.0'
 }
 
 dependencies {
-  compile project(':support:javalin')
+  compile project(':support:javalin:common')
   compile project(':support:javalin:jwt')
   compile project(':support:keycloak')
 

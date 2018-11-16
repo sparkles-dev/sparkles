@@ -1,4 +1,4 @@
-package sparkles.support.spring.data;
+package sparkles.support.javalin.spring.data;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
@@ -9,8 +9,8 @@ import io.javalin.Context;
 import io.javalin.JavalinEvent;
 import sparkles.support.javalin.Extension;
 import sparkles.support.javalin.JavalinApp;
-import sparkles.support.spring.data.handler.EntityAfterHandler;
-import sparkles.support.spring.data.handler.EntityBeforeHandler;
+import sparkles.support.javalin.spring.data.handler.EntityAfterHandler;
+import sparkles.support.javalin.spring.data.handler.EntityBeforeHandler;
 
 public class SpringDataExtension implements Extension {
 

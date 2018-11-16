@@ -1,4 +1,4 @@
-package sparkles.support.spring.data.handler;
+package sparkles.support.javalin.spring.data.handler;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
@@ -7,9 +7,9 @@ import javax.persistence.EntityManagerFactory;
 
 import io.javalin.Context;
 import io.javalin.Handler;
-import sparkles.support.spring.data.SpringDataExtension;
+import sparkles.support.javalin.spring.data.SpringDataExtension;
 
-import static sparkles.support.spring.data.SpringDataExtension.springData;
+import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 
 public class EntityBeforeHandler implements Handler {
   private final EntityManagerFactory entityManagerFactory;
