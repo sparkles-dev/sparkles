@@ -9,6 +9,8 @@ import io.javalin.Context;
 import io.javalin.Handler;
 import sparkles.support.spring.data.SpringDataExtension;
 
+import static sparkles.support.spring.data.SpringDataExtension.springData;
+
 public class EntityBeforeHandler implements Handler {
   private final EntityManagerFactory entityManagerFactory;
 
@@ -22,8 +24,7 @@ public class EntityBeforeHandler implements Handler {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(entityManager);
 
-    ctx.attribute(SpringDataExtension.CTX_ENTITY_MANAGER, entityManager);
-    ctx.attribute(SpringDataExtension.CTX_JPA_REPOSITORY_FACTORY, jpaRepositoryFactory);
+    springData(ctx).set(entityManager, jpaRepositoryFactory);
 
     // automatically begin a transaction for a request
     entityManager.getTransaction().begin();
