@@ -34,8 +34,15 @@ public class JwtAccessManager implements AccessManager {
 
   @Override
   public void manage(Handler handler, Context ctx, Set<Role> permittedRoles) throws Exception {
-    final String authorizationHeader = ctx.header("Authorization");
+    // Public route
+    if (permittedRoles.isEmpty()) {
+      handler.handle(ctx);
 
+      return;
+    }
+
+    // Secured route (one requiring a role)
+    final String authorizationHeader = ctx.header("Authorization");
     if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(BEARER)) {
       ctx.status(400).result("Please include 'Authorization: Bearer <token>'.");
     } else {
