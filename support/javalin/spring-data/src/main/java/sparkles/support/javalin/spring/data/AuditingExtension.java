@@ -1,4 +1,4 @@
-package sparkles.support.spring.data;
+package sparkles.support.javalin.spring.data;
 
 import sparkles.support.javalin.Extension;
 import sparkles.support.javalin.JavalinApp;

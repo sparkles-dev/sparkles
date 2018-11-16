@@ -1,4 +1,4 @@
-package sparkles.support.keycloak.security;
+package sparkles.support.javalin.keycloak.security;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;

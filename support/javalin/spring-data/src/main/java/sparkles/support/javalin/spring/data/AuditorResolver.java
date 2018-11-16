@@ -1,4 +1,4 @@
-package sparkles.support.spring.data;
+package sparkles.support.javalin.spring.data;
 
 import io.javalin.Context;
 

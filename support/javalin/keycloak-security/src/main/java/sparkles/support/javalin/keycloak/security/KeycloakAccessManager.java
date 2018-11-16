@@ -1,4 +1,4 @@
-package sparkles.support.keycloak.security;
+package sparkles.support.javalin.keycloak.security;
 
 import sparkles.support.javalin.jwt.JwtAccessManager;
 import sparkles.support.javalin.jwt.RoleProvider;

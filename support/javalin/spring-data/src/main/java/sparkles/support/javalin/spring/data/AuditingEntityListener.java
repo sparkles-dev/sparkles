@@ -1,4 +1,4 @@
-package sparkles.support.spring.data;
+package sparkles.support.javalin.spring.data;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;

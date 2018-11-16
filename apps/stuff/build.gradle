@@ -20,7 +20,7 @@ dependencies {
   compile 'org.slf4j:slf4j-api:1.7.25'
   compile 'org.slf4j:slf4j-simple:1.7.25'
   // project
-  compile project(':support:javalin')
+  compile project(':support:javalin:common')
   compile project(':support:javalin:keycloak-security')
   compile project(':support:javalin:spring-data')
   compile project(':support:flyway')
