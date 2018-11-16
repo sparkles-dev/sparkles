@@ -23,7 +23,7 @@ import sparkles.support.spring.data.AuditingExtension;
 import sparkles.support.spring.data.SpringDataExtension;
 
 import static sparkles.support.flyway.FlywaySupport.runMigrations;
-import static sparkles.support.spring.data.SpringDataExtension.createRepository;
+import static sparkles.support.spring.data.SpringDataExtension.springData;
 
 public class StuffApp {
   static {
@@ -42,11 +42,11 @@ public class StuffApp {
       createHibernateProperties(dataSource));
 
     JavalinApp.create()
-      .extension(new AuditingExtension<>((ctx) -> {
+      .extension(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";
       }))
-      .extension(new SpringDataExtension(factory))
+      .extension(SpringDataExtension.create(factory))
       .accessManager(KeycloakAccessManager.create(
         "https://foobar",
         "realm",
@@ -56,7 +56,7 @@ public class StuffApp {
         }
       ))
       .get("/", (ctx) -> {
-        StuffRepository repository = createRepository(ctx, StuffRepository.class);
+        StuffRepository repository = springData(ctx).createRepository(StuffRepository.class);
 
         List<StuffEntity> stuffs = repository.findAll();
         for (StuffEntity stuff : stuffs) {
@@ -69,7 +69,7 @@ public class StuffApp {
         Object auditor = Auditing.getStrategy().resolveCurrentContext().getCurrentAuditor().get();
         LOG.info("Current auditor is {}", auditor);
 
-        StuffRepository repository = createRepository(ctx, StuffRepository.class);
+        StuffRepository repository = springData(ctx).createRepository(StuffRepository.class);
         StuffEntity entity = repository.save(new StuffEntity().withName("foobararar"));
 
         ctx.result(entity.id.toString()).status(201);

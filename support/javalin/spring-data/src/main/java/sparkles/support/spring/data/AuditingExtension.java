@@ -7,7 +7,7 @@ public class AuditingExtension<T> implements Extension {
 
   private final AuditorResolver<T> resolver;
 
-  public AuditingExtension(AuditorResolver<T> resolver) {
+  private AuditingExtension(AuditorResolver<T> resolver) {
     this.resolver = resolver;
   }
 
@@ -27,6 +27,10 @@ public class AuditingExtension<T> implements Extension {
 
       });
 
+  }
+
+  public static <T> AuditingExtension<T> create(AuditorResolver<T> resolver) {
+    return new AuditingExtension(resolver);
   }
 
 }

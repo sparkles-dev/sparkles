@@ -14,12 +14,9 @@ import sparkles.support.spring.data.handler.EntityBeforeHandler;
 
 public class SpringDataExtension implements Extension {
 
-  public static final String CTX_ENTITY_MANAGER = "persistence.entityManager";
-  public static final String CTX_JPA_REPOSITORY_FACTORY = "persistence.jpaRepositoryFactory";
-
   private final EntityManagerFactory entityManagerFactory;
 
-  public SpringDataExtension(EntityManagerFactory entityManagerFactory) {
+  private SpringDataExtension(EntityManagerFactory entityManagerFactory) {
     this.entityManagerFactory = entityManagerFactory;
   }
 
@@ -34,15 +31,42 @@ public class SpringDataExtension implements Extension {
 
   }
 
-  public static EntityManager entityManager(Context ctx) {
-    return ctx.attribute(CTX_ENTITY_MANAGER);
+  public static SpringDataExtension create(EntityManagerFactory entityManagerFactory) {
+    return new SpringDataExtension(entityManagerFactory);
   }
 
-  public static JpaRepositoryFactory jpaRepositoryFactory(Context ctx) {
-    return ctx.attribute(CTX_JPA_REPOSITORY_FACTORY);
+  public static SpringDataExtensionContext springData(Context ctx) {
+    return new SpringDataExtensionContext(ctx);
   }
 
-  public static <T> T createRepository(Context ctx, Class<T> repositoryClazz) {
-    return jpaRepositoryFactory(ctx).getRepository(repositoryClazz);
+  public static class SpringDataExtensionContext {
+    private static final String CTX_ENTITY_MANAGER = "persistence.entityManager";
+    private static final String CTX_JPA_REPOSITORY_FACTORY = "persistence.jpaRepositoryFactory";
+
+    private final Context ctx;
+
+    private SpringDataExtensionContext(Context ctx) {
+      this.ctx = ctx;
+    }
+
+    public EntityManager entityManager() {
+      return this.ctx.attribute(CTX_ENTITY_MANAGER);
+    }
+
+    public JpaRepositoryFactory jpaRepositoryFactory() {
+      return this.ctx.attribute(CTX_JPA_REPOSITORY_FACTORY);
+    }
+
+    public <T> T createRepository(Class<T> repositoryClazz) {
+      return this.jpaRepositoryFactory().getRepository(repositoryClazz);
+    }
+
+    public SpringDataExtensionContext set(EntityManager entityManager, JpaRepositoryFactory jpaRepositoryFactory) {
+      this.ctx.attribute(CTX_ENTITY_MANAGER, entityManager);
+      this.ctx.attribute(CTX_JPA_REPOSITORY_FACTORY, jpaRepositoryFactory);
+
+      return this;
+    }
   }
+
 }
