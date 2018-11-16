@@ -90,7 +90,7 @@ public class StuffApp {
     Map<String, Object> props = new HashMap<String, Object>();
     props.put("javax.persistence.nonJtaDataSource", dataSource);
     props.put("javax.persistence.transactionType", "RESOURCE_LOCAL");
-    props.put("hibernate.show_sql", true);
+    props.put("hibernate.show_sql", Environment.isDevelop());
     props.put("hibernate.format_sql", false);
     props.put("hibernate.hbm2ddl.auto", "validate");
     props.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
