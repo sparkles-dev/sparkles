@@ -1,8 +1,10 @@
 plugins {
   id 'java-library'
-  id 'com.adarshr.test-logger' version '1.5.0'
+  id 'com.adarshr.test-logger'
   id 'net.ltgt.apt' version '0.10'
 }
+
+group = 'sparkles.support'
 
 dependencies {
 	apt 'org.projectlombok:lombok:1.16.20'
