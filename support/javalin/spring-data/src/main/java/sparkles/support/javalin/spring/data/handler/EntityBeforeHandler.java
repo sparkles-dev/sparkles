@@ -12,15 +12,11 @@ import sparkles.support.javalin.spring.data.SpringDataExtension;
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 
 public class EntityBeforeHandler implements Handler {
-  private final EntityManagerFactory entityManagerFactory;
-
-  public EntityBeforeHandler(EntityManagerFactory entityManagerFactory) {
-    this.entityManagerFactory = entityManagerFactory;
-  }
 
   @Override
   public void handle(Context ctx) throws Exception {
     // EntityManager and the factory are request scoped
+    EntityManagerFactory entityManagerFactory = ctx.appAttribute(EntityManagerFactory.class);
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(entityManager);
 

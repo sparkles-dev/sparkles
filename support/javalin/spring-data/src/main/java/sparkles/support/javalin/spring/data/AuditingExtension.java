@@ -12,7 +12,7 @@ public class AuditingExtension<T> implements Extension {
   }
 
   @Override
-  public void register(JavalinApp app) {
+  public void addToJavalin(JavalinApp app) {
 
     app.before((ctx) -> {
         T currentAuditor = resolver.resolve(ctx);

@@ -14,6 +14,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
+import io.javalin.Javalin;
+import io.javalin.JavalinEvent;
+
 import sparkles.support.flyway.FlywaySupport;
 import sparkles.support.javalin.Environment;
 import sparkles.support.javalin.JavalinApp;
@@ -33,20 +36,27 @@ public class StuffApp {
   private static final Logger LOG = LoggerFactory.getLogger(StuffApp.class);
 
   public static void main(String[] args) {
-    LOG.debug("Initializing persistence layer...");
-    final DataSource dataSource = createDataSource();
-    LOG.debug("Running Flyway database migrations...");
-    FlywaySupport.create(dataSource, "persistence/migrations/flyway").migrate();
-    LOG.debug("Initializing Hibernate...");
-    final EntityManagerFactory factory = Persistence.createEntityManagerFactory("stuff",
-      createHibernateProperties(dataSource));
+    new StuffApp().init().start();
+  }
 
-    JavalinApp.create()
-      .extension(AuditingExtension.create((ctx) -> {
+  private Javalin init() {
+    final DataSource dataSource = createDataSource();
+
+    return JavalinApp.create()
+      .register(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";
       }))
-      .extension(SpringDataExtension.create(factory))
+      .register((app2) -> {
+
+        app2.event(JavalinEvent.SERVER_STARTING, () -> {
+          LOG.debug("Running Flyway database migrations...");
+          FlywaySupport.create(app2.attribute(DataSource.class), "persistence/migrations/flyway").migrate();
+        });
+
+      })
+      .register(SpringDataExtension.create(createHibernateProperties(dataSource)))
+      .attribute(DataSource.class, dataSource)
       .accessManager(KeycloakAccessManager.create(
         "https://foobar",
         "realm",
@@ -73,8 +83,7 @@ public class StuffApp {
         StuffEntity entity = repository.save(new StuffEntity().withName("foobararar"));
 
         ctx.result(entity.id.toString()).status(201);
-      })
-      .start();
+      });
   }
 
   private static DataSource createDataSource() {
