@@ -1,0 +1,8 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger' version '1.5.0'
+}
+
+dependencies {
+  testCompile project(':support:testing')
+}
