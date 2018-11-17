@@ -6,11 +6,8 @@ plugins {
 dependencies {
   compile 'io.javalin:javalin:2.4+'
 
-  testCompile 'junit:junit:4.+'
-  testCompile 'org.assertj:assertj-core:3.9.0'
-  testCompile 'com.google.guava:guava:24.1-jre'
-  testCompile 'com.squareup.okhttp3:okhttp:3.10.0'
-  testCompile project(':support:spark:testing')
+  testCompile project(':support:testing')
+  testCompile project(':support:javalin:testing')
 }
 
 testlogger {

@@ -5,10 +5,10 @@ plugins {
 
 dependencies {
   compile project(':support:javalin:common')
-  compile 'com.squareup.okhttp3:okhttp:3.10.0'
+  compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'junit:junit:4.+'
 
-  testCompile 'org.assertj:assertj-core:3.9.0'
+  testCompile 'org.assertj:assertj-core:3.+'
   testCompile 'com.google.guava:guava:24.1-jre'
 }
 
