@@ -16,6 +16,7 @@ In Java world:
  - [AssertJ](http://joel-costigliola.github.io/assertj/index.html)
  - [Lombok](https://projectlombok.org/features/all)
  - [Guava](https://github.com/google/guava/wiki)
+ - [Gradle](https://gradle.org/)
  - [Spark](http://sparkjava.com/documentation#getting-started)
 
 In frontend scripting land:
@@ -23,4 +24,4 @@ In frontend scripting land:
  - [Angular](http://angular.io/)
  - [NgRx](https://ngrx.io/)
  - [Nx](https://nrwl.io/nx/)
- 
+ - [Yarn](http://yarnpkg.com)

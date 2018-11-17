@@ -15,6 +15,10 @@ echo "Building $APP with gradle..."
 ./gradlew apps:$APP:clean
 ./gradlew apps:$APP:assemble
 
+###
+# TODO: check if gradle docker plugin doesn't do the same
+# https://github.com/palantir/gradle-docker
+
 echo "Copying distributions to Docker build context..."
 rm -rf tools/docker/sparkling-container/dist
 mkdir -p tools/docker/sparkling-container/dist
