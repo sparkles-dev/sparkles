@@ -1,9 +1,13 @@
 package sparkles.support.javalin.testing;
 
+import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
+import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public final class HttpClient {
 
@@ -15,11 +19,19 @@ public final class HttpClient {
     this.requestTemplate = requestTemplate;
   }
 
-  public Request.Builder newRequest() {
+  public Request.Builder newRequestBuilder() {
     return requestTemplate.newBuilder();
   }
 
+  public Request newRequest(String method, String path) {
+    return newRequest(method, path, null);
+  }
+
   public Request newRequest(String method, String path, RequestBody body) {
+    if (path.startsWith("/")) {
+      path = path.substring(1, path.length());
+    }
+
     return newRequest()
       .method(method, body)
       .url(requestTemplate.url()
@@ -27,6 +39,20 @@ public final class HttpClient {
         .addPathSegment(path)
         .build())
       .build();
+  }
+
+  public Response send(Request request) {
+    try {
+      return okHttp.newCall(request).execute();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  // --- BELOW IS DEPRECATED
+
+  public Request.Builder newRequest() {
+    return requestTemplate.newBuilder();
   }
 
   public Call newCall(String method, String path) {
@@ -66,6 +92,10 @@ public final class HttpClient {
   public void release() {
     okHttp.dispatcher().executorService().shutdown();
     okHttp.connectionPool().evictAll();
+  }
+
+  public RequestBody emptyBody() {
+    return RequestBody.create(MediaType.parse("text/plain"), "");
   }
 
 }
