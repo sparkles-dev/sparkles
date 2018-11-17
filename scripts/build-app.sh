@@ -5,11 +5,14 @@ if [ -z $APP ]
   then echo "usage: $0 [app]"; exit 1
 fi
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-pushd $SCRIPTPATH/..
-echo "Current working directory switched to: $(pwd)"
+SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
+pushd $SCRIPT_PATH/..
+
+VERSION="$(git describe --tags --always --first-parent)"
+echo "Git version: $VERSION"
 
 echo "Building $APP with gradle..."
+./gradlew apps:$APP:clean
 ./gradlew apps:$APP:assemble
 
 echo "Copying distributions to Docker build context..."
@@ -19,6 +22,11 @@ cp apps/$APP/build/distributions/*.zip tools/docker/sparkling-container/dist
 
 echo "Building the docker container..."
 cd tools/docker/sparkling-container
-docker build --build-arg bin=$APP --build-arg zip=$(basename *.zip .zip) -t sparkles/$APP .
+docker build \
+  --build-arg bin=$APP \
+  --build-arg zip=$(basename *.zip .zip) \
+  -t sparkles/$APP:latest \
+  -t sparkles/$APP:$VERSION \
+  .
 
 popd
