@@ -1,17 +1,16 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.palantir.git-version' version '0.12.0-rc2'
+}
 
 group = 'sparkles'
-version = '1.0-SNAPSHOT'
+version = gitVersion()
 description = 'A stuffing application that does stuff'
 
+mainClassName = 'sparkles.StuffApp'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-mainClassName = 'sparkles.StuffApp'
-
-run.doFirst {
-  environment 'ENVIRONMENT', 'develop'
-}
 
 dependencies {
   // 3rd party
@@ -27,4 +26,8 @@ dependencies {
   compile project(':support:flyway')
   // testing
   testCompile project(':support:javalin:testing')
+}
+
+run.doFirst {
+  environment 'ENVIRONMENT', 'develop'
 }
