@@ -41,12 +41,10 @@ public class StuffApp {
 
   private Javalin init() {
     final DataSource dataSource = createDataSource();
-    final JavalinApp app = JavalinApp.create();
-    app.attribute(DataSource.class, dataSource);
 
-    return app
-      .register(FlywayExtension.create("persistence/migrations/flyway"))
-      .register(SpringDataExtension.create(createHibernateProperties(dataSource)))
+    return JavalinApp.create()
+      .register(FlywayExtension.create(() -> dataSource, "persistence/migrations/flyway"))
+      .register(SpringDataExtension.create(() -> Persistence.createEntityManagerFactory("stuff", createHibernateProperties(dataSource))))
       .register(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";

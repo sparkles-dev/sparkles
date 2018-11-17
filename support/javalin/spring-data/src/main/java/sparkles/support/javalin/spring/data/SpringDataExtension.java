@@ -3,6 +3,7 @@ package sparkles.support.javalin.spring.data;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
 import java.util.Map;
+import java.util.function.Supplier;
 
 import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
@@ -17,19 +18,17 @@ import sparkles.support.javalin.spring.data.handler.EntityBeforeHandler;
 
 public class SpringDataExtension implements Extension {
 
-  private final Map<String, Object> properties;
+  private final Supplier<EntityManagerFactory> entityManagerFactory;
 
-  private SpringDataExtension(Map<String, Object> properties) {
-    this.properties = properties;
+  private SpringDataExtension(Supplier<EntityManagerFactory> entityManagerFactory) {
+    this.entityManagerFactory = entityManagerFactory;
   }
 
   @Override
   public void addToJavalin(JavalinApp app) {
 
     app.event(JavalinEvent.SERVER_STARTING, () -> {
-        final EntityManagerFactory factory = Persistence.createEntityManagerFactory("stuff", this.properties);
-
-        app.attribute(EntityManagerFactory.class, factory);
+        app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
       })
       .before(new EntityBeforeHandler())
       .after(new EntityAfterHandler())
@@ -39,8 +38,8 @@ public class SpringDataExtension implements Extension {
 
   }
 
-  public static SpringDataExtension create(Map<String, Object> properties) {
-    return new SpringDataExtension(properties);
+  public static SpringDataExtension create(Supplier<EntityManagerFactory> entityManagerFactory) {
+    return new SpringDataExtension(entityManagerFactory);
   }
 
   public static SpringDataExtensionContext springData(Context ctx) {
