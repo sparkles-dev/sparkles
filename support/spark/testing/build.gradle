@@ -5,9 +5,9 @@ plugins {
 
 dependencies {
   compile 'com.sparkjava:spark-core:2.7.1'
-  compile 'com.squareup.okhttp3:okhttp:3.10.0'
+  compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'junit:junit:4.+'
-  compile 'org.assertj:assertj-core:3.9.0'
+  compile 'org.assertj:assertj-core:3.+'
 }
 
 testlogger {
