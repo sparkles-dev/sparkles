@@ -17,9 +17,9 @@ import javax.sql.DataSource;
 import io.javalin.Javalin;
 import io.javalin.JavalinEvent;
 
-import sparkles.support.flyway.FlywaySupport;
 import sparkles.support.javalin.Environment;
 import sparkles.support.javalin.JavalinApp;
+import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.keycloak.security.KeycloakAccessManager;
 import sparkles.support.javalin.keycloak.security.KeycloakRoles;
 import sparkles.support.javalin.spring.data.Auditing;
@@ -41,22 +41,16 @@ public class StuffApp {
 
   private Javalin init() {
     final DataSource dataSource = createDataSource();
+    final JavalinApp app = JavalinApp.create();
+    app.attribute(DataSource.class, dataSource);
 
-    return JavalinApp.create()
+    return app
+      .register(FlywayExtension.create("persistence/migrations/flyway"))
+      .register(SpringDataExtension.create(createHibernateProperties(dataSource)))
       .register(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";
       }))
-      .register((app2) -> {
-
-        app2.event(JavalinEvent.SERVER_STARTING, () -> {
-          LOG.debug("Running Flyway database migrations...");
-          FlywaySupport.create(app2.attribute(DataSource.class), "persistence/migrations/flyway").migrate();
-        });
-
-      })
-      .register(SpringDataExtension.create(createHibernateProperties(dataSource)))
-      .attribute(DataSource.class, dataSource)
       .accessManager(KeycloakAccessManager.create(
         "https://foobar",
         "realm",
