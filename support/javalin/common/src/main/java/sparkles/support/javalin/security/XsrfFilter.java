@@ -74,6 +74,12 @@ public class XsrfFilter implements Handler {
     return this;
   }
 
+  public XsrfFilter withExceptionProvider(Function<Context, RuntimeException> exceptionProvider) {
+    this.exceptionProvider = exceptionProvider;
+
+    return this;
+  }
+
   public XsrfFilter whereModifyingOperation(Predicate<Context> isModifyingOperation) {
     this.isModifyingOperation = isModifyingOperation;
 
