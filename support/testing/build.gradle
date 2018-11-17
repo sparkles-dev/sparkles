@@ -1,10 +1,11 @@
 plugins {
   id 'java-library'
+  id 'com.adarshr.test-logger' version '1.5.0'
 }
 
 dependencies {
   compile 'com.google.guava:guava:24.1-jre'
-  compile 'com.squareup.okhttp3:okhttp:3.10.0'
+  compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'junit:junit:4.+'
-  compile 'org.assertj:assertj-core:3.9.0'
+  compile 'org.assertj:assertj-core:3.+'
 }

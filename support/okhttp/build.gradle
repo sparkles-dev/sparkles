@@ -9,7 +9,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.16.20'
 	testCompileOnly 'org.projectlombok:lombok:1.16.20'
 
-  compile 'com.squareup.okhttp3:okhttp:3.10.0'
+  compile 'com.squareup.okhttp3:okhttp:3.+'
 
   testCompile 'io.fabric8:mockwebserver:0.1.0'
   testCompile 'junit:junit:4.+'
