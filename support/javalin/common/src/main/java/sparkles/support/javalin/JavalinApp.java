@@ -7,8 +7,6 @@ import io.javalin.Javalin;
 
 public class JavalinApp extends Javalin {
 
-  private final Map<Class<?>, Extension> extensions = new HashMap<>();
-
   protected JavalinApp() {
     super();
   }
@@ -26,27 +24,10 @@ public class JavalinApp extends Javalin {
    * @param extension You're free to implement the extension as a class or a lambda expression
    * @return Self instance for fluent, method-chaining API
    */
-  public JavalinApp extension(Extension extension) {
-    Class<?> extClazz = extension.getClass();
-    if (extClazz == null) {
-      throw new IllegalArgumentException("Extension must have a class to be registered");
-    }
-    extension.register(this);
-    extensions.put(extClazz, extension);
+  public JavalinApp register(Extension extension) {
+    extension.addToJavalin(this);
 
     return this;
-  }
-
-  /**
-   * Returns an {@link Extension} that was registered with the Javalin application.
-   *
-   * @param extClazz The class implementing the `Extension` interface
-   * @return An instance of `T` or null
-   */
-  @SuppressWarnings("unchecked")
-  public <T> T extension(Class<T> extClazz) {
-
-    return (T) extensions.get(extClazz);
   }
 
 }

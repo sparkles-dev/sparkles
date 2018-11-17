@@ -42,7 +42,7 @@ public class ExtensionTest {
 
   @Test
   public void test_helloWorldExtension() throws Exception {
-    app.extension((app) -> {
+    app.register((app) -> {
       app.before("/protected", ctx -> {
         throw new UnauthorizedResponse("Protected");
       });
@@ -66,7 +66,7 @@ public class ExtensionTest {
 
   @Test
   public void test_javaClassExtension() throws Exception {
-    app.extension(new JavaClassExtension("Foobar!"));
+    app.register(new JavaClassExtension("Foobar!"));
 
     Response response = okhttp.newCall(new Request.Builder()
       .get()
@@ -88,7 +88,7 @@ public class ExtensionTest {
     }
 
     @Override
-    public void register(JavalinApp app) {
+    public void addToJavalin(JavalinApp app) {
       app.before(ctx -> {
         throw new BadRequestResponse(magicValue);
       });
@@ -96,18 +96,10 @@ public class ExtensionTest {
   }
 
   @Test
-  public void test_javaClassExtensions() {
-    app.extension(new JavaClassExtension("Foobar!"))
-      .extension((app) -> {
-        assertThat(app.extension(JavaClassExtension.class).getMagicValue()).isEqualTo("Foobar!");
-      });
-  }
-
-  @Test
   public void test_registerOrderIsFirstComeFirstServe() {
     List<Integer> values = new ArrayList<>();
-    app.extension(app -> { values.add(1); })
-      .extension(app -> { values.add(2); });
+    app.register(app -> { values.add(1); })
+      .register(app -> { values.add(2); });
 
     assertThat(values.get(0)).isEqualTo(1);
     assertThat(values.get(1)).isEqualTo(2);
