@@ -2,6 +2,7 @@ plugins {
   id 'java'
   id 'application'
   id 'com.palantir.git-version'
+  id 'com.palantir.docker'
 }
 
 group = 'sparkles'
@@ -26,6 +27,14 @@ dependencies {
   compile project(':support:flyway')
   // testing
   testCompile project(':support:javalin:testing')
+}
+
+docker {
+  name 'sparkles/stuff'
+  dockerfile file('../../tools/docker/sparkling-container/Dockerfile')
+  files tasks.distZip.outputs
+  buildArgs([bin: 'stuff', zip: tasks.distZip.archiveName])
+  pull true
 }
 
 run.doFirst {

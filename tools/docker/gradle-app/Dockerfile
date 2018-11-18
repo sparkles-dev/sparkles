@@ -16,7 +16,7 @@ ENV ENVIRONMENT PRODUCTION
 ###
 # Copy build artefacts to container
 RUN mkdir -p /app
-COPY dist/*.zip /app
+COPY *.zip /app
 RUN cd /app && unzip -o *.zip
 RUN echo '#!/bin/sh' > /app/start.sh \
  && echo "/app/${zip}/bin/${bin}" >> /app/start.sh \
