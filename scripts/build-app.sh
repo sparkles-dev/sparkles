@@ -5,6 +5,11 @@ if [ -z $APP ]
   then echo "usage: $0 [app]"; exit 1
 fi
 
+###
+# TODO: check if gradle docker plugin can replace this script
+# https://github.com/palantir/gradle-docker
+
+
 SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
 pushd $SCRIPT_PATH/..
 
@@ -14,10 +19,6 @@ echo "Git version: $VERSION"
 echo "Building $APP with gradle..."
 ./gradlew apps:$APP:clean
 ./gradlew apps:$APP:assemble
-
-###
-# TODO: check if gradle docker plugin doesn't do the same
-# https://github.com/palantir/gradle-docker
 
 echo "Copying distributions to Docker build context..."
 rm -rf tools/docker/sparkling-container/dist
