@@ -13,7 +13,7 @@ $ docker-machine start sparkles
 $ docker-machine env sparkles
 ```
 
-With [dockness][https://github.com/bamarni/dockness],
+When using [dockness](https://github.com/bamarni/dockness),
 the machine will be assigned the DNS hostname `sparkles.docker`.
 At this point, you can `ping sparkles.docker`.
 
