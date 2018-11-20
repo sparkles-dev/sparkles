@@ -33,11 +33,6 @@ jobs:
           paths:
           - ~/app/node_modules
 
-#  build_frontend:
-#    working_directory: ~/app
-#    docker:
-#    - image: sparkles/testcontainer:latest
-
 workflows:
   version: 2
   build:
