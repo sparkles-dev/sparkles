@@ -22,7 +22,7 @@ public class JavalinApplicationTest {
 
   @Test
   public void itRuns() throws Exception {
-    Response response = client.newCall("GET", "").execute();
+    Response response = client.get("/").send();
     assertThat(response.body().string()).isEqualTo("foobar");
   }
 
