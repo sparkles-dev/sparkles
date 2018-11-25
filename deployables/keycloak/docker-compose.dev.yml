@@ -1,0 +1,15 @@
+version: '3'
+services:
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - KEYCLOAK_USER=sparkles
+      - KEYCLOAK_PASSWORD=sparkles
+      - VIRTUAL_HOST=keycloak.sparkles.docker
+      - VIRTUAL_PORT=8080
+      - DB_VENDOR=h2
+
+networks:
+  default:
+    external:
+      name: sparkles

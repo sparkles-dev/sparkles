@@ -2,10 +2,8 @@ package sparkles.support.javalin.spring.data;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
-import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 

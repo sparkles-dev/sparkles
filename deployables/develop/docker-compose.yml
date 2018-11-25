@@ -22,7 +22,7 @@ services:
   proxy-gen:
     image: sparkles/proxy-gen
     container_name: proxy-gen
-    command: -notify-sighup proxy -watch -only-exposed /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+    command: -notify-sighup proxy -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
     volumes:
       - certs_vol:/etc/nginx/certs
       - proxy_vol:/etc/nginx/conf.d

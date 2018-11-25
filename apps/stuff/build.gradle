@@ -31,7 +31,7 @@ dependencies {
 
 docker {
   name 'sparkles/stuff'
-  dockerfile file('../../tools/docker/sparkling-container/Dockerfile')
+  dockerfile file('../../tools/docker/gradle-app/Dockerfile')
   files tasks.distZip.outputs
   buildArgs([bin: 'stuff', zip: tasks.distZip.archiveName])
   pull true

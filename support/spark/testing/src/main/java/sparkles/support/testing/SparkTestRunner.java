@@ -1,5 +1,6 @@
 package sparkles.support.testing;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.rules.TestRule;
 import org.junit.runners.BlockJUnit4ClassRunner;
@@ -18,7 +19,7 @@ public class SparkTestRunner extends BlockJUnit4ClassRunner {
 
 	@Override
 	protected List<TestRule> classRules() {
-		List<TestRule> classRules = super.classRules();
+		List<TestRule> classRules = new ArrayList<>(super.classRules());
 
 		SparkTestAppResource classRule = new SparkTestAppResource(testClass, 4567);
 		classRules.add(classRule);

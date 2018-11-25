@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           key: sparkles-master-{{ checksum "settings.gradle" }}
-      - run: ./gradlew test
+      - run: ./gradlew test || ./gradlew test --info --scan
       - save_cache:
           key: sparkles-master-{{ checksum "settings.gradle" }}
           paths:

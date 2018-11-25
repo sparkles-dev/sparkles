@@ -11,5 +11,3 @@ docker-machine create \
   --virtualbox-disk-size "20000" \
   --virtualbox-memory "2048" \
   $NAME
-
-docker-machine scp shopy.key.crt $NAME:/
