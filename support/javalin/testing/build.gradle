@@ -7,12 +7,16 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
+  compile project(':support:testing')
   compile project(':support:javalin:common')
   compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'junit:junit:4.+'
 
+  /*
+  testCompile project(':support:testing')
   testCompile 'org.assertj:assertj-core:3.+'
   testCompile 'com.google.guava:guava:24.1-jre'
+  */
 }
 
 testlogger {

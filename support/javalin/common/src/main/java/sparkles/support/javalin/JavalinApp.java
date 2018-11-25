@@ -1,9 +1,11 @@
 package sparkles.support.javalin;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import io.javalin.Javalin;
+import io.javalin.security.Role;
 
 public class JavalinApp extends Javalin {
 
@@ -28,6 +30,10 @@ public class JavalinApp extends Javalin {
     extension.addToJavalin(this);
 
     return this;
+  }
+
+  public static Set<Role> requires(Role... roles) {
+    return Arrays.stream(roles).collect(Collectors.toSet());
   }
 
 }

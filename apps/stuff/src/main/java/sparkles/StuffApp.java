@@ -4,18 +4,14 @@ import org.hsqldb.jdbc.JDBCDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import io.javalin.Javalin;
-import io.javalin.JavalinEvent;
 
 import sparkles.support.javalin.Environment;
 import sparkles.support.javalin.JavalinApp;
@@ -26,6 +22,7 @@ import sparkles.support.javalin.spring.data.Auditing;
 import sparkles.support.javalin.spring.data.AuditingExtension;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
 
+import static sparkles.support.javalin.JavalinApp.requires;
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 
 public class StuffApp {
@@ -39,19 +36,21 @@ public class StuffApp {
     new StuffApp().init().start();
   }
 
-  private Javalin init() {
+  public Javalin init() {
     final DataSource dataSource = createDataSource();
 
     return JavalinApp.create()
-      .register(FlywayExtension.create(() -> dataSource, "persistence/migrations/flyway"))
-      .register(SpringDataExtension.create(() -> Persistence.createEntityManagerFactory("stuff", createHibernateProperties(dataSource))))
+      .register(FlywayExtension.create(() -> dataSource,
+        "persistence/migrations/flyway"))
+      .register(SpringDataExtension.create(() -> Persistence.createEntityManagerFactory(
+        "stuff", createHibernateProperties(dataSource))))
       .register(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";
       }))
       .accessManager(KeycloakAccessManager.create(
-        "https://foobar",
-        "realm",
+        Environment.value("KEYCLOAK_URL",  "https://foobar"),
+        Environment.value("KEYCLOAK_REALM", "realm"),
         (claims) -> {
           // TODO: resolve role from keycloak stuff
           return KeycloakRoles.ANYONE;
@@ -66,7 +65,7 @@ public class StuffApp {
         }
 
         ctx.result("count: " + stuffs.size());
-      }, Collections.singleton(KeycloakRoles.ANYONE))
+      }, requires(KeycloakRoles.ANYONE))
       .post("/", (ctx) -> {
         Object auditor = Auditing.getStrategy().resolveCurrentContext().getCurrentAuditor().get();
         LOG.info("Current auditor is {}", auditor);
@@ -79,22 +78,22 @@ public class StuffApp {
   }
 
   private static DataSource createDataSource() {
-    JDBCDataSource ds = new JDBCDataSource();
-    ds.setUrl("jdbc:hsqldb:mem:standalone");
-    ds.setUser("sa");
-    ds.setPassword("");
+    final JDBCDataSource ds = new JDBCDataSource();
+    ds.setUrl(Environment.value("JDBC_URL", "jdbc:hsqldb:mem:standalone"));
+    ds.setUser(Environment.value("JDBC_USER", "sa"));
+    ds.setPassword(Environment.value("JDBC_PASSWORD", ""));
 
     return ds;
   }
 
   private static Map<String, Object> createHibernateProperties(DataSource dataSource) {
-    Map<String, Object> props = new HashMap<String, Object>();
+    final Map<String, Object> props = new HashMap<String, Object>();
     props.put("javax.persistence.nonJtaDataSource", dataSource);
     props.put("javax.persistence.transactionType", "RESOURCE_LOCAL");
     props.put("hibernate.show_sql", Environment.isDevelop());
     props.put("hibernate.format_sql", false);
     props.put("hibernate.hbm2ddl.auto", "validate");
-    props.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+    props.put("hibernate.dialect", Environment.value("HIBERNATE_DIALECT", "org.hibernate.dialect.HSQLDialect"));
 
     return props;
   }

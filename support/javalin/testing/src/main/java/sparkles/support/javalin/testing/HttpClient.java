@@ -1,8 +1,11 @@
 package sparkles.support.javalin.testing;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
+import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -14,88 +17,100 @@ public final class HttpClient {
   public final OkHttpClient okHttp;
   private final Request requestTemplate;
 
+  private Request lastRequest;
+  private Call lastCall;
+  private Response lastResponse;
+
+  private String _url;
+  private String _method;
+  private RequestBody _body;
+  private Map<String, String> _headers = new HashMap<>();
+
   public HttpClient(OkHttpClient client, Request requestTemplate) {
     this.okHttp = client;
     this.requestTemplate = requestTemplate;
   }
 
-  public Request.Builder newRequestBuilder() {
-    return requestTemplate.newBuilder();
+  public HttpClient get(String url) {
+    return this.request("GET", url);
   }
 
-  public Request newRequest(String method, String path) {
-    return newRequest(method, path, null);
+  public HttpClient post(String url) {
+    return this.request("POST", url);
   }
 
-  public Request newRequest(String method, String path, RequestBody body) {
-    if (path.startsWith("/")) {
-      path = path.substring(1, path.length());
+  // TODO: add more http verbs
+
+  public HttpClient request(String method, String url) {
+    this._url = url;
+    this._method = method;
+    this._body = null;
+    this._headers.clear();
+    // TODO: clear the other states
+
+    return this;
+  }
+
+  public HttpClient json(String jsonString) {
+    return body(RequestBody.create(MediaType.parse("application/json"), jsonString));
+  }
+
+  public HttpClient body(RequestBody body) {
+    this._body = body;
+
+    return this;
+  }
+
+  public HttpClient emptyBody() {
+    this._body = RequestBody.create(MediaType.parse("text/plain"), "");
+
+    return this;
+  }
+
+  public HttpClient header(String header, String value) {
+    _headers.put(header, value);
+
+    return this;
+  }
+
+  public Response send() {
+    if (_url.startsWith("/")) {
+      _url = _url.substring(1, _url.length());
     }
 
-    return newRequest()
-      .method(method, body)
-      .url(requestTemplate.url()
-        .newBuilder()
-        .addPathSegment(path)
-        .build())
-      .build();
-  }
-
-  public Response send(Request request) {
     try {
-      return okHttp.newCall(request).execute();
+      lastRequest = requestTemplate.newBuilder()
+        .method(_method, _body)
+        .url(requestTemplate.url()
+          .newBuilder()
+          .addPathSegment(_url)
+          .build())
+        .headers(Headers.of(_headers))
+        .build();
+      lastCall = okHttp.newCall(lastRequest);
+      lastResponse = lastCall.execute();
+
+      return lastResponse;
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
 
-  // --- BELOW IS DEPRECATED
-
-  public Request.Builder newRequest() {
-    return requestTemplate.newBuilder();
+  public Call lastCall() {
+    return lastCall;
   }
 
-  public Call newCall(String method, String path) {
-    return okHttp.newCall(newRequest()
-      .method(method, null)
-      .url(requestTemplate.url()
-        .newBuilder()
-        .addPathSegment(path)
-        .build())
-      .build());
+  public Request lastRequest() {
+    return lastRequest;
   }
 
-  public Call newCall(Request request) {
-    return okHttp.newCall(request);
-  }
-
-  public Call get(String path) {
-    return newCall(newRequest("GET", path, null));
-  }
-
-  public Call head(String path) {
-    return newCall(newRequest("HEAD", path, null));
-  }
-
-  public Call post(String path, RequestBody body) {
-    return newCall(newRequest("POST", path, body));
-  }
-
-  public Call put(String path, RequestBody body) {
-    return newCall(newRequest("PUT", path, body));
-  }
-
-  public Call delete(String path) {
-    return newCall(newRequest("DELETE", path, null));
+  public Response lastResponse() {
+    return lastResponse;
   }
 
   public void release() {
     okHttp.dispatcher().executorService().shutdown();
     okHttp.connectionPool().evictAll();
-  }
-
-  public RequestBody emptyBody() {
-    return RequestBody.create(MediaType.parse("text/plain"), "");
   }
 
 }
