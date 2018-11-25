@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 
 import io.javalin.Context;
 import io.javalin.Handler;
-import sparkles.support.javalin.spring.data.SpringDataExtension;
 
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 
