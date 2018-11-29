@@ -10,6 +10,9 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.function.Supplier;
 
+import sparkles.support.common.functional.OptionalUtil;
+import sparkles.support.common.functional.ThrowingSupplier;
+
 public final class PropertiesUtil {
 
   private final Properties properties;
