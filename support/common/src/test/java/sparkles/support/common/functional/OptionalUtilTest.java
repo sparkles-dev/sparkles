@@ -1,4 +1,4 @@
-package sparkles.support.common;
+package sparkles.support.common.functional;
 
 import org.junit.Test;
 
