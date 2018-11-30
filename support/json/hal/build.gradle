@@ -1,0 +1,28 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+}
+
+dependencies {
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
+  compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0'
+  compile 'com.fasterxml.jackson.core:jackson-core:2.9.0'
+  compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5'
+  compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5'
+  compile 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5'
+  // https://mvnrepository.com/artifact/io.openapitools.jackson.dataformat/jackson-dataformat-hal
+  compile group: 'io.openapitools.jackson.dataformat', name: 'jackson-dataformat-hal', version: '1.0.5'
+
+	annotationProcessor 'org.projectlombok:lombok:1.16.20'
+
+  testCompile project(':support:testing')
+}
+
+tasks.withType(JavaCompile) {
+  options.compilerArgs << '-Xlint:unchecked'
+  options.deprecation = true
+}
+
+testlogger {
+  theme 'mocha'
+}

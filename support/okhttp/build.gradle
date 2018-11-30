@@ -1,7 +1,7 @@
 plugins {
   id 'java-library'
   id 'com.adarshr.test-logger'
-  id 'net.ltgt.apt' version '0.10'
+  id 'net.ltgt.apt'
 }
 
 group = 'sparkles.support'
