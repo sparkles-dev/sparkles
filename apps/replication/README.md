@@ -12,7 +12,7 @@ Content-Type: application/json
 201 Created
 Content-Type: application/json
 
-{ "id": "123", "topic": "foobar", subscriptionUrl: "http://localhost:7002/replication/subscription/123" }
+{ "id": "123", "topic": "foobar", "subscriptionUrl": "http://localhost:7002/replication/subscription/123" }
 ```
 
 Upstream notifies downstream about changes:
