@@ -9,7 +9,7 @@ Content-Type: application/json
 
 { "topic": "foobar", "notifyUrl": "http://localhost:7001/replication/notification" }
 
-201 Created
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 { "id": "123", "topic": "foobar", "subscriptionUrl": "http://localhost:7002/replication/subscription/123" }
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 { "id": "123", "topic": "foobar", "subscriptionUrl": "http://localhost:7002/replication/subscription/123" }
 
-204 No Content
+HTTP/1.1 204 No Content
 ```
 
 Downstream fetches data from upstream:
@@ -31,7 +31,7 @@ Downstream fetches data from upstream:
 ```http
 GET /replication/subscription/123
 
-200 Ok
+HTTP/1.1 200 Ok
 Content-Type: application/json
 
 { "payload": { "best": "data in town" } }
