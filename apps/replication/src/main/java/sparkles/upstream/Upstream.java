@@ -5,12 +5,14 @@ import org.hsqldb.jdbc.JDBCDataSource;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import io.javalin.Javalin;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.javalin.Environment;
 import sparkles.support.javalin.JavalinApp;
@@ -28,6 +30,7 @@ public class Upstream {
 
   public Javalin init() {
     final DataSource dataSource = createDataSource();
+    final OkHttpClient okHttpClient = new OkHttpClient();
 
     return JavalinApp.create()
       .register(FlywayExtension.create(() -> dataSource, "persistence/migrations"))
@@ -35,9 +38,22 @@ public class Upstream {
         "replicator", createHibernateProperties(dataSource))))
       .get("/replication/subscription/:id", (ctx) -> {
         String id = ctx.pathParam("id");
+        String since = ctx.queryParam("since", null);
 
         ctx.status(200);
-        ctx.json(id);
+        if (since != null) {
+          ctx.result("Here are your results since " + since);
+        } else {
+          ctx.result("Here are all the results in the world.");
+        }
+      })
+      .delete("/replication/subscription/:id", (ctx) -> {
+        String id = ctx.pathParam("id");
+        SubscriptionRepository repository = springData(ctx).createRepository(SubscriptionRepository.class);
+
+        repository.deleteById(UUID.fromString(id));
+
+        ctx.status(200);
       })
       .post("/replication/subscription", (ctx) -> {
         // parse request
@@ -65,6 +81,7 @@ public class Upstream {
         List<SubscriptionEntity> subscribers = repository.findByTopic(ctx.queryParam("topic", "*"));
 
         ReplicationApi api = new ReplicationApi.Builder()
+          .okHttpClient(okHttpClient)
           .baseUrl(SELF_URL)
           .build();
 

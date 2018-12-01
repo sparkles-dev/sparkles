@@ -19,18 +19,18 @@ public class Downstream {
   private static final String UPSTREAM_URL = "http://localhost:7000/";
 
   public Javalin init() {
-    OkHttpClient okHttpClient = new OkHttpClient();
 
     return JavalinApp.create()
+      .attribute(OkHttpClient.class, new OkHttpClient())
       .post("/replication/notification", (ctx) -> {
         final Notification notification = ctx.bodyAsClass(Notification.class);
         final ReplicationApi api = new ReplicationApi.Builder()
-          .okHttpClient(okHttpClient)
+          .okHttpClient(ctx.appAttribute(OkHttpClient.class))
           .baseUrl(UPSTREAM_URL)
           .build();
 
         log.info("Received notification, fetching data...");
-        api.get(notification.url()).enqueue(new Callback<ResponseBody>() {
+        api.fetchSince(notification.url(), "the-beginning-of-time").enqueue(new Callback<ResponseBody>() {
           @Override
           public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             try {
@@ -49,7 +49,7 @@ public class Downstream {
       })
       .post("/do-something-to-subscribe", (ctx) -> {
         final ReplicationApi api = new ReplicationApi.Builder()
-          .okHttpClient(okHttpClient)
+          .okHttpClient(ctx.appAttribute(OkHttpClient.class))
           .baseUrl(UPSTREAM_URL)
           .build();
 

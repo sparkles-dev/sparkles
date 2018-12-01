@@ -13,6 +13,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface ReplicationApi {
@@ -40,7 +41,10 @@ public interface ReplicationApi {
   Call<ResponseBody> notify(@Url String url, @Body Notification notification);
 
   @GET
-  Call<ResponseBody> get(@Url String url);
+  Call<ResponseBody> fetch(@Url String url);
+
+  @GET
+  Call<ResponseBody> fetchSince(@Url String url, @Query(value = "since") String since);
 
   class Builder {
     private String baseUrl;
