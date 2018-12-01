@@ -5,6 +5,7 @@
 
   <persistence-unit name="replicator">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>sparkles.upstream.SubscriptionEntity</class>
   </persistence-unit>
 
 </persistence>

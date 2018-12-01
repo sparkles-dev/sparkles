@@ -8,9 +8,9 @@ plugins {
 
 group = 'sparkles'
 version = gitVersion()
-description = 'Data replication demo'
+description = 'Demonstrates data upstream using HTTP pub/sub'
 
-mainClassName = 'sparkles.Replicator'
+mainClassName = 'sparkles.ReplicationDemo'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -27,13 +27,14 @@ dependencies {
   compile project(':support:common')
   compile project(':support:javalin:common')
   compile project(':support:javalin:spring-data')
+  compile project(':support:javalin:flyway')
   compile project(':support:replication')
   // testing
   testCompile project(':support:javalin:testing')
 }
 
 docker {
-  name 'sparkles/stuff'
+  name 'sparkles/upstream'
   dockerfile file('../../tools/docker/gradle-app/Dockerfile')
   files tasks.distZip.outputs
   buildArgs([bin: 'stuff', zip: tasks.distZip.archiveName])

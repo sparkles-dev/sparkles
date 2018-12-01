@@ -9,6 +9,7 @@ import java.util.UUID;
 @Data
 public class Subscription {
   public UUID id;
+  public String topic;
   public String notifyUrl;
   public String subscriptionUrl;
 }

@@ -2,8 +2,10 @@ package sparkles.support.replication;
 
 import com.squareup.moshi.Moshi;
 
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
@@ -23,7 +25,7 @@ public interface ReplicationApi {
 
   /**
    * Expected response: 201 Created
-   * w/ header Location: /replication/subscription/:id
+   * w/ header Location: /upstream/subscription/:id
    */
   @POST("replication/subscription")
   Call<Subscription> subscribe(@Body Subscription subscription);
@@ -42,6 +44,7 @@ public interface ReplicationApi {
 
   class Builder {
     private String baseUrl;
+    private OkHttpClient okHttpClient;
 
     public Builder() {}
 
@@ -51,13 +54,27 @@ public interface ReplicationApi {
       return this;
     }
 
+    public Builder okHttpClient(OkHttpClient okHttpClient) {
+      this.okHttpClient = okHttpClient;
+
+      return this;
+    }
+
     public ReplicationApi build() {
+      if (okHttpClient == null) {
+        okHttpClient = new OkHttpClient();
+      }
+
       final Moshi moshi = new Moshi.Builder()
         .add(UuidAdapter.TYPE, new UuidAdapter())
         .build();
 
       return new Retrofit.Builder()
         .baseUrl(baseUrl)
+        .client(okHttpClient.newBuilder()
+          .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+          .build()
+        )
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
         .create(ReplicationApi.class);
