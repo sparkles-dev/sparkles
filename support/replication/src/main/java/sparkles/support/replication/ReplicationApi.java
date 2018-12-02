@@ -2,11 +2,14 @@ package sparkles.support.replication;
 
 import com.squareup.moshi.Moshi;
 
+import java.util.concurrent.CompletableFuture;
+
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 import retrofit2.http.Body;
@@ -45,6 +48,9 @@ public interface ReplicationApi {
 
   @GET
   Call<ResponseBody> fetchSince(@Url String url, @Query(value = "since") String since);
+
+  @GET
+  CompletableFuture<Response<ResponseBody>> fetchSinceAsFuture(@Url String url, @Query(value = "since") String since);
 
   class Builder {
     private String baseUrl;
