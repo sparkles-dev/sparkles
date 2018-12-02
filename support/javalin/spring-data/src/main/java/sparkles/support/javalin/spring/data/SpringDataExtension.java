@@ -1,8 +1,9 @@
 package sparkles.support.javalin.spring.data;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
-import org.springframework.data.repository.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import javax.persistence.EntityManager;
@@ -10,18 +11,15 @@ import javax.persistence.EntityManagerFactory;
 
 import io.javalin.Context;
 import io.javalin.JavalinEvent;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import sparkles.support.javalin.Extension;
 import sparkles.support.javalin.JavalinApp;
-import sparkles.support.javalin.spring.data.handler.EntityAfterHandler;
-import sparkles.support.javalin.spring.data.handler.EntityBeforeHandler;
 
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class SpringDataExtension implements Extension {
 
   private final Supplier<EntityManagerFactory> entityManagerFactory;
-
-  private SpringDataExtension(Supplier<EntityManagerFactory> entityManagerFactory) {
-    this.entityManagerFactory = entityManagerFactory;
-  }
 
   @Override
   public void addToJavalin(JavalinApp app) {
@@ -29,8 +27,28 @@ public class SpringDataExtension implements Extension {
     app.event(JavalinEvent.SERVER_STARTING, () -> {
         app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
       })
-      .before(new EntityBeforeHandler())
-      .after(new EntityAfterHandler())
+      .before(ctx -> {
+        // EntityManagerFactory is application scoped
+        EntityManagerFactory entityManagerFactory = ctx.appAttribute(EntityManagerFactory.class);
+        // EntityManager and JpaRepositoryFactory are request scoped
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        JpaRepositoryFactory jpaRepositoryFactory = new JpaRepositoryFactory(entityManager);
+
+        ctx.register(EntityManager.class, entityManager);
+        ctx.register(JpaRepositoryFactory.class, jpaRepositoryFactory);
+        ctx.register(SpringData.class, new SpringData(entityManager, jpaRepositoryFactory));
+
+        // Begin a transaction per request (transaction boundary is request boundary)
+        entityManager.getTransaction().begin();
+
+      })
+      .after(ctx -> {
+        EntityManager entityManager = springData(ctx).entityManager();
+
+        // Commit and close transaction
+        entityManager.getTransaction().commit();
+        entityManager.close();
+      })
       .event(JavalinEvent.SERVER_STOPPING, () -> {
         app.attribute(EntityManagerFactory.class).close();
       });
@@ -41,37 +59,41 @@ public class SpringDataExtension implements Extension {
     return new SpringDataExtension(entityManagerFactory);
   }
 
-  public static SpringDataExtensionContext springData(Context ctx) {
-    return new SpringDataExtensionContext(ctx);
+  public static SpringDataContext springData(Context ctx) {
+    return new SpringDataContext(ctx);
   }
 
-  public static class SpringDataExtensionContext {
-    private static final String CTX_ENTITY_MANAGER = "persistence.entityManager";
-    private static final String CTX_JPA_REPOSITORY_FACTORY = "persistence.jpaRepositoryFactory";
-
+  @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+  public static class SpringDataContext {
     private final Context ctx;
+    private final Map<Class, Object> repos = new HashMap<>();
 
-    private SpringDataExtensionContext(Context ctx) {
-      this.ctx = ctx;
-    }
-
+    /**
+     * Returns the EntityManager for the request context
+     * @return EntityManager
+     */
     public EntityManager entityManager() {
-      return this.ctx.attribute(CTX_ENTITY_MANAGER);
+      return ctx.use(EntityManager.class);
     }
 
+    /**
+     * Returns the JpaRepositoryFactory the request context
+     * @return
+     */
     public JpaRepositoryFactory jpaRepositoryFactory() {
-      return this.ctx.attribute(CTX_JPA_REPOSITORY_FACTORY);
+      return ctx.use(JpaRepositoryFactory.class);
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T createRepository(Class<T> repositoryClazz) {
-      return this.jpaRepositoryFactory().getRepository(repositoryClazz);
-    }
+      if (repos.containsKey(repositoryClazz)) {
+        return (T) repos.get(repositoryClazz);
+      } else {
+        T repo = jpaRepositoryFactory().getRepository(repositoryClazz);
+        repos.put(repositoryClazz, repo);
 
-    public SpringDataExtensionContext set(EntityManager entityManager, JpaRepositoryFactory jpaRepositoryFactory) {
-      this.ctx.attribute(CTX_ENTITY_MANAGER, entityManager);
-      this.ctx.attribute(CTX_JPA_REPOSITORY_FACTORY, jpaRepositoryFactory);
-
-      return this;
+        return repo;
+      }
     }
   }
 
