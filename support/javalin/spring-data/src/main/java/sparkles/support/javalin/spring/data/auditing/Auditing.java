@@ -1,4 +1,4 @@
-package sparkles.support.javalin.spring.data;
+package sparkles.support.javalin.spring.data.auditing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

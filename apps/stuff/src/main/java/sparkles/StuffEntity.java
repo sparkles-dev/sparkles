@@ -13,7 +13,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import sparkles.support.javalin.spring.data.AuditingEntityListener;
+import sparkles.support.javalin.spring.data.auditing.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -36,6 +36,7 @@ public class StuffEntity {
   @Column(name = "created_by", updatable = false, nullable = false)
   public String createdBy;
 
+  @Column(name = "name")
   public String name;
 
   public StuffEntity withName(String name) {
