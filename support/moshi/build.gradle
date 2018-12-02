@@ -1,0 +1,19 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+}
+
+dependencies {
+  compile project(':support:testing')
+  compile 'com.squareup.moshi:moshi:1.5.0'
+
+  /*
+  testCompile project(':support:testing')
+  testCompile 'org.assertj:assertj-core:3.+'
+  testCompile 'com.google.guava:guava:24.1-jre'
+  */
+}
+
+testlogger {
+  theme 'mocha'
+}

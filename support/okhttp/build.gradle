@@ -1,17 +1,16 @@
 plugins {
   id 'java-library'
   id 'com.adarshr.test-logger'
-  id 'net.ltgt.apt' version '0.10'
+  id 'org.inferred.processors'
 }
 
 group = 'sparkles.support'
 
 dependencies {
-	apt 'org.projectlombok:lombok:1.16.20'
-	compileOnly 'org.projectlombok:lombok:1.16.20'
-	testCompileOnly 'org.projectlombok:lombok:1.16.20'
+  processor 'org.projectlombok:lombok:1.16.20'
 
   compile 'com.squareup.okhttp3:okhttp:3.+'
+  compile 'com.squareup.okhttp3:logging-interceptor:3.+'
 
   testCompile 'io.fabric8:mockwebserver:0.1.0'
   testCompile 'junit:junit:4.+'
