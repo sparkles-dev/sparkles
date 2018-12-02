@@ -10,9 +10,35 @@ import lombok.experimental.Accessors;
 public class Link {
 
   @JsonProperty
+  private String href;
+
+  @JsonProperty
   private String rel;
 
   @JsonProperty
-  private String href;
+  private boolean templated;
+
+  @JsonProperty
+  private String type;
+
+  @JsonProperty
+  private String name;
+
+  @JsonProperty
+  private String lang;
+
+  @JsonProperty
+  private String title;
+
+
+  public String expand(Object... value) {
+    if (this.templated) {
+      // TODO: implement link expansion with uri templates
+
+      return this.href;
+    } else {
+      return this.href;
+    }
+  }
 
 }
