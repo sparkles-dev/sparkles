@@ -10,7 +10,11 @@ archivesBaseName = "${group}-${name}"
 dependencies {
   processor 'org.projectlombok:lombok:1.16.20'
 
+  compile project(':support:common')
   compile project(':support:javalin:common')
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
+  compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0'
+  compile 'com.fasterxml.jackson.core:jackson-core:2.9.0'
   compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   compile 'org.hibernate:hibernate-core:5.2.14.Final'
   compile 'org.hibernate:hibernate-entitymanager:5.2.14.Final'

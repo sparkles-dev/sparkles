@@ -14,7 +14,9 @@ import io.javalin.Extension;
 import io.javalin.Javalin;
 import io.javalin.JavalinEvent;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class SpringDataExtension implements Extension {
@@ -36,7 +38,7 @@ public class SpringDataExtension implements Extension {
 
         ctx.register(EntityManager.class, entityManager);
         ctx.register(JpaRepositoryFactory.class, jpaRepositoryFactory);
-        ctx.register(SpringData.class, new SpringData(entityManager, jpaRepositoryFactory));
+        ctx.register(SpringData.class, new SpringData(new SpringDataContext(entityManager, jpaRepositoryFactory)));
 
         // Begin a transaction per request (transaction boundary is request boundary)
         entityManager.getTransaction().begin();
@@ -59,42 +61,44 @@ public class SpringDataExtension implements Extension {
     return new SpringDataExtension(entityManagerFactory);
   }
 
-  public static SpringDataContext springData(Context ctx) {
-    return new SpringDataContext(ctx);
+  public static SpringData springData(Context ctx) {
+    return new SpringData(new SpringDataContext(ctx.use(EntityManager.class), ctx.use(JpaRepositoryFactory.class)));
   }
 
+  @Data
   @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+  @Accessors(fluent = true)
   public static class SpringDataContext {
-    private final Context ctx;
+
     private final Map<Class, Object> repos = new HashMap<>();
 
     /**
      * Returns the EntityManager for the request context
-     * @return EntityManager
      */
-    public EntityManager entityManager() {
-      return ctx.use(EntityManager.class);
-    }
+    private final EntityManager entityManager;
 
     /**
-     * Returns the JpaRepositoryFactory the request context
-     * @return
+     * Returns the JpaRepositoryFactory for the request context
      */
-    public JpaRepositoryFactory jpaRepositoryFactory() {
-      return ctx.use(JpaRepositoryFactory.class);
-    }
+    private final JpaRepositoryFactory jpaRepositoryFactory;
 
     @SuppressWarnings("unchecked")
     public <T> T createRepository(Class<T> repositoryClazz) {
-      if (repos.containsKey(repositoryClazz)) {
-        return (T) repos.get(repositoryClazz);
+      return repository(repositoryClazz);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T repository(Class<T> repositoryClz) {
+      if (repos.containsKey(repositoryClz)) {
+        return (T) repos.get(repositoryClz);
       } else {
-        T repo = jpaRepositoryFactory().getRepository(repositoryClazz);
-        repos.put(repositoryClazz, repo);
+        T repo = jpaRepositoryFactory.getRepository(repositoryClz);
+        repos.put(repositoryClz, repo);
 
         return repo;
       }
     }
+
   }
 
 }
