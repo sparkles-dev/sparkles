@@ -1,16 +1,19 @@
 plugins {
   id 'java-library'
   id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
 }
 
 group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  compile project(':support:testing')
   compile project(':support:javalin:common')
-  compile 'com.squareup.okhttp3:okhttp:3.+'
-  compile 'junit:junit:4.+'
+  compile project(':support:moshi')
+  compile project(':support:okhttp')
+  compile project(':support:testing')
+
+  processor 'org.projectlombok:lombok:1.16.20'
 
   /*
   testCompile project(':support:testing')

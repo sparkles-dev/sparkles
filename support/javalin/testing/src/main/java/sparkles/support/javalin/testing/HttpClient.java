@@ -1,34 +1,60 @@
 package sparkles.support.javalin.testing;
 
+import com.squareup.moshi.Moshi;
+
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Call;
 import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import sparkles.support.moshi.LocalDateTimeAdapter;
+import sparkles.support.moshi.UuidAdapter;
+import sparkles.support.moshi.ZonedDateTimeAdapter;
 
+@Slf4j
 public final class HttpClient {
 
-  public final OkHttpClient okHttp;
   private final Request requestTemplate;
+  private OkHttpClient okHttp;
 
   private Request lastRequest;
   private Call lastCall;
   private Response lastResponse;
+  private ResponseBody lastResponseBody;
 
-  private String _url;
-  private String _method;
-  private RequestBody _body;
-  private Map<String, String> _headers = new HashMap<>();
+  private String reqUrl;
+  private String reqMethod;
+  private RequestBody reqBody;
+  private Map<String, String> reqHeaders = new HashMap<>();
 
   public HttpClient(OkHttpClient client, Request requestTemplate) {
     this.okHttp = client;
     this.requestTemplate = requestTemplate;
+  }
+
+  public void enableLogging() {
+    enableLogging(HttpLoggingInterceptor.Level.BASIC);
+  }
+
+  public void enableLogging(HttpLoggingInterceptor.Level level) {
+    this.okHttp = okHttp.newBuilder()
+      .addInterceptor(new HttpLoggingInterceptor(log::info).setLevel(level))
+      .build();
+  }
+
+  public OkHttpClient okHttp() {
+    return okHttp;
   }
 
   public HttpClient get(String url) {
@@ -39,13 +65,30 @@ public final class HttpClient {
     return this.request("POST", url);
   }
 
-  // TODO: add more http verbs
+  public HttpClient delete(String url) {
+    return this.request("DELETE", url);
+  }
+
+  public HttpClient put(String url) {
+    return this.request("PUT", url);
+  }
+
+  public HttpClient patch(String url) {
+    return this.request("PATCH", url);
+  }
+
+  public HttpClient options(String url) {
+    return this.request("OPTIONS", url);
+  }
+  public HttpClient head(String url) {
+    return this.request("HEAD", url);
+  }
 
   public HttpClient request(String method, String url) {
-    this._url = url;
-    this._method = method;
-    this._body = null;
-    this._headers.clear();
+    this.reqUrl = url;
+    this.reqMethod = method;
+    this.reqBody = null;
+    this.reqHeaders.clear();
     // TODO: clear the other states
 
     return this;
@@ -56,36 +99,38 @@ public final class HttpClient {
   }
 
   public HttpClient body(RequestBody body) {
-    this._body = body;
+    this.reqBody = body;
 
     return this;
   }
 
   public HttpClient emptyBody() {
-    this._body = RequestBody.create(MediaType.parse("text/plain"), "");
+    this.reqBody = RequestBody.create(MediaType.parse("text/plain"), "");
 
     return this;
   }
 
   public HttpClient header(String header, String value) {
-    _headers.put(header, value);
+    reqHeaders.put(header, value);
 
     return this;
   }
 
   public Response send() {
-    if (_url.startsWith("/")) {
-      _url = _url.substring(1, _url.length());
+    if (reqUrl.startsWith("/")) {
+      reqUrl = reqUrl.substring(1, reqUrl.length());
     }
 
     try {
+      final HttpUrl.Builder url = requestTemplate.url()
+        .newBuilder();
+      final String[] segments = reqUrl.split("/");
+      Arrays.stream(segments).forEach(url::addPathSegment);
+
       lastRequest = requestTemplate.newBuilder()
-        .method(_method, _body)
-        .url(requestTemplate.url()
-          .newBuilder()
-          .addPathSegment(_url)
-          .build())
-        .headers(Headers.of(_headers))
+        .method(reqMethod, reqBody)
+        .url(url.build())
+        .headers(Headers.of(reqHeaders))
         .build();
       lastCall = okHttp.newCall(lastRequest);
       lastResponse = lastCall.execute();
@@ -111,6 +156,47 @@ public final class HttpClient {
   public void release() {
     okHttp.dispatcher().executorService().shutdown();
     okHttp.connectionPool().evictAll();
+  }
+
+  private final Moshi moshi = new Moshi.Builder()
+    .add(UuidAdapter.TYPE, new UuidAdapter())
+    .add(LocalDateTimeAdapter.TYPE, new LocalDateTimeAdapter())
+    .add(ZonedDateTimeAdapter.TYPE, new ZonedDateTimeAdapter())
+    .build();
+
+  public ResponseBody responseBody() {
+    lastResponseBody = lastResponse.body();
+
+    return lastResponseBody;
+  }
+
+  public String stringResponse() {
+    final ResponseBody body = responseBody();
+    if (body != null) {
+      try {
+        return body.string();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    } else {
+      throw new RuntimeException();
+    }
+  }
+
+  public <T> T jsonResponse(Class<T> clz) {
+    return fromJson(clz, stringResponse());
+  }
+
+  public <T> String toJson(Class<T> clz, T value) {
+    return moshi.adapter(clz).toJson(value);
+  }
+
+  public <T> T fromJson(Class<T> clz, String value) {
+    try {
+      return moshi.adapter(clz).fromJson(value);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
 }
