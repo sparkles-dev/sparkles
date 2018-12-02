@@ -2,7 +2,6 @@ package sparkles.support.common.functional;
 
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.assertThat;
