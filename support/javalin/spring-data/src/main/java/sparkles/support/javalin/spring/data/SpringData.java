@@ -1,20 +1,31 @@
 package sparkles.support.javalin.spring.data;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
-import org.springframework.data.repository.Repository;
 
 import javax.persistence.EntityManager;
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
 
-@RequiredArgsConstructor
-@Accessors(fluent = true)
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class SpringData {
-  private final EntityManager entityManager;
-  private final JpaRepositoryFactory jpaRepositoryFactory;
 
-  public <T extends Repository> T repository(Class<T> repoClz) {
-    return jpaRepositoryFactory.getRepository(repoClz);
+  private final SpringDataExtension.SpringDataContext wrapped;
+
+  public EntityManager entityManager() {
+    return wrapped.entityManager();
   }
+
+  public JpaRepositoryFactory jpaRepositoryFactory() {
+    return wrapped.jpaRepositoryFactory();
+  }
+
+  public <T> T createRepository(Class<T> repositoryClazz) {
+    return wrapped.createRepository(repositoryClazz);
+  }
+
+  public <T> T repository(Class<T> repositoryClz) {
+    return wrapped.repository(repositoryClz);
+  }
+
 }

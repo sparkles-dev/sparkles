@@ -4,7 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -30,7 +30,7 @@ public class StuffEntity {
 
   @CreatedDate
   @Column(name = "created_at", updatable = false, nullable = false)
-  public LocalDateTime createdAt;
+  public Instant createdAt;
 
   @CreatedBy
   @Column(name = "created_by", updatable = false, nullable = false)
