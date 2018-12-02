@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
@@ -18,12 +19,14 @@ import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.keycloak.security.KeycloakAccessManager;
 import sparkles.support.javalin.keycloak.security.KeycloakRoles;
-import sparkles.support.javalin.spring.data.Auditing;
-import sparkles.support.javalin.spring.data.AuditingExtension;
+import sparkles.support.javalin.spring.data.auditing.Auditing;
+import sparkles.support.javalin.spring.data.auditing.AuditingExtension;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
 
+import static io.javalin.apibuilder.ApiBuilder.crud;
 import static sparkles.support.javalin.JavalinApp.requires;
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
+import static sparkles.support.javalin.spring.data.crud.CrudRepositoryHandler.crudHandler;
 
 public class StuffApp {
   static {
@@ -74,6 +77,9 @@ public class StuffApp {
         StuffEntity entity = repository.save(new StuffEntity().withName("foobararar"));
 
         ctx.result(entity.id.toString()).status(201);
+      })
+      .routes(() -> {
+        crud("stuff/:id", crudHandler(StuffRepository.class, StuffEntity.class, UUID::fromString));
       });
   }
 

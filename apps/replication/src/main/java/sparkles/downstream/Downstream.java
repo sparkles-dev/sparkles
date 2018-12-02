@@ -9,6 +9,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import sparkles.support.common.functional.ThrowingFunction;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
@@ -30,6 +31,12 @@ public class Downstream {
           .build();
 
         log.info("Received notification, fetching data...");
+
+        /*
+        ctx.result(api.fetchSinceAsFuture(notification.url(), "the-beginning-of-time")
+          .thenApply(ThrowingFunction.wrap(r -> r.body().string(), RuntimeException::new)));
+        */
+
         api.fetchSince(notification.url(), "the-beginning-of-time").enqueue(new Callback<ResponseBody>() {
           @Override
           public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -17,6 +17,7 @@ import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.javalin.Environment;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
+import sparkles.support.javalin.spring.data.SpringData;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
@@ -60,7 +61,7 @@ public class Upstream {
         Subscription reqBody = ctx.bodyAsClass(Subscription.class);
 
         // save subscription to database
-        SubscriptionRepository repository = springData(ctx).createRepository(SubscriptionRepository.class);
+        SubscriptionRepository repository = ctx.use(SpringData.class).repository(SubscriptionRepository.class);
         SubscriptionEntity entity = new SubscriptionEntity();
         entity.notifyUrl = reqBody.notifyUrl();
         entity.topic = reqBody.topic() != null ? reqBody.topic() : "*";

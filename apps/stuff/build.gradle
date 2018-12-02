@@ -1,6 +1,7 @@
 plugins {
   id 'java'
   id 'application'
+  id 'com.adarshr.test-logger'
   id 'com.palantir.git-version'
   id 'com.palantir.docker'
 }
@@ -39,4 +40,9 @@ docker {
 
 run.doFirst {
   environment 'ENVIRONMENT', 'develop'
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
 }

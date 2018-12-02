@@ -1,6 +1,7 @@
 package sparkles.support.javalin.spring.data;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+import org.springframework.data.repository.Repository;
 
 import java.util.function.Supplier;
 

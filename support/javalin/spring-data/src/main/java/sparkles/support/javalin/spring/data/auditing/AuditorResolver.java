@@ -1,4 +1,4 @@
-package sparkles.support.javalin.spring.data;
+package sparkles.support.javalin.spring.data.auditing;
 
 import io.javalin.Context;
 
