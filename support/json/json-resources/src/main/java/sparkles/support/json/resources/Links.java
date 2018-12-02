@@ -1,14 +1,7 @@
-package sparkles.support.javalin.spring.data.rest;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.google.common.collect.Lists;
+package sparkles.support.json.resources;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Links {
 
@@ -18,6 +11,11 @@ public class Links {
     links.add(link);
   }
 
+  public List<Link> links() {
+    return links;
+  }
+
+  /*
   @JsonAnyGetter
   public Map<String, Object> toJson() {
     final Map<String, Object> json = new HashMap<>();
@@ -47,6 +45,18 @@ public class Links {
   @JsonAnySetter
   public void fromJson(Map<String, Object> json) {
 
+    json.forEach((rel, value) -> {
+      if (value instanceof Collection) {
+        // Link collection
+        ((Collection) value).forEach(l -> {
+
+        });
+      } else {
+        // Single link
+      }
+    });
+
   }
+  */
 
 }

@@ -1,4 +1,4 @@
-package sparkles.support.javalin.spring.data.rest;
+package sparkles.support.json.resources;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
