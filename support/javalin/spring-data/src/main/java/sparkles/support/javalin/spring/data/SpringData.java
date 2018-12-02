@@ -5,24 +5,16 @@ import org.springframework.data.repository.Repository;
 
 import javax.persistence.EntityManager;
 
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
+
+@RequiredArgsConstructor
+@Accessors(fluent = true)
 public class SpringData {
   private final EntityManager entityManager;
   private final JpaRepositoryFactory jpaRepositoryFactory;
 
-  public SpringData(EntityManager entityManager, JpaRepositoryFactory jpaRepositoryFactory) {
-    this.entityManager = entityManager;
-    this.jpaRepositoryFactory = jpaRepositoryFactory;
-  }
-
-  public EntityManager entityManager() {
-    return entityManager;
-  }
-
-  public JpaRepositoryFactory jpaRepositoryFactory() {
-    return jpaRepositoryFactory;
-  }
-
   public <T extends Repository> T repository(Class<T> repoClz) {
-    return jpaRepositoryFactory().getRepository(repoClz);
+    return jpaRepositoryFactory.getRepository(repoClz);
   }
 }
