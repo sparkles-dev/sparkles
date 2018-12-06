@@ -78,6 +78,6 @@
     "@nrwl/builders": "7.1.1",
     "jest": "^23.0.0",
     "@types/jest": "^23.0.0",
-    "jest-preset-angular": "6.0.1"
+    "jest-preset-angular": "6.0.2"
   }
 }
