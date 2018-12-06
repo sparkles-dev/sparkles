@@ -442,9 +442,15 @@
   version "23.3.10"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.10.tgz#4897974cc317bf99d4fe6af1efa15957fa9c94de"
 
-"@types/jquery@*", "@types/jquery@3.3.22":
+"@types/jquery@*":
   version "3.3.22"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.22.tgz#cde55dc8f83207dffd16205b05f97ce824581735"
+  dependencies:
+    "@types/sizzle" "*"
+
+"@types/jquery@3.3.23":
+  version "3.3.23"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.23.tgz#e681aa2428e819edace9b30c91d987ef302c4e96"
   dependencies:
     "@types/sizzle" "*"
 
