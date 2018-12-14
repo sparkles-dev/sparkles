@@ -74,7 +74,7 @@
     "@ngrx/schematics": "7.0.0-beta.1",
     "jasmine-marbles": "0.4.1",
     "cypress": "^3.1.0",
-    "@types/jquery": "3.3.24",
+    "@types/jquery": "3.3.27",
     "@nrwl/builders": "7.1.1",
     "jest": "^23.0.0",
     "@types/jest": "^23.0.0",
