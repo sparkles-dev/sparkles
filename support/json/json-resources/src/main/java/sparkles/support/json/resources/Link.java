@@ -1,5 +1,6 @@
 package sparkles.support.json.resources;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(fluent = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Link {
 
   @JsonProperty
@@ -16,6 +18,7 @@ public class Link {
   private String rel;
 
   @JsonProperty
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   private boolean templated;
 
   @JsonProperty
