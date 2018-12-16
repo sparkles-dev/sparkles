@@ -1,5 +1,6 @@
 package sparkles;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -27,7 +28,7 @@ import sparkles.support.javalin.keycloak.security.KeycloakRoles;
 import sparkles.support.javalin.spring.data.auditing.Auditing;
 import sparkles.support.javalin.spring.data.auditing.AuditingExtension;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
-import sparkles.support.javalin.spring.data.rest.RestRepositoryHandler;
+import sparkles.support.json.resources.JacksonResourcesModule;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
 import static sparkles.support.javalin.security.Security.requires;
@@ -52,6 +53,8 @@ public class StuffApp {
       .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
       .configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
       .configure(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
+      .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+      .registerModule(new JacksonResourcesModule())
       .registerModule(new JavaTimeModule());
 
     return JavalinApp.create()
@@ -63,6 +66,8 @@ public class StuffApp {
         // TODO: resolve auditor from request context
         return "foo";
       }))
+      // CRUD handling for StuffEntity - w/ RESTful resources
+      .register(new StuffHandler())
       .accessManager(KeycloakAccessManager.create(
         Environment.value("KEYCLOAK_URL",  "https://foobar"),
         Environment.value("KEYCLOAK_REALM", "realm"),
@@ -90,15 +95,6 @@ public class StuffApp {
 
         ctx.result(entity.id.toString()).status(201);
       })
-      // CRUD handling for StuffEntity - w/ RESTful resources
-      .attribute(StuffHandler.class, new StuffHandler())
-      .get("foo", ctx -> ctx.appAttribute(StuffHandler.class).findAll(ctx))
-      .post("foo", ctx -> ctx.appAttribute(StuffHandler.class).create(ctx))
-      .put("foo", ctx -> ctx.appAttribute(StuffHandler.class).update(ctx))
-      .get("foo/:id", ctx -> ctx.appAttribute(StuffHandler.class).findOne(ctx, UUID.fromString(ctx.pathParam(":id"))))
-      .head("foo/:id", ctx -> ctx.appAttribute(StuffHandler.class).exists(ctx, UUID.fromString(ctx.pathParam(":id"))))
-      .delete("foo/:id", ctx -> ctx.appAttribute(StuffHandler.class).delete(ctx, UUID.fromString(ctx.pathParam(":id"))))
-      // RESTful CRUD - end.
       .routes(() -> {
         crud("stuff/:id", crudHandler(StuffRepository.class, StuffEntity.class, UUID::fromString));
       });
