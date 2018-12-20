@@ -121,9 +121,9 @@
     "@angular-devkit/core" "7.1.3"
     rxjs "6.3.3"
 
-"@angular/animations@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.1.3.tgz#365c782efd7aa962cf9ce3a014d915e7e2720aab"
+"@angular/animations@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.1.4.tgz#6c1ca6b8449bb0fa874343371961fccbe19791bc"
   dependencies:
     tslib "^1.9.0"
 
@@ -141,15 +141,15 @@
     semver "5.5.1"
     symbol-observable "1.2.0"
 
-"@angular/common@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-7.1.3.tgz#13f171fe3802318cab2128a48e5aca922adb30e9"
+"@angular/common@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-7.1.4.tgz#a89f43e87317dee80b7664225442aaeca6c83547"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.1.3.tgz#47cf718c4cc91f9f9cbcf845cb83b004db1a91db"
+"@angular/compiler-cli@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.1.4.tgz#2a65ed98a189fb066d7e3dc6d98eff0918b3ff62"
   dependencies:
     canonical-path "1.0.0"
     chokidar "^1.4.2"
@@ -163,43 +163,43 @@
     tslib "^1.9.0"
     yargs "9.0.1"
 
-"@angular/compiler@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.1.3.tgz#4ac14c217812e3e7eb4df5d53b8b11612561ac50"
+"@angular/compiler@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.1.4.tgz#fc0f8ddd2d1b6e1a4aafab2af7949bbd05bc527c"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.1.3.tgz#759f626d734a90552936604d7adda5ac885a6887"
+"@angular/core@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.1.4.tgz#ad899985290957bbb9ac5c47c62ae5a72ccf5d00"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/forms@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-7.1.3.tgz#8ff73944ef4bde5ccf34800b0e3993b15f43b8d2"
+"@angular/forms@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-7.1.4.tgz#f3491264c27968d8da017fdc5b1178c46f4a4b83"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/language-service@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.1.3.tgz#7388097137a6cc3acc234d6d409b78028a2c1b9b"
+"@angular/language-service@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.1.4.tgz#59303e719937f774d9266a5e5f498ba254e0fe7b"
 
-"@angular/platform-browser-dynamic@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-7.1.3.tgz#d8ac0338e80602aaf4ee5c110a68d8d30f58e6e6"
+"@angular/platform-browser-dynamic@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-7.1.4.tgz#e76a5a267caf27d17bf46d16f009cd9c68a8dfd3"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/platform-browser@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-7.1.3.tgz#8f4929dd5907dd721d4c28b8baf49c7a366542c0"
+"@angular/platform-browser@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-7.1.4.tgz#1d6cbaedb565d8b92fb0e227b2f4a599dd5ec217"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/router@7.1.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.1.3.tgz#766bef2a29d03c9b4900a31ba954efa64afb8e72"
+"@angular/router@7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.1.4.tgz#b618a7b3d474bc443b5f8269e04b093a9619800d"
   dependencies:
     tslib "^1.9.0"
 
