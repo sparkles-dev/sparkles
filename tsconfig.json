@@ -21,6 +21,9 @@
       ],
       "@sparkles/domain": [
         "libs/domain/src/index.ts"
+      ],
+      "@sparkles/forms": [
+        "libs/forms/src/index.ts"
       ]
     }
   },
