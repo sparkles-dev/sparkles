@@ -165,11 +165,11 @@
       "prefix": "sparkles",
       "architect": {
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@nrwl/builders:jest",
           "options": {
-            "main": "libs/forms/src/test.ts",
+            "jestConfig": "libs/forms/jest.config.js",
             "tsConfig": "libs/forms/tsconfig.spec.json",
-            "karmaConfig": "libs/forms/karma.conf.js"
+            "setupFile": "libs/forms/src/test-setup.ts"
           }
         },
         "lint": {
