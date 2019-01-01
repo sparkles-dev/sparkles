@@ -47,7 +47,6 @@ import com.fasterxml.jackson.databind.deser.std.DelegatingDeserializer;
 import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.BeanSerializer;
@@ -148,7 +147,7 @@ public class JacksonResourcesModule extends SimpleModule {
 
               embeddedProps.put(rel, prop);
             }
-          } else if (prop.getAnnotation(Linked.class) != null) {
+          } else if (prop.getAnnotation(Links.class) != null) {
             Object object = prop.get(value);
 
             if (object != null) {
@@ -161,8 +160,8 @@ public class JacksonResourcesModule extends SimpleModule {
                 Link link = (Link) object;
                 String rel = "".equals(link.rel()) ? prop.getName() : link.rel();
                 linksProps.put(rel, prop);
-              } else if (object instanceof Links) {
-                Links links = (Links) object;
+              } else if (object instanceof LinkCollection) {
+                LinkCollection links = (LinkCollection) object;
                 for (Link link : links.links()) {
                   String rel = "".equals(link.rel()) ? prop.getName() : link.rel();
                   linksProps.put(rel, prop);
@@ -187,8 +186,8 @@ public class JacksonResourcesModule extends SimpleModule {
           try {
             gen.writeFieldName(rel);
             Object v = linksProps.get(rel).get(value);
-            if (v instanceof Links || v instanceof Collection) {
-              List<Link> links = v instanceof Links ? ((Links) v).links() : ((List<Link>) v);
+            if (v instanceof LinkCollection || v instanceof Collection) {
+              List<Link> links = v instanceof LinkCollection ? ((LinkCollection) v).links() : ((List<Link>) v);
               if (links.size() > 1) {
                 gen.writeStartArray();
               }
@@ -244,7 +243,7 @@ public class JacksonResourcesModule extends SimpleModule {
       Resource ann = beanDesc.getClassAnnotations().get(Resource.class);
       if (ann != null) {
         return new Deserializer(deserializer);
-      } else if (Links.class.isAssignableFrom(beanDesc.getBeanClass())) {
+      } else if (LinkCollection.class.isAssignableFrom(beanDesc.getBeanClass())) {
         return new LinkDeserializer(deserializer);
       } else {
         return deserializer;
@@ -263,7 +262,7 @@ public class JacksonResourcesModule extends SimpleModule {
 
           AnnotatedMember member = annotatedMember(property);
 
-          if (member.getAnnotation(Linked.class) != null) {
+          if (member.getAnnotation(Links.class) != null) {
             String propName = "_links:" + member.getName();
             modified.add(property.withName(new PropertyName(propName)));
             properties.remove();
@@ -417,7 +416,7 @@ public class JacksonResourcesModule extends SimpleModule {
 
   public enum ReservedProperty {
 
-    LINKS("_links", Linked.class), EMBEDDED("_embedded", Embedded.class);
+    LINKS("_links", Links.class), EMBEDDED("_embedded", Embedded.class);
 
     private final String name;
     private final UUID prefix = UUID.randomUUID();
@@ -474,7 +473,7 @@ public class JacksonResourcesModule extends SimpleModule {
         }
       }
 
-      if (o.annotationType() == Linked.class) {
+      if (o.annotationType() == Links.class) {
         /*
         String curiePrefix = ((Link) o).curie();
         if (!curiePrefix.isEmpty()) {

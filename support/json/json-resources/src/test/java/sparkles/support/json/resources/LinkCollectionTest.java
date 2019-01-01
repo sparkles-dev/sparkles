@@ -6,17 +6,17 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LinksTest {
+public class LinkCollectionTest {
 
   @Test
   public void itShouldCreate() {
-    Links l = new Links();
+    LinkCollection l = new LinkCollection();
     assertThat(l).isNotNull();
   }
 
   @Test
   public void add_shouldAddToBag() {
-    Links l = new Links();
+    LinkCollection l = new LinkCollection();
     final Link one = new Link().href("/foo").rel("foo");
     final Link two = new Link().href("/bar").rel("bar");
     l.add(one);
@@ -28,7 +28,7 @@ public class LinksTest {
 
   @Test
   public void clear_shouldClearTheBag() {
-    Links l = new Links()
+    LinkCollection l = new LinkCollection()
       .add(
         new Link().href("/foo").rel("foo"),
         new Link().href("/bar").rel("bar")
@@ -40,7 +40,7 @@ public class LinksTest {
 
   @Test
   public void findByRel_shouldReturnList() {
-    Links l = new Links()
+    LinkCollection l = new LinkCollection()
       .add(
         new Link().href("/foo").rel("foo"),
         new Link().href("/bar").rel("bar")
@@ -51,7 +51,7 @@ public class LinksTest {
 
   @Test
   public void findFirstByRel_shouldReturnOptional() {
-    Links l = new Links()
+    LinkCollection l = new LinkCollection()
       .add(
         new Link().href("/foo").rel("foo"),
         new Link().href("/bar").rel("bar")
@@ -63,7 +63,7 @@ public class LinksTest {
 
   @Test
   public void find_shouldReturnList() {
-    Links links = new Links()
+    LinkCollection links = new LinkCollection()
       .add(
         new Link().href("/foo").rel("foo").title("1234"),
         new Link().href("/bar").rel("bar")
@@ -74,7 +74,7 @@ public class LinksTest {
 
   @Test
   public void findFirst_shouldReturnOptional() {
-    Links links = new Links()
+    LinkCollection links = new LinkCollection()
       .add(
         new Link().href("/foo").rel("foo"),
         new Link().href("/bar").rel("bar").name("foob")

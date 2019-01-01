@@ -3,8 +3,8 @@ package sparkles.support.javalin.spring.data.rest;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 import sparkles.support.json.resources.Link;
-import sparkles.support.json.resources.Linked;
 import sparkles.support.json.resources.Links;
+import sparkles.support.json.resources.LinkCollection;
 import sparkles.support.json.resources.Resource;
 
 /**
@@ -15,13 +15,13 @@ import sparkles.support.json.resources.Resource;
 @Resource
 public class EntityResource<Entity> {
 
-  private final Links links = new Links();
+  private final LinkCollection links = new LinkCollection();
 
   @JsonUnwrapped
   public Entity entity;
 
-  @Linked
-  public Links getLinks() {
+  @Links
+  public LinkCollection getLinks() {
     return links;
   }
 

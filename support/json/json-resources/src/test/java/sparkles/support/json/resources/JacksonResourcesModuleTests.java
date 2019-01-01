@@ -24,13 +24,13 @@ public class JacksonResourcesModuleTests {
   @Resource
   private static class EntityResource<Entity> {
 
-    private final Links links = new Links();
+    private final LinkCollection links = new LinkCollection();
 
     @JsonUnwrapped
     public Entity entity;
 
-    @Linked
-    public Links getLinks() {
+    @Links
+    public LinkCollection getLinks() {
       return links;
     }
 
