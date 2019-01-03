@@ -26,7 +26,8 @@
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "help": "./node_modules/.bin/nx help",
     "affected:test": "./node_modules/.bin/nx affected:test",
-    "generate:schema": "ts-node tools/json-schema/generate.ts"
+    "generate:schema": "ts-node tools/json-schema/generate.ts",
+    "packages:styles:build": "gulp -f packages/styles/gulpfile.babel.js"
   },
   "dependencies": {
     "@angular/animations": "7.1.4",
@@ -45,20 +46,35 @@
     "core-js": "^2.5.4",
     "ngrx-store-freeze": "^0.2.1",
     "rxjs": "6.3.3",
-    "zone.js": "^0.8.26",
-    "rxjs-compat": "6.2.2"
+    "rxjs-compat": "6.2.2",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.11.0",
     "@angular/cli": "7.1.4",
     "@angular/compiler-cli": "7.1.4",
     "@angular/language-service": "7.1.4",
+    "@babel/register": "^7.0.0",
+    "@ngrx/schematics": "7.0.0",
+    "@nrwl/builders": "7.1.1",
     "@nrwl/schematics": "7.1.1",
     "@types/jasmine": "~3.3.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "^23.0.0",
+    "@types/jquery": "3.3.29",
     "@types/node": "~8.10.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
     "codelyzer": "~4.5.0",
+    "cypress": "^3.1.0",
+    "gulp": "^4.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
     "jasmine-core": "~3.3.0",
+    "jasmine-marbles": "0.4.1",
     "jasmine-spec-reporter": "~4.2.1",
+    "jest": "^23.0.0",
+    "jest-preset-angular": "6.0.2",
     "json-schema-to-typescript": "^6.0.0",
     "karma": "~3.1.1",
     "karma-chrome-launcher": "~2.2.0",
@@ -67,17 +83,9 @@
     "karma-jasmine-html-reporter": "^1.0.0",
     "prettier": "1.15.3",
     "protractor": "~5.4.0",
+    "tailwindcss": "^0.7.3",
     "ts-node": "~7.0.0",
     "tslint": "~5.12.0",
-    "typescript": "~3.1.6",
-    "@angular-devkit/build-angular": "~0.11.0",
-    "@ngrx/schematics": "7.0.0",
-    "jasmine-marbles": "0.4.1",
-    "cypress": "^3.1.0",
-    "@types/jquery": "3.3.29",
-    "@nrwl/builders": "7.1.1",
-    "jest": "^23.0.0",
-    "@types/jest": "^23.0.0",
-    "jest-preset-angular": "6.0.2"
+    "typescript": "~3.1.6"
   }
 }
