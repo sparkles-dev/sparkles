@@ -7,6 +7,9 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation specifying an array of curies to be used in defining link relations.
+ *
+ *
+ * @link https://stackoverflow.com/questions/28154998/can-anyone-provide-a-good-explanation-of-curies-and-how-to-use-them
  */
 @Target({ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

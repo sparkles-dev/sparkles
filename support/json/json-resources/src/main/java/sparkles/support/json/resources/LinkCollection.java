@@ -11,6 +11,22 @@ public class LinkCollection {
 
   private final List<Link> links = new ArrayList<>();
 
+  public List<Link> getLinks() {
+    return new ArrayList<>(links);
+  }
+
+  public LinkCollection setLinks(List<Link> links) {
+    clear().add(links);
+
+    return this;
+  }
+
+  public LinkCollection add(List<Link> links) {
+    links.addAll(links);
+
+    return this;
+  }
+
   public LinkCollection add(Link... link) {
     Collections.addAll(links, link);
 

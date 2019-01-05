@@ -24,7 +24,6 @@ public class JsonResourcesModuleTest {
 
     String serialized = om.writeValueAsString(foo);
     assertThat(serialized).isEqualTo("{\"_embedded\":{\"related\":{\"name\":\"hello world!\"}}}");
-
   }
 
   @Test
@@ -42,6 +41,18 @@ public class JsonResourcesModuleTest {
 
     String serialized = om.writeValueAsString(foo);
     assertThat(serialized).isEqualTo("{\"id\":\"f6eb1bd7-7611-49b1-ba15-5d1fa59a30a3\"}");
+  }
+
+  @Test
+  public void itShouldConsiderOnlyResourceAnnotatedClasses() throws Exception {
+    NoResource noResource = new NoResource();
+    noResource.related = new Bar("foo");
+    noResource.links = new LinkCollection()
+      .add(new Link().rel("foo").href("/foo/bar"));
+
+    String serialized = om.writeValueAsString(noResource);
+    assertThat(serialized).doesNotContain("_embedded");
+    assertThat(serialized).doesNotContain("_links");
   }
 
   @Resource
@@ -79,6 +90,15 @@ public class JsonResourcesModuleTest {
     public String toString() {
       return "Bar[name=" + name + "]";
     }
+  }
+
+  private static class NoResource {
+
+    @Links
+    public LinkCollection links;
+
+    @Embedded
+    public Bar related;
   }
 
 }
