@@ -9,8 +9,8 @@ archivesBaseName = "${group}-${name}"
 
 dependencies {
   compile project(':support:javalin:common')
-  compile project(':support:moshi')
-  compile project(':support:okhttp')
+  compile project(':support:ok:moshi')
+  compile project(':support:ok:okhttp')
   compile project(':support:testing')
 
   processor 'org.projectlombok:lombok:1.16.20'

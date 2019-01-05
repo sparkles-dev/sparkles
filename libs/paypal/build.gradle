@@ -17,7 +17,7 @@ dependencies {
   compile 'com.squareup.retrofit2:converter-moshi:2.4.0'
   compile 'org.slf4j:slf4j-api:1.7.25'
   compile 'org.slf4j:slf4j-simple:1.7.25'
-  compile project(':support:okhttp')
+  compile project(':support:ok:okhttp')
 
   testCompile 'io.fabric8:mockwebserver:0.1.0'
   testCompile 'junit:junit:4.+'
