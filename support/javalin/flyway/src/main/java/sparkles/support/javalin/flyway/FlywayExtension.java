@@ -7,13 +7,11 @@ import java.util.function.Supplier;
 
 import javax.sql.DataSource;
 
+import io.javalin.Extension;
+import io.javalin.Javalin;
 import io.javalin.JavalinEvent;
 
 import org.flywaydb.core.Flyway;
-
-import sparkles.support.flyway.FlywaySupport;
-import sparkles.support.javalin.Extension;
-import sparkles.support.javalin.JavalinApp;
 
 public class FlywayExtension implements Extension {
   private static final Logger LOG = LoggerFactory.getLogger(FlywayExtension.class);
@@ -27,7 +25,7 @@ public class FlywayExtension implements Extension {
   }
 
   @Override
-  public void addToJavalin(JavalinApp app) {
+  public void registerOnJavalin(Javalin app) {
 
     app.event(JavalinEvent.SERVER_STARTING, () -> {
       final DataSource ds = dataSource.get();

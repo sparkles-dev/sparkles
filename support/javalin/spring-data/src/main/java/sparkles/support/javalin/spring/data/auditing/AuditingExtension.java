@@ -1,7 +1,7 @@
 package sparkles.support.javalin.spring.data.auditing;
 
-import sparkles.support.javalin.Extension;
-import sparkles.support.javalin.JavalinApp;
+import io.javalin.Extension;
+import io.javalin.Javalin;
 
 public class AuditingExtension<T> implements Extension {
 
@@ -12,7 +12,7 @@ public class AuditingExtension<T> implements Extension {
   }
 
   @Override
-  public void addToJavalin(JavalinApp app) {
+  public void registerOnJavalin(Javalin app) {
 
     app.before((ctx) -> {
         T currentAuditor = resolver.resolve(ctx);

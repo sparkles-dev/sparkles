@@ -10,11 +10,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import io.javalin.Context;
+import io.javalin.Extension;
+import io.javalin.Javalin;
 import io.javalin.JavalinEvent;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import sparkles.support.javalin.Extension;
-import sparkles.support.javalin.JavalinApp;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class SpringDataExtension implements Extension {
@@ -22,7 +22,7 @@ public class SpringDataExtension implements Extension {
   private final Supplier<EntityManagerFactory> entityManagerFactory;
 
   @Override
-  public void addToJavalin(JavalinApp app) {
+  public void registerOnJavalin(Javalin app) {
 
     app.event(JavalinEvent.SERVER_STARTING, () -> {
         app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
