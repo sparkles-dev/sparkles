@@ -14,7 +14,7 @@ import io.javalin.Javalin;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
-import sparkles.support.javalin.Environment;
+import sparkles.support.common.Environment;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.spring.data.SpringData;

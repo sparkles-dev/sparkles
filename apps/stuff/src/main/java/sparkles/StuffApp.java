@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import io.javalin.Javalin;
 
-import sparkles.support.javalin.Environment;
+import sparkles.support.common.Environment;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.keycloak.security.KeycloakAccessManager;
@@ -24,7 +24,7 @@ import sparkles.support.javalin.spring.data.auditing.AuditingExtension;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
-import static sparkles.support.javalin.JavalinApp.requires;
+import static sparkles.support.javalin.security.Security.requires;
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 import static sparkles.support.javalin.spring.data.crud.CrudRepositoryHandler.crudHandler;
 
