@@ -22,8 +22,8 @@ public class LinkCollectionTest {
     l.add(one);
     l.add(two);
 
-    assertThat(l.links()).hasSize(2);
-    assertThat(l.links()).contains(one, two);
+    assertThat(l.list()).hasSize(2);
+    assertThat(l.list()).contains(one, two);
   }
 
   @Test
@@ -35,7 +35,7 @@ public class LinkCollectionTest {
       );
     l.clear();
 
-    assertThat(l.links()).hasSize(0);
+    assertThat(l.list()).hasSize(0);
   }
 
   @Test

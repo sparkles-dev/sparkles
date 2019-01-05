@@ -35,6 +35,18 @@ public class JsonResourcesModuleTest {
   }
 
   @Test
+  public void links_shouldSerialize() throws Exception {
+    Foo foo = new Foo();
+    foo.links = new LinkCollection()
+      .add(Link.withSelfRel().href("/foo/bar"))
+      .add(Link.withRel("bar").href("bar/123"))
+      .add(Link.withRel("bar").href("bar/789"));
+
+    String serialized = om.writeValueAsString(foo);
+    assertThat(serialized).isNull();
+  }
+
+  @Test
   public void shouldSerializeProperties() throws Exception {
     Foo foo = new Foo();
     foo.id = UUID.fromString("f6eb1bd7-7611-49b1-ba15-5d1fa59a30a3");
@@ -48,7 +60,7 @@ public class JsonResourcesModuleTest {
     NoResource noResource = new NoResource();
     noResource.related = new Bar("foo");
     noResource.links = new LinkCollection()
-      .add(new Link().rel("foo").href("/foo/bar"));
+      .add(Link.withSelfRel().href("/foo/bar"));
 
     String serialized = om.writeValueAsString(noResource);
     assertThat(serialized).doesNotContain("_embedded");
@@ -88,7 +100,9 @@ public class JsonResourcesModuleTest {
 
     @Override
     public String toString() {
-      return "Bar[name=" + name + "]";
+      return new ToStringBuilder(Bar.class)
+        .append("name", name)
+        .toString();
     }
   }
 

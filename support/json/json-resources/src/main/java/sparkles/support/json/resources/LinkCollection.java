@@ -39,7 +39,7 @@ public class LinkCollection {
     return this;
   }
 
-  public List<Link> links() {
+  public List<Link> list() {
     return links;
   }
 

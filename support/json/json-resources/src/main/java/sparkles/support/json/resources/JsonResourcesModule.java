@@ -23,7 +23,7 @@ public class JsonResourcesModule extends SimpleModule {
   // (/) add serializer + modifier
   // (/) add deserializer + modifier
   // - change serialization and deserialization...
-  //    - recognize custom @Embedded annotation
+  //    (/) recognize custom @Embedded annotation
   //    - for @Links annotation and Link class
 
 }

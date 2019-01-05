@@ -11,6 +11,7 @@ dependencies {
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
   compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0'
   compile 'com.fasterxml.jackson.core:jackson-core:2.9.0'
+  compile 'com.damnhandy:handy-uri-templates:2.1.7'
   compile 'org.slf4j:slf4j-api:1.7.25'
 
   testCompile project(':support:testing')

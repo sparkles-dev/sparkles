@@ -164,7 +164,7 @@ public class JacksonResourcesModule extends SimpleModule {
                 linksProps.put(rel, prop);
               } else if (object instanceof LinkCollection) {
                 LinkCollection links = (LinkCollection) object;
-                for (Link link : links.links()) {
+                for (Link link : links.list()) {
                   String rel = "".equals(link.rel()) ? prop.getName() : link.rel();
                   linksProps.put(rel, prop);
                 }
@@ -189,7 +189,7 @@ public class JacksonResourcesModule extends SimpleModule {
             gen.writeFieldName(rel);
             Object v = linksProps.get(rel).get(value);
             if (v instanceof LinkCollection || v instanceof Collection) {
-              List<Link> links = v instanceof LinkCollection ? ((LinkCollection) v).links() : ((List<Link>) v);
+              List<Link> links = v instanceof LinkCollection ? ((LinkCollection) v).list() : ((List<Link>) v);
               if (links.size() > 1) {
                 gen.writeStartArray();
               }
@@ -350,8 +350,8 @@ public class JacksonResourcesModule extends SimpleModule {
 
             JsonNode value = jsonProp.getValue();
             if (value.isArray()) {
-              System.out.println("links array " + value.toString());
-              //Iterator<Link> links = p.readValuesAs(Link.class);
+              System.out.println("list array " + value.toString());
+              //Iterator<Link> list = p.readValuesAs(Link.class);
 
               /*
               ArrayNode arrayNode = (ArrayNode) value;

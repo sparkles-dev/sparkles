@@ -28,7 +28,7 @@ import sparkles.support.json.resources.Links;
 
 /**
  * Serializer to handle {@link Resource} beans ensuring they are serialized according to the HAL
- * specification. This implies placing links inside the <code>_links</code> property and embedded objects inside the <code>_embedded</code>
+ * specification. This implies placing list inside the <code>_links</code> property and embedded objects inside the <code>_embedded</code>
  * property.
  */
 public class Serializer extends BeanSerializerBase {
@@ -68,7 +68,7 @@ public class Serializer extends BeanSerializerBase {
   }
 
   /**
-   * Modelling the properties of the bean segmented into HAL categories: links, embedded resources, and state
+   * Modelling the properties of the bean segmented into HAL categories: list, embedded resources, and state
    */
   private class FilteredProperties {
 
@@ -81,8 +81,7 @@ public class Serializer extends BeanSerializerBase {
     // All of the curies that actually ARE being used (provided via Link annotations)
     private Set<String> curiesInUse = new TreeSet<>();
 
-    public FilteredProperties(Object bean, SerializerProvider provider,
-                              BeanDescription beanDescription) throws IOException {
+    public FilteredProperties(Object bean, SerializerProvider provider, BeanDescription beanDescription) throws IOException {
 
       populateCurieMap(beanDescription);
 
@@ -98,20 +97,28 @@ public class Serializer extends BeanSerializerBase {
 
           } else if (prop.getAnnotation(Links.class) != null) {
             Links l = prop.getAnnotation(Links.class);
-                        /*
-                        TODO
-                        String relation = "".equals(l.value()) ? prop.getName() : l.value();
-                        String curie = "".equals(l.curie()) ? null : l.curie();
-                        if (!"".equals(l.curie())) {
-                            curiesInUse.add(l.curie());
-                        }
-                        Object value = prop.get(bean);
-                        if (value instanceof Collection) {
-                            addLinks(relation, (Collection<HALLink>) prop.get(bean), curie);
-                        } else if (value instanceof HALLink) {
-                            addLink(relation, (HALLink) prop.get(bean), curie);
-                        }
-                         */
+            // TODO: curies support
+            String curie = null;
+            Object value = prop.get(bean);
+            if (value instanceof LinkCollection) {
+              addLinks((LinkCollection) prop.get(bean), curie);
+            } else if (value instanceof Link) {
+              addLink((Link) prop.get(bean), curie);
+            }
+            /*
+            TODO
+            String relation = "".equals(l.value()) ? prop.getName() : l.value();
+            String curie = "".equals(l.curie()) ? null : l.curie();
+            if (!"".equals(l.curie())) {
+                curiesInUse.add(l.curie());
+            }
+            Object value = prop.get(bean);
+            if (value instanceof Collection) {
+                addLinks(relation, (Collection<HALLink>) prop.get(bean), curie);
+            } else if (value instanceof HALLink) {
+                addLink(relation, (HALLink) prop.get(bean), curie);
+            }
+            */
           } else {
             state.add(prop);
           }
@@ -126,20 +133,20 @@ public class Serializer extends BeanSerializerBase {
     }
 
     private void addCurieLinks() {
-          /*
-          TODO
-            Collection<HALLink> curieLinks = new ArrayList<>();
-            for (String curie: curiesInUse) {
-                if (curieMap.containsKey(curie)) {
-                    curieLinks.add(new HALLink.Builder(curieMap.get(curie))
-                            .name(curie)
-                            .build());
-                } else {
-                    LOG.warn("No Curie/Curies annotation provided for [{}]", curie);
-                }
-            }
-            addLinks("curies", curieLinks, null);
-           */
+      /*
+      TODO
+      Collection<HALLink> curieLinks = new ArrayList<>();
+      for (String curie: curiesInUse) {
+          if (curieMap.containsKey(curie)) {
+              curieLinks.add(new HALLink.Builder(curieMap.get(curie))
+                      .name(curie)
+                      .build());
+          } else {
+              LOG.warn("No Curie/Curies annotation provided for [{}]", curie);
+          }
+      }
+      addLinks("curies", curieLinks, null);
+      */
     }
 
     private void populateCurieMap(BeanDescription beanDescription) {
@@ -209,15 +216,20 @@ public class Serializer extends BeanSerializerBase {
       }
     }
 
-    private void addLink(String rel, Link link, String curie) {
-      if (links.put(applyCurieToRel(rel, curie), new LinkProperty(link)) != null) {
-        LOG.warn("Link resource already existed with rel [{}] in class [{}]", rel, _handledType);
+    private void addLink(Link link, String curie) {
+      String rel = applyCurieToRel(link.rel(), curie);
+
+      if (links.containsKey(rel)) {
+        LOG.warn("Link resource already existed with rel [{}] in class [{}]", link.rel(), _handledType);
+        links.get(rel).add(link);
+      } else {
+        links.put(rel, new LinkProperty(link));
       }
     }
 
-    private void addLinks(String rel, LinkCollection links, String curie) {
-      if (this.links.put(applyCurieToRel(rel, curie), new LinkProperty(links)) != null) {
-        LOG.warn("Link resource already existed with rel [{}] in class [{}]", rel, _handledType);
+    private void addLinks(LinkCollection links, String curie) {
+      for (Link link : links.list()) {
+        addLink(link, curie);
       }
     }
 
@@ -228,19 +240,32 @@ public class Serializer extends BeanSerializerBase {
   }
 
   /**
-   * Representing either a single link (one-to-one relation) or a collection of links.
+   * Representing either a single link (one-to-one relation) or a collection of list.
    */
   private static class LinkProperty {
 
     private Link link;
-    private LinkCollection links;
+    private List<Link> links;
 
     public LinkProperty(Link link) {
       this.link = link;
     }
 
     public LinkProperty(LinkCollection links) {
-      this.links = links == null ? new LinkCollection() : links;
+      this.links = links.list();
+    }
+
+    public void add(Link value) {
+      if (link == null) {
+        link = value;
+      } else {
+        if (links == null) {
+          links = new ArrayList<>();
+          links.add(link);
+          link = null;
+        }
+        links.add(value);
+      }
     }
 
     public void serialize(JsonGenerator jgen) throws IOException {
@@ -248,7 +273,7 @@ public class Serializer extends BeanSerializerBase {
         writeLinkObject(jgen, link);
       } else if (links != null) {
         jgen.writeStartArray();
-        for (Link curLink : links.links()) {
+        for (Link curLink : links) {
           writeLinkObject(jgen, curLink);
         }
         jgen.writeEndArray();

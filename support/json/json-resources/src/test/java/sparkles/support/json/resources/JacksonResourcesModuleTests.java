@@ -132,7 +132,7 @@ public class JacksonResourcesModuleTests {
     assertThat(foo.entity.count).isEqualTo(2);
     /*
     assertThat(foo.getLinks()).isNotNull();
-    assertThat(foo.getLinks().links()).hasSize(1);
+    assertThat(foo.getLinks().list()).hasSize(1);
     */
     assertThat(foo.getContent()).hasSize(2);
   }
