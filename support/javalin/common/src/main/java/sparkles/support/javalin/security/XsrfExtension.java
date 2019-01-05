@@ -1,14 +1,14 @@
 package sparkles.support.javalin.security;
 
-import sparkles.support.javalin.Extension;
-import sparkles.support.javalin.JavalinApp;
+import io.javalin.Extension;
+import io.javalin.Javalin;
 
 public class XsrfExtension implements Extension {
 
   private XsrfExtension() {}
 
   @Override
-  public void addToJavalin(JavalinApp app) {
+  public void registerOnJavalin(Javalin app) {
     app.before(new XsrfFilter());
   }
 
