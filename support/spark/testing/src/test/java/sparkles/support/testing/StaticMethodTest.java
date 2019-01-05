@@ -3,10 +3,6 @@ package sparkles.support.testing;
 import okhttp3.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import sparkles.support.testing.SparkTestRunner;
-import sparkles.support.testing.SparkHttpClient;
-import sparkles.support.testing.TestClient;
-import sparkles.support.testing.TestApp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static spark.Spark.get;
@@ -19,9 +15,7 @@ public class StaticMethodTest {
 
   @TestApp
   public static void testApp() {
-    get("/", (req, res) -> {
-      return "foobar";
-    });
+    get("/", (req, res) -> "foobar");
   }
 
   @Test

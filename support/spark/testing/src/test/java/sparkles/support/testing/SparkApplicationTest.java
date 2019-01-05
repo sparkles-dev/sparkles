@@ -4,10 +4,6 @@ import okhttp3.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import spark.servlet.SparkApplication;
-import sparkles.support.testing.SparkTestRunner;
-import sparkles.support.testing.SparkHttpClient;
-import sparkles.support.testing.TestClient;
-import sparkles.support.testing.TestApp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static spark.Spark.get;
@@ -19,15 +15,7 @@ public class SparkApplicationTest {
   private SparkHttpClient client;
 
   @TestApp
-  private static SparkApplication testApp = new SparkApplication () {
-
-    @Override
-    public void init() {
-      get("/", (req, res) -> {
-        return "foobar";
-      });
-    }
-  };
+  private static SparkApplication testApp = () -> get("/", (req, res) -> "foobar");
 
   @Test
   public void itRuns() throws Exception {
