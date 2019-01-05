@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Ignore
 public class JacksonResourcesModuleTests {
 
   private static class MyDomain {

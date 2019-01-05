@@ -73,6 +73,8 @@ import java.util.UUID;
  * This is a modified version of openapi-tools/jackson-dataformat-hal
  *
  * @link https://github.com/openapi-tools/jackson-dataformat-hal
+ *
+ * @deprecated Use {@link JsonResourcesModule} instead
  */
 public class JacksonResourcesModule extends SimpleModule {
 
