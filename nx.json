@@ -12,6 +12,9 @@
     },
     "forms": {
       "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }

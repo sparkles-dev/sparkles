@@ -24,6 +24,9 @@
       ],
       "@sparkles/forms": [
         "libs/forms/src/index.ts"
+      ],
+      "@sparkles/shared": [
+        "libs/shared/src/index.ts"
       ]
     }
   },
