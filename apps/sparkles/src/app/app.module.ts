@@ -27,6 +27,10 @@ export class AppModule {
   ) {
     console.log("App is running in develop mode?", debug.isDevelop);
     console.log(debug.stackTrace('foo'));
+    debug.enable('foo');
+    debug.logger('foo').info('bar');
+    debug.deprecation('foo', 'is not really deprecated');
+    debug.experimental('bar', 'is the new kid on the block');
   }
 
 }

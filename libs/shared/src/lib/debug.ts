@@ -42,6 +42,7 @@ import { Injectable } from '@angular/core';
 export class Debug {
 
   public environment: any = {};
+  private enabled: string[] = [];
 
   public get isDevelop(): boolean {
     return this.environment.production !== true;
@@ -55,6 +56,74 @@ export class Debug {
     return stackTrace.substring(0, firstAt)
       .concat(stackTrace.substring(secondAt));
   }
+
+  public enable(...tags: string[]) {
+    this.enabled = [
+      ...this.enabled,
+      ...tags
+    ].reduce((prev, current) => {
+      if (prev.find(item => item === current)) {
+        return prev;
+      } else {
+        return [
+          ...prev,
+          current
+        ];
+      }
+    }, [] as string[])
+  }
+
+  public logger(tag: string) {
+    const isEnabled = this.enabled.find(item => item === tag) !== undefined;
+
+    if (isEnabled) {
+      // tslint:disable:no-console
+      return {
+        error: console.error,
+        warn: console.warn,
+        info: console.info,
+        log: console.log,
+        debug: console.debug,
+        trace: console.trace,
+        time: console.time,
+        timeEnd: console.timeEnd,
+        timeStamp: console.timeStamp,
+        group: console.group,
+        groupCollapsed: console.groupCollapsed,
+        groupEnd: console.groupEnd
+      };
+      // tslint:enable:no-console
+    } else {
+      return {
+        error: console.error,
+        warn: console.warn,
+        info: () => {},
+        log: () => {},
+        debug: () => {},
+        trace: () => {},
+        time: () => {},
+        timeEnd: () => {},
+        timeStamp: () => {},
+        group: () => {},
+        groupCollapsed: () => {},
+        groupEnd: () => {}
+      };
+    }
+  }
+
+  public deprecation(what: string, message: string) {
+    if (this.isDevelop) {
+      console.warn(`[DEPRECATED] ${what}: ${message}`);
+    }
+  }
+
+  public experimental(what: string, message: string) {
+    if (this.isDevelop) {
+      // tslint:disable-next-line:no-console
+      console.info(`[EXPERIMENTAL] ${what}: ${message}`);
+    }
+  }
+
 }
 
 /**
