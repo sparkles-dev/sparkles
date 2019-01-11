@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import sparkles.support.json.resources.internal.DeserializerModifier;
+import sparkles.support.json.resources.internal.LinkMixin;
 import sparkles.support.json.resources.internal.SerializerModifier;
 
 public class JsonResourcesModule extends SimpleModule {
@@ -16,6 +17,7 @@ public class JsonResourcesModule extends SimpleModule {
   public void setupModule(SetupContext context) {
     context.addBeanSerializerModifier(new SerializerModifier());
     context.addBeanDeserializerModifier(new DeserializerModifier());
+    context.setMixInAnnotations(Link.class, LinkMixin.class);
   }
 
   // TODO:

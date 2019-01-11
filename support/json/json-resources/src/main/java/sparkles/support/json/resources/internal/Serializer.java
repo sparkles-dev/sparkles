@@ -63,7 +63,8 @@ public class Serializer extends BeanSerializerBase {
 
   @Override
   public void serialize(Object bean, JsonGenerator jgen, SerializerProvider provider) throws IOException {
-    FilteredProperties filtered = new FilteredProperties(bean, provider, beanDescription);
+    FilteredProperties filtered = new FilteredProperties();
+    filtered.parse(bean, provider, beanDescription);
     filtered.serialize(bean, jgen, provider);
   }
 
@@ -81,7 +82,7 @@ public class Serializer extends BeanSerializerBase {
     // All of the curies that actually ARE being used (provided via Link annotations)
     private Set<String> curiesInUse = new TreeSet<>();
 
-    public FilteredProperties(Object bean, SerializerProvider provider, BeanDescription beanDescription) throws IOException {
+    public void parse(Object bean, SerializerProvider provider, BeanDescription beanDescription) throws IOException {
 
       populateCurieMap(beanDescription);
 
@@ -101,9 +102,9 @@ public class Serializer extends BeanSerializerBase {
             String curie = null;
             Object value = prop.get(bean);
             if (value instanceof LinkCollection) {
-              addLinks((LinkCollection) prop.get(bean), curie);
+              addLinks((LinkCollection) prop.get(bean), curie, l.forceArray());
             } else if (value instanceof Link) {
-              addLink((Link) prop.get(bean), curie);
+              addLink((Link) prop.get(bean), curie, l.forceArray());
             }
             /*
             TODO
@@ -216,20 +217,23 @@ public class Serializer extends BeanSerializerBase {
       }
     }
 
-    private void addLink(Link link, String curie) {
-      String rel = applyCurieToRel(link.rel(), curie);
+    private void addLink(Link value, String curie, boolean forceArray) {
+      String rel = applyCurieToRel(value.rel(), curie);
 
       if (links.containsKey(rel)) {
-        LOG.warn("Link resource already existed with rel [{}] in class [{}]", link.rel(), _handledType);
-        links.get(rel).add(link);
+        links.get(rel).add(value);
       } else {
-        links.put(rel, new LinkProperty(link));
+        links.put(rel, new LinkProperty(value));
+      }
+
+      if (forceArray) {
+        links.get(rel).asArray = true;
       }
     }
 
-    private void addLinks(LinkCollection links, String curie) {
-      for (Link link : links.list()) {
-        addLink(link, curie);
+    private void addLinks(LinkCollection value, String curie, boolean forceArray) {
+      for (Link v : value.list()) {
+        addLink(v, curie, forceArray);
       }
     }
 
@@ -244,39 +248,35 @@ public class Serializer extends BeanSerializerBase {
    */
   private static class LinkProperty {
 
-    private Link link;
-    private List<Link> links;
+    private boolean asArray = false;
+    private final List<Link> links = new ArrayList<>();
 
     public LinkProperty(Link link) {
-      this.link = link;
+      add(link);
     }
 
-    public LinkProperty(LinkCollection links) {
-      this.links = links.list();
+    public LinkProperty(LinkCollection collection) {
+      add(collection);
     }
 
-    public void add(Link value) {
-      if (link == null) {
-        link = value;
-      } else {
-        if (links == null) {
-          links = new ArrayList<>();
-          links.add(link);
-          link = null;
-        }
-        links.add(value);
-      }
+    public void add(Link link) {
+      links.add(link);
+    }
+
+    public void add(LinkCollection collection) {
+      links.addAll(collection.list());
+      asArray = true;
     }
 
     public void serialize(JsonGenerator jgen) throws IOException {
-      if (link != null) {
-        writeLinkObject(jgen, link);
-      } else if (links != null) {
+      if (asArray || links.size() > 1) {
         jgen.writeStartArray();
         for (Link curLink : links) {
           writeLinkObject(jgen, curLink);
         }
         jgen.writeEndArray();
+      } else if (links.size() > 0) {
+        writeLinkObject(jgen, links.get(0));
       }
     }
 

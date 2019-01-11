@@ -1,6 +1,5 @@
 package sparkles.support.json.resources;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +14,7 @@ public class Link {
   @JsonProperty
   private String href;
 
-  @JsonIgnore
+  @JsonProperty
   private String rel;
 
   @JsonProperty

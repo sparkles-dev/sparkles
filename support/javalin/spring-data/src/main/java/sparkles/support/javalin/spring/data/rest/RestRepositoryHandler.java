@@ -8,11 +8,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import io.javalin.Context;
+import io.javalin.Extension;
+import io.javalin.Javalin;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import sparkles.support.common.collections.CollectionUtil;
-import sparkles.support.javalin.Extension;
-import sparkles.support.javalin.JavalinApp;
 
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 
@@ -37,7 +37,7 @@ public abstract class RestRepositoryHandler<Repo extends CrudRepository<Entity, 
   }
 
   @Override
-  public void addToJavalin(JavalinApp app) {
+  public void registerOnJavalin(Javalin app) {
     final String basePath = basePath();
 
     app

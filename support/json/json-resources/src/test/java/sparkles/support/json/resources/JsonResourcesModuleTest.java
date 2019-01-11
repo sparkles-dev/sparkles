@@ -47,7 +47,14 @@ public class JsonResourcesModuleTest {
   }
 
   @Test
-  public void shouldSerializeProperties() throws Exception {
+  public void links_shouldDeserialize() throws Exception {
+    Foo foo = om.readValue("{\"_links\":{\"bar\":[{\"href\":\"bar/123\"},{\"href\":\"bar/789\"}],\"self\":{\"href\":\"/foo/bar\"}}}", Foo.class);
+
+    assertThat(foo).isNull();
+  }
+
+  @Test
+  public void itShouldSerializeProperties() throws Exception {
     Foo foo = new Foo();
     foo.id = UUID.fromString("f6eb1bd7-7611-49b1-ba15-5d1fa59a30a3");
 

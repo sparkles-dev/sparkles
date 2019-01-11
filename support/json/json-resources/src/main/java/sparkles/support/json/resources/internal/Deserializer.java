@@ -40,6 +40,8 @@ public class Deserializer extends DelegatingDeserializer {
           CurieMap curieMap = createCurieMap(rp, on);
           on.remove("curies");
 
+
+          // TODO ... this iterates over properties of _links: {} and _embedded: {}
           Iterator<Map.Entry<String, JsonNode>> it = on.fields();
           while (it.hasNext()) {
             Map.Entry<String, JsonNode> jn = it.next();

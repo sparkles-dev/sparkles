@@ -19,7 +19,6 @@ import javax.sql.DataSource;
 
 import io.javalin.Javalin;
 import io.javalin.json.JavalinJackson;
-import io.javalin.json.JavalinJson;
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;

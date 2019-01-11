@@ -18,26 +18,17 @@ public enum ReservedProperty {
 
   LINKS("_links", Links.class), EMBEDDED("_embedded", Embedded.class);
 
-  private final String name;
-  private final UUID prefix = UUID.randomUUID();
   private final Class<? extends Annotation> annotation;
-  private final Method valueMethod;
+  private final String propertyName;
+  private final UUID prefix = UUID.randomUUID();
 
   ReservedProperty(String name, Class<? extends Annotation> annotation) {
-    this.name = name;
+    this.propertyName = name;
     this.annotation = annotation;
-
-    Method m = null;
-    try {
-      m = annotation.getDeclaredMethod("value");
-    } catch (NoSuchMethodException e) {
-      // throw new RuntimeException(e);
-    }
-    valueMethod = m;
   }
 
   public String getPropertyName() {
-    return name;
+    return propertyName;
   }
 
   /**
@@ -61,19 +52,19 @@ public enum ReservedProperty {
       return originalName;
     }
 
-    if (o.annotationType() == Links.class) {
-      return "_links";
+    String name = null;
+    if (annotation == Embedded.class) {
+      try {
+        Method valueMethod = annotation.getDeclaredMethod("value");
+        String alternateName = (String) valueMethod.invoke(o);
+        name = alternateName.isEmpty() ? originalName : alternateName;
+      } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
+        throw new RuntimeException(e);
+      }
     }
 
-    String name;
-    try {
-      String alternateName = (String) valueMethod.invoke(o);
-      name = alternateName.isEmpty() ? originalName : alternateName;
-    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-      throw new RuntimeException(e);
-    }
-
-    if (o.annotationType() == Links.class) {
+    if (annotation == Links.class) {
+      return alternateName(originalName);
       /*
       TODO: curies
       String curiePrefix = ((Link) o).curie();
