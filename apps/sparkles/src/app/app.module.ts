@@ -1,13 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
+import { provideDebug, Debug } from '@sparkles/shared';
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, NxModule.forRoot()],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    NxModule.forRoot()
+  ],
+  providers: [
+    provideDebug(environment)
+  ],
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(
+    debug: Debug
+  ) {
+    console.log("App is running in develop mode?", debug.isDevelop);
+    console.log(debug.stackTrace('foo'));
+  }
+
+}
