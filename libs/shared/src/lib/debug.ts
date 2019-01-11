@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { unique } from './functional';
 
 /**
  * Injectable token for debugging.
@@ -58,19 +59,10 @@ export class Debug {
   }
 
   public enable(...tags: string[]) {
-    this.enabled = [
+    this.enabled = unique([
       ...this.enabled,
       ...tags
-    ].reduce((prev, current) => {
-      if (prev.find(item => item === current)) {
-        return prev;
-      } else {
-        return [
-          ...prev,
-          current
-        ];
-      }
-    }, [] as string[])
+    ]);
   }
 
   public logger(tag: string) {
