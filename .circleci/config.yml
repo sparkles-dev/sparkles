@@ -35,11 +35,11 @@ jobs:
       - run: yarn build
       - run: xvfb-run -a yarn test
       - store_artifacts:
-          path: /dist
+          path: ~/app/dist
       - store_artifacts:
-          path: /packages/components/dist
+          path: ~/app/packages/components/dist
       - store_artifacts:
-          path: /packages/styles/dist
+          path: ~/app/packages/styles/dist
 
 workflows:
   version: 2
