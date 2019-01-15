@@ -1,0 +1,9 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "@sparkles/components",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/index.ts"
+    }
+  }
+}

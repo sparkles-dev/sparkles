@@ -27,8 +27,15 @@
       ],
       "@sparkles/shared": [
         "libs/shared/src/index.ts"
+      ],
+      "@sparkles/components": [
+        "packages/components/src/index.ts"
+      ],
+      "@sparkles/components/*": [
+        "packages/components/*/index.ts"
       ]
-    }
+    },
+    "module": "es2015"
   },
   "exclude": [
     "node_modules",

@@ -12,9 +12,12 @@
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
     "_postinstall": "yarn generate:schema",
+    "affected": "./node_modules/.bin/nx affected",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
     "affected:build": "./node_modules/.bin/nx affected:build",
+    "affected:dep-graph": "./node_modules/.bin/nx affected:dep-graph",
     "affected:e2e": "./node_modules/.bin/nx affected:e2e",
+    "affected:test": "./node_modules/.bin/nx affected:test",
     "format": "./node_modules/.bin/nx format:write",
     "format:write": "./node_modules/.bin/nx format:write",
     "format:check": "./node_modules/.bin/nx format:check",
@@ -22,11 +25,10 @@
     "update:check": "./node_modules/.bin/nx update:check",
     "update:skip": "./node_modules/.bin/nx update:skip",
     "dep-graph": "./node_modules/.bin/nx dep-graph",
-    "affected:dep-graph": "./node_modules/.bin/nx affected:dep-graph",
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "help": "./node_modules/.bin/nx help",
-    "affected:test": "./node_modules/.bin/nx affected:test",
     "generate:schema": "ts-node tools/json-schema/generate.ts",
+    "packages:components:build": "ng-packagr -p packages/components/package.json",
     "packages:styles:build": "gulp -f packages/styles/gulpfile.babel.js"
   },
   "dependencies": {
@@ -44,6 +46,7 @@
     "@ngrx/store-devtools": "7.0.0",
     "@nrwl/nx": "7.3.0",
     "core-js": "^2.5.4",
+    "ng-packagr": "^4.6.0",
     "ngrx-store-freeze": "^0.2.1",
     "rxjs": "6.3.3",
     "rxjs-compat": "6.2.2",
@@ -85,6 +88,8 @@
     "protractor": "~5.4.0",
     "tailwindcss": "^0.7.3",
     "ts-node": "~7.0.0",
+    "tsickle": "^0.34.0",
+    "tslib": "^1.9.3",
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   }
