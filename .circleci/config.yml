@@ -26,14 +26,20 @@ jobs:
       - restore_cache:
           key: sparkles-master-{{ checksum "yarn.lock" }}
       - run: yarn install
-      - run: yarn packages:styles:build
-      - run: yarn packages:components:build
-      - run: yarn build
-      - run: xvfb-run -a yarn test
       - save_cache:
           key: sparkles-master-{{ checksum "yarn.lock" }}
           paths:
           - ~/app/node_modules
+      - run: yarn packages:styles:build
+      - run: yarn packages:components:build
+      - run: yarn build
+      - run: xvfb-run -a yarn test
+      - store_artifacts:
+          path: ~/app/dist
+      - store_artifacts:
+          path: ~/app/packages/components/dist
+      - store_artifacts:
+          path: ~/app/packages/styles/dist
 
 workflows:
   version: 2
