@@ -150,7 +150,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/sparkles-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -236,7 +236,8 @@
           "builder": "@nrwl/builders:jest",
           "options": {
             "jestConfig": "packages/components/jest.config.js",
-            "tsConfig": "packages/components/tsconfig.spec.json"
+            "tsConfig": "packages/components/tsconfig.spec.json",
+            "setupFile": "packages/components/test-setup.ts"
           }
         }
       }

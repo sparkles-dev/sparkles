@@ -34,7 +34,8 @@
       "@sparkles/components/*": [
         "packages/components/*/index.ts"
       ]
-    }
+    },
+    "module": "es2015"
   },
   "exclude": [
     "node_modules",
