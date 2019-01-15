@@ -18,7 +18,7 @@ function css() {
       tailwindcss('tailwind.js'),
       autoprefixer
     ]))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('dist/'));
 }
 
 exports.default = css;
