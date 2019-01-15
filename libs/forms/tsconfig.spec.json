@@ -2,13 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/forms",
+    "module": "commonjs",
     "types": [
-      "jasmine",
+      "jest",
       "node"
     ]
   },
   "files": [
-    "src/test.ts"
+    "src/test-setup.ts"
   ],
   "include": [
     "**/*.spec.ts",
