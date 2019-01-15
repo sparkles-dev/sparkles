@@ -27,6 +27,12 @@
       ],
       "@sparkles/shared": [
         "libs/shared/src/index.ts"
+      ],
+      "@sparkles/components": [
+        "packages/components/src/index.ts"
+      ],
+      "@sparkles/components/*": [
+        "packages/components/*/index.ts"
       ]
     }
   },

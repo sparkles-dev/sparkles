@@ -15,6 +15,9 @@
     },
     "shared": {
       "tags": []
+    },
+    "components": {
+      "tags": []
     }
   }
 }
