@@ -402,10 +402,10 @@
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
 
-"@nrwl/builders@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.4.0.tgz#3696f201787287e59523b004653b245c2e1d6138"
-  integrity sha512-j/U2SpJAvF8wfhwhnJT4ptAt13w3KFOLZeEiXJjUAzjwWIlRfGoSQ5cO2r4ISuT3fzerVnvrnxo8Z6vzcCCuig==
+"@nrwl/builders@7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.4.1.tgz#4867cf32deaa565f9a2b4942728b162391b62bec"
+  integrity sha512-BH6WWOL3Gx6tNxkm5QN4X0YtDgMJ1PRegZ9+yUbdRC23/2E7c0kp0MZ0O1boEqlSGU/+ATtmkP1a0SDu+zT+NA==
   dependencies:
     "@angular-devkit/architect" "~0.11.0"
     "@angular-devkit/build-webpack" "~0.11.0"
@@ -418,15 +418,15 @@
     webpack-dev-server "3.1.14"
     webpack-node-externals "1.7.2"
 
-"@nrwl/nx@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.4.0.tgz#184fd3e66388ceebae4bf3a2fc5a3170f89c11c2"
-  integrity sha512-QscBPd7WTQKcIRv3FviE9L84jnQ9erk60Jr2sq+DWwAy+gSkAZXhS43rOkAglMj2Yxriwgx9jxC7tCtJWS0EzA==
+"@nrwl/nx@7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.4.1.tgz#e22fc7d406010776d7a40d8838da9c39b1934068"
+  integrity sha512-xSW6lAmqQCkWe3w3OQm5Lq5CvzHBJ4qHHcz7eE3DqZmgjGpVxppfuqXFEWuErMjgGsC8QSE+AbxW8XPs6zyaCg==
 
-"@nrwl/schematics@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.4.0.tgz#57b7d5292a886e3884e17da9039b581c6ade0f73"
-  integrity sha512-CQz5oQxzHm7NXRDbY4WYixD2jLoDmdPgO3e9zLWl+/u8tca12O/RcRYC58iwOGsAugckHdDFaJny48eT55wcEQ==
+"@nrwl/schematics@7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.4.1.tgz#9da1630424118e13cea1b453586f2dc1de84e32a"
+  integrity sha512-twz1J/xhdjMY7OZq/x5G0A0uXVQy5/wMPH6SmNBHsnSZ++K5P4kZyri5iSu0PtX8WgyPMPUiwFHh0mg9tLYD+w==
   dependencies:
     "@types/yargs" "^11.0.0"
     app-root-path "^2.0.1"
