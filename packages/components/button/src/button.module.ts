@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonDirective } from './button.directive';
+import { ButtonOpts, ButtonOptions } from './button.options';
 
 @NgModule({
   imports: [
@@ -13,4 +14,20 @@ import { ButtonDirective } from './button.directive';
     ButtonDirective
   ]
 })
-export class ButtonModule {}
+export class ButtonModule {
+
+  public static withOptions(opts?: ButtonOpts): ModuleWithProviders {
+    const value = new ButtonOptions();
+    Object.assign(value, opts);;
+
+    return {
+      ngModule: ButtonModule,
+      providers: [
+        {
+          provide: ButtonOptions,
+          useValue: value
+        }
+      ]
+    };
+  }
+}
