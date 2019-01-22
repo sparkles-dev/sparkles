@@ -2,14 +2,7 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/architect@0.11.4", "@angular-devkit/architect@~0.11.0":
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.11.4.tgz#f0cc3b4f1dd0128f6b41d3bb760bcf4c324cd063"
-  dependencies:
-    "@angular-devkit/core" "7.1.4"
-    rxjs "6.3.3"
-
-"@angular-devkit/architect@0.12.2":
+"@angular-devkit/architect@0.12.2", "@angular-devkit/architect@~0.12.1":
   version "0.12.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.12.2.tgz#1bfa43881c8927b8e12ffd4a2a3a645d6356e748"
   dependencies:
@@ -78,31 +71,13 @@
     typescript "3.2.2"
     webpack-sources "1.2.0"
 
-"@angular-devkit/build-webpack@0.12.2":
+"@angular-devkit/build-webpack@0.12.2", "@angular-devkit/build-webpack@~0.12.1":
   version "0.12.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.12.2.tgz#00f1a3a5ab3f4bc8e35d1826f8b476dc0016a1e7"
   dependencies:
     "@angular-devkit/architect" "0.12.2"
     "@angular-devkit/core" "7.2.2"
     rxjs "6.3.3"
-
-"@angular-devkit/build-webpack@~0.11.0":
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.11.4.tgz#1397b21b6187eab0641830ece4c3b9faba00855e"
-  dependencies:
-    "@angular-devkit/architect" "0.11.4"
-    "@angular-devkit/core" "7.1.4"
-    rxjs "6.3.3"
-
-"@angular-devkit/core@7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-7.1.4.tgz#4d903fd2ecc259b716ae76da19695d03993e583c"
-  dependencies:
-    ajv "6.5.3"
-    chokidar "2.0.4"
-    fast-json-stable-stringify "2.0.0"
-    rxjs "6.3.3"
-    source-map "0.7.3"
 
 "@angular-devkit/core@7.2.2":
   version "7.2.2"
@@ -343,12 +318,12 @@
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
 
-"@nrwl/builders@7.4.1":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.4.1.tgz#4867cf32deaa565f9a2b4942728b162391b62bec"
+"@nrwl/builders@7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.5.0.tgz#f05086d31326ccd9362037866176e937151dcf3c"
   dependencies:
-    "@angular-devkit/architect" "~0.11.0"
-    "@angular-devkit/build-webpack" "~0.11.0"
+    "@angular-devkit/architect" "~0.12.1"
+    "@angular-devkit/build-webpack" "~0.12.1"
     copy-webpack-plugin "4.6.0"
     fork-ts-checker-webpack-plugin "0.4.9"
     license-webpack-plugin "^1.4.0"
@@ -358,13 +333,13 @@
     webpack-dev-server "3.1.14"
     webpack-node-externals "1.7.2"
 
-"@nrwl/nx@7.4.1":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.4.1.tgz#e22fc7d406010776d7a40d8838da9c39b1934068"
+"@nrwl/nx@7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.5.0.tgz#250c80afe16fd664ac52c3eb1592e9955675c7aa"
 
-"@nrwl/schematics@7.4.1":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.4.1.tgz#9da1630424118e13cea1b453586f2dc1de84e32a"
+"@nrwl/schematics@7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.5.0.tgz#ba8f8c1e4a004a1d3d082c493c5da15d6396678c"
   dependencies:
     "@types/yargs" "^11.0.0"
     app-root-path "^2.0.1"
@@ -757,15 +732,6 @@ ajv-errors@^1.0.0:
 ajv-keywords@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
-
-ajv@6.5.3:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.5.3.tgz#71a569d189ecf4f4f321224fecb166f071dd90f9"
-  dependencies:
-    fast-deep-equal "^2.0.1"
-    fast-json-stable-stringify "^2.0.0"
-    json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
 
 ajv@6.6.2:
   version "6.6.2"
