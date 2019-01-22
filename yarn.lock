@@ -309,25 +309,25 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@ngrx/effects@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-7.0.0.tgz#57ea3a42ed970b748e78292e54fe02a768027b05"
+"@ngrx/effects@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-7.1.0.tgz#c42966a92096d605b72a1959599ad6c90a1e15a2"
 
-"@ngrx/router-store@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-7.0.0.tgz#a273fc3288a2b256b07e9014e7b87d6ebfa3641d"
+"@ngrx/router-store@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-7.1.0.tgz#931bdc902d806b3d026e99604748ebfefcd82dc3"
 
-"@ngrx/schematics@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-7.0.0.tgz#065fa7383bd20e388111901d507aa7eeeb10e4a9"
+"@ngrx/schematics@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-7.1.0.tgz#ddc4faebd506f28ac181df04091b630c70ced713"
 
-"@ngrx/store-devtools@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-7.0.0.tgz#8be35ad8b455019c9ac583c92ad8f0ec0d538c37"
+"@ngrx/store-devtools@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-7.1.0.tgz#ea5248d616b2bdf7607e9f4a1c80aa4365e0f830"
 
-"@ngrx/store@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-7.0.0.tgz#5472000197c2a388b09afceb2d062cb37b03d334"
+"@ngrx/store@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-7.1.0.tgz#072f22e062e264c62859f37d9807dfac860f161d"
 
 "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
