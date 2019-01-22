@@ -2,14 +2,10 @@ import { Injectable } from '@angular/core';
 
 export type ButtonVariant = 'blue' | 'grey';
 
-export interface ButtonOpts {
-  defaultVariant: ButtonVariant;
-
-  foo?: string;
-}
-
 @Injectable({ providedIn: 'root' })
-export class ButtonOptions implements ButtonOpts {
+export class ButtonOptions {
 
   defaultVariant: ButtonVariant = 'blue';
+
+  foo?: string;
 }

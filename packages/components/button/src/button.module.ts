@@ -1,7 +1,7 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, Optional, SkipSelf, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonDirective } from './button.directive';
-import { ButtonOpts, ButtonOptions } from './button.options';
+import { ButtonOptions } from './button.options';
 
 @NgModule({
   imports: [
@@ -16,12 +16,12 @@ import { ButtonOpts, ButtonOptions } from './button.options';
 })
 export class ButtonModule {
 
-  public static withOptions(opts?: ButtonOpts): ModuleWithProviders {
+  public static withOptions(opts?: ButtonOptions): ModuleWithProviders {
     const value = new ButtonOptions();
     Object.assign(value, opts);;
 
     return {
-      ngModule: ButtonModule,
+      ngModule: ButtonModuleWithOptions,
       providers: [
         {
           provide: ButtonOptions,
@@ -29,5 +29,23 @@ export class ButtonModule {
         }
       ]
     };
+  }
+}
+
+/** @internal */
+@NgModule({
+  imports: [
+    ButtonModule
+  ],
+  exports: [
+    ButtonModule
+  ]
+})
+export class ButtonModuleWithOptions {
+
+  constructor (@Optional() @SkipSelf() parentModule: ButtonModuleWithOptions) {
+    if (parentModule) {
+      throw new Error('ButtonModule.withOptions() is already loaded. Import it in the AppModule only!');
+    }
   }
 }
