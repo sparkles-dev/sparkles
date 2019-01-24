@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonDirective } from './button.directive';
-import { ButtonOptions } from './button.options';
+import { ButtonOptions, ButtonOptionsDi } from './button.options';
 
 @NgModule({
   imports: [
