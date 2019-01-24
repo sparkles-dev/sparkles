@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonDirective } from './button.directive';
-import { ButtonOptions, ButtonOptionsToken } from './button.options';
+import { ButtonOptions, BUTTON_OPTIONS, BUTTON_DEFAULTS } from './button.options';
 
 @NgModule({
   imports: [
@@ -17,14 +17,13 @@ import { ButtonOptions, ButtonOptionsToken } from './button.options';
 export class ButtonModule {
 
   public static withOptions(opts?: ButtonOptions): ModuleWithProviders {
-    const value = new ButtonOptionsToken();
-    Object.assign(value, opts);;
+    const value = Object.assign({}, opts, BUTTON_DEFAULTS);
 
     return {
       ngModule: ButtonModuleWithOptions,
       providers: [
         {
-          provide: ButtonOptionsToken,
+          provide: BUTTON_OPTIONS,
           useValue: value
         }
       ]

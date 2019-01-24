@@ -1,5 +1,5 @@
-import { Directive, Input } from '@angular/core';
-import { ButtonOptionsToken, ButtonVariant } from './button.options';
+import { Directive, Input, Inject } from '@angular/core';
+import { BUTTON_OPTIONS, ButtonOptions, ButtonVariant } from './button.options';
 
 @Directive({
   selector: '[sparklesButton]',
@@ -15,7 +15,7 @@ export class ButtonDirective {
   public sparklesButton: ButtonVariant = this.opts.defaultVariant;
 
   constructor(
-    private opts: ButtonOptionsToken
+    @Inject(BUTTON_OPTIONS) private opts: ButtonOptions
   ) {}
 
 }

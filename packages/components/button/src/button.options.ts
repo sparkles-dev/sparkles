@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 export type ButtonVariant = 'blue' | 'grey';
 
@@ -13,17 +13,11 @@ export const BUTTON_DEFAULTS: ButtonOptions = {
 
 /** @internal */
 export function buttonOptionsFactory() {
-  const o = new ButtonOptionsToken();
-  Object.assign(o, BUTTON_DEFAULTS);
-  
-  return o;
+  return BUTTON_DEFAULTS;
 }
 
 /** @internal DI token for ButtonOptions interface */
-@Injectable({
+export const BUTTON_OPTIONS = new InjectionToken<ButtonOptions>('ButtonOptions', {
   providedIn: 'root',
-  useFactory: buttonOptionsFactory
-})
-export class ButtonOptionsToken implements ButtonOptions {
-  defaultVariant;
-}
+  factory: buttonOptionsFactory
+});
