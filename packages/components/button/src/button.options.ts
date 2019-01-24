@@ -13,7 +13,7 @@ export const BUTTON_DEFAULTS: ButtonOptions = {
 
 /** @internal */
 export function buttonOptionsFactory() {
-  const o = new ButtonOptionsDi();
+  const o = new ButtonOptionsToken();
   Object.assign(o, BUTTON_DEFAULTS);
   
   return o;
@@ -24,6 +24,6 @@ export function buttonOptionsFactory() {
   providedIn: 'root',
   useFactory: buttonOptionsFactory
 })
-export class ButtonOptionsDi implements ButtonOptions {
+export class ButtonOptionsToken implements ButtonOptions {
   defaultVariant;
 }
