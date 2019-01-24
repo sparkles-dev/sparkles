@@ -17,14 +17,14 @@ import { ButtonOptions } from './button.options';
 export class ButtonModule {
 
   public static withOptions(opts?: ButtonOptions): ModuleWithProviders {
-    const value = new ButtonOptions();
+    const value = new ButtonOptionsDi();
     Object.assign(value, opts);;
 
     return {
       ngModule: ButtonModuleWithOptions,
       providers: [
         {
-          provide: ButtonOptions,
+          provide: ButtonOptionsDi,
           useValue: value
         }
       ]
