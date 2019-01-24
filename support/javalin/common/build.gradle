@@ -7,7 +7,7 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  compile 'io.javalin:javalin:2.5+'
+  compile 'io.javalin:javalin:2.6+'
 
   testCompile project(':support:testing')
   testCompile project(':support:javalin:testing')
