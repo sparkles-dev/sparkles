@@ -318,9 +318,9 @@
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
 
-"@nrwl/builders@7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.5.0.tgz#f05086d31326ccd9362037866176e937151dcf3c"
+"@nrwl/builders@7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.5.1.tgz#b8097f8748e6292ede7f446ea6c4ac7d2b4d2266"
   dependencies:
     "@angular-devkit/architect" "~0.12.1"
     "@angular-devkit/build-webpack" "~0.12.1"
@@ -333,13 +333,13 @@
     webpack-dev-server "3.1.14"
     webpack-node-externals "1.7.2"
 
-"@nrwl/nx@7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.5.0.tgz#250c80afe16fd664ac52c3eb1592e9955675c7aa"
+"@nrwl/nx@7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.5.1.tgz#890d7b79f5a6c9a564d18fe28e841e3e7ecdb0d0"
 
-"@nrwl/schematics@7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.5.0.tgz#ba8f8c1e4a004a1d3d082c493c5da15d6396678c"
+"@nrwl/schematics@7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.5.1.tgz#717bf80f7273a00f469cfe33a4cb27fc7eadbbb5"
   dependencies:
     "@types/yargs" "^11.0.0"
     app-root-path "^2.0.1"
