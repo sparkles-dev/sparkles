@@ -7,38 +7,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@sparkles/*": [
-        "libs/*"
-      ],
-      "@sparkles/domain": [
-        "libs/domain/src/index.ts"
-      ],
-      "@sparkles/forms": [
-        "libs/forms/src/index.ts"
-      ],
-      "@sparkles/shared": [
-        "libs/shared/src/index.ts"
-      ],
-      "@sparkles/components": [
-        "packages/components/src/index.ts"
-      ],
-      "@sparkles/components/*": [
-        "packages/components/*/index.ts"
-      ]
+      "@sparkles/*": ["libs/*"],
+      "@sparkles/domain": ["libs/domain/src/index.ts"],
+      "@sparkles/forms": ["libs/forms/src/index.ts"],
+      "@sparkles/shared": ["libs/shared/src/index.ts"],
+      "@sparkles/components": ["packages/components/src/index.ts"],
+      "@sparkles/components/*": ["packages/components/*/index.ts"],
+      "@sparkles/reframed": ["libs/reframed/src/index.ts"]
     },
     "module": "es2015"
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

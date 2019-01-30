@@ -18,6 +18,9 @@
     },
     "components": {
       "tags": []
+    },
+    "reframed": {
+      "tags": []
     }
   },
   "implicitDependencies": {

@@ -227,6 +227,37 @@
           }
         }
       }
+    },
+    "reframed": {
+      "root": "libs/reframed",
+      "sourceRoot": "libs/reframed/src",
+      "projectType": "library",
+      "prefix": "sparkles",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/reframed/tsconfig.lib.json",
+              "libs/reframed/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/reframed/jest.config.js",
+            "tsConfig": "libs/reframed/tsconfig.spec.json",
+            "setupFile": "libs/reframed/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "defaultProject": "domain",
