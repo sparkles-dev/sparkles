@@ -73,10 +73,15 @@ public class StuffApp {
         Object auditor = Auditing.getStrategy().resolveCurrentContext().getCurrentAuditor().get();
         LOG.info("Current auditor is {}", auditor);
 
-        StuffRepository repository = springData(ctx).createRepository(StuffRepository.class);
-        StuffEntity entity = repository.save(new StuffEntity().withName("foobararar"));
+        StuffEntity e = new StuffEntity().withName("foobararar").addKind(StuffEntity.Kind.FOO);
+        if (Math.random() < 0.5) {
+          e.addKind(StuffEntity.Kind.FOOBAR);
+        }
 
-        ctx.result(entity.id.toString()).status(201);
+        StuffRepository repository = springData(ctx).createRepository(StuffRepository.class);
+        StuffEntity entity = repository.save(e);
+
+        ctx.json(entity).status(201);
       })
       .routes(() -> {
         crud("stuff/:id", crudHandler(StuffRepository.class, StuffEntity.class, UUID::fromString));
