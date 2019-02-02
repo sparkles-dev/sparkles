@@ -28,8 +28,10 @@ import javax.persistence.AttributeConverter;
  * public class MyEntity {
  *
  *   @Column
+ *   @Convert(converter = FooConverter.class)
  *   private Foo foo;
  *
+ *   @Converter
  *   public static class FooConverter extends EnumToLongConverter<Foo> {
  *
  *     public FooConverter() {
