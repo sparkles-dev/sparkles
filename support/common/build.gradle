@@ -6,6 +6,6 @@ plugins {
 group = 'sparkles.support'
 
 dependencies {
-  compile 'com.google.guava:guava:24.1-jre'
+  compile 'com.google.guava:guava:27.0.1-jre'
   testCompile project(':support:testing')
 }

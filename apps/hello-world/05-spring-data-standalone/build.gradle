@@ -15,7 +15,7 @@ run.doFirst {
 
 dependencies {
   // 3rd party
-  compile 'com.google.guava:guava:24.1-jre'
+  compile 'com.google.guava:guava:27.0.1-jre'
   compile 'com.sparkjava:spark-core:2.7.1'
   compile 'org.hsqldb:hsqldb:2.2.9'
   compile 'org.slf4j:slf4j-api:1.7.25'
