@@ -1,5 +1,10 @@
 package sparkles;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import org.hsqldb.jdbc.JDBCDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +18,7 @@ import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import io.javalin.Javalin;
-
+import io.javalin.json.JavalinJackson;
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
@@ -22,6 +27,7 @@ import sparkles.support.javalin.keycloak.security.KeycloakRoles;
 import sparkles.support.javalin.spring.data.auditing.Auditing;
 import sparkles.support.javalin.spring.data.auditing.AuditingExtension;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
+import sparkles.support.json.resources.JacksonResourcesModule;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
 import static sparkles.support.javalin.security.Security.requires;
@@ -42,6 +48,14 @@ public class StuffApp {
   public Javalin init() {
     final DataSource dataSource = createDataSource();
 
+    JavalinJackson.getObjectMapper()
+      .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+      .configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
+      .configure(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
+      .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+      .registerModule(new JacksonResourcesModule())
+      .registerModule(new JavaTimeModule());
+
     return JavalinApp.create()
       .register(FlywayExtension.create(() -> dataSource,
         "persistence/migrations/flyway"))
@@ -51,6 +65,8 @@ public class StuffApp {
         // TODO: resolve auditor from request context
         return "foo";
       }))
+      // CRUD handling for StuffEntity - w/ RESTful resources
+      .register(new StuffHandler())
       .accessManager(KeycloakAccessManager.create(
         Environment.value("KEYCLOAK_URL",  "https://foobar"),
         Environment.value("KEYCLOAK_REALM", "realm"),
