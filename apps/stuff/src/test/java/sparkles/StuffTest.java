@@ -3,6 +3,8 @@ package sparkles;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+
 import io.javalin.Javalin;
 import okhttp3.Response;
 import sparkles.support.javalin.testing.HttpClient;
@@ -24,13 +26,15 @@ public class StuffTest {
   }
 
   @Test
-  public void post_shouldRespond200() {
+  public void post_shouldRespond200() throws IOException {
     final Response response = testClient
       .post("/")
       .emptyBody()
       .send();
 
     assertThat(response.code()).isEqualTo(201);
+
+    System.out.println(response.body().string());
   }
 
 }
