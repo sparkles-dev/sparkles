@@ -11,7 +11,7 @@ dependencies {
   processor 'org.projectlombok:lombok:1.16.20'
 
   compile project(':support:javalin:common')
-  compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+  compile project(':support:jpa')
   compile 'org.hibernate:hibernate-core:5.2.14.Final'
   compile 'org.hibernate:hibernate-entitymanager:5.2.14.Final'
   compile 'org.slf4j:slf4j-api:1.7.25'
