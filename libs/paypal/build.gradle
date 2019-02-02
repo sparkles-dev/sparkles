@@ -9,7 +9,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.16.20'
 	testCompileOnly 'org.projectlombok:lombok:1.16.20'
 
-  compile 'com.google.guava:guava:24.1-jre'
+  compile 'com.google.guava:guava:27.0.1-jre'
   compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'com.squareup.okhttp3:logging-interceptor:3.+'
   //compile 'com.squareup.okio:okio:1.14.0'
