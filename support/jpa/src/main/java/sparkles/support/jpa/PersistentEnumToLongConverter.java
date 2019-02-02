@@ -57,35 +57,14 @@ import sparkles.support.common.enums.PersistentEnum;
  *
  * @param <E>
  */
-public class PersistentEnumToLongConverter<E extends Enum & PersistentEnum> implements AttributeConverter<E, Long> {
-
-  private final Class<E> enumClz;
+public abstract class PersistentEnumToLongConverter<E extends Enum & PersistentEnum>
+  extends EnumToLongConverter<E>
+  implements AttributeConverter<E, Long> {
 
   protected PersistentEnumToLongConverter(Class<E> enumClz) {
-    this.enumClz = enumClz;
-  }
-
-  @Override
-  public Long convertToDatabaseColumn(E attribute) {
-    return attribute.persistedValue();
-  }
-
-  @Override
-  public E convertToEntityAttribute(Long dbData) {
-    if (dbData == null) {
-      return null;
-    }
-
-    final E[] enumConstants = enumClz.getEnumConstants();
-    for (E anEnum : enumConstants) {
-      long pValue = anEnum.persistedValue();
-
-      if (dbData.equals(pValue)) {
-        return anEnum;
-      }
-    }
-
-    return null;
+    // We must pass a lambda expression and not a method reference to the super constructor
+    // https://stackoverflow.com/a/34160332
+    super(enumClz, (E anEnum) -> anEnum.persistedValue());
   }
 
 }

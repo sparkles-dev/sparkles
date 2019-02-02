@@ -1,5 +1,7 @@
 package sparkles.support.jpa;
 
+import java.util.function.Function;
+
 import javax.persistence.AttributeConverter;
 
 /**
@@ -46,16 +48,20 @@ import javax.persistence.AttributeConverter;
 public abstract class EnumToLongConverter<E extends Enum> implements AttributeConverter<E, Long> {
 
   private final Class<E> enumClz;
+  private final Function<E, Long> persistentValueProvider;
 
   public EnumToLongConverter(Class<E> enumClz) {
+    this(enumClz, (E anEnum) -> (long) anEnum.ordinal());
+  }
+
+  public EnumToLongConverter(Class<E> enumClz, Function<E, Long> persistentValueProvider) {
     this.enumClz = enumClz;
+    this.persistentValueProvider = persistentValueProvider;
   }
 
   @Override
   public Long convertToDatabaseColumn(E attribute) {
-    int ordinal = attribute.ordinal();
-
-    return Integer.valueOf(ordinal).longValue();
+    return persistentValueProvider.apply(attribute);
   }
 
   @Override
@@ -66,9 +72,9 @@ public abstract class EnumToLongConverter<E extends Enum> implements AttributeCo
 
     final E[] enumConstants = enumClz.getEnumConstants();
     for (E anEnum : enumConstants) {
-      int ordinal = anEnum.ordinal();
+      long persistentValue = persistentValueProvider.apply(anEnum);
 
-      if (dbData.equals(Integer.valueOf(ordinal).longValue())) {
+      if (dbData.equals(persistentValue)) {
         return anEnum;
       }
     }
