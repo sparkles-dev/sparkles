@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { ParsedUrl, AppResolverOptions, URL_RESOLVER_OPTIONS } from '../app-launcher.interfaces';
+import { ParsedUrl, ReframedOptions, REFRAMED_OPTIONS } from '../reframed.interfaces';
 
 @Injectable()
 export class UrlResolver {
-  constructor(@Inject(URL_RESOLVER_OPTIONS) private options: AppResolverOptions) {}
+  constructor(@Inject(REFRAMED_OPTIONS) private options: ReframedOptions) {}
 
   public resolvePublicUrl(url: ParsedUrl) {
-    let value = this.options.prefix.concat('u/', url.appName, '/');
+    let value = this.options.pathPrefix.concat(url.appName, '/');
 
     if (url.params) {
       // TODO: append params also to the url query param

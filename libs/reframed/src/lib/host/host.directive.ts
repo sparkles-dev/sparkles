@@ -13,11 +13,11 @@ import { Subscription } from 'rxjs';
 import { MessageService } from '../messages/message.service';
 import { Message, MessageTypes } from '../messages/message.interfaces';
 import { UrlSerializer } from '../url/url-serializer.service';
-import { ParsedUrl } from '../app-launcher.interfaces';
 import { UrlResolver } from '../url/url-resolver.service';
+import { ParsedUrl } from '../reframed.interfaces';
 
 @Directive({
-  selector: '[uAppLaunch]'
+  selector: '[sparklesAppLaunch]'
 })
 export class HostDirective implements OnInit, OnDestroy {
   @Input()

@@ -13,10 +13,10 @@ import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../messages/message.service';
 import { MessageTypes, LaunchMessage } from '../messages/message.interfaces';
 import { UrlSerializer } from '../url/url-serializer.service';
-import { EntryPoint, ENTRY_POINTS, isAppLaunch } from '../app-launcher.interfaces';
+import { Entry, ENTRIES, isAppLaunch } from '../reframed.interfaces';
 
 @Component({
-  selector: 'u-app-outlet',
+  selector: 'sparkles-app-outlet',
   template: `<ng-container #outlet></ng-container>`
 })
 export class GuestComponent implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
@@ -31,7 +31,7 @@ export class GuestComponent implements OnInit, OnDestroy, AfterViewInit, AfterVi
     private messages: MessageService,
     private resolver: ComponentFactoryResolver,
     private urlSerializer: UrlSerializer,
-    @Inject(ENTRY_POINTS) private entryPoints: EntryPoint[]
+    @Inject(ENTRIES) private entries: Entry[]
   ) {}
 
   ngOnInit() {}
@@ -60,7 +60,7 @@ export class GuestComponent implements OnInit, OnDestroy, AfterViewInit, AfterVi
   onHandleLaunch(msg: LaunchMessage) {
     const url = msg.payload;
 
-    const entryPoint = this.entryPoints.find(ep => ep.path === url.entryPoint);
+    const entryPoint = this.entries.find(ep => ep.path === url.entryPoint);
     const componentFactory = this.resolver.resolveComponentFactory(entryPoint.component);
 
     // Clean up old component

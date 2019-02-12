@@ -1,4 +1,4 @@
-import { ParsedUrl } from '../app-launcher.interfaces';
+import { ParsedUrl } from '../libs/reframed.interfaces';
 
 export enum MessageTypes {
   LAUNCH = 'LAUNCH',
