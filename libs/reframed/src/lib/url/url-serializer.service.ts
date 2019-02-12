@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ParsedUrl } from '../app-launcher.interfaces';
+import { ParsedUrl } from '../reframed.interfaces';
 import { deserializeUrl, serializeUrl } from './url-parser';
 
 @Injectable()

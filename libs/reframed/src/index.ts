@@ -16,5 +16,5 @@ export { UrlSerializer } from './lib/url/url-serializer.service';
 export { UrlResolver } from './lib/url/url-resolver.service';
 
 // Core stuff
-export * from './lib/app-launcher.interfaces';
+export * from './lib/reframed.interfaces';
 export { ReframedModule, ReframedGuestModule, ReframedHostModule } from './lib/reframed.module';

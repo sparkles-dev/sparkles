@@ -1,8 +1,9 @@
-import { ParsedUrl } from '../app-launcher.interfaces';
+import { ParsedUrl } from '../reframed.interfaces';
 
-const PREFIX = 'u://';
+const URL_SCHEME = 'app://';
 
 const QUERY_PARAM_RE = /^[^=?&#]+/;
+
 // Return the name of the query param at the start of the string or an empty string
 function matchQueryParamName(str: string): string {
   const match = str.match(QUERY_PARAM_RE);
@@ -10,6 +11,7 @@ function matchQueryParamName(str: string): string {
 }
 
 const QUERY_PARAM_VALUE_RE = /^[^?&#]+/;
+
 // Return the value of the query param at the start of the string or an empty string
 function matchQueryParamValue(str: string): string {
   const match = str.match(QUERY_PARAM_VALUE_RE);
@@ -25,14 +27,14 @@ function decodeQuery(s: string): string {
 export class UrlParser {
   private remaining: string;
 
-  constructor(url: string) {
+  constructor(url: string, private urlScheme: string) {
     this.remaining = url;
   }
 
   parse(): ParsedUrl {
     const url = '' + this.remaining;
-    if (!this.consumeOptional(PREFIX)) {
-      throw new Error(`Url must start with ${PREFIX}, given ${this.remaining}`);
+    if (!this.consumeOptional(this.urlScheme)) {
+      throw new Error(`Url must start with ${this.urlScheme}, given ${this.remaining}`);
     }
 
     const appName = this.captureOptional('/');
@@ -111,18 +113,19 @@ export class UrlParser {
   }
 }
 
-export function deserializeUrl(url: string): ParsedUrl {
-  return new UrlParser(url).parse();
+export function deserializeUrl(url: string, urlScheme = URL_SCHEME): ParsedUrl {
+  return new UrlParser(url, urlScheme).parse();
 }
 
-export function serializeUrl(url: ParsedUrl) {
-  let value = `${PREFIX}/${url.appName}/${url.entryPoint}`;
+export function serializeUrl(url: ParsedUrl, urlScheme = URL_SCHEME) {
+  let value = `${urlScheme}/${url.appName}/${url.entryPoint}`;
 
   if (url.params) {
     const queryString = Object.keys(url.params)
-      .map(key => {
-        const value = url.params[key];
-        return encodeURIComponent(key) + '=' + encodeURIComponent(value);
+      .map(queryParamKey => {
+        const queryParamValue = url.params[queryParamKey];
+
+        return `${encodeURIComponent(queryParamKey)}=${encodeURIComponent(queryParamValue)}`;
       })
       .join('&');
 

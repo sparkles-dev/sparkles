@@ -10,11 +10,11 @@ import { UrlSerializer } from './url/url-serializer.service';
 import { UrlResolver } from './url/url-resolver.service';
 import {
   provideEntries,
-  EntryPoint,
-  AppResolverOptions,
-  provideUrlResolverOptions,
-  DEFAULT_URL_RESOLVER_OPTIONS
-} from './app-launcher.interfaces';
+  Entry,
+  ReframedOptions,
+  provideReframedOptions,
+  DEFAULT_REFRAMED_OPTIONS
+} from './reframed.interfaces';
 
 const providers = [UrlSerializer, MessageService, UrlResolver];
 
@@ -32,14 +32,23 @@ export class ReframedGuestModule {}
 })
 export class ReframedHostModule {}
 
+/**
+ * A feature module for providing cross-iframe screen workflows and bidirectional communication
+ * between host app and guest app.
+ *
+ * @stable
+ */
 @NgModule({
   imports: []
 })
 export class ReframedModule {
-  public static forHost(resolverOptions?: AppResolverOptions): ModuleWithProviders {
+
+  // TODO: public static forDancer(): combines forHost() + forGuest()
+
+  public static forHost(resolverOptions?: ReframedOptions): ModuleWithProviders {
     const hostProviders: Provider[] = [
       ...providers,
-      provideUrlResolverOptions(resolverOptions || DEFAULT_URL_RESOLVER_OPTIONS)
+      provideReframedOptions(resolverOptions || DEFAULT_REFRAMED_OPTIONS)
     ];
 
     return {
@@ -48,7 +57,7 @@ export class ReframedModule {
     };
   }
 
-  public static forGuest(entries?: EntryPoint[]): ModuleWithProviders {
+  public static forGuest(entries?: Entry[]): ModuleWithProviders {
     const guestProviders = [
       ...providers,
       provideEntries(entries),
