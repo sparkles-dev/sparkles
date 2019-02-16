@@ -43,6 +43,7 @@ import { unique } from './functional';
 export class Debug {
 
   public environment: any = {};
+
   private enabled: string[] = [];
 
   public get isDevelop(): boolean {
