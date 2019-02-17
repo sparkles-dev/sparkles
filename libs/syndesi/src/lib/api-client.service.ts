@@ -6,7 +6,7 @@ import { Call } from './call';
 import { Resource } from './resources';
 
 @Injectable({ providedIn: 'root' })
-export class ClientService {
+export class ApiClient {
 
   constructor(
     private http: HttpClient

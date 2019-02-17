@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { expand, UriParams } from './uri';
 
-const nextCall = <S, T>(call: Call<S>) => {
+const toNextCall = <S, T>(call: Call<S>) => {
 
   return function (res: Resource<T> | HttpResponse<Resource<T>>) {
     const json = res instanceof HttpResponse ? res.body : res;
@@ -126,7 +126,7 @@ export class Call<T> {
           observe: 'response',
           responseType: 'json'
         }
-      ).pipe(map(nextCall(this)));
+      ).pipe(map(toNextCall(this)));
   }
 
   private expandLink(rel: string, params?: UriParams): string {
