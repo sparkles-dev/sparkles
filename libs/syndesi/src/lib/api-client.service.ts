@@ -3,8 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Call } from './call';
-import { Resource } from './resources';
+import { Resource } from './resource.interfaces';
 
+/**
+ * Inject `ApiClient` to start brosing a nicely crafted connected-media API.
+ *
+ * @experimental
+ */
 @Injectable({ providedIn: 'root' })
 export class ApiClient {
 

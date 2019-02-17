@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Resource } from './resources';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Resource } from './resource.interfaces';
 import { expand, UriParams } from './uri';
 
 const toNextCall = <S, T>(call: Call<S>) => {
@@ -14,6 +14,31 @@ const toNextCall = <S, T>(call: Call<S>) => {
   };
 };
 
+/**
+ * A `Call` is a single HTTP interaction
+ *
+ * ### How To Use
+ *
+ * Inject `ApiClient` and obtain a call instance from a `Resource` obtained prior to this call:
+ *
+ * ```ts
+ * interface Entity {
+ *   whatsUp: string;
+ * }
+ *
+ * @Injectable()
+ * export class EntityService {
+ *   constructor(private api: ApiClient)
+ *
+ *   fetchNextPage(res: Respurce<Entity>) {
+ *     return this.api.call(res).get('next').send<>();
+ *   }
+ * }
+ * ```
+ *
+ * @param T Type declaration for a `Resource` obtained prior.
+ * @experimental
+ */
 export class Call<T> {
   private _http: HttpClient;
   private _uri: string;
