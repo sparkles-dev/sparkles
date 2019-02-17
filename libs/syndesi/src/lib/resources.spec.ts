@@ -16,6 +16,24 @@ describe(`Resource`, () => {
 
     expect(test.b).toEqual(123);
   });
+
+  it(`should allow to declare custom interface types`, () => {
+    interface A {
+      id: number;
+    }
+
+    interface AResource extends Resource<A> {}
+
+    const test: AResource = {
+      id: 123,
+      _links: {
+        self: { href: '/user/123' }
+      }
+    };
+
+    expect(test.id).toEqual('123');
+    expect(test._links.self.href).toEqual('/user/123');
+  });
 });
 
 describe(`isLink()`, () => {

@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { expand, UriParams } from './uri';
 
-const nextCall = <S extends Resource, T extends Resource>(call: Call<S>) => {
+const nextCall = <S, T>(call: Call<S>) => {
 
-  return function (res: T | HttpResponse<T>) {
+  return function (res: Resource<T> | HttpResponse<Resource<T>>) {
     const json = res instanceof HttpResponse ? res.body : res;
     const response = res instanceof HttpResponse  ? res : undefined;
 
@@ -14,7 +14,7 @@ const nextCall = <S extends Resource, T extends Resource>(call: Call<S>) => {
   };
 };
 
-export class Call<T extends Resource> {
+export class Call<T> {
   private _http: HttpClient;
   private _uri: string;
   private _method: string;
@@ -22,7 +22,7 @@ export class Call<T extends Resource> {
 
   constructor(
     http: HttpClient | Call<any>,
-    public resource: T,
+    public resource: Resource<T>,
     public response?: HttpResponse<T>
   ) {
     if (http instanceof HttpClient) {
@@ -110,7 +110,7 @@ export class Call<T extends Resource> {
     return this;
   }
 
-  public send<R extends Resource>(): Observable<Call<R>> {
+  public send<R>(): Observable<Call<R>> {
     if (!this._method) {
       throw new Error('method is a required parameter! Please set it with method() or one of the short-hands like get().');
     }
@@ -118,16 +118,15 @@ export class Call<T extends Resource> {
       throw new Error('uri is a required parameter! Please set it with uri() or one of the short-hands like get().');
     }
 
-    return this._http
-      .request<R>(
+    return this._http.request<Resource<R>>(
         this._method,
         this._uri,
         {
           ...this._options,
           observe: 'response',
           responseType: 'json'
-        })
-      .pipe(map(nextCall(this)));
+        }
+      ).pipe(map(nextCall(this)));
   }
 
   private expandLink(rel: string, params?: UriParams): string {
