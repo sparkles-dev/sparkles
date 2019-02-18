@@ -8,7 +8,7 @@ export function hasEmbedded<T>(value: any): value is ResourceWithEmbedded<T> {
 export interface EmbeddedOpts<T> {
   guard?: (value: any) => value is T;
   shouldThrow?: boolean;
-};
+}
 
 /**
  * Return the embedded resource identified by relation `rel` from parent `res`.

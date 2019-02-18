@@ -57,7 +57,9 @@ export interface Link {
  *
  * @stable
  */
-export type Resource<T> = T & {
+export type Resource<T> = T & ResourceMetadata;
+
+export interface ResourceMetadata {
   _links: {
     self: Link;
     [key: string]: Link | Link[];

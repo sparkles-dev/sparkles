@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Resource } from './resource.interfaces';
+import { Resource, ResourceMetadata } from './resource.interfaces';
 import { expand, UriParams } from './uri';
 
 const toNextCall = <S, T>(call: Call<S>) => {
@@ -15,7 +15,7 @@ const toNextCall = <S, T>(call: Call<S>) => {
 };
 
 /**
- * A `Call` is a single HTTP interaction
+ * A `Call` is a single HTTP interaction for exchanging a resource between client and server.
  *
  * ### How To Use
  *
@@ -45,6 +45,7 @@ export class Call<T> {
   private _method: string;
   private _options = {};
 
+  // TODO: public resource: T & ResourceMetadata
   constructor(
     http: HttpClient | Call<any>,
     public resource: Resource<T>,

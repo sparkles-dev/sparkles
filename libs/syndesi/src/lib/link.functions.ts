@@ -14,8 +14,17 @@ export function isLinks(value: any): value is Link[] {
 
 export interface LinkOpts {
   shouldThrow?: boolean;
-};
+}
 
+/**
+ * Return the link identified by relation `rel` from resource `res`.
+ *
+ * @param rel Relation name
+ * @param res Parent resource
+ * @param opts Set `shouldThrow`, if you want an error instead of an `undefined` return value
+ * @return An object of type `Link` or an `undefined` value
+ * @stable
+ */
 export function link(rel: string, res: any, opts?: LinkOpts): Link {
   if (hasLinks(res)) {
     const linkForRel = res._links[rel];
@@ -30,6 +39,15 @@ export function link(rel: string, res: any, opts?: LinkOpts): Link {
   }
 }
 
+/**
+ * Return an array of links identified by relation `rel` from resource `res`.
+ *
+ * @param rel Relation name
+ * @param res Parent resource
+ * @param opts Set `shouldThrow`, if you want an error instead of an `undefined` return value
+ * @return Array of `Link` or an `undefined` value
+ * @stable
+ */
 export function links(rel: string, res: any, opts?: LinkOpts): Link[] {
   if (hasLinks(res)) {
     const linkForRel = res._links[rel];
