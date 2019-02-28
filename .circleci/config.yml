@@ -9,10 +9,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-master-{{ checksum "settings.gradle" }}
+          key: sparkles-{{ .Branch }}	-{{ checksum "settings.gradle" }}
       - run: ./gradlew test || ./gradlew test --info --scan
       - save_cache:
-          key: sparkles-master-{{ checksum "settings.gradle" }}
+          key: sparkles-{{ .Branch }}	-{{ checksum "settings.gradle" }}
           paths:
           - ~/app/.gradle
 
@@ -24,10 +24,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-master-{{ checksum "yarn.lock" }}
+          key: sparkles-{{ .Branch }}	-{{ checksum "yarn.lock" }}
       - run: yarn install --frozen-lockfile
       - save_cache:
-          key: sparkles-master-{{ checksum "yarn.lock" }}
+          key: sparkles-{{ .Branch }}	-{{ checksum "yarn.lock" }}
           paths:
           - ~/app/node_modules
       - run: ./scripts/ci.frontend.sh
