@@ -12,5 +12,5 @@ fi
 
 yarn packages:styles:build
 yarn packages:components:build
-yarn affected:build "{$AFFECTED_ARGS}"
-xvfb-run -a yarn affected:test "{$AFFECTED_ARGS}"
+yarn affected:build "${AFFECTED_ARGS}"
+xvfb-run -a yarn affected:test "${AFFECTED_ARGS}"
