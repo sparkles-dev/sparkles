@@ -19,5 +19,12 @@
     "components": {
       "tags": []
     }
+  },
+  "implicitDependencies": {
+    "package.json": "*",
+    "angular.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
   }
 }
