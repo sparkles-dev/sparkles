@@ -32,8 +32,8 @@ jobs:
           - ~/app/node_modules
       - run: yarn packages:styles:build
       - run: yarn packages:components:build
-      - run: yarn build
-      - run: xvfb-run -a yarn test
+      - run: yarn affected:build
+      - run: xvfb-run -a yarn affected:test
       - store_artifacts:
           path: ~/app/dist
       - store_artifacts:
