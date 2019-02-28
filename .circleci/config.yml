@@ -15,6 +15,25 @@ jobs:
           key: sparkles-{{ .Branch }}	-{{ checksum "settings.gradle" }}
           paths:
           - ~/app/.gradle
+          - ~/app/replication/build
+          - ~/app/stuff/build
+          - ~/app/support/common/build
+          - ~/app/support/flyway/build
+          - ~/app/support/javalin/common/build
+          - ~/app/support/javalin/flyway/build
+          - ~/app/support/javalin/jwt/build
+          - ~/app/support/javalin/keycloak-security/build
+          - ~/app/support/javalin/spring-data/build
+          - ~/app/support/javalin/testing/build
+          - ~/app/support/jpa/build
+          - ~/app/support/json/json-resources/build
+          - ~/app/support/json/schema/build
+          - ~/app/support/keycloak/build
+          - ~/app/support/ok/moshi/build
+          - ~/app/support/ok/okhttp/build
+          - ~/app/support/relation/build
+          - ~/app/support/replication/build
+          - ~/app/support/testing/build
 
   # Frontend (Angular)
   build_frontend:
