@@ -1,0 +1,7 @@
+<iframe
+  [spAppLaunch]="'sp://pong/play-it-now'"
+  (spAppMessage)="onAppMessage($event)"
+  (spAppLoads)="onAppLoads($event)"
+  (spAppLoaded)="onAppLoaded($event)"></iframe>
+
+<router-outlet></router-outlet>

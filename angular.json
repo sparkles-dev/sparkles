@@ -227,6 +227,271 @@
           }
         }
       }
+    },
+    "reframed": {
+      "root": "libs/reframed",
+      "sourceRoot": "libs/reframed/src",
+      "projectType": "library",
+      "prefix": "sparkles",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/reframed/tsconfig.lib.json",
+              "libs/reframed/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/reframed/jest.config.js",
+            "tsConfig": "libs/reframed/tsconfig.spec.json",
+            "setupFile": "libs/reframed/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "reframed-ping": {
+      "root": "apps/reframed/ping/",
+      "sourceRoot": "apps/reframed/ping/src",
+      "projectType": "application",
+      "prefix": "sparkles",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/reframed/ping",
+            "index": "apps/reframed/ping/src/index.html",
+            "main": "apps/reframed/ping/src/main.ts",
+            "polyfills": "apps/reframed/ping/src/polyfills.ts",
+            "tsConfig": "apps/reframed/ping/tsconfig.app.json",
+            "assets": [
+              "apps/reframed/ping/src/favicon.ico",
+              "apps/reframed/ping/src/assets"
+            ],
+            "styles": ["apps/reframed/ping/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/reframed/ping/src/environments/environment.ts",
+                  "with": "apps/reframed/ping/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "reframed-ping:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "reframed-ping:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "reframed-ping:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/reframed/ping/tsconfig.app.json",
+              "apps/reframed/ping/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/reframed/ping/jest.config.js",
+            "tsConfig": "apps/reframed/ping/tsconfig.spec.json",
+            "setupFile": "apps/reframed/ping/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "reframed-ping-e2e": {
+      "root": "apps/reframed/ping-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/reframed/ping-e2e/protractor.conf.js",
+            "devServerTarget": "reframed-ping:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "reframed-ping:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/reframed/ping-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "reframed-pong": {
+      "root": "apps/reframed/pong/",
+      "sourceRoot": "apps/reframed/pong/src",
+      "projectType": "application",
+      "prefix": "sparkles",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/reframed/pong",
+            "index": "apps/reframed/pong/src/index.html",
+            "main": "apps/reframed/pong/src/main.ts",
+            "polyfills": "apps/reframed/pong/src/polyfills.ts",
+            "tsConfig": "apps/reframed/pong/tsconfig.app.json",
+            "assets": [
+              "apps/reframed/pong/src/favicon.ico",
+              "apps/reframed/pong/src/assets"
+            ],
+            "styles": ["apps/reframed/pong/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/reframed/pong/src/environments/environment.ts",
+                  "with": "apps/reframed/pong/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "reframed-pong:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "reframed-pong:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "reframed-pong:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/reframed/pong/tsconfig.app.json",
+              "apps/reframed/pong/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/reframed/pong/jest.config.js",
+            "tsConfig": "apps/reframed/pong/tsconfig.spec.json",
+            "setupFile": "apps/reframed/pong/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "reframed-pong-e2e": {
+      "root": "apps/reframed/pong-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/reframed/pong-e2e/protractor.conf.js",
+            "devServerTarget": "reframed-pong:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "reframed-pong:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/reframed/pong-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "domain",
