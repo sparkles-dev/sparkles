@@ -51,7 +51,12 @@ export interface ReframedOptions {
   /**
    * Prefix for constructing iframe urls.
    */
-  pathPrefix: string;
+  pathPrefix?: string;
+
+  /**
+   * Optional, th URL scheme for parsing launcher urls. Example: `myapps://`
+   */
+  urlScheme?: string;
 }
 
 export const REFRAMED_OPTIONS = new InjectionToken<ReframedOptions>('@sparkles/reframed: ReframedOptions');

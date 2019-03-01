@@ -21,6 +21,18 @@
     },
     "reframed": {
       "tags": []
+    },
+    "reframed-ping": {
+      "tags": ["reframed"]
+    },
+    "reframed-ping-e2e": {
+      "tags": []
+    },
+    "reframed-pong": {
+      "tags": ["reframed"]
+    },
+    "reframed-pong-e2e": {
+      "tags": []
     }
   },
   "implicitDependencies": {

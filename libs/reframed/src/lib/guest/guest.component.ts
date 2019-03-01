@@ -12,11 +12,10 @@ import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../messages/message.service';
 import { MessageTypes, LaunchMessage } from '../messages/message.interfaces';
-import { UrlSerializer } from '../url/url-serializer.service';
 import { Entry, ENTRIES, isAppLaunch } from '../reframed.interfaces';
 
 @Component({
-  selector: 'sparkles-app-outlet',
+  selector: 'sp-app-outlet',
   template: `<ng-container #outlet></ng-container>`
 })
 export class GuestComponent implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
@@ -30,7 +29,6 @@ export class GuestComponent implements OnInit, OnDestroy, AfterViewInit, AfterVi
   constructor(
     private messages: MessageService,
     private resolver: ComponentFactoryResolver,
-    private urlSerializer: UrlSerializer,
     @Inject(ENTRIES) private entries: Entry[]
   ) {}
 

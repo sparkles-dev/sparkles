@@ -48,7 +48,7 @@ export class ReframedModule {
   public static forHost(resolverOptions?: ReframedOptions): ModuleWithProviders {
     const hostProviders: Provider[] = [
       ...providers,
-      provideReframedOptions(resolverOptions || DEFAULT_REFRAMED_OPTIONS)
+      provideReframedOptions(Object.assign({}, DEFAULT_REFRAMED_OPTIONS, resolverOptions))
     ];
 
     return {
@@ -57,11 +57,12 @@ export class ReframedModule {
     };
   }
 
-  public static forGuest(entries?: Entry[]): ModuleWithProviders {
+  public static forGuest(entries: Entry[], resolverOptions?: ReframedOptions): ModuleWithProviders {
     const guestProviders = [
       ...providers,
-      provideEntries(entries),
-      provideRoutes([
+      provideReframedOptions(Object.assign({}, DEFAULT_REFRAMED_OPTIONS, resolverOptions)),
+      ...provideEntries(entries),
+      ...provideRoutes([
         {
           path: 'external',
           children: [

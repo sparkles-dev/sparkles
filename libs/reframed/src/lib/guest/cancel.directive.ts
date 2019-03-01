@@ -2,13 +2,13 @@ import { Directive, HostListener, ElementRef } from '@angular/core';
 import { MessageService } from '../messages/message.service';
 
 @Directive({
-    selector: '[uAppLaunchCancel]'
+    selector: '[spAppLaunchCancel]'
 })
 export class CancelDirective {
-    constructor(private messages: MessageService) {}
+  constructor(private messages: MessageService) {}
 
-    @HostListener('click')
-    public onClick() {
-        this.messages.cancel(new ElementRef(window.parent), '');
-    }
+  @HostListener('click')
+  public onClick() {
+    this.messages.cancel(new ElementRef(window.parent), '');
+  }
 }

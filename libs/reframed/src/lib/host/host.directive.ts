@@ -17,26 +17,32 @@ import { UrlResolver } from '../url/url-resolver.service';
 import { ParsedUrl } from '../reframed.interfaces';
 
 @Directive({
-  selector: '[sparklesAppLaunch]'
+  selector: 'iframe[spAppLaunch]'
 })
 export class HostDirective implements OnInit, OnDestroy {
   @Input()
-  public set uAppLaunch(value: string | ParsedUrl) {
-    if (typeof value === 'string') {
-      this.parsedUrl = this.urlSerializer.deserialize(value);
-    } else {
-      this.parsedUrl = value;
-    }
+  public set spAppLaunch(value: string | ParsedUrl) {
+    if (value) {
+      this.renderer.removeStyle(this.iframeElement.nativeElement, 'display');
 
-    this.iframeUrl = this.urlResolver.resolvePublicUrl(this.parsedUrl);
-    this.launch();
+      if (typeof value === 'string') {
+        this.parsedUrl = this.urlSerializer.deserialize(value);
+      } else {
+        this.parsedUrl = value;
+      }
+
+      this.iframeUrl = this.urlResolver.resolvePublicUrl(this.parsedUrl);
+      this.launch();
+    } else {
+      this.renderer.setStyle(this.iframeElement.nativeElement, 'display', 'none');
+    }
   }
 
-  @Output() public uAppMessage: EventEmitter<Message> = new EventEmitter();
+  @Output() public spAppMessage: EventEmitter<Message> = new EventEmitter();
 
-  @Output() public uAppLoads: EventEmitter<Message> = new EventEmitter();
+  @Output() public spAppLoads: EventEmitter<ParsedUrl> = new EventEmitter();
 
-  @Output() public uAppLoaded: EventEmitter<Message> = new EventEmitter();
+  @Output() public spAppLoaded: EventEmitter<ParsedUrl> = new EventEmitter();
 
   private iframeUrl: string;
   private parsedUrl: ParsedUrl;
@@ -55,7 +61,7 @@ export class HostDirective implements OnInit, OnDestroy {
 
   private launch() {
     this.ngZone.runTask(() => {
-      this.uAppLoads.next();
+      this.spAppLoads.next(this.parsedUrl);
     });
 
     this.clearListener();
@@ -70,11 +76,14 @@ export class HostDirective implements OnInit, OnDestroy {
   ngOnInit() {
     const sub = this.msgService.messages$.subscribe(value => {
       this.ngZone.runTask(() => {
-        this.uAppMessage.next(value);
+        this.spAppMessage.next(value);
       });
 
       if (value.type === MessageTypes.CANCEL || value.type === MessageTypes.FINISH) {
+        this.clearListener();
+
         this.renderer.setAttribute(this.iframeElement.nativeElement, 'src', 'about:blank');
+        this.renderer.setStyle(this.iframeElement.nativeElement, 'display', 'none');
       }
     });
     this.subscriptions.push(sub);
@@ -91,7 +100,7 @@ export class HostDirective implements OnInit, OnDestroy {
     this.msgService.launch(this.iframeElement, this.parsedUrl);
 
     this.ngZone.runTask(() => {
-      this.uAppLoaded.next();
+      this.spAppLoaded.next(this.parsedUrl);
     });
   }
 

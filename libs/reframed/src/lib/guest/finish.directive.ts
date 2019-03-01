@@ -1,14 +1,18 @@
-import { Directive, HostListener, ElementRef } from '@angular/core';
+import { Directive, HostListener, ElementRef, Input } from '@angular/core';
 import { MessageService } from '../messages/message.service';
 
 @Directive({
-    selector: '[uAppLaunchFinish]'
+    selector: '[spAppLaunchFinish]'
 })
 export class FinishDirective {
-    constructor(private messages: MessageService) {}
 
-    @HostListener('click')
-    public onClick() {
-        this.messages.finish(new ElementRef(window.parent), '');
-    }
+  @Input()
+  public spAppLaunchFinish: any = '';
+
+  constructor(private messages: MessageService) {}
+
+  @HostListener('click')
+  public onClick() {
+    this.messages.finish(new ElementRef(window.parent), this.spAppLaunchFinish);
+  }
 }

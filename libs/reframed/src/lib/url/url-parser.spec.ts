@@ -17,7 +17,7 @@ describe('UrlParser', () => {
         expect(result.entryPoint).toBe('entryPoint');
     });
 
-    it('parses u://app/entry?a=b', () => {
+    it('parses sparkles://app/entry?a=b', () => {
         const url = 'sparkles://app/entry?a=b';
         const result = new UrlParser(url, 'sparkles://').parse();
         expect(result.params).toBeTruthy();
