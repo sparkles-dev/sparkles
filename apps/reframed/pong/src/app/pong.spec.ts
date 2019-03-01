@@ -1,3 +1,5 @@
 describe('pong', () => {
-  expect(true).toBeTruthy();
+  it(`should work`, () => {
+    expect(true).toBeTruthy();
+  });
 });
