@@ -27,6 +27,8 @@
     "dep-graph": "./node_modules/.bin/nx dep-graph",
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "help": "./node_modules/.bin/nx help",
+    "commit": "commit",
+    "commitlint": "commitlint",
     "postinstall": "yarn tools:builders:build",
     "tools:schema:generate": "ts-node tools/json-schema/generate.ts",
     "tools:builders:build": "ngc -p tools/builders/tsconfig.json",
@@ -64,6 +66,7 @@
     "@babel/register": "^7.0.0",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-angular": "^7.5.0",
+    "@commitlint/prompt-cli": "^7.5.0",
     "@ngrx/schematics": "7.3.0",
     "@ngrx/store-devtools": "7.3.0",
     "@nrwl/builders": "7.6.2",
@@ -102,6 +105,10 @@
     "tslib": "^1.9.3",
     "tslint": "~5.13.0",
     "typescript": "~3.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spektrakel-blog/sparkles.git"
   },
   "husky": {
     "hooks": {

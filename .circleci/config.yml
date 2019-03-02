@@ -67,9 +67,28 @@ jobs:
       - store_test_results:
           path: ~/workspace/coverage
 
+  # Project Linting
+  lint:
+    docker:
+    - image: angular/ngcontainer:latest
+    working_directory: ~/workspace
+    steps:
+      - checkout
+      - restore_cache:
+          key: sparkles-latest-{{ checksum "yarn.lock" }}
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: sparkles-latest-{{ checksum "yarn.lock" }}
+          paths:
+          - ~/workspace/node_modules
+      - run:
+          command: ./scripts/ci/commitlint.sh
+          name: Lint Commit Messages
+
 workflows:
   version: 2
   build:
     jobs:
     - build_backend
     - build_frontend
+    - lint
