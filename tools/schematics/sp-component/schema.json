@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "sp-component",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, skips formatting the generated files."
+    }
+  },
+  "required": ["name"]
+}
