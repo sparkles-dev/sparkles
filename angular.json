@@ -242,7 +242,7 @@
       "prefix": "sparkles",
       "architect": {
         "build": {
-          "builder": "@nrwl/builders:run-commands",
+          "builder": "./tools/builders:run-commands",
           "options": {
             "commands": [
               { "command": "gulp -f packages/styles/gulpfile.babel.js" }
