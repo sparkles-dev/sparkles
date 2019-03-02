@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { OverlayModule } from '@angular/cdk/overlay';
 import { ModalComponent } from './modal.component';
 
 describe('ModalComponent', () => {
@@ -8,6 +8,7 @@ describe('ModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [OverlayModule],
       declarations: [ModalComponent]
     }).compileComponents();
   }));
