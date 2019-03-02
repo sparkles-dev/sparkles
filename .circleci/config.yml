@@ -49,13 +49,20 @@ jobs:
           key: sparkles-{{ .Branch }}	-{{ checksum "yarn.lock" }}
           paths:
           - ~/app/node_modules
-      - run: ./scripts/ci.frontend.sh
+      - run:
+          command: ./scripts/ci/frontend.build.sh
+          name: Build
+      - run:
+          command: ./scripts/ci/frontend.test.sh
+          name: Test
       - store_artifacts:
           path: ~/app/dist
       - store_artifacts:
           path: ~/app/packages/components/dist
       - store_artifacts:
           path: ~/app/packages/styles/dist
+      - store_test_results:
+          path: ~/app/coverage
 
 workflows:
   version: 2
