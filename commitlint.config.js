@@ -15,7 +15,8 @@ module.exports = {
         'forms',
         'reframed',
         'shared',
-        'styles'
+        'styles',
+        'testing'
       ]
     ],
     'scope-empty': [

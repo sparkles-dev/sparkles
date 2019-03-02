@@ -16,7 +16,8 @@
       "@sparkles/shared": ["libs/shared/src/index.ts"],
       "@sparkles/components": ["packages/components/src/index.ts"],
       "@sparkles/components/*": ["packages/components/*/index.ts"],
-      "@sparkles/reframed": ["libs/reframed/src/index.ts"]
+      "@sparkles/reframed": ["libs/reframed/src/index.ts"],
+      "@sparkles/testing": ["libs/testing/src/index.ts"]
     },
     "module": "es2015"
   },

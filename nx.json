@@ -6,9 +6,7 @@
     },
     "sparkles": {
       "tags": [],
-      "implicitDependencies": [
-        "styles"
-      ]
+      "implicitDependencies": ["styles"]
     },
     "sparkles-e2e": {
       "tags": []
@@ -21,9 +19,7 @@
     },
     "components": {
       "tags": [],
-      "implicitDependencies": [
-        "styles"
-      ]
+      "implicitDependencies": ["styles"]
     },
     "styles": {
       "tags": []
@@ -41,6 +37,9 @@
       "tags": ["reframed"]
     },
     "reframed-pong-e2e": {
+      "tags": []
+    },
+    "testing": {
       "tags": []
     }
   },
