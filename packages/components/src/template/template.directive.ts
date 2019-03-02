@@ -98,12 +98,9 @@ import { Directive, Input, TemplateRef, QueryList } from '@angular/core';
   selector: '[spTemplate]'
 })
 export class TemplateDirective {
-
   @Input() spTemplate: string;
 
-  constructor(
-    public template: TemplateRef<any>
-  ) {}
+  constructor(public template: TemplateRef<any>) {}
 
   getType(): string {
     return this.spTemplate;
@@ -117,9 +114,13 @@ export class TemplateDirective {
  * @param type The type given to the `<ng-template spTemplate="type">` element.
  * @returns TemplateRef Template reference should be rendered with `<ng-container *ngTemplateOutlet>`
  */
-export function templateByType(queryList: QueryList<TemplateDirective>, type: string): TemplateRef<any> {
-  const spTemplate = queryList
-    .find(t => t !== undefined && type === t.getType())
+export function templateByType(
+  queryList: QueryList<TemplateDirective>,
+  type: string
+): TemplateRef<any> {
+  const spTemplate = queryList.find(
+    t => t !== undefined && type === t.getType()
+  );
 
   return spTemplate ? spTemplate.template : undefined;
 }

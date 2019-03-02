@@ -70,7 +70,9 @@ export class DomElementRef {
     if (result) {
       return new DomElementRef(new ElementRef(result));
     } else {
-      throw new Error(`DomElementRef: Selector ${selector} did not match any element`);
+      throw new Error(
+        `DomElementRef: Selector ${selector} did not match any element`
+      );
     }
   }
 
@@ -81,9 +83,13 @@ export class DomElementRef {
    * @return An array of `DomElementRef`
    */
   querySelectorAll(selector: string): DomElementRef[] {
-    const result: NodeList = this.elementRef.nativeElement.querySelectorAll(selector);
+    const result: NodeList = this.elementRef.nativeElement.querySelectorAll(
+      selector
+    );
 
-    return Array.from(result).map(node => new DomElementRef(new ElementRef(node)));
+    return Array.from(result).map(
+      node => new DomElementRef(new ElementRef(node))
+    );
   }
 
   /**
@@ -112,5 +118,4 @@ export class DomElementRef {
   hasClass(name: string): boolean {
     return this.elementRef.nativeElement.classList.contains(name);
   }
-
 }

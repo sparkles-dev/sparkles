@@ -30,16 +30,14 @@
  * @stable
  */
 export function Subscribed() {
-
-  return function (target, propertyKey) {
-
+  return function(target, propertyKey) {
     // Grab reference to toriginal `ngOnDestroy()` hook
     const original = target.constructor.prototype.ngOnDestroy;
 
-    target.constructor.prototype.ngOnDestroy = function () {
+    target.constructor.prototype.ngOnDestroy = function() {
       // Try to unsubscribe
       const prop = this[propertyKey];
-      if (prop && (typeof prop.unsubscribe === 'function')) {
+      if (prop && typeof prop.unsubscribe === 'function') {
         prop.unsubscribe();
       }
 
@@ -48,6 +46,5 @@ export function Subscribed() {
         original.apply(this, arguments);
       }
     };
-
   };
 }

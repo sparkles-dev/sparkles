@@ -3,9 +3,7 @@ import { Subscription, of } from 'rxjs';
 import { Subscribed } from './subscribed.decorator';
 
 describe(`@Subscribed()`, () => {
-
   class Foo {
-
     @Subscribed()
     public sub: Subscription = of('1234').subscribe();
   }
@@ -27,7 +25,6 @@ describe(`@Subscribed()`, () => {
   });
 
   class Bar extends Foo implements OnDestroy {
-
     ngOnDestroy() {}
   }
 

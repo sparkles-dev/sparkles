@@ -10,9 +10,14 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
  *
  * @stable
  */
-export function createTestComponent<T>(type: Type<T>, template?: string): ComponentFixture<T> {
+export function createTestComponent<T>(
+  type: Type<T>,
+  template?: string
+): ComponentFixture<T> {
   if (template) {
-    return TestBed.overrideComponent(type, { set: { template } }).createComponent(type);
+    return TestBed.overrideComponent(type, {
+      set: { template }
+    }).createComponent(type);
   } else {
     return TestBed.createComponent(type);
   }

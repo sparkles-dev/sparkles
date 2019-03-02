@@ -1,4 +1,16 @@
-import { Component, OnInit, OnChanges, OnDestroy, ChangeDetectionStrategy, ViewChild, ElementRef, ComponentFactoryResolver, ApplicationRef, Injector, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef,
+  ComponentFactoryResolver,
+  ApplicationRef,
+  Injector,
+  Input
+} from '@angular/core';
 import { CdkPortal, PortalOutlet, DomPortalOutlet } from '@angular/cdk/portal';
 import { Overlay } from '@angular/cdk/overlay';
 
@@ -10,7 +22,6 @@ import { Overlay } from '@angular/cdk/overlay';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModalComponent implements OnChanges, OnDestroy {
-
   @Input()
   public set spVisible(value: boolean) {
     this.isFullScreen = value;
@@ -62,13 +73,22 @@ export class ModalComponent implements OnChanges, OnDestroy {
       if (this.anchor === 'overlay') {
         this.outlet = this.overlay.create();
       } else {
-        this.outlet = new DomPortalOutlet(this.anchor.nativeElement, this.cfr, this.appRef, this.injector);
+        this.outlet = new DomPortalOutlet(
+          this.anchor.nativeElement,
+          this.cfr,
+          this.appRef,
+          this.injector
+        );
       }
     } else {
-      this.outlet = new DomPortalOutlet(this.element.nativeElement, this.cfr, this.appRef, this.injector);
+      this.outlet = new DomPortalOutlet(
+        this.element.nativeElement,
+        this.cfr,
+        this.appRef,
+        this.injector
+      );
     }
 
     this.outlet.attach(this.portal);
   }
-
 }
