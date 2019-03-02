@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 describe(`ButtonDirective`, () => {
 
   @Component({
-    template: `<button sparklesButton>foo</button>`
+    template: `<button spButton>foo</button>`
   })
   class TestComponent {}
 

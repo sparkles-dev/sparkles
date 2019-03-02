@@ -3,7 +3,7 @@ import { InjectionToken } from '@angular/core';
 export type ButtonVariant = 'blue' | 'grey';
 
 export interface ButtonOptions {
-  defaultVariant: ButtonVariant;
+  defaultVariant?: ButtonVariant;
   foo?: string;
 }
 
