@@ -35,10 +35,12 @@
     "apps:ping:serve": "ng serve reframed-ping",
     "apps:pong:serve": "ng serve reframed-pong --port 4440 --base-href pong --serve-path pong",
     "packages:components:build": "ng-packagr -p packages/components/package.json",
+    "packages:components:generate": "./node_modules/.bin/nx workspace-schematic sp-component",
     "packages:styles:build": "gulp -f packages/styles/gulpfile.babel.js"
   },
   "dependencies": {
     "@angular/animations": "7.2.7",
+    "@angular/cdk": "^7.3.3",
     "@angular/common": "7.2.7",
     "@angular/compiler": "7.2.7",
     "@angular/core": "7.2.7",

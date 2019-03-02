@@ -1,11 +1,7 @@
 module.exports = {
   extends: ['@commitlint/config-angular'],
   rules: {
-    'header-max-length': [
-      2,
-      'always',
-      120
-    ],
+    'header-max-length': [2, 'always', 120],
     'scope-enum': [
       2,
       'always',
@@ -15,13 +11,11 @@ module.exports = {
         'forms',
         'reframed',
         'shared',
-        'styles'
+        'styles',
+        'testing'
       ]
     ],
-    'scope-empty': [
-      1,
-      'never'
-    ],
+    'scope-empty': [1, 'never'],
     'type-enum': [
       2,
       'always',
