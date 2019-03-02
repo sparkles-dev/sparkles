@@ -3,52 +3,52 @@ jobs:
 
   # Backend (Java, Gradle)
   build_backend:
-    working_directory: ~/app
+    working_directory: ~/workspace
     docker:
       - image: gradle:4.10.3-jdk8
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-{{ .Branch }}	-{{ checksum "settings.gradle" }}
+          key: sparkles-{{ .Branch }}-{{ checksum "settings.gradle" }}
       - run: ./gradlew test || ./gradlew test --info --scan
       - save_cache:
-          key: sparkles-{{ .Branch }}	-{{ checksum "settings.gradle" }}
+          key: sparkles-{{ .Branch }}-{{ checksum "settings.gradle" }}
           paths:
-          - ~/app/.gradle
-          - ~/app/replication/build
-          - ~/app/stuff/build
-          - ~/app/support/common/build
-          - ~/app/support/flyway/build
-          - ~/app/support/javalin/common/build
-          - ~/app/support/javalin/flyway/build
-          - ~/app/support/javalin/jwt/build
-          - ~/app/support/javalin/keycloak-security/build
-          - ~/app/support/javalin/spring-data/build
-          - ~/app/support/javalin/testing/build
-          - ~/app/support/jpa/build
-          - ~/app/support/json/json-resources/build
-          - ~/app/support/json/schema/build
-          - ~/app/support/keycloak/build
-          - ~/app/support/ok/moshi/build
-          - ~/app/support/ok/okhttp/build
-          - ~/app/support/relation/build
-          - ~/app/support/replication/build
-          - ~/app/support/testing/build
+          - ~/workspace/.gradle
+          - ~/workspace/replication/build
+          - ~/workspace/stuff/build
+          - ~/workspace/support/common/build
+          - ~/workspace/support/flyway/build
+          - ~/workspace/support/javalin/common/build
+          - ~/workspace/support/javalin/flyway/build
+          - ~/workspace/support/javalin/jwt/build
+          - ~/workspace/support/javalin/keycloak-security/build
+          - ~/workspace/support/javalin/spring-data/build
+          - ~/workspace/support/javalin/testing/build
+          - ~/workspace/support/jpa/build
+          - ~/workspace/support/json/json-resources/build
+          - ~/workspace/support/json/schema/build
+          - ~/workspace/support/keycloak/build
+          - ~/workspace/support/ok/moshi/build
+          - ~/workspace/support/ok/okhttp/build
+          - ~/workspace/support/relation/build
+          - ~/workspace/support/replication/build
+          - ~/workspace/support/testing/build
 
   # Frontend (Angular)
   build_frontend:
     docker:
     - image: angular/ngcontainer:latest
-    working_directory: ~/app
+    working_directory: ~/workspace
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-{{ .Branch }}	-{{ checksum "yarn.lock" }}
+          key: sparkles-latest-{{ checksum "yarn.lock" }}
       - run: yarn install --frozen-lockfile
       - save_cache:
-          key: sparkles-{{ .Branch }}	-{{ checksum "yarn.lock" }}
+          key: sparkles-latest-{{ checksum "yarn.lock" }}
           paths:
-          - ~/app/node_modules
+          - ~/workspace/node_modules
       - run:
           command: ./scripts/ci/frontend.build.sh
           name: Build
@@ -59,13 +59,31 @@ jobs:
           command: ./scripts/ci/frontend.lint.sh
           name: Lint
       - store_artifacts:
-          path: ~/app/dist
+          path: ~/workspace/dist
       - store_artifacts:
-          path: ~/app/packages/components/dist
+          path: ~/workspace/packages/components/dist
       - store_artifacts:
-          path: ~/app/packages/styles/dist
+          path: ~/workspace/packages/styles/dist
       - store_test_results:
-          path: ~/app/coverage
+          path: ~/workspace/coverage
+
+  # Project Linting
+  lint:
+    docker:
+    - image: angular/ngcontainer:latest
+    working_directory: ~/workspace
+    steps:
+      - checkout
+      - restore_cache:
+          key: sparkles-latest-{{ checksum "yarn.lock" }}
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: sparkles-latest-{{ checksum "yarn.lock" }}
+          paths:
+          - ~/workspace/node_modules
+      - run:
+          command: ./scripts/ci/commitlint.sh
+          name: Lint Commit Messages
 
 workflows:
   version: 2
@@ -73,3 +91,4 @@ workflows:
     jobs:
     - build_backend
     - build_frontend
+    - lint
