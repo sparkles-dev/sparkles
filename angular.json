@@ -3,35 +3,6 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "domain": {
-      "root": "libs/domain",
-      "sourceRoot": "libs/domain/src",
-      "projectType": "library",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/domain/src/test.ts",
-            "karmaConfig": "libs/domain/karma.conf.js",
-            "scripts": [],
-            "styles": [],
-            "assets": [],
-            "tsConfig": "libs/domain/tsconfig.spec.json",
-            "watch": false
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/domain/tsconfig.lib.json",
-              "libs/domain/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
     "sparkles": {
       "root": "apps/sparkles/",
       "sourceRoot": "apps/sparkles/src",
@@ -150,6 +121,35 @@
         }
       }
     },
+    "domain": {
+      "root": "libs/domain",
+      "sourceRoot": "libs/domain/src",
+      "projectType": "library",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/domain/src/test.ts",
+            "karmaConfig": "libs/domain/karma.conf.js",
+            "scripts": [],
+            "styles": [],
+            "assets": [],
+            "tsConfig": "libs/domain/tsconfig.spec.json",
+            "watch": false
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/domain/tsconfig.lib.json",
+              "libs/domain/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
     "forms": {
       "root": "libs/forms",
       "sourceRoot": "libs/forms/src",
@@ -206,7 +206,7 @@
       "root": "packages/components",
       "sourceRoot": "packages/components/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -231,6 +231,22 @@
             "jestConfig": "packages/components/jest.config.js",
             "tsConfig": "packages/components/tsconfig.spec.json",
             "setupFile": "packages/components/test-setup.ts"
+          }
+        }
+      }
+    },
+    "styles": {
+      "root": "packages/styles",
+      "sourceRoot": "packages/styles/src",
+      "projectType": "library",
+      "prefix": "sparkles",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:run-commands",
+          "options": {
+            "commands": [
+              { "command": "gulp -f packages/styles/gulpfile.babel.js" }
+            ]
           }
         }
       }
@@ -511,11 +527,11 @@
   },
   "schematics": {
     "@nrwl/schematics:library": {
-      "unitTestRunner": "karma"
+      "unitTestRunner": "jest"
     },
     "@nrwl/schematics:application": {
-      "unitTestRunner": "karma",
-      "e2eTestRunner": "protractor"
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
     "@nrwl/schematics:node-application": {
       "framework": "express"
