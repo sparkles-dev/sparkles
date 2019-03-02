@@ -55,6 +55,9 @@ jobs:
       - run:
           command: ./scripts/ci/frontend.test.sh
           name: Test
+      - run:
+          command: ./scripts/ci/frontend.lint.sh
+          name: Lint
       - store_artifacts:
           path: ~/app/dist
       - store_artifacts:

@@ -20,6 +20,7 @@ export class ButtonModule {
     const value = Object.assign({}, opts, BUTTON_DEFAULTS);
 
     return {
+      // tslint:disable-next-line:no-use-before-declare
       ngModule: ButtonModuleWithOptions,
       providers: [
         {
