@@ -5,7 +5,10 @@
       "tags": []
     },
     "sparkles": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "sparkles-e2e": {
       "tags": []
@@ -17,7 +20,10 @@
       "tags": []
     },
     "components": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "styles": {
       "tags": []
