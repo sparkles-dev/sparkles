@@ -11,21 +11,22 @@ export default function(schema: Schema): Rule {
     }
 
     const componentName = schema.name;
+    const componentPath = `packages/components/${componentName}`;
     const templateSource = apply(url('./files'), [
       applyTemplates(schema),
-      move(`packages/components/${componentName}`)
+      move(componentPath)
     ]);
 
     return chain([
       externalSchematic('@schematics/angular', 'module', {
         project: 'components',
-        path: `packages/components/${componentName}/src`,
+        path: `${componentPath}/src`,
         flat: true,
         commonModule: true
       }),
       externalSchematic('@schematics/angular', 'component', {
         project: 'components',
-        path: `packages/components/${componentName}/src`,
+        path: `${componentPath}/src`,
         flat: true,
         changeDetection: 'OnPush',
         export: true,
@@ -35,7 +36,10 @@ export default function(schema: Schema): Rule {
       mergeWith(templateSource),
       formatFiles({
         skipFormat: schema.skipFormat
-      })
+      }),
+      () => {
+        context.logger.info(`Component sp-${componentName} is generated in folder ${componentPath}.`);
+      }
     ]);
   };
 }
