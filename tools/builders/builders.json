@@ -1,0 +1,10 @@
+{
+  "$schema": "@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "run-commands": {
+      "class": "./foo/run-commands.builder",
+      "schema": "./foo/schema.json",
+      "description": "Run commands"
+    }
+  }
+}
