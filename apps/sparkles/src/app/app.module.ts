@@ -2,13 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { provideDebug, Debug } from '@sparkles/shared';
+import { DemosAppModule } from '@sparkles/demos/app';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    NxModule.forRoot()
+    NxModule.forRoot(),
+    AppRoutingModule,
+    DemosAppModule
   ],
   providers: [
     provideDebug(environment)
