@@ -3,7 +3,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ControlsService } from './controls.service';
 
 @Directive({
-  selector: '[sparklesFormControl]',
+  selector: '[spFormControl]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -15,7 +15,7 @@ import { ControlsService } from './controls.service';
 export class FormControlDirective implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input()
-  sparklesFormControl: string;
+  spFormControl: string;
 
   private componentRef: ComponentRef<ControlValueAccessor>;
 
@@ -25,7 +25,7 @@ export class FormControlDirective implements OnInit, OnDestroy, ControlValueAcce
   ) {}
 
   ngOnInit() {
-    const factory = this.controls.resolve(this.sparklesFormControl);
+    const factory = this.controls.resolve(this.spFormControl);
     this.componentRef = this.viewContainer.createComponent(factory);
     this.componentRef.changeDetectorRef.markForCheck();
   }

@@ -16,15 +16,23 @@
       "@sparkles/shared": ["libs/shared/src/index.ts"],
       "@sparkles/components": ["packages/components/src/index.ts"],
       "@sparkles/components/button": ["packages/components/button/index.ts"],
-      "@sparkles/components/button-group": ["packages/components/button-group/index.ts"],
+      "@sparkles/components/button-group": [
+        "packages/components/button-group/index.ts"
+      ],
       "@sparkles/components/card": ["packages/components/card/index.ts"],
-      "@sparkles/components/list-view": ["packages/components/list-view/index.ts"],
+      "@sparkles/components/list-view": [
+        "packages/components/list-view/index.ts"
+      ],
       "@sparkles/components/modal": ["packages/components/modal/index.ts"],
       "@sparkles/components/radio": ["packages/components/radio/index.ts"],
       "@sparkles/components/table": ["packages/components/table/index.ts"],
       "@sparkles/components/tabs": ["packages/components/tabs/index.ts"],
       "@sparkles/reframed": ["libs/reframed/src/index.ts"],
-      "@sparkles/testing": ["libs/testing/src/index.ts"]
+      "@sparkles/testing": ["libs/testing/src/index.ts"],
+      "@sparkles/demos/component-demos": [
+        "libs/demos/component-demos/src/index.ts"
+      ],
+      "@sparkles/demos/app": ["libs/demos/app/src/index.ts"]
     },
     "module": "es2015"
   },

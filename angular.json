@@ -7,7 +7,7 @@
       "root": "apps/sparkles/",
       "sourceRoot": "apps/sparkles/src",
       "projectType": "application",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -154,7 +154,7 @@
       "root": "libs/forms",
       "sourceRoot": "libs/forms/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "test": {
           "builder": "@nrwl/builders:jest",
@@ -180,7 +180,7 @@
       "root": "libs/shared",
       "sourceRoot": "libs/shared/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -239,7 +239,7 @@
       "root": "packages/styles",
       "sourceRoot": "packages/styles/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "build": {
           "builder": "./tools/builders:run-commands",
@@ -257,7 +257,7 @@
       "root": "libs/reframed",
       "sourceRoot": "libs/reframed/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -288,7 +288,7 @@
       "root": "apps/reframed/ping/",
       "sourceRoot": "apps/reframed/ping/src",
       "projectType": "application",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "schematics": {
         "@nrwl/schematics:component": {
           "style": "scss"
@@ -405,7 +405,7 @@
       "root": "apps/reframed/pong/",
       "sourceRoot": "apps/reframed/pong/src",
       "projectType": "application",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "schematics": {
         "@nrwl/schematics:component": {
           "style": "scss"
@@ -522,7 +522,7 @@
       "root": "libs/testing",
       "sourceRoot": "libs/testing/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -540,6 +540,68 @@
             "jestConfig": "libs/testing/jest.config.js",
             "tsConfig": "libs/testing/tsconfig.spec.json",
             "setupFile": "libs/testing/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "demos-component-demos": {
+      "root": "libs/demos/component-demos",
+      "sourceRoot": "libs/demos/component-demos/src",
+      "projectType": "library",
+      "prefix": "sp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/demos/component-demos/tsconfig.lib.json",
+              "libs/demos/component-demos/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/demos/component-demos/jest.config.js",
+            "tsConfig": "libs/demos/component-demos/tsconfig.spec.json",
+            "setupFile": "libs/demos/component-demos/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "demos-app": {
+      "root": "libs/demos/app",
+      "sourceRoot": "libs/demos/app/src",
+      "projectType": "library",
+      "prefix": "sp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/demos/app/tsconfig.lib.json",
+              "libs/demos/app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/demos/app/jest.config.js",
+            "tsConfig": "libs/demos/app/tsconfig.spec.json",
+            "setupFile": "libs/demos/app/src/test-setup.ts"
           }
         }
       },

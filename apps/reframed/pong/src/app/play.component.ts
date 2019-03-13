@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AppLaunch } from '@sparkles/reframed';
 
 @Component({
-  selector: 'sparkles-play',
+  selector: 'sp-play',
   template: `<span [spAppLaunchFinish]="'fertig'">finish now</span>`
 })
 export class PlayComponent implements AppLaunch {

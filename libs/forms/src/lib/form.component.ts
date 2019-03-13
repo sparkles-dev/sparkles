@@ -3,12 +3,12 @@ import { FormGroup, FormControl } from  '@angular/forms';
 import { Form } from './form.interface';
 
 @Component({
-  selector: 'sparkles-form',
+  selector: 'sp-form',
   template: `
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <ng-container
         *ngFor="let control of formData.controls"
-        [sparklesFormControl]="control.selector"
+        [spFormControl]="control.selector"
         [formControlName]="control.name">
       </ng-container>
     </form>
