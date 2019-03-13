@@ -41,6 +41,9 @@
     },
     "testing": {
       "tags": []
+    },
+    "demos-component-demos": {
+      "tags": []
     }
   },
   "implicitDependencies": {
