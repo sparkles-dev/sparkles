@@ -34,9 +34,9 @@
     "tools:builders:build": "ngc -p tools/builders/tsconfig.json",
     "apps:ping:serve": "ng serve reframed-ping",
     "apps:pong:serve": "ng serve reframed-pong --port 4440 --base-href pong --serve-path pong",
-    "packages:components:build": "ng-packagr -p packages/components/package.json",
+    "packages:components:build": "ng build components",
     "packages:components:generate": "./node_modules/.bin/nx workspace-schematic sp-component",
-    "packages:styles:build": "gulp -f packages/styles/gulpfile.babel.js"
+    "packages:styles:build": "ng build styles"
   },
   "dependencies": {
     "@angular/animations": "7.2.9",
