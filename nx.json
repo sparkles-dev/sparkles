@@ -44,6 +44,9 @@
     },
     "demos-component-demos": {
       "tags": []
+    },
+    "demos-app": {
+      "tags": []
     }
   },
   "implicitDependencies": {
