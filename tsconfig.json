@@ -17,7 +17,11 @@
       "@sparkles/components": ["packages/components/src/index.ts"],
       "@sparkles/components/*": ["packages/components/*/index.ts"],
       "@sparkles/reframed": ["libs/reframed/src/index.ts"],
-      "@sparkles/testing": ["libs/testing/src/index.ts"]
+      "@sparkles/testing": ["libs/testing/src/index.ts"],
+      "@sparkles/package-demos/component-demos": [
+        "libs/package-demos/component-demos/src/index.ts"
+      ],
+      "@sparkles/package-demos/app": ["libs/package-demos/app/src/index.ts"]
     },
     "module": "es2015"
   },

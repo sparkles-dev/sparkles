@@ -41,6 +41,12 @@
     },
     "testing": {
       "tags": []
+    },
+    "package-demos-component-demos": {
+      "tags": []
+    },
+    "package-demos-app": {
+      "tags": []
     }
   },
   "implicitDependencies": {
