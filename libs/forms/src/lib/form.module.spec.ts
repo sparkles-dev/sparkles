@@ -7,7 +7,7 @@ import { FormModule } from './form.module';
 import { Form } from './form.interface';
 
 @Component({
-  selector: 'sparkles-controls-foo',
+  selector: 'sp-controls-foo',
   template: `{{ value | json }}`,
   providers: [
     {
@@ -36,7 +36,7 @@ export class FooControlComponent implements ControlValueAccessor {
 }
 
 @Component({
-  selector: 'sparkles-controls-bar',
+  selector: 'sp-controls-bar',
   template: `<input type="text"
     [(ngModel)]="value"
     (ngModelChange)="onChange($event)"
@@ -101,9 +101,9 @@ export class BarControlComponent implements ControlValueAccessor {
 export class MyControlsModule {}
 
 @Component({
-  selector: 'sparkles-my-form',
+  selector: 'sp-my-form',
   template: `
-    <sparkles-form [form]="foo" (submit)="onSubmit($event)"></sparkles-form>
+    <sp-form [form]="foo" (submit)="onSubmit($event)"></sp-form>
     <pre *ngIf="submitData">{{ submitData | json }}</pre>
   `
 })
@@ -113,12 +113,12 @@ export class FormComponent {
     controls: [
       {
         name: 'age',
-        selector: 'sparkles-controls-foo',
+        selector: 'sp-controls-foo',
         value: 12
       },
       {
         name: 'name',
-        selector: 'sparkles-controls-bar',
+        selector: 'sp-controls-bar',
         value: 'whoknows'
       }
     ]

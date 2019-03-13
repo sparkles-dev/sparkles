@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sparkles-root',
+  selector: 'sp-root',
   template: `
     <sp-demos-app></sp-demos-app>
   `

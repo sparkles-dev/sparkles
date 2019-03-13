@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sparkles-root',
+  selector: 'sp-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
