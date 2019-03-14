@@ -37,14 +37,14 @@ describe(`[spButton] ButtonDirective`, () => {
   describe(`spButton`, () => {
 
     it(`should render .btn-blue`, () => {
-      const fixture = createTestComponent(TestComponent, `<button spButton="'blue'">foo</button>`);
+      const fixture = createTestComponent(TestComponent, `<button spButton="blue">foo</button>`);
       fixture.detectChanges();
 
       expect(DomElementRef.create(fixture.elementRef).querySelector('.btn.btn-blue')).toBeTruthy();
     });
 
     it(`should render .btn-grey`, () => {
-      const fixture = createTestComponent(TestComponent, `<button spButton="'grey'">foo</button>`);
+      const fixture = createTestComponent(TestComponent, `<button spButton="grey">foo</button>`);
       fixture.detectChanges();
 
       expect(DomElementRef.create(fixture.elementRef).querySelector('.btn.btn-grey')).toBeTruthy();
