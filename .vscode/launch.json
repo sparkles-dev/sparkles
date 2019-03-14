@@ -10,6 +10,17 @@
       "request": "attach",
       "hostName": "localhost",
       "port": 5005
+    },
+    {
+      "name": "Jest: Components",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
+      "args": ["test", "components", "--runInBand=true", "--codeCoverage=false"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "trace": "all"
     }
   ]
 }

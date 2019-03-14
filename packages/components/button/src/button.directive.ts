@@ -6,14 +6,14 @@ import { BUTTON_OPTIONS, ButtonOptions, ButtonVariant } from './button.options';
   // tslint:disable-next-line:use-host-property-decorator
   host: {
     class: 'btn',
-    '[class.btn-blue]': `sparklesVariant === 'blue'`,
-    '[class.btn-grey]': `sparklesVariant === 'grey'`
+    '[class.btn-blue]': `spButton === 'blue'`,
+    '[class.btn-grey]': `spButton === 'grey'`
   }
 })
 export class ButtonDirective {
 
   @Input()
-  public sparklesButton: ButtonVariant = this.opts.defaultVariant;
+  public spButton: ButtonVariant = this.opts.defaultVariant;
 
   constructor(
     @Inject(BUTTON_OPTIONS) private opts: ButtonOptions

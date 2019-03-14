@@ -1,19 +1,25 @@
 import { TestBed, async } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { DomElementRef, createTestComponent } from '@sparkles/testing';
 import { ButtonModule } from './button.module';
-import { Component } from '@angular/core';
+import { ButtonDirective } from './button.directive';
 
-describe(`ButtonDirective`, () => {
+describe(`[spButton] ButtonDirective`, () => {
 
   @Component({
     template: `<button spButton>foo</button>`
   })
-  class TestComponent {}
+  class TestComponent {
+
+    @ViewChild(ButtonDirective)
+    public button: ButtonDirective;
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ ButtonModule ],
       declarations: [ TestComponent ]
-    }).compileComponents();
+    });
   }));
 
   it('should create', () => {
@@ -31,6 +37,25 @@ describe(`ButtonDirective`, () => {
     expect(testComponent.elementRef.nativeElement.querySelector('.btn')).toBeTruthy();
 
     testComponent.destroy();
+  });
+
+  describe(`spButton`, () => {
+
+    it(`should render .btn-blue`, () => {
+      const fixture = createTestComponent(TestComponent, `<button [spButton]="'blue'">foobar</button>`);
+      fixture.detectChanges();
+
+      expect(DomElementRef.create(fixture.elementRef).querySelector('.btn.btn-blue')).toBeTruthy();
+      fixture.destroy();
+    });
+
+    it(`should render .btn-grey`, () => {
+      const fixture = createTestComponent(TestComponent, `<button spButton="grey">foo</button>`);
+      fixture.detectChanges();
+
+      expect(DomElementRef.create(fixture.elementRef).querySelector('.btn.btn-grey')).toBeTruthy();
+      fixture.destroy();
+    });
   });
 
 });
