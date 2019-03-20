@@ -9,31 +9,13 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-{{ .Branch }}-{{ checksum "settings.gradle" }}
+          key: sparkles-gradle-cache
       - run: ./gradlew test || ./gradlew test --info --scan
       - save_cache:
-          key: sparkles-{{ .Branch }}-{{ checksum "settings.gradle" }}
+          key: sparkles-gradle-cache
           paths:
           - ~/workspace/.gradle
-          - ~/workspace/replication/build
-          - ~/workspace/stuff/build
-          - ~/workspace/support/common/build
-          - ~/workspace/support/flyway/build
-          - ~/workspace/support/javalin/common/build
-          - ~/workspace/support/javalin/flyway/build
-          - ~/workspace/support/javalin/jwt/build
-          - ~/workspace/support/javalin/keycloak-security/build
-          - ~/workspace/support/javalin/spring-data/build
-          - ~/workspace/support/javalin/testing/build
-          - ~/workspace/support/jpa/build
-          - ~/workspace/support/json/json-resources/build
-          - ~/workspace/support/json/schema/build
-          - ~/workspace/support/keycloak/build
-          - ~/workspace/support/ok/moshi/build
-          - ~/workspace/support/ok/okhttp/build
-          - ~/workspace/support/relation/build
-          - ~/workspace/support/replication/build
-          - ~/workspace/support/testing/build
+
 
   # Frontend (Angular)
   build_frontend:
