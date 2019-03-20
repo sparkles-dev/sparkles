@@ -12,4 +12,6 @@ public class JavalinApp extends Javalin {
     return new JavalinApp();
   }
 
+  public static void foo() {}
+
 }
