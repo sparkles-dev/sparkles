@@ -14,4 +14,5 @@ public class JavalinApp extends Javalin {
 
   public static void foo() {}
 
+  public static void bar() {}
 }
