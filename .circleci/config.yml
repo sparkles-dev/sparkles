@@ -9,12 +9,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-gradle-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
+          key: sparkles-gradle-001-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
       - run:
          command: ./gradlew dependencies
          name: Pull Dependencies for Build Caching
       - save_cache:
-          key: sparkles-gradle-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
+          key: sparkles-gradle-001-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
           paths:
           - ~/.gradle/caches
           - ~/workspace/.gradle
@@ -32,10 +32,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-latest-{{ checksum "yarn.lock" }}
+          key: sparkles-node-001-{{ checksum "yarn.lock" }}
       - run: yarn install --frozen-lockfile
       - save_cache:
-          key: sparkles-latest-{{ checksum "yarn.lock" }}
+          key: sparkles-node-001-{{ checksum "yarn.lock" }}
           paths:
           - ~/workspace/node_modules
       - run:
