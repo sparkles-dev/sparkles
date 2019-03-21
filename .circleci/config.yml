@@ -14,15 +14,21 @@ jobs:
          command: ./gradlew dependencies
          name: Pull Dependencies for Build Caching
       - run:
-          # command: ./gradlew test || ./gradlew test --info --scan
-          command: ./gradlew test --build-cache -Dorg.gradle.caching.debug=true --scan
+          command: ./gradlew test || ./gradlew test --info --scan
           name: Tests
       - save_cache:
           key: sparkles-gradle-002-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
           paths:
           - ~/.gradle/caches
           - ~/workspace/.gradle
-
+      - run:
+          name: Collect Test Results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/test-results
 
   # Frontend (Angular)
   build_frontend:
