@@ -76,7 +76,7 @@
     "@nrwl/schematics": "7.7.2",
     "@types/jasmine": "~3.3.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/jest": "24.0.9",
+    "@types/jest": "24.0.11",
     "@types/jquery": "3.3.29",
     "@types/node": "~8.10.0",
     "codelyzer": "~4.5.0",
