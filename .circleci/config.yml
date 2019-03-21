@@ -18,7 +18,8 @@ jobs:
           paths:
           - ~/workspace/.gradle
       - run:
-          command: ./gradlew test || ./gradlew test --info --scan
+          # command: ./gradlew test || ./gradlew test --info --scan
+          command: ./gradlew test --build-cache -Dorg.gradle.caching.debug=true
           name: Tests
 
 
