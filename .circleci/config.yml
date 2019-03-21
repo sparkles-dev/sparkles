@@ -19,7 +19,7 @@ jobs:
           - ~/workspace/.gradle
       - run:
           # command: ./gradlew test || ./gradlew test --info --scan
-          command: ./gradlew test --build-cache -Dorg.gradle.caching.debug=true
+          command: ./gradlew test --build-cache -Dorg.gradle.caching.debug=true --scan
           name: Tests
 
 
