@@ -9,19 +9,19 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: sparkles-gradle-001-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
+          key: sparkles-gradle-002-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
       - run:
          command: ./gradlew dependencies
          name: Pull Dependencies for Build Caching
-      - save_cache:
-          key: sparkles-gradle-001-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
-          paths:
-          - ~/.gradle/caches
-          - ~/workspace/.gradle
       - run:
           # command: ./gradlew test || ./gradlew test --info --scan
           command: ./gradlew test --build-cache -Dorg.gradle.caching.debug=true --scan
           name: Tests
+      - save_cache:
+          key: sparkles-gradle-002-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
+          paths:
+          - ~/.gradle/caches
+          - ~/workspace/.gradle
 
 
   # Frontend (Angular)
