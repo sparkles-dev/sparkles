@@ -622,7 +622,8 @@
   },
   "schematics": {
     "@nrwl/schematics:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "framework": "angular"
     },
     "@nrwl/schematics:application": {
       "unitTestRunner": "jest",
