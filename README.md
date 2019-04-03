@@ -1,6 +1,6 @@
 # Sparkles
 
-> A web tech stack built entirely on open source.
+> A web tech stack built on open source.
 
 ## Slices in the mix
 
