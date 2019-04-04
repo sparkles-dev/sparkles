@@ -1,0 +1,16 @@
+storage: ./storage
+auth:
+  htpasswd:
+    file: ./htpasswd
+    max_users: 1
+uplinks:
+  yarn:
+    url: https://registry.yarnpkg.com/
+packages:
+  '@sparkles/*':
+    access: $all
+    publish: $authenticated
+  '**':
+    proxy: yarn
+logs:
+  - {type: stdout, format: pretty, level: http}
