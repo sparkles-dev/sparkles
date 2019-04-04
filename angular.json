@@ -575,6 +575,29 @@
           }
         }
       }
+    },
+    "packages-schematics": {
+      "root": "packages/schematics",
+      "sourceRoot": "packages/schematics/src",
+      "projectType": "library",
+      "prefix": "sp",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:run-commands",
+          "options": {
+            "commands": [
+              { "command": "node_modules/.bin/tsc -p packages/schematics/tsconfig.lib.json" }
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "packages/schematics/jest.config.js",
+            "tsConfig": "packages/schematics/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "defaultProject": "sparkles",
@@ -593,6 +616,9 @@
     "@nrwl/schematics:application": {
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
+    },
+    "@nrwl/schematics:component": {
+      "styleext": "scss"
     },
     "@nrwl/schematics:node-application": {
       "framework": "express"

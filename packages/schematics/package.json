@@ -1,0 +1,27 @@
+{
+  "name": "schematics",
+  "version": "0.0.0",
+  "description": "Sample schematics",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.lib.json",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "preinstall": "echo 'Run yarn install on project root only' && exit 1"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "ng-update": {
+    "migrations": "./src/migration.json"
+  },
+  "dependencies": {
+    "@angular-devkit/core": "^7.3.8",
+    "@angular-devkit/schematics": "^7.3.8",
+    "@types/jasmine": "^3.0.0",
+    "@types/node": "^8.0.31",
+    "jasmine": "^3.0.0",
+    "typescript": "~3.2.2"
+  }
+}

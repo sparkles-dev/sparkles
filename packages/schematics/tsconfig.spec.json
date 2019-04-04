@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc/packages/schematis",
+    "module": "commonjs",
+    "types": ["jest", "node"]
+  },
+  // "files": ["test-setup.ts"],
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
+}

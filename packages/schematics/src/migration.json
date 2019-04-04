@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "migration-v1": {
+      "version": "1",
+      "description": "Updates Sparkles to v1",
+      "factory": "./ng-update/index#updateToV1"
+    }
+  }
+}

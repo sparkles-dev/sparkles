@@ -12,7 +12,8 @@ module.exports = {
         'reframed',
         'shared',
         'styles',
-        'testing'
+        'testing',
+        'schematics'
       ]
     ],
     'scope-empty': [1, 'never'],
