@@ -26,3 +26,9 @@ npm publish
 
 That's it!
  
+
+#### Futher Reading
+
+- https://brianflove.com/2018/12/11/angular-schematics-tutorial/
+- `ng update --registry http://myregistry.org`: https://github.com/angular/angular-cli/issues/10624
+- ng update command: https://github.com/angular/angular-cli/blob/master/docs/specifications/update.md#library-developers

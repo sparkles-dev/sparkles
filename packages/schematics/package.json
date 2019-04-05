@@ -1,7 +1,8 @@
 {
-  "name": "schematics",
+  "name": "@sparkles/schematics",
   "version": "0.0.0",
   "description": "Sample schematics",
+  "license": "MIT",
   "scripts": {
     "build": "../../node_modules/.bin/tsc -p tsconfig.lib.json",
     "test": "npm run build && jasmine src/**/*_spec.js",
@@ -10,11 +11,17 @@
   "keywords": [
     "schematics"
   ],
-  "author": "",
-  "license": "MIT",
   "schematics": "./src/collection.json",
   "ng-update": {
-    "migrations": "./src/migration.json"
+    "migrations": "./src/migration.json",
+    "packageGroup": [
+      "@sparkles/components",
+      "@sparkles/styles",
+      "@sparkles/schematics"
+    ],
+    "requirements": {
+      "@sparkles/schematics": ">= 1"
+    }
   },
   "dependencies": {
     "@angular-devkit/core": "^7.3.8",
