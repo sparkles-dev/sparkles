@@ -1,5 +1,6 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "extends": "@nrwl/schematics",
   "schematics": {
     "ng-add": {
       "description": "Adds Sparkles to the application",
