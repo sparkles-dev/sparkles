@@ -1269,10 +1269,10 @@
     tree-kill "1.2.1"
     webpack-sources "1.3.0"
 
-"@nrwl/builders@7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.7.2.tgz#c38ba163414786356830d4725a9512758dfb2a65"
-  integrity sha512-t8M3+gU39XnlLkjqqbMVfSBI5ASOZjB9hU7LxqcJl1osqYg8rdeOTYnhv6lYT1EeRHcWGuwETXdxz+A6VQurQw==
+"@nrwl/builders@7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.8.0.tgz#074ff27d4a018509b3ac23049886c08b925c3d9f"
+  integrity sha512-89FNLySN+TjRa4I8L87sITUAMC1OoDz1IBM9Ir2to+Zc7wo3f7O6XQnhsQqXyN3rZUaChixLXpkAgs32cCzQoQ==
   dependencies:
     "@angular-devkit/architect" "~0.13.1"
     "@angular-devkit/build-angular" "~0.13.1"
@@ -1292,17 +1292,16 @@
     webpack-node-externals "1.7.2"
     zone.js "0.8.29"
 
-"@nrwl/nx@7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.7.2.tgz#5f35948c544b39000005ebeb1604ecfb6c641883"
-  integrity sha512-UOBHQi/Bj1lt9IHEewiu8h0i62YqXZrzv+oFzyUxHfdm/Sq5XOI0v51i3KlSFrWGUVF5HBpzElfjck6006qRtQ==
+"@nrwl/nx@7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.8.0.tgz#a73177f425cb19c20ad909ad462e189342666ea3"
+  integrity sha512-jWZSd4eKapfeUrC7UBBjV0LM2QtZWkRFWBD+sPYNnp8yyINxdoqxah5bLsD3yUpHt6ycCqo1H1B/wAx7hMvvxA==
 
-"@nrwl/schematics@7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.7.2.tgz#0c621ddca5eb15dd3339b9d9a4585c8d3ab55d61"
-  integrity sha512-xYXmTi92hlt7T3qijML7Q0ctMH/tcK7YcN3oPf963BpuPCo1CVIXP7bQS+iVBhqOIhvlFr/7iDbj4oBXdn6BUQ==
+"@nrwl/schematics@7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.8.0.tgz#74ed1e697a8ef8e79ae963a5a8220d03d7b72bcb"
+  integrity sha512-0mG0BBvGElhoS5x623OsBqcdWFgvkPYtVVbfN2duNJL77wfFj2HidEGxAyo/RdCu7JdgvIIu0gQW0woDHIJfXw==
   dependencies:
-    "@types/yargs" "^11.0.0"
     app-root-path "^2.0.1"
     cosmiconfig "4.0.0"
     fs-extra "6.0.0"
@@ -1511,11 +1510,6 @@
     "@types/node" "*"
     "@types/source-list-map" "*"
     source-map "^0.6.1"
-
-"@types/yargs@^11.0.0":
-  version "11.1.2"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-11.1.2.tgz#fd4b676846fe731a5de5c6d2e5ef6a377262fc30"
-  integrity sha512-zG61PAp2OcoIBjRV44wftJj6AJgzJrOc32LCYOBqk9bdgcdzK5DCJHV9QZJ60+Fu+fOn79g8Ks3Gixm4CfkZ+w==
 
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.11"
