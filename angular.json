@@ -8,11 +8,6 @@
       "sourceRoot": "apps/sparkles/src",
       "projectType": "application",
       "prefix": "sp",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -277,11 +272,6 @@
             "setupFile": "libs/reframed/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "styleext": "scss"
-        }
       }
     },
     "reframed-ping": {
@@ -289,11 +279,6 @@
       "sourceRoot": "apps/reframed/ping/src",
       "projectType": "application",
       "prefix": "sp",
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "style": "scss"
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -406,11 +391,6 @@
       "sourceRoot": "apps/reframed/pong/src",
       "projectType": "application",
       "prefix": "sp",
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "style": "scss"
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -542,11 +522,6 @@
             "setupFile": "libs/testing/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "styleext": "scss"
-        }
       }
     },
     "demos-component-demos": {
@@ -572,11 +547,6 @@
             "tsConfig": "libs/demos/component-demos/tsconfig.spec.json",
             "setupFile": "libs/demos/component-demos/src/test-setup.ts"
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "styleext": "scss"
         }
       }
     },
@@ -604,15 +574,10 @@
             "setupFile": "libs/demos/app/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "styleext": "scss"
-        }
       }
     }
   },
-  "defaultProject": "domain",
+  "defaultProject": "sparkles",
   "cli": {
     "warnings": {
       "typescriptMismatch": false
