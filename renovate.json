@@ -21,5 +21,6 @@
       "semanticCommitType": "fix"
     }
   ],
+  "semanticCommitType": "build",
   "pinVersions": false
 }
