@@ -12,5 +12,6 @@ packages:
     publish: $authenticated
   '**':
     proxy: yarn
+    access: $all
 logs:
   - {type: stdout, format: pretty, level: http}
