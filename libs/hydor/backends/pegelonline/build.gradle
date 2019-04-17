@@ -1,0 +1,25 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
+}
+
+dependencies {
+	processor 'org.projectlombok:lombok:1.16.20'
+  compile 'com.google.guava:guava:27.0.1-jre'
+
+  compile project(':support:ok:moshi')
+  compile project(':support:ok:okhttp')
+  compile 'com.squareup.retrofit2:retrofit:2.4.0'
+  compile 'com.squareup.retrofit2:converter-jackson:2.4.0'
+  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'org.slf4j:slf4j-simple:1.7.25'
+
+  testCompile project(':support:testing')
+  testCompile 'io.fabric8:mockwebserver:0.1.0'
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}
