@@ -1,0 +1,4 @@
+hydōr
+=====
+
+Griechisch: Wasser
