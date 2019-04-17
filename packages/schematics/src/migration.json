@@ -4,7 +4,7 @@
     "migration-v1": {
       "version": "1",
       "description": "Updates Sparkles to v1",
-      "factory": "./ng-update/index#migrateToV1"
+      "factory": "./migration/index#migrateToV1"
     }
   }
 }

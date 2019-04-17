@@ -1,12 +1,11 @@
 {
   "name": "@sparkles/schematics",
-  "version": "0.0.0",
+  "version": "1.0.0-1",
   "description": "Sample schematics",
   "license": "MIT",
   "scripts": {
     "build": "../../node_modules/.bin/tsc -p tsconfig.lib.json",
-    "test": "npm run build && jasmine src/**/*_spec.js",
-    "preinstall": "echo 'Run yarn install on project root only' && exit 1"
+    "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
     "schematics"

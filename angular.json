@@ -586,7 +586,9 @@
           "builder": "@nrwl/builders:run-commands",
           "options": {
             "commands": [
-              { "command": "node_modules/.bin/tsc -p packages/schematics/tsconfig.lib.json" }
+              { "command": "node_modules/.bin/tsc -p packages/schematics/tsconfig.lib.json" },
+              { "command": "cp packages/schematics/.npmignore packages/schematics/README.md packages/schematics/package.json packages/schematics/dist" },
+              { "command": "cp packages/schematics/src/collection.json packages/schematics/src/migration.json packages/schematics/dist/src" }
             ]
           }
         },
