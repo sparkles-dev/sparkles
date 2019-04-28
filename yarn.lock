@@ -1300,10 +1300,10 @@
     tree-kill "1.2.1"
     webpack-sources "1.3.0"
 
-"@nrwl/builders@7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.7.2.tgz#c38ba163414786356830d4725a9512758dfb2a65"
-  integrity sha512-t8M3+gU39XnlLkjqqbMVfSBI5ASOZjB9hU7LxqcJl1osqYg8rdeOTYnhv6lYT1EeRHcWGuwETXdxz+A6VQurQw==
+"@nrwl/builders@7.8.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.8.3.tgz#c562db80964c012ee824e5fcd780cbf23c0fe967"
+  integrity sha512-MxpfsRAO9Bp/px9f4hBcKhN/oWndBMyltV4zrB8jeU8B/hHfS3eO1l/k+/Jg/JqhgC/k2xNHLqWMg7yeanbFTg==
   dependencies:
     "@angular-devkit/architect" "~0.13.1"
     "@angular-devkit/build-angular" "~0.13.1"
@@ -1317,23 +1317,23 @@
     identity-obj-proxy "3.0.0"
     license-webpack-plugin "^1.4.0"
     rxjs "6.3.3"
+    source-map-support "0.5.11"
     ts-loader "5.3.1"
     webpack "4.29.0"
     webpack-dev-server "3.1.14"
     webpack-node-externals "1.7.2"
     zone.js "0.8.29"
 
-"@nrwl/nx@7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.7.2.tgz#5f35948c544b39000005ebeb1604ecfb6c641883"
-  integrity sha512-UOBHQi/Bj1lt9IHEewiu8h0i62YqXZrzv+oFzyUxHfdm/Sq5XOI0v51i3KlSFrWGUVF5HBpzElfjck6006qRtQ==
+"@nrwl/nx@7.8.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.8.3.tgz#864377553b4b328830d75509dd808cc517403fdd"
+  integrity sha512-3YyCWDQTtNoJyT1sUc25ck384dK+Z8To8hGUR7cABGN6I/wmqaUtWcUp4ULtHCaU7uI9MXIRI551omB+NxJDwQ==
 
-"@nrwl/schematics@7.7.2":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.7.2.tgz#0c621ddca5eb15dd3339b9d9a4585c8d3ab55d61"
-  integrity sha512-xYXmTi92hlt7T3qijML7Q0ctMH/tcK7YcN3oPf963BpuPCo1CVIXP7bQS+iVBhqOIhvlFr/7iDbj4oBXdn6BUQ==
+"@nrwl/schematics@7.8.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.8.3.tgz#9f763b1b28bcf46182b5470f30b11922471982e4"
+  integrity sha512-F+HEwKl9HQ2dgNuf0+pGrnpUF+zZW9Ra8VDThUyGMBzTXWPVPEAiRanIWqESX13yerSowKC5wbTIjtEg4lDg4Q==
   dependencies:
-    "@types/yargs" "^11.0.0"
     app-root-path "^2.0.1"
     cosmiconfig "4.0.0"
     fs-extra "6.0.0"
@@ -1341,7 +1341,7 @@
     ignore "5.0.4"
     npm-run-all "4.1.5"
     opn "^5.3.0"
-    prettier "1.15.3"
+    prettier "1.16.4"
     rxjs "6.3.3"
     semver "5.4.1"
     strip-json-comments "2.0.1"
@@ -1562,11 +1562,6 @@
     "@types/node" "*"
     "@types/source-list-map" "*"
     source-map "^0.6.1"
-
-"@types/yargs@^11.0.0":
-  version "11.1.2"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-11.1.2.tgz#fd4b676846fe731a5de5c6d2e5ef6a377262fc30"
-  integrity sha512-zG61PAp2OcoIBjRV44wftJj6AJgzJrOc32LCYOBqk9bdgcdzK5DCJHV9QZJ60+Fu+fOn79g8Ks3Gixm4CfkZ+w==
 
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.12"
@@ -9642,10 +9637,10 @@ prepend-http@^1.0.1:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
 
-prettier@1.15.3:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
-  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
+prettier@1.16.4:
+  version "1.16.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
+  integrity sha512-ZzWuos7TI5CKUeQAtFd6Zhm2s6EpAD/ZLApIhsF9pRvRtM1RFo61dM/4MSRUA0SuLugA/zgrZD8m0BaY46Og7g==
 
 prettier@1.17.0, prettier@^1.16.4:
   version "1.17.0"
@@ -11322,6 +11317,14 @@ source-map-support@0.5.10:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.10.tgz#2214080bc9d51832511ee2bab96e3c2f9353120c"
   integrity sha512-YfQ3tQFTK/yzlGJuX8pTwa4tifQj4QS2Mj7UegOu8jAz59MqIiMGPXxQhVQiIMNzayuUSF/jEuVnfFF5JqybmQ==
+  dependencies:
+    buffer-from "^1.0.0"
+    source-map "^0.6.0"
+
+source-map-support@0.5.11:
+  version "0.5.11"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.11.tgz#efac2ce0800355d026326a0ca23e162aeac9a4e2"
+  integrity sha512-//sajEx/fGL3iw6fltKMdPvy8kL3kJ2O3iuYlRoT3k9Kb4BjOoZ+BZzaNHeuaruSt+Kf3Zk9tnfAQg9/AJqUVQ==
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
