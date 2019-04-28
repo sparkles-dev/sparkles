@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "extends": "@nrwl/schematics",
+  "schematics": {
+    "ng-add": {
+      "description": "Adds the sparkles workspace to the application",
+      "factory": "./collection/ng-add/index",
+      "aliases": ["install"],
+      "hidden": true
+    },
+    "init-workspace": {
+      "description": "Initializes a workspace",
+      "factory": "./collection/init/index",
+      "aliases": ["init"],
+      "hidden": true
+    }
+  }
+}

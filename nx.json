@@ -47,6 +47,9 @@
     },
     "demos-app": {
       "tags": []
+    },
+    "packages-schematics": {
+      "tags": []
     }
   },
   "implicitDependencies": {

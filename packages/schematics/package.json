@@ -1,0 +1,27 @@
+{
+  "name": "@sparkles/schematics",
+  "version": "1.0.0-1",
+  "description": "Sample schematics",
+  "license": "MIT",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.lib.json",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "schematics": "./src/collection.json",
+  "ng-update": {
+    "migrations": "./src/migration.json",
+    "packageGroup": [
+      "@sparkles/components",
+      "@sparkles/styles",
+      "@sparkles/schematics"
+    ],
+    "requirements": {
+      "@sparkles/schematics": ">= 1"
+    }
+  },
+  "dependencies": {
+  }
+}
