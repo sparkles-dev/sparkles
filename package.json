@@ -1,9 +1,13 @@
 {
   "name": "sparkles",
-  "description": "A web tech stark build entirely on open source.",
+  "description": "A web tech stark build on open source.",
   "private": true,
   "version": "0.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparkles-dev/sparkles.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -58,7 +62,6 @@
     "ngrx-store-freeze": "^0.2.1",
     "rxjs": "6.3.3",
     "rxjs-compat": "6.4.0",
-    "verdaccio": "^4.0.0-alpha.6",
     "zone.js": "^0.9.0"
   },
   "devDependencies": {
@@ -109,11 +112,8 @@
     "tsickle": "^0.35.0",
     "tslib": "^1.9.3",
     "tslint": "~5.16.0",
-    "typescript": "~3.2.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/spektrakel-blog/sparkles.git"
+    "typescript": "~3.2.2",
+    "verdaccio": "^4.0.0-alpha.6"
   },
   "husky": {
     "hooks": {

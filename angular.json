@@ -21,7 +21,7 @@
               "apps/sparkles/src/favicon.ico",
               "apps/sparkles/src/assets"
             ],
-            "styles": ["apps/sparkles/src/styles.scss"],
+            "styles": ["apps/sparkles/src/styles.main.scss"],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["packages/styles/dist"]
