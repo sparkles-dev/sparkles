@@ -37,9 +37,6 @@ jobs:
     working_directory: ~/workspace
     steps:
       - checkout
-      - run:
-          command: ./scripts/ci/version-info.sh
-          name: Print Version Info
       - restore_cache:
           key: sparkles-node-001-{{ checksum "yarn.lock" }}
       - run: yarn install --frozen-lockfile
@@ -47,6 +44,9 @@ jobs:
           key: sparkles-node-001-{{ checksum "yarn.lock" }}
           paths:
           - ~/workspace/node_modules
+      - run:
+          command: ./scripts/ci/version-info.sh
+          name: Print Version Info
       - run:
           command: ./scripts/ci/frontend.build.sh
           name: Build
