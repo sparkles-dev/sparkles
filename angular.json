@@ -22,7 +22,10 @@
               "apps/sparkles/src/assets"
             ],
             "styles": ["apps/sparkles/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["packages/styles/dist"]
+            }
           },
           "configurations": {
             "production": {

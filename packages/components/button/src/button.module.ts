@@ -1,21 +1,24 @@
-import { NgModule, ModuleWithProviders, Optional, SkipSelf, forwardRef } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders,
+  Optional,
+  SkipSelf
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from './button.component';
 import { ButtonDirective } from './button.directive';
-import { ButtonOptions, BUTTON_OPTIONS, BUTTON_DEFAULTS } from './button.options';
+import {
+  ButtonOptions,
+  BUTTON_OPTIONS,
+  BUTTON_DEFAULTS
+} from './button.options';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [
-    ButtonDirective
-  ],
-  exports: [
-    ButtonDirective
-  ]
+  imports: [CommonModule],
+  declarations: [ButtonComponent, ButtonDirective],
+  exports: [ButtonComponent, ButtonDirective]
 })
 export class ButtonModule {
-
   public static withOptions(opts?: ButtonOptions): ModuleWithProviders {
     const value = Object.assign({}, opts, BUTTON_DEFAULTS);
 
@@ -34,18 +37,15 @@ export class ButtonModule {
 
 /** @internal */
 @NgModule({
-  imports: [
-    ButtonModule
-  ],
-  exports: [
-    ButtonModule
-  ]
+  imports: [ButtonModule],
+  exports: [ButtonModule]
 })
 export class ButtonModuleWithOptions {
-
-  constructor (@Optional() @SkipSelf() parentModule: ButtonModuleWithOptions) {
+  constructor(@Optional() @SkipSelf() parentModule: ButtonModuleWithOptions) {
     if (parentModule) {
-      throw new Error('ButtonModule.withOptions() is already loaded. Import it in the AppModule only!');
+      throw new Error(
+        'ButtonModule.withOptions() is already loaded. Import it in the AppModule only!'
+      );
     }
   }
 }

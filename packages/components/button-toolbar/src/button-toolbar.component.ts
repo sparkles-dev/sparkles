@@ -2,12 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 // TODO: demo ContentChildren pattern
 @Component({
-  selector: 'sp-button-group',
-  templateUrl: './button-group.component.html',
-  styleUrls: ['./button-group.component.scss'],
+  selector: 'sp-button-toolbar',
+  templateUrl: './button-toolbar.component.html',
+  styleUrls: ['./button-toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonGroupComponent implements OnInit {
+export class ButtonToolbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}

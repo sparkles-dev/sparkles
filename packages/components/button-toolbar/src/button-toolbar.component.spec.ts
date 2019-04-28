@@ -1,19 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ButtonGroupComponent } from './button-group.component';
+import { ButtonToolbarComponent } from './button-toolbar.component';
 
 describe('ButtonGroupComponent', () => {
-  let component: ButtonGroupComponent;
-  let fixture: ComponentFixture<ButtonGroupComponent>;
+  let component: ButtonToolbarComponent;
+  let fixture: ComponentFixture<ButtonToolbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonGroupComponent]
+      declarations: [ButtonToolbarComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ButtonGroupComponent);
+    fixture = TestBed.createComponent(ButtonToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

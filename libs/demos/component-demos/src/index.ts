@@ -1,1 +1,1 @@
-export * from './lib/demos-component-demos.module';
+export * from './lib/component-demos.module';
