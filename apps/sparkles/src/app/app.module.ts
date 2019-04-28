@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+/** Root app module for the sparkles app (app shell). */
 @NgModule({
   imports: [
     BrowserModule,
@@ -14,27 +15,17 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     DemosAppModule
   ],
-  providers: [
-    provideDebug(environment)
-  ],
-  declarations: [
-    AppComponent
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+  providers: [provideDebug(environment)],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  constructor(
-    debug: Debug
-  ) {
-    console.log("App is running in develop mode?", debug.isDevelop);
+  constructor(debug: Debug) {
+    console.log('App is running in develop mode?', debug.isDevelop);
     console.log(debug.stackTrace('foo'));
     debug.enable('foo');
     debug.logger('foo').info('bar');
     debug.deprecation('foo', 'is not really deprecated');
     debug.experimental('bar', 'is the new kid on the block');
   }
-
 }
