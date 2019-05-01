@@ -4,6 +4,9 @@
 if [ "${CIRCLE_BRANCH}" = "master" ] || [ -n "${CIRCLE_TAG}" ]; then
   AFFECTED_ARGS="--all"
 else
-  git fetch https://github.com/sparkles-dev/sparkles.git
+  git fetch https://github.com/sparkles-dev/sparkles.git --quiet
   AFFECTED_ARGS="--base=$(git rev-parse FETCH_HEAD) --head=$(git rev-parse HEAD)"
+  echo "Building projects that are affected by changes in these commits:"
+  git log --oneline --no-merges FETCH_HEAD..HEAD
+  echo
 fi
