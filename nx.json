@@ -47,7 +47,8 @@
     },
     "demos-app": {
       "tags": []
-    }
+    },
+    "syndesi": { "tags": [] }
   },
   "implicitDependencies": {
     "package.json": "*",

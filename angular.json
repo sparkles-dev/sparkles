@@ -578,6 +578,37 @@
           }
         }
       }
+    },
+    "syndesi": {
+      "root": "libs/syndesi",
+      "sourceRoot": "libs/syndesi/src",
+      "projectType": "library",
+      "prefix": "sp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/syndesi/tsconfig.lib.json",
+              "libs/syndesi/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/syndesi/jest.config.js",
+            "tsConfig": "libs/syndesi/tsconfig.spec.json",
+            "setupFile": "libs/syndesi/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "defaultProject": "sparkles",
@@ -589,13 +620,16 @@
     "packageManager": "yarn"
   },
   "schematics": {
+    "@nrwl/schematics:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
     "@nrwl/schematics:library": {
       "unitTestRunner": "jest",
       "framework": "angular"
     },
-    "@nrwl/schematics:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+    "@nrwl/schematics:component": {
+      "styleext": "scss"
     },
     "@nrwl/schematics:node-application": {
       "framework": "express"

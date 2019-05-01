@@ -32,7 +32,8 @@
       "@sparkles/demos/component-demos": [
         "libs/demos/component-demos/src/index.ts"
       ],
-      "@sparkles/demos/app": ["libs/demos/app/src/index.ts"]
+      "@sparkles/demos/app": ["libs/demos/app/src/index.ts"],
+      "@sparkles/syndesi": ["libs/syndesi/src/index.ts"]
     },
     "module": "es2015"
   },

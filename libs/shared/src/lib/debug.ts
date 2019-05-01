@@ -58,6 +58,7 @@ function attachToGlobal(key: string, value: any) {
 @Injectable({ providedIn: 'root' })
 export class Debug {
   public environment: any = {};
+
   private enabled: string[] = [];
 
   constructor(@Inject(ENVIRONMENT) @Optional() environment?: any) {
