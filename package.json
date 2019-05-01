@@ -2,7 +2,7 @@
   "name": "sparkles",
   "description": "A web tech stark build on open source.",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0-mosella.0",
   "license": "MIT",
   "repository": {
     "type": "git",
