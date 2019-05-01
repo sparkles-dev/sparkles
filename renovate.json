@@ -11,6 +11,9 @@
     ":pinDigestsDisabled",
     ":semanticCommitScopeDisabled"
   ],
+  "gradle": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "packagePatterns": ["*"],
