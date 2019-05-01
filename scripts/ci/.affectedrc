@@ -4,5 +4,6 @@
 if [ "${CIRCLE_BRANCH}" = "master" ] || [ -n "${CIRCLE_TAG}" ]; then
   AFFECTED_ARGS="--all"
 else
-  AFFECTED_ARGS="--base=origin/master --head=HEAD"
+  git fetch https://github.com/sparkles-dev/sparkles.git
+  AFFECTED_ARGS="--base=$(git rev-parse FETCH_HEAD) --head=$(git rev-parse HEAD)"
 fi
