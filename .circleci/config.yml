@@ -83,6 +83,23 @@ jobs:
           command: ./scripts/ci/commitlint.sh
           name: Lint Commit Messages
 
+  # GitHub Pages Deployment
+  deploy:
+    docker:
+    - image: angular/ngcontainer:latest
+    working_directory: ~/workspace
+    steps:
+      # Deploy from CircleCI to GitHub Pages
+      # https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/
+      - add_ssh_keys:
+          fingerprints:
+            - "b2:e5:18:b6:61:2f:b0:cf:da:75:d1:19:6f:5c:0f:ba"
+      - run:
+          name: Add SSH Host Key for github.com
+          command: |
+            # https://github.com/openmicroscopy/devspace/issues/38#issuecomment-211515244
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+
 workflows:
   version: 2
   build:
