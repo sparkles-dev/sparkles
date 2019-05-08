@@ -19,13 +19,25 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
       <button *ngIf="attached === 'attached'" spButton="grey" (click)="onToggle()">Close and Hide DOM Outlet</button>
     </sp-dom-outlet>
 
+    <div [(spFullScreen)]="fullScreen">
+      <h4>This content will go to browser full screen</h4>
+    </div>
+    <button spButton="grey" (click)="fullScreen = !fullScreen">Toggle Full Screen Element</button>
+
     <div style="position: absolute; top: 0; bottom: 0; right: 0; width: 20%" #targetVar></div>
   `,
   host: {
     style: 'position: relative; display: block;'
-  }
+  },
+  styles: [`
+    :fullscreen {
+      color: white;
+    }
+  `]
 })
 export class DomOutletDemoComponent {
+
+  fullScreen = false;
 
   attached = 'inplace';
 
