@@ -29,9 +29,6 @@
       "@sparkles/components/tabs": ["packages/components/tabs/index.ts"],
       "@sparkles/reframed": ["libs/reframed/src/index.ts"],
       "@sparkles/testing": ["libs/testing/src/index.ts"],
-      "@sparkles/demos/component-demos": [
-        "libs/demos/component-demos/src/index.ts"
-      ],
       "@sparkles/demos/app": ["libs/demos/app/src/index.ts"]
     },
     "module": "es2015"

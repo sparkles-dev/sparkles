@@ -4,18 +4,10 @@ import { Component } from '@angular/core';
   selector: 'sp-demos-app',
   template: `
     <ul>
-      <li (click)="activeDemo = 'button'">Button</li>
-      <li (click)="activeDemo = 'cdk'">CDK Demos</li>
+      <li><a [routerLink]="'/button'">Button Demos</a></li>
+      <li><a [routerLink]="'/cdk'">CDK Demos</a></li>
     </ul>
-    <hr />
-    <div *ngIf="activeDemo === 'button'">
-      <sp-01-button-demo></sp-01-button-demo>
-    </div>
-    <div *ngIf="activeDemo === 'cdk'">
-      <sp-dom-outlet-demo></sp-dom-outlet-demo>
-    </div>
-    `
+    <router-outlet></router-outlet>
+  `
 })
-export class DemosAppComponent {
-  activeDemo: string;
-}
+export class DemosAppComponent {}

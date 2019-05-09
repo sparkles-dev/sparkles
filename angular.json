@@ -527,32 +527,6 @@
         }
       }
     },
-    "demos-component-demos": {
-      "root": "libs/demos/component-demos",
-      "sourceRoot": "libs/demos/component-demos/src",
-      "projectType": "library",
-      "prefix": "sp",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/demos/component-demos/tsconfig.lib.json",
-              "libs/demos/component-demos/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/builders:jest",
-          "options": {
-            "jestConfig": "libs/demos/component-demos/jest.config.js",
-            "tsConfig": "libs/demos/component-demos/tsconfig.spec.json",
-            "setupFile": "libs/demos/component-demos/src/test-setup.ts"
-          }
-        }
-      }
-    },
     "demos-app": {
       "root": "libs/demos/app",
       "sourceRoot": "libs/demos/app/src",
