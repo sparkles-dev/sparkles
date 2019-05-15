@@ -578,6 +578,124 @@
           }
         }
       }
+    },
+    "ar-scanner": {
+      "root": "apps/ar/scanner/",
+      "sourceRoot": "apps/ar/scanner/src",
+      "projectType": "application",
+      "prefix": "sparkles",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ar/scanner",
+            "index": "apps/ar/scanner/src/index.html",
+            "main": "apps/ar/scanner/src/main.ts",
+            "polyfills": "apps/ar/scanner/src/polyfills.ts",
+            "tsConfig": "apps/ar/scanner/tsconfig.app.json",
+            "assets": [
+              "apps/ar/scanner/src/favicon.ico",
+              "apps/ar/scanner/src/assets"
+            ],
+            "styles": ["apps/ar/scanner/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ar/scanner/src/environments/environment.ts",
+                  "with": "apps/ar/scanner/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ar-scanner:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ar-scanner:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ar-scanner:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ar/scanner/tsconfig.app.json",
+              "apps/ar/scanner/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/ar/scanner/jest.config.js",
+            "tsConfig": "apps/ar/scanner/tsconfig.spec.json",
+            "setupFile": "apps/ar/scanner/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ar-scanner-e2e": {
+      "root": "apps/ar/scanner-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/ar/scanner-e2e/cypress.json",
+            "tsConfig": "apps/ar/scanner-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ar-scanner:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ar-scanner:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/ar/scanner-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "sparkles",

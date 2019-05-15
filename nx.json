@@ -47,6 +47,12 @@
     },
     "demos-app": {
       "tags": []
+    },
+    "ar-scanner": {
+      "tags": []
+    },
+    "ar-scanner-e2e": {
+      "tags": []
     }
   },
   "implicitDependencies": {
