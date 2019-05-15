@@ -53,6 +53,9 @@
     },
     "ar-scanner-e2e": {
       "tags": []
+    },
+    "ar-webrtc-media": {
+      "tags": []
     }
   },
   "implicitDependencies": {

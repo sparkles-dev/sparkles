@@ -696,6 +696,37 @@
           }
         }
       }
+    },
+    "ar-webrtc-media": {
+      "root": "libs/ar/webrtc-media",
+      "sourceRoot": "libs/ar/webrtc-media/src",
+      "projectType": "library",
+      "prefix": "sparkles",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ar/webrtc-media/tsconfig.lib.json",
+              "libs/ar/webrtc-media/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/ar/webrtc-media/jest.config.js",
+            "tsConfig": "libs/ar/webrtc-media/tsconfig.spec.json",
+            "setupFile": "libs/ar/webrtc-media/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "defaultProject": "sparkles",
@@ -709,11 +740,13 @@
   "schematics": {
     "@nrwl/schematics:library": {
       "unitTestRunner": "jest",
-      "framework": "angular"
+      "framework": "angular",
+      "style": "scss"
     },
     "@nrwl/schematics:application": {
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "style": "scss"
     },
     "@nrwl/schematics:node-application": {
       "framework": "express"
