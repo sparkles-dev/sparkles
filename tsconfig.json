@@ -33,7 +33,8 @@
         "libs/demos/component-demos/src/index.ts"
       ],
       "@sparkles/demos/app": ["libs/demos/app/src/index.ts"],
-      "@sparkles/ar/webrtc-media": ["libs/ar/webrtc-media/src/index.ts"]
+      "@sparkles/ar/webrtc-media": ["libs/ar/webrtc-media/src/index.ts"],
+      "@sparkles/ar/code-scanner": ["libs/ar/code-scanner/src/index.ts"]
     },
     "module": "es2015"
   },

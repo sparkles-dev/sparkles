@@ -727,6 +727,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "ar-code-scanner": {
+      "root": "libs/ar/code-scanner",
+      "sourceRoot": "libs/ar/code-scanner/src",
+      "projectType": "library",
+      "prefix": "sparkles",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ar/code-scanner/tsconfig.lib.json",
+              "libs/ar/code-scanner/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/ar/code-scanner/jest.config.js",
+            "tsConfig": "libs/ar/code-scanner/tsconfig.spec.json",
+            "setupFile": "libs/ar/code-scanner/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "defaultProject": "sparkles",
