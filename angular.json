@@ -583,12 +583,7 @@
       "root": "apps/ar/scanner/",
       "sourceRoot": "apps/ar/scanner/src",
       "projectType": "application",
-      "prefix": "sparkles",
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "style": "scss"
-        }
-      },
+      "prefix": "sp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -701,7 +696,7 @@
       "root": "libs/ar/webrtc-media",
       "sourceRoot": "libs/ar/webrtc-media/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -721,18 +716,13 @@
             "setupFile": "libs/ar/webrtc-media/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "styleext": "scss"
-        }
       }
     },
     "ar-code-scanner": {
       "root": "libs/ar/code-scanner",
       "sourceRoot": "libs/ar/code-scanner/src",
       "projectType": "library",
-      "prefix": "sparkles",
+      "prefix": "sp",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -752,11 +742,6 @@
             "setupFile": "libs/ar/code-scanner/src/test-setup.ts"
           }
         }
-      },
-      "schematics": {
-        "@nrwl/schematics:component": {
-          "styleext": "scss"
-        }
       }
     }
   },
@@ -769,6 +754,9 @@
     "packageManager": "yarn"
   },
   "schematics": {
+    "@nrwl/schematics:component": {
+      "style": "scss"
+    },
     "@nrwl/schematics:library": {
       "unitTestRunner": "jest",
       "framework": "angular",
