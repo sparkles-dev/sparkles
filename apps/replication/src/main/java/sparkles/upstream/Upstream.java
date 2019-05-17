@@ -39,13 +39,13 @@ public class Upstream {
         "replicator", createHibernateProperties(dataSource))))
       .get("/replication/subscription/:id", (ctx) -> {
         String id = ctx.pathParam("id");
-        String since = ctx.queryParam("since", null);
+        String since = ctx.queryParam("since", "");
 
         ctx.status(200);
-        if (since != null) {
-          ctx.result("Here are your results since " + since);
-        } else {
+        if ("".equals(since)) {
           ctx.result("Here are all the results in the world.");
+        } else {
+          ctx.result("Here are your results since " + since);
         }
       })
       .delete("/replication/subscription/:id", (ctx) -> {
