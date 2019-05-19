@@ -5,6 +5,7 @@ import { ComponentDemosModule } from './component-demos.module';
 import { DemosAppComponent } from './demos-app.component';
 import { ButtonDemo01Component } from './button/01-button-demo.component';
 import { DomOutletDemoComponent } from './cdk/dom-outlet-demo.component';
+import { HammerDemoComponent } from './cdk/hammer-demo.component';
 
 /**
  * Feature module for the demos application.
@@ -24,8 +25,12 @@ import { DomOutletDemoComponent } from './cdk/dom-outlet-demo.component';
             component: ButtonDemo01Component
           },
           {
-            path: 'cdk',
+            path: 'cdk/dom-outlet',
             component: DomOutletDemoComponent
+          },
+          {
+            path: 'cdk/hammerjs',
+            component: HammerDemoComponent
           }
         ]
       }

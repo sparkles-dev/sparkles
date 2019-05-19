@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
   template: `
     <ul>
       <li><a [routerLink]="'/button'">Button Demos</a></li>
-      <li><a [routerLink]="'/cdk'">CDK Demos</a></li>
+      <li><a [routerLink]="'/cdk/dom-outlet'">DOM Outlet</a></li>
+      <li><a [routerLink]="'/cdk/hammerjs'">Hammer JS</a></li>
     </ul>
     <router-outlet></router-outlet>
   `
