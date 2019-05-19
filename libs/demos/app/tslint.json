@@ -1,6 +1,3 @@
 {
-  "extends": "../../../tslint.json",
-  "no-submodule-imports": [
-    "@sparkles/components/button"
-  ]
+  "extends": "../../../tslint.json"
 }
