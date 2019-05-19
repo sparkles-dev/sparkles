@@ -569,7 +569,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:build",
           "options": {
             "outputPath": "dist/apps/webcomponents/demo-element",
             "index": "apps/webcomponents/demo-element/src/index.html",
@@ -593,7 +593,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -607,7 +607,9 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "extraWebpackConfig": "webpack.extra.js",
+              "singleBundle": true
             }
           }
         },
