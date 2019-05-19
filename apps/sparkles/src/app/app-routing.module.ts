@@ -25,11 +25,6 @@ RouterModule.forRoot(ROUTES, CONFIG)
       [
         {
           path: '',
-          pathMatch: 'full',
-          redirectTo: '/welcome'
-        },
-        {
-          path: '**',
           loadChildren: './+demos/demos-app-lazy.module#DemosAppLazyModule'
         }
       ],

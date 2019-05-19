@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NxModule } from '@nrwl/nx';
 import { provideDebug, Debug } from '@sparkles/shared';
 import { DemosAppModule } from '@sparkles/demos/app';
+import { traceChangeDetection } from '@sparkles/components';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     DemosAppModule
   ],
-  providers: [provideDebug(environment)],
+  providers: [provideDebug(environment), traceChangeDetection()],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
