@@ -14,10 +14,14 @@ export class FullScreenDirective implements OnChanges, OnInit {
 
   private emitChangeOnNextEvent = false;
 
+  private document: Document;
+
   constructor(
     private element: ElementRef,
-    @Inject(DOCUMENT) @Optional() private document: Document
-  ) {}
+    @Inject(DOCUMENT) @Optional() _document: any
+  ) {
+    this.document = _document;
+  }
 
   ngOnInit() {
     if (this.document) {
