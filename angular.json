@@ -689,7 +689,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:build",
           "options": {
             "outputPath": "dist/apps/webcomponents/ng-app",
             "index": "apps/webcomponents/ng-app/src/index.html",
@@ -702,8 +702,19 @@
             ],
             "styles": ["apps/webcomponents/ng-app/src/styles.scss"],
             "scripts": [
+              "node_modules/core-js/client/core.min.js",
+              "node_modules/zone.js/dist/zone.min.js",
+              "node_modules/@webcomponents/custom-elements/src/native-shim.js",
+              "node_modules/@webcomponents/custom-elements/externs/custom-elements.js",
+              "node_modules/rxjs/bundles/rxjs.umd.min.js",
+              "node_modules/@angular/core/bundles/core.umd.min.js",
+              "node_modules/@angular/common/bundles/common.umd.min.js",
+              "node_modules/@angular/elements/bundles/elements.umd.min.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.min.js",
+              "dist/apps/webcomponents/demo-element/main.js"
             ],
-            "es5BrowserSupport": true
+            "es5BrowserSupport": true,
+            "extraWebpackConfig": "webpack.extra.js"
           },
           "configurations": {
             "production": {
