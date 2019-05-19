@@ -44,6 +44,12 @@
     },
     "demos-app": {
       "tags": []
+    },
+    "webcomponents-demo-element": {
+      "tags": []
+    },
+    "webcomponents-demo-element-e2e": {
+      "tags": []
     }
   },
   "implicitDependencies": {
