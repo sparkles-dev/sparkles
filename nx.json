@@ -44,6 +44,18 @@
     },
     "demos-app": {
       "tags": []
+    },
+    "webcomponents-demo-element": {
+      "tags": []
+    },
+    "webcomponents-demo-element-e2e": {
+      "tags": []
+    },
+    "webcomponents-ng-app": {
+      "tags": []
+    },
+    "webcomponents-ng-app-e2e": {
+      "tags": []
     }
   },
   "implicitDependencies": {
