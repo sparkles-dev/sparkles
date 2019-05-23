@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
   compile project(':support:testing')
-  compile 'com.squareup.moshi:moshi:1.5.0'
+  compile 'com.squareup.moshi:moshi:1.8.0'
 
   /*
   testCompile project(':support:testing')
