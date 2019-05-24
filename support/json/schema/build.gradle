@@ -7,7 +7,7 @@ dependencies {
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
   compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'
   compile 'com.fasterxml.jackson.core:jackson-core:2.9.9'
-  compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5'
+  compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.9'
   compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
   compile 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9'
   // https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema
