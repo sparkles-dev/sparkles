@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
 dependencies {
-  compile 'com.sparkjava:spark-core:2.7.1'
+  compile 'com.sparkjava:spark-core:2.9.1'
   compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   compile 'org.hibernate:hibernate-core:5.2.14.Final'
   compile 'org.hibernate:hibernate-entitymanager:5.2.14.Final'
