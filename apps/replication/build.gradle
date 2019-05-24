@@ -22,7 +22,7 @@ dependencies {
   compile 'org.slf4j:slf4j-api:1.7.25'
   compile 'org.slf4j:slf4j-simple:1.7.25'
   // apt
-  processor 'org.projectlombok:lombok:1.16.20'
+  processor 'org.projectlombok:lombok:1.18.8'
   // project
   compile project(':support:common')
   compile project(':support:javalin:common')

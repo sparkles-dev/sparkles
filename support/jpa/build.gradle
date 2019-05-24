@@ -8,7 +8,7 @@ group = 'sparkles.support'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  processor 'org.projectlombok:lombok:1.16.20'
+  processor 'org.projectlombok:lombok:1.18.8'
 
   compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   compile project(':support:common')

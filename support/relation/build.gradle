@@ -15,7 +15,7 @@ dependencies {
   compile 'org.springframework.data:spring-data-commons:2.0.5.RELEASE'
   compile 'org.springframework.data:spring-data-jpa:2.0.5.RELEASE'
 
-  processor 'org.projectlombok:lombok:1.16.20'
+  processor 'org.projectlombok:lombok:1.18.8'
 
   testCompile project(':support:testing')
 }
