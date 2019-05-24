@@ -1491,6 +1491,11 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/googlemaps@^3.36.0":
+  version "3.36.0"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.36.0.tgz#c83a457b08884631c4865a70d0260fbc90897c2f"
+  integrity sha512-gD35451SzMbBH5ghEDsWfyNh4XSHZAM3Xi8423dSoTAQaIfsp4AI8Fnkt90/oTRGcz+VoF0UOO6HW7BvS0cmhA==
+
 "@types/hammerjs@^2.0.36":
   version "2.0.36"
   resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.36.tgz#17ce0a235e9ffbcdcdf5095646b374c2bf615a4c"

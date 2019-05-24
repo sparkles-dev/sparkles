@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sparkles-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: '<sparkles-map></sparkles-map>'
 })
-export class AppComponent {
-  title = 'rivers-rivers';
-}
+export class AppComponent {}
