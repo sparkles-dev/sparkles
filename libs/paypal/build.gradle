@@ -17,7 +17,7 @@ dependencies {
   compile 'org.slf4j:slf4j-simple:1.7.25'
   compile project(':support:ok:okhttp')
 
-  testCompile 'io.fabric8:mockwebserver:0.1.0'
+  testCompile 'io.fabric8:mockwebserver:0.1.1'
   testCompile 'junit:junit:4.+'
   testCompile 'org.assertj:assertj-core:3.12.2'
 }
