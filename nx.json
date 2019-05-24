@@ -56,6 +56,12 @@
     },
     "webcomponents-ng-app-e2e": {
       "tags": []
+    },
+    "rivers-rivers": {
+      "tags": []
+    },
+    "rivers-rivers-e2e": {
+      "tags": []
     }
   },
   "implicitDependencies": {
