@@ -11,7 +11,7 @@ dependencies {
   compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
   compile 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5'
   // https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema
-  compile 'com.kjetland:mbknor-jackson-jsonschema_2.13.0-M4:1.0.31'
+  compile 'com.kjetland:mbknor-jackson-jsonschema_2.13.0-M4:1.0.33'
 
   testCompile 'junit:junit:4.+'
   testCompile 'org.assertj:assertj-core:3.12.2'
