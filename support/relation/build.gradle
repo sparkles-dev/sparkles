@@ -9,7 +9,7 @@ group = 'sparkles.support'
 dependencies {
   compile project(':support:common')
   compile project(':support:jpa')
-  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'org.slf4j:slf4j-api:1.7.26'
   compile 'org.hibernate:hibernate-core:5.2.14.Final'
   compile 'org.hibernate:hibernate-entitymanager:5.2.14.Final'
   compile 'org.springframework.data:spring-data-commons:2.1.8.RELEASE'
