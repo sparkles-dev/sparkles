@@ -17,7 +17,7 @@ targetCompatibility = 1.8
 dependencies {
   // 3rd party
   compile 'com.google.guava:guava:27.0.1-jre'
-  compile 'org.hsqldb:hsqldb:2.2.9'
+  compile 'org.hsqldb:hsqldb:2.4.1'
   compile 'org.slf4j:slf4j-api:1.7.26'
   compile 'org.slf4j:slf4j-simple:1.7.26'
   // project
