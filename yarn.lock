@@ -1323,10 +1323,10 @@
     tree-kill "1.2.1"
     webpack-sources "1.3.0"
 
-"@nrwl/builders@7.8.3":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.8.3.tgz#c562db80964c012ee824e5fcd780cbf23c0fe967"
-  integrity sha512-MxpfsRAO9Bp/px9f4hBcKhN/oWndBMyltV4zrB8jeU8B/hHfS3eO1l/k+/Jg/JqhgC/k2xNHLqWMg7yeanbFTg==
+"@nrwl/builders@7.8.6":
+  version "7.8.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/builders/-/builders-7.8.6.tgz#cd10d3840a1034e65edb5bf031abc59f61d2eedb"
+  integrity sha512-n3rGSRJ24HCA6IGn+W5b0Qfa6r+X+rCHTI71JqyVPMGK3DSmQU3ZfW/cf3Ywbvc4dP1MzCNCAcb263/5KhDE2g==
   dependencies:
     "@angular-devkit/architect" "~0.13.1"
     "@angular-devkit/build-angular" "~0.13.1"
@@ -1342,20 +1342,21 @@
     rxjs "6.3.3"
     source-map-support "0.5.11"
     ts-loader "5.3.1"
+    tsconfig-paths-webpack-plugin "3.2.0"
     webpack "4.29.0"
     webpack-dev-server "3.1.14"
     webpack-node-externals "1.7.2"
     zone.js "0.8.29"
 
-"@nrwl/nx@7.8.3":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.8.3.tgz#864377553b4b328830d75509dd808cc517403fdd"
-  integrity sha512-3YyCWDQTtNoJyT1sUc25ck384dK+Z8To8hGUR7cABGN6I/wmqaUtWcUp4ULtHCaU7uI9MXIRI551omB+NxJDwQ==
+"@nrwl/nx@7.8.6":
+  version "7.8.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-7.8.6.tgz#96a1b5ece6ffe0053a8c74b5a225e020b6943037"
+  integrity sha512-0mQzBR9xfNcwMl28iwTzmjS/5czeVJNfq1NO/FVlYB0eIRKOGWI78dwFYKPjLMSVmYl+Rc+dcWlgLlekUu+YkQ==
 
-"@nrwl/schematics@7.8.3":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.8.3.tgz#9f763b1b28bcf46182b5470f30b11922471982e4"
-  integrity sha512-F+HEwKl9HQ2dgNuf0+pGrnpUF+zZW9Ra8VDThUyGMBzTXWPVPEAiRanIWqESX13yerSowKC5wbTIjtEg4lDg4Q==
+"@nrwl/schematics@7.8.6":
+  version "7.8.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/schematics/-/schematics-7.8.6.tgz#c4ac51a240f8ace5b5e245b58723dfa8ef129998"
+  integrity sha512-en3wDflgLzgZS2sly+nuswae4NETxGiIsLzwQ+7UMGsM6l+n92/2Qn7LCFjO1Zp8aVU3Z3nEM6uP49z2IgEYXA==
   dependencies:
     app-root-path "^2.0.1"
     cosmiconfig "4.0.0"
@@ -1556,6 +1557,11 @@
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
+
+"@types/json5@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
+  integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/lodash@^4.14.121":
   version "4.14.123"
@@ -4276,6 +4282,11 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
+
+deepmerge@^2.0.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
+  integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
 
 default-compare@^1.0.0:
   version "1.0.0"
@@ -12935,6 +12946,26 @@ ts-node@~8.1.0:
     make-error "^1.1.1"
     source-map-support "^0.5.6"
     yn "^3.0.0"
+
+tsconfig-paths-webpack-plugin@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-3.2.0.tgz#6e70bd42915ad0efb64d3385163f0c1270f3e04d"
+  integrity sha512-S/gOOPOkV8rIL4LurZ1vUdYCVgo15iX9ZMJ6wx6w2OgcpT/G4wMyHB6WM+xheSqGMrWKuxFul+aXpCju3wmj/g==
+  dependencies:
+    chalk "^2.3.0"
+    enhanced-resolve "^4.0.0"
+    tsconfig-paths "^3.4.0"
+
+tsconfig-paths@^3.4.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.8.0.tgz#4e34202d5b41958f269cf56b01ed95b853d59f72"
+  integrity sha512-zZEYFo4sjORK8W58ENkRn9s+HmQFkkwydDG7My5s/fnfr2YYCaiyXe/HBUcIgU8epEKOXwiahOO+KZYjiXlWyQ==
+  dependencies:
+    "@types/json5" "^0.0.29"
+    deepmerge "^2.0.1"
+    json5 "^1.0.1"
+    minimist "^1.2.0"
+    strip-bom "^3.0.0"
 
 tsickle@^0.35.0:
   version "0.35.0"
