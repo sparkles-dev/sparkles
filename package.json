@@ -87,7 +87,7 @@
     "@types/jest": "24.0.13",
     "@types/jquery": "3.3.29",
     "@types/node": "~8.10.0",
-    "codelyzer": "~5.0.0",
+    "codelyzer": "~5.1.0",
     "cypress": "^3.1.0",
     "dotenv": "8.0.0",
     "git-describe": "^4.0.4",
