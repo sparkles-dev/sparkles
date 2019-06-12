@@ -12,8 +12,8 @@ dependencies {
 
   compile project(':support:javalin:common')
   compile project(':support:jpa')
-  compile 'org.hibernate:hibernate-core:5.4.2.Final'
-  compile 'org.hibernate:hibernate-entitymanager:5.4.2.Final'
+  compile 'org.hibernate:hibernate-core:5.4.3.Final'
+  compile 'org.hibernate:hibernate-entitymanager:5.4.3.Final'
   compile 'org.slf4j:slf4j-api:1.7.26'
   compile 'org.springframework.data:spring-data-commons:2.1.8.RELEASE'
   compile 'org.springframework.data:spring-data-jpa:2.1.8.RELEASE'
