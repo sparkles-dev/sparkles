@@ -1,9 +1,19 @@
-import { apply, applyTemplates, chain, externalSchematic, mergeWith, move, url, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { formatFiles } from '@nrwl/schematics/src/utils/rules/format-files';
+import {
+  apply,
+  applyTemplates,
+  chain,
+  externalSchematic,
+  mergeWith,
+  move,
+  url,
+  Rule,
+  SchematicContext,
+  Tree
+} from '@angular-devkit/schematics';
+import { formatFiles } from '@nrwl/workspace/src/utils/rules/format-files';
 import { Schema } from './schema';
 
 export default function(schema: Schema): Rule {
-
   return (host: Tree, context: SchematicContext) => {
     if (!schema.name) {
       context.logger.fatal('Component name must be set!', schema as any);
@@ -38,7 +48,9 @@ export default function(schema: Schema): Rule {
         skipFormat: schema.skipFormat
       }),
       () => {
-        context.logger.info(`Component sp-${componentName} is generated in folder ${componentPath}.`);
+        context.logger.info(
+          `Component sp-${componentName} is generated in folder ${componentPath}.`
+        );
       }
     ]);
   };

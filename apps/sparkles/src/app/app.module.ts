@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NxModule } from '@nrwl/nx';
+import { NxModule } from '@nrwl/angular';
 import { provideDebug, Debug } from '@sparkles/shared';
 import { DemosAppModule } from '@sparkles/demos/app';
 import { traceChangeDetection } from '@sparkles/components';

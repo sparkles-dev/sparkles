@@ -42,7 +42,7 @@ describe(`@DynamicQueries()`, () => {
 
     foos = [1, '2', 'three'];
 
-    @ViewChild(ContentParentComponent)
+    @ViewChild(ContentParentComponent, /* TODO: add static flag */ {})
     contentParent: ContentParentComponent;
   }
 

@@ -39,7 +39,7 @@ export class ModalComponent implements OnChanges, OnDestroy {
   public anchor: 'overlay' | ElementRef = 'overlay';
 
   /** @internal */
-  @ViewChild(CdkPortal)
+  @ViewChild(CdkPortal, { static: false })
   public portal: CdkPortal;
 
   private outlet: PortalOutlet;

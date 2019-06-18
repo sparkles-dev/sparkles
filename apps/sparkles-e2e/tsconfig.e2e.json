@@ -2,18 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "sourceMap": false,
-    "outDir": "../../dist/out-tsc/apps/sparkles-e2e/src",
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "types": [
-      "cypress",
-      "node"
-    ]
+    "outDir": "../../dist/out-tsc",
+    "lib": ["es2015", "dom"],
+    "types": ["cypress", "node"]
   },
-  "include": [
-    "src/**/*.ts",
-    "../../node_modules/cypress"
-  ]
+  "include": ["src/**/*.ts", "../../node_modules/cypress"]
 }

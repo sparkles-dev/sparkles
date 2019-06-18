@@ -35,7 +35,7 @@ describe('<ng-template spTemplate>', () => {
 
   @Component({ template: `` })
   class TestingComponent {
-    @ViewChild(ParentComponent)
+    @ViewChild(ParentComponent, /* TODO: add static flag */ {})
     public parent: ParentComponent;
   }
 
@@ -114,7 +114,7 @@ describe(`templateByType()`, () => {
 
   @Component({ template: `` })
   class TestingComponent {
-    @ViewChild(ParentComponent)
+    @ViewChild(ParentComponent, /* TODO: add static flag */ {})
     public parent: ParentComponent;
   }
 

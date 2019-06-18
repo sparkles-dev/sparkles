@@ -59,7 +59,7 @@ export class DomOutletComponent implements OnChanges {
   public spAttached: 'attached' | 'inplace' | 'hidden' = 'inplace';
 
   /** @internal */
-  @ViewChild(CdkPortal)
+  @ViewChild(CdkPortal, { static: true })
   public portal: CdkPortal;
 
   private outlet: PortalOutlet;

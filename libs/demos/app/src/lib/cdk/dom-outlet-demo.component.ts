@@ -43,7 +43,7 @@ export class DomOutletDemoComponent {
 
   target: string | ElementRef = 'body';
 
-  @ViewChild('targetVar')
+  @ViewChild('targetVar', { static: true })
   targetElement: ElementRef;
 
   onToggle() {

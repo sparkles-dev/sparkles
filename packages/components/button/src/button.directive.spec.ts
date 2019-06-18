@@ -11,7 +11,7 @@ describe(`[spButton] ButtonDirective`, () => {
   })
   class TestComponent {
 
-    @ViewChild(ButtonDirective)
+    @ViewChild(ButtonDirective, /* TODO: add static flag */ {})
     public button: ButtonDirective;
   }
 

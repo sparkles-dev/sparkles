@@ -25,7 +25,7 @@ RouterModule.forRoot(ROUTES, CONFIG)
       [
         {
           path: '',
-          loadChildren: './+demos/demos-app-lazy.module#DemosAppLazyModule'
+          loadChildren: () => import('./+demos/demos-app-lazy.module').then(m => m.DemosAppLazyModule)
         }
       ],
       {
