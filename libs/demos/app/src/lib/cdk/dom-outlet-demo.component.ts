@@ -26,6 +26,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 
     <div style="position: absolute; top: 0; bottom: 0; right: 0; width: 20%" #targetVar></div>
   `,
+  // tslint:disable-next-line:no-host-metadata-property
   host: {
     style: 'position: relative; display: block;'
   },
