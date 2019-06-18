@@ -4,7 +4,7 @@ import { ButtonVariant } from './button.options';
 @Component({
   selector: 'sp-button',
   template: `<ng-content></ng-content>`,
-  // tslint:disable-next-line:use-host-property-decorator
+  // tslint:disable-next-line:no-host-metadata-property
   host: {
     class: 'btn',
     '[class.btn-blue]': `spButton === 'blue'`,

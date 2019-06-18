@@ -608,7 +608,7 @@
                   "maximumError": "5mb"
                 }
               ],
-              "extraWebpackConfig": "webpack.extra.js",
+              "extraWebpackConfig": "apps/webcomponents/demo-element/webpack.extra.js",
               "singleBundle": true
             }
           }
@@ -714,7 +714,7 @@
               "dist/apps/webcomponents/demo-element/main.js"
             ],
             "es5BrowserSupport": true,
-            "extraWebpackConfig": "webpack.extra.js"
+            "extraWebpackConfig": "apps/webcomponents/ng-app/webpack.extra.js"
           },
           "configurations": {
             "production": {
