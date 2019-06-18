@@ -19,7 +19,7 @@ import { Entry, ENTRIES, isAppLaunch } from '../reframed.interfaces';
   template: `<ng-container #outlet></ng-container>`
 })
 export class GuestComponent implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
-  @ViewChild('outlet', { read: ViewContainerRef })
+  @ViewChild('outlet', { read: ViewContainerRef, static: true })
   outlet: ViewContainerRef;
 
   private sub: Subscription[] = [];
