@@ -111,7 +111,7 @@
     "ngx-build-plus": "^8.0.3",
     "npm-cli-login": "^0.1.1",
     "patch-package": "^6.1.2",
-    "prettier": "1.17.0",
+    "prettier": "1.18.2",
     "protractor": "~6.0.0",
     "standard-version": "^6.0.0",
     "tailwindcss": "^0.7.3",
