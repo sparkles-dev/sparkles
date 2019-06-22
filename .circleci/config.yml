@@ -39,7 +39,7 @@ jobs:
       - checkout
       - restore_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile --ignore-engines
       - save_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
           paths:
@@ -74,7 +74,7 @@ jobs:
       - checkout
       - restore_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile --ignore-engines
       - save_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
           paths:
