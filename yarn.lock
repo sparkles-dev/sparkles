@@ -3549,9 +3549,9 @@ compare-func@^1.3.1:
     dot-prop "^3.0.0"
 
 compare-versions@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.4.0.tgz#e0747df5c9cb7f054d6d3dc3e1dbc444f9e92b26"
-  integrity sha512-tK69D7oNXXqUW3ZNo/z7NXTEz22TCF0pTE+YF9cxvaAM9XnkLo1fV621xCLrRR6aevJlKxExkss0vWqUCUpqdg==
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.5.0.tgz#85fc22a1ae9612ff730d77fb092295acd056d311"
+  integrity sha512-hX+4kt2Rcwu+x1U0SsEFCn1quURjEjPEGH/cPBlpME/IidGimAdwfMU+B+xDr7et/KTR7VH2+ZqWGerv4NGs2w==
 
 component-bind@1.0.0:
   version "1.0.0"
@@ -4691,9 +4691,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.124, electron-to-chromium@^1.3.164:
-  version "1.3.169"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.169.tgz#f9722d3f6a18a19c1fc1216bf9e1654daafab539"
-  integrity sha512-CxKt4ONON7m0ekVaFzvTZakHgGQsLMRH0J8W6h4lhyBNgskj3CIJz4bj+bh5+G26ztAe6dZjmYUeEW4u/VSnLQ==
+  version "1.3.170"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.170.tgz#2dc858f8a9bb51bbfe3a429312c11f565b456e61"
+  integrity sha512-vDEhHcwMogbM+WXDTh6ZktwQOqLcK7MJdCOM99UZXRI1ct3Y9OeYYJTrIHnswzv+IYwoXNj0Furh+K6UotcHVg==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -9124,9 +9124,9 @@ ngrx-store-freeze@^0.2.1:
     deep-freeze-strict "^1.1.1"
 
 ngx-build-plus@^8.0.3:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/ngx-build-plus/-/ngx-build-plus-8.1.0.tgz#f0527bb0490364bd838457889faf587d3e4a4305"
-  integrity sha512-fWGbGrcLeeFjNAdf6gLORKSaBvxjmY86vi2t8w9YEl8e/Z5GPn7Gx7VOM4U4xzEHQKESKgfEzDRGFTqAAixdoQ==
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-build-plus/-/ngx-build-plus-8.1.1.tgz#bd270cb34e52094732a396200bef24fc84c01183"
+  integrity sha512-wFCMdnnA2Mi3DiqpK29xNgem/tFwDC2GrgTA898ueLeri/gj367vD6rf+PUlBJ1usNmORstyWCFcbOkX1Mc+ow==
   dependencies:
     "@schematics/angular" "8.0.0"
     cross-spawn "^6.0.5"
@@ -10405,12 +10405,7 @@ prettier@1.16.4:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
   integrity sha512-ZzWuos7TI5CKUeQAtFd6Zhm2s6EpAD/ZLApIhsF9pRvRtM1RFo61dM/4MSRUA0SuLugA/zgrZD8m0BaY46Og7g==
 
-prettier@1.18.2:
-  version "1.18.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
-  integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
-
-prettier@^1.16.4:
+prettier@1.18.2, prettier@^1.16.4:
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
   integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
@@ -12069,9 +12064,9 @@ snyk-try-require@1.3.1, snyk-try-require@^1.1.1, snyk-try-require@^1.3.1:
     then-fs "^2.0.0"
 
 snyk@^1.91.0:
-  version "1.180.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.180.0.tgz#25a111c12a49318892854a2eb6b20037b47581a8"
-  integrity sha512-jY9qp9DkO8/Ir5JDRoZQ1N3nh/HWSJ8hbrfTWZleXAEhPfKtkC5BgDNr93oyBuQqml+WHrq0CzUHI/C84alOFg==
+  version "1.180.1"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.180.1.tgz#06727c85b467ca17c6a26c6dbb3386eefd919d39"
+  integrity sha512-VItdwwd4vcAVtrBMxJeWOvR5CaGM5rIz5SLGur/F+h6JnvDEExprr20e8rdl4a+8/opYdT3uJi8LeF3nd0P3Fw==
   dependencies:
     "@snyk/dep-graph" "1.4.1"
     "@snyk/gemfile" "1.2.0"
