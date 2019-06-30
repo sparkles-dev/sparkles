@@ -16,7 +16,7 @@ dependencies {
   compile 'org.slf4j:slf4j-simple:1.7.26'
 
   testCompile project(':support:testing')
-  testCompile 'io.fabric8:mockwebserver:0.1.1'
+  testCompile 'io.fabric8:mockwebserver:0.1.2'
 }
 
 testlogger {
