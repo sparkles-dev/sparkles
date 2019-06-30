@@ -82,7 +82,7 @@
               "apps/sparkles/tsconfig.app.json",
               "apps/sparkles/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/sparkles/**"]
           }
         },
         "test": {
@@ -118,7 +118,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/sparkles-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/sparkles-e2e/**"]
           }
         }
       }
@@ -147,7 +147,7 @@
               "libs/domain/tsconfig.lib.json",
               "libs/domain/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/domain/**"]
           }
         }
       }
@@ -173,7 +173,7 @@
               "libs/forms/tsconfig.lib.json",
               "libs/forms/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/forms/**"]
           }
         }
       }
@@ -191,7 +191,7 @@
               "libs/shared/tsconfig.lib.json",
               "libs/shared/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/**"]
           }
         },
         "test": {
@@ -224,7 +224,7 @@
               "packages/components/tsconfig.lib.json",
               "packages/components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!packages/components/**"]
           }
         },
         "test": {
@@ -268,7 +268,7 @@
               "libs/reframed/tsconfig.lib.json",
               "libs/reframed/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/reframed/**"]
           }
         },
         "test": {
@@ -354,7 +354,7 @@
               "apps/reframed/ping/tsconfig.app.json",
               "apps/reframed/ping/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/reframed/ping/**"]
           }
         },
         "test": {
@@ -388,7 +388,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/reframed/ping-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/reframed/ping-e2e/**"]
           }
         }
       }
@@ -466,7 +466,7 @@
               "apps/reframed/pong/tsconfig.app.json",
               "apps/reframed/pong/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/reframed/pong/**"]
           }
         },
         "test": {
@@ -500,7 +500,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/reframed/pong-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/reframed/pong-e2e/**"]
           }
         }
       }
@@ -518,7 +518,7 @@
               "libs/testing/tsconfig.lib.json",
               "libs/testing/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/testing/**"]
           }
         },
         "test": {
@@ -544,7 +544,7 @@
               "libs/demos/app/tsconfig.lib.json",
               "libs/demos/app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/demos/app/**"]
           }
         },
         "test": {
@@ -637,7 +637,7 @@
               "apps/webcomponents/demo-element/tsconfig.app.json",
               "apps/webcomponents/demo-element/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/webcomponents/demo-element/**"]
           }
         },
         "test": {
@@ -672,7 +672,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/webcomponents/demo-element-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/webcomponents/demo-element-e2e/**"]
           }
         }
       }
@@ -767,7 +767,7 @@
               "apps/webcomponents/ng-app/tsconfig.app.json",
               "apps/webcomponents/ng-app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/webcomponents/ng-app/**"]
           }
         },
         "test": {
@@ -802,7 +802,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/webcomponents/ng-app-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/webcomponents/ng-app-e2e/**"]
           }
         }
       }
@@ -885,7 +885,7 @@
               "apps/rivers/rivers/tsconfig.app.json",
               "apps/rivers/rivers/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/rivers/rivers/**"]
           }
         },
         "test": {
@@ -920,7 +920,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/rivers/rivers-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/rivers/rivers-e2e/**"]
           }
         }
       }
