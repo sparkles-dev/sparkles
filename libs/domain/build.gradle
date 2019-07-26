@@ -17,7 +17,7 @@ apply plugin: 'jsonschema2pojo'
 plugins {
   id 'java-library'
   id 'jsonschema2pojo' version '1.0.0-alpha2'
-  id 'com.adarshr.test-logger' version '1.2.0'
+  id 'com.adarshr.test-logger' version '1.7.0'
 }
 */
 
