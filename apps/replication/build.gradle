@@ -16,7 +16,7 @@ targetCompatibility = 1.8
 
 dependencies {
   // 3rd party
-  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9.1'
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
   compile 'com.google.guava:guava:27.0.1-jre'
   compile 'org.hsqldb:hsqldb:2.5.0'
   compile 'org.slf4j:slf4j-api:1.7.26'
