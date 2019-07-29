@@ -7,7 +7,7 @@ dependencies {
   compile 'com.sparkjava:spark-core:2.9.1'
   compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'junit:junit:4.+'
-  compile 'org.assertj:assertj-core:3.12.2'
+  compile 'org.assertj:assertj-core:3.13.1'
 }
 
 testlogger {
