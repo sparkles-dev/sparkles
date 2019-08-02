@@ -8,7 +8,7 @@ group = 'sparkles.support'
 dependencies {
   compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'com.squareup.moshi:moshi:1.8.0'
-  compile 'com.squareup.retrofit2:retrofit:2.6.0'
+  compile 'com.squareup.retrofit2:retrofit:2.6.1'
   compile 'com.squareup.retrofit2:converter-moshi:2.6.0'
   // compile 'com.squareup.retrofit2:converter-jackson:2.6.1'
 
