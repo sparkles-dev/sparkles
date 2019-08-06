@@ -13,7 +13,7 @@ dependencies {
   compile 'com.squareup.retrofit2:retrofit:2.6.1'
   compile 'com.squareup.retrofit2:converter-jackson:2.6.1'
   compile 'org.slf4j:slf4j-api:1.7.26'
-  compile 'org.slf4j:slf4j-simple:1.7.26'
+  compile 'org.slf4j:slf4j-simple:1.7.27'
 
   testCompile project(':support:testing')
   testCompile 'io.fabric8:mockwebserver:0.1.2'
