@@ -6,17 +6,20 @@ plugins {
 
 dependencies {
 	processor 'org.projectlombok:lombok:1.18.8'
-  compile 'com.google.guava:guava:27.0.1-jre'
+  implementation 'com.google.guava:guava:27.0.1-jre'
 
-  compile project(':support:ok:moshi')
-  compile project(':support:ok:okhttp')
-  compile 'com.squareup.retrofit2:retrofit:2.6.1'
-  compile 'com.squareup.retrofit2:converter-jackson:2.6.1'
-  compile 'org.slf4j:slf4j-api:1.7.27'
-  compile 'org.slf4j:slf4j-simple:1.7.27'
+  implementation project(':support:ok:moshi')
+  implementation project(':support:ok:okhttp')
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+  implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+  implementation 'com.squareup.retrofit2:converter-jackson:2.6.1'
+  implementation 'org.slf4j:slf4j-api:1.7.27'
+  implementation 'org.slf4j:slf4j-simple:1.7.27'
 
-  testCompile project(':support:testing')
-  testCompile 'io.fabric8:mockwebserver:0.1.2'
+  testImplementation project(':support:testing')
+  testImplementation 'io.fabric8:mockwebserver:0.1.2'
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
 }
 
 testlogger {

@@ -11,11 +11,14 @@ mainClassName = 'sparkles.SparklesApp'
 
 dependencies {
   // 3rd party
-  compile 'com.sparkjava:spark-core:2.9.1'
-  compile 'org.slf4j:slf4j-api:1.7.27'
-  compile 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'com.sparkjava:spark-core:2.9.1'
+  implementation 'org.slf4j:slf4j-api:1.7.27'
+  implementation 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'com.squareup.moshi:moshi:1.8.0'
+
   // project
-  compile project(':support:spark:moshi')
+  implementation project(':support:spark:moshi')
+
   // testing
-  testCompile group: 'junit', name: 'junit', version: '4.+'
+  testImplementation 'junit:junit:4.+'
 }

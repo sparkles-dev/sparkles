@@ -16,21 +16,32 @@ targetCompatibility = 1.8
 
 dependencies {
   // 3rd party
-  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
-  compile 'com.google.guava:guava:27.0.1-jre'
-  compile 'org.hsqldb:hsqldb:2.5.0'
-  compile 'org.slf4j:slf4j-api:1.7.27'
-  compile 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
+  implementation 'com.google.guava:guava:27.0.1-jre'
+  implementation 'io.javalin:javalin:2.8+'
+  implementation 'org.hsqldb:hsqldb:2.5.0'
+  implementation 'org.hibernate:hibernate-core:5.4.4.Final'
+  implementation 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
+  implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+  implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
+  implementation 'org.slf4j:slf4j-api:1.7.27'
+  implementation 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'com.squareup.okhttp3:okhttp:3.+'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+  implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+  implementation 'com.squareup.retrofit2:converter-moshi:2.6.1'
+
   // apt
   processor 'org.projectlombok:lombok:1.18.8'
   // project
-  compile project(':support:common')
-  compile project(':support:javalin:common')
-  compile project(':support:javalin:spring-data')
-  compile project(':support:javalin:flyway')
-  compile project(':support:replication')
+  implementation project(':support:common')
+  implementation project(':support:javalin:common')
+  implementation project(':support:javalin:spring-data')
+  implementation project(':support:javalin:flyway')
+  implementation project(':support:replication')
   // testing
-  testCompile project(':support:javalin:testing')
+  testImplementation project(':support:javalin:testing')
 }
 
 docker {

@@ -7,8 +7,10 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  compile 'org.flywaydb:flyway-core:5.0.7'
+  implementation 'org.flywaydb:flyway-core:5.0.7'
+  implementation 'io.javalin:javalin:2.8+'
+  implementation 'org.slf4j:slf4j-api:1.7.27'
 
-  compile project(':support:flyway')
-  compile project(':support:javalin:common')
+  implementation project(':support:flyway')
+  implementation project(':support:javalin:common')
 }
