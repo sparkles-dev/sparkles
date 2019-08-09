@@ -14,7 +14,7 @@ dependencies {
   compile 'com.google.guava:guava:27.0.1-jre'
   compile 'com.sparkjava:spark-core:2.9.1'
   compile 'org.slf4j:slf4j-api:1.7.26'
-  compile 'org.slf4j:slf4j-simple:1.7.26'
+  compile 'org.slf4j:slf4j-simple:1.7.27'
   // project
   compile project(':support:spark:jwt')
   compile project(':support:spark:moshi')
