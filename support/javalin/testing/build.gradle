@@ -8,17 +8,24 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  compile project(':support:javalin:common')
-  compile project(':support:ok:moshi')
-  compile project(':support:ok:okhttp')
-  compile project(':support:testing')
+  implementation 'com.squareup.moshi:moshi:1.8.0'
+  implementation 'com.squareup.okhttp3:okhttp:3.+'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+  implementation 'junit:junit:4.+'
+  implementation 'org.assertj:assertj-core:3.13.2'
+  implementation 'io.javalin:javalin:2.8+'
+
+  implementation project(':support:javalin:common')
+  implementation project(':support:ok:moshi')
+  implementation project(':support:ok:okhttp')
+  implementation project(':support:testing')
 
   processor 'org.projectlombok:lombok:1.18.8'
 
   /*
-  testCompile project(':support:testing')
-  testCompile 'org.assertj:assertj-core:3.13.2'
-  testCompile 'com.google.guava:guava:27.0.1-jre'
+  testImplementation project(':support:testing')
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'com.google.guava:guava:27.0.1-jre'
   */
 }
 

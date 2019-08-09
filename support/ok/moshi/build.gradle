@@ -4,13 +4,13 @@ plugins {
 }
 
 dependencies {
-  compile project(':support:testing')
-  compile 'com.squareup.moshi:moshi:1.8.0'
+  implementation project(':support:testing')
+  implementation 'com.squareup.moshi:moshi:1.8.0'
 
   /*
-  testCompile project(':support:testing')
-  testCompile 'org.assertj:assertj-core:3.13.2'
-  testCompile 'com.google.guava:guava:27.0.1-jre'
+  testImplementation project(':support:testing')
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'com.google.guava:guava:27.0.1-jre'
   */
 }
 

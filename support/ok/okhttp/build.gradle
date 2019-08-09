@@ -9,14 +9,14 @@ group = 'sparkles.support'
 dependencies {
   processor 'org.projectlombok:lombok:1.18.8'
 
-  compile 'com.squareup.okhttp3:okhttp:3.+'
-  compile 'com.squareup.okhttp3:logging-interceptor:3.+'
-  compile 'org.slf4j:slf4j-api:1.7.27'
+  implementation 'com.squareup.okhttp3:okhttp:3.+'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+  implementation 'org.slf4j:slf4j-api:1.7.27'
 
-  testCompile 'io.fabric8:mockwebserver:0.1.2'
-  testCompile 'junit:junit:4.+'
-  testCompile 'org.assertj:assertj-core:3.13.2'
-  testCompile 'org.slf4j:slf4j-simple:1.7.27'
+  testImplementation 'io.fabric8:mockwebserver:0.1.2'
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'org.slf4j:slf4j-simple:1.7.27'
 }
 
 testlogger {

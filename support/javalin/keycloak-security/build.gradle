@@ -7,11 +7,14 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  compile project(':support:javalin:common')
-  compile project(':support:javalin:jwt')
-  compile project(':support:keycloak')
+  implementation 'io.javalin:javalin:2.8+'
+  implementation 'com.squareup.retrofit2:retrofit:2.6.1'
 
-  testCompile project(':support:javalin:testing')
+  implementation project(':support:javalin:common')
+  implementation project(':support:javalin:jwt')
+  implementation project(':support:keycloak')
+
+  testImplementation project(':support:javalin:testing')
 }
 
 testlogger {

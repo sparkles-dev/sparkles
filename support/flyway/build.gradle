@@ -1,5 +1,5 @@
 apply plugin: 'java-library'
 
 dependencies {
-  compile 'org.flywaydb:flyway-core:5.0.7'
+  implementation 'org.flywaydb:flyway-core:5.0.7'
 }

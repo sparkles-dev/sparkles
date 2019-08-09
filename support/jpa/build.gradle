@@ -10,10 +10,12 @@ archivesBaseName = "${group}-${name}"
 dependencies {
   processor 'org.projectlombok:lombok:1.18.8'
 
-  compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
-  compile project(':support:common')
+  implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+  implementation project(':support:common')
 
-  testCompile project(':support:testing')
+  testImplementation project(':support:testing')
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
 }
 
 testlogger {

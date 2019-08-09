@@ -5,7 +5,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:1.0.0-alpha2'
+    classpath 'org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:1.0.1'
   }
 }
 
@@ -28,11 +28,11 @@ repositories {
 
 dependencies {
   // Required for generating JSR-303 annotations
-  compile 'javax.validation:validation-api:2.0.1.Final'
-  compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'
-  compile 'com.squareup.moshi:moshi:1.8.0'
+  implementation 'javax.validation:validation-api:2.0.1.Final'
+  implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'
+  implementation 'com.squareup.moshi:moshi:1.8.0'
 
-  testCompile 'junit:junit:4.+'
+  testImplementation 'junit:junit:4.+'
 }
 
 // Each configuration is set to the default value
@@ -55,7 +55,7 @@ jsonSchema2Pojo {
   source = files("schema") // files("${sourceSets.main.output.resourcesDir}/json")
 
   // Target directory for generated Java source files. The plugin will add this directory to the
-  // java source set so the compiler will find and compile the newly generated source files.
+  // java source set so the implementationr will find and implementation the newly generated source files.
   targetDirectory = file("${project.buildDir}/generated/")
 
   // Package name used for generated Java classes (for types where a fully qualified name has not
@@ -167,7 +167,7 @@ jsonSchema2Pojo {
   serializable = false
 
   // Whether to include getters/setters or to omit these accessor methods and create public fields instead.
-  includeAccessors = true
+  // includeAccessors = true
 
   // Whether to include getters or to omit these accessor methods and create public fields instead.
   includeGetters = false
