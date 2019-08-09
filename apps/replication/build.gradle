@@ -20,6 +20,7 @@ dependencies {
   implementation 'com.google.guava:guava:27.0.1-jre'
   implementation 'io.javalin:javalin:2.8+'
   implementation 'org.hsqldb:hsqldb:2.5.0'
+  implementation 'org.xerial:sqlite-jdbc:3.28.0'
   implementation 'org.hibernate:hibernate-core:5.4.4.Final'
   implementation 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'

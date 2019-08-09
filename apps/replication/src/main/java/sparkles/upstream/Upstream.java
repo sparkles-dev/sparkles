@@ -103,8 +103,8 @@ public class Upstream {
 
   private static DataSource createDataSource() {
     final JDBCDataSource ds = new JDBCDataSource();
-    ds.setUrl(Environment.value("JDBC_URL", "jdbc:hsqldb:mem:standalone"));
-    ds.setUser(Environment.value("JDBC_USER", "sa"));
+    ds.setUrl(Environment.value("JDBC_URL", "jdbc:sqlite:sqlite/sample.db")); // jdbc:sqlite:sample.db | "jdbc:sqlite::memory"
+    ds.setUser(Environment.value("JDBC_USER", ""));
     ds.setPassword(Environment.value("JDBC_PASSWORD", ""));
 
     return ds;
