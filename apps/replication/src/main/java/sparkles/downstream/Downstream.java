@@ -63,7 +63,7 @@ public class Downstream {
         String selfUrl = ctx.scheme() + "://" + ctx.host() + "/replication/notification";
         Subscription s = new Subscription()
           .notifyUrl(selfUrl)
-          .topic(ctx.queryParam("topic", "foobar"));
+          .topic(ctx.queryParam("topic", "*"));
 
         Response<Subscription> response = api.subscribe(s).execute();
 
