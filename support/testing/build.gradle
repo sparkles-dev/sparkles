@@ -9,5 +9,5 @@ dependencies {
   compile 'com.google.guava:guava:27.0.1-jre'
   compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'junit:junit:4.+'
-  compile 'org.assertj:assertj-core:3.13.1'
+  compile 'org.assertj:assertj-core:3.13.2'
 }
