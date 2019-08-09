@@ -11,7 +11,7 @@ dependencies {
 
   compile 'com.squareup.okhttp3:okhttp:3.+'
   compile 'com.squareup.okhttp3:logging-interceptor:3.+'
-  compile 'org.slf4j:slf4j-api:1.7.26'
+  compile 'org.slf4j:slf4j-api:1.7.27'
 
   testCompile 'io.fabric8:mockwebserver:0.1.2'
   testCompile 'junit:junit:4.+'
