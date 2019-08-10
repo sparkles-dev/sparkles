@@ -14,7 +14,7 @@ dependencies {
   implementation 'com.squareup.retrofit2:retrofit:2.6.1'
   implementation 'com.squareup.retrofit2:converter-jackson:2.6.1'
   implementation 'org.slf4j:slf4j-api:1.7.28'
-  implementation 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
 
   testImplementation project(':support:testing')
   testImplementation 'io.fabric8:mockwebserver:0.1.2'
