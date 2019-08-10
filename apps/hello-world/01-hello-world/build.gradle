@@ -13,7 +13,7 @@ dependencies {
   // 3rd party
   implementation 'com.sparkjava:spark-core:2.9.1'
   implementation 'org.slf4j:slf4j-api:1.7.28'
-  implementation 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
   // testing
   testImplementation group: 'junit', name: 'junit', version: '4.+'
 }

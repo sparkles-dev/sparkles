@@ -21,7 +21,7 @@ dependencies {
   implementation 'io.jsonwebtoken:jjwt:0.9.1'
   implementation 'org.hsqldb:hsqldb:2.5.0'
   implementation 'org.slf4j:slf4j-api:1.7.28'
-  implementation 'org.slf4j:slf4j-simple:1.7.27'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   implementation 'org.hibernate:hibernate-core:5.4.4.Final'
   implementation 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
