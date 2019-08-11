@@ -71,6 +71,8 @@ public class EntityCrudHandlerTest {
     final Response response = testClient
       .get("/stuff")
       .send();
+
+    @SuppressWarnings("unchecked")
     final List<FooEntity> responseEntities = testClient.jsonResponse(List.class);
     assertThat(response.code()).isEqualTo(200);
     assertThat(responseEntities.size()).isGreaterThan(2);
