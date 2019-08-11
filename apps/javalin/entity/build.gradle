@@ -34,8 +34,8 @@ dependencies {
   implementation project(':support:javalin:api')
   implementation project(':support:javalin:flyway')
   implementation project(':support:javalin:jwt')
-  implementation project(':support:javalin:keycloak-security')
-  implementation project(':support:javalin:spring-data')
+  implementation project(':support:javalin:keycloak')
+  implementation project(':support:javalin:springdata')
 
   // apt
   processor 'org.projectlombok:lombok:1.18.8'

@@ -5,7 +5,7 @@ import io.javalin.security.Role;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.javalin.flyway.FlywayExtension;
-import sparkles.support.javalin.spring.data.SpringDataExtension;
+import sparkles.support.javalin.springdata.SpringDataExtension;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -17,7 +17,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import sparkles.support.javalin.spring.data.auditing.AuditingEntityListener;
+import sparkles.support.javalin.springdata.auditing.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)

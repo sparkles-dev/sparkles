@@ -12,3 +12,7 @@ dependencies {
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
 }
+
+testlogger {
+  theme 'mocha'
+}

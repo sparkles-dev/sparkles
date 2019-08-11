@@ -6,13 +6,13 @@ import java.util.UUID;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import sparkles.support.javalin.BaseApp;
-import sparkles.support.javalin.keycloak.security.KeycloakRoles;
-import sparkles.support.javalin.spring.data.auditing.Auditing;
+import sparkles.support.javalin.keycloak.KeycloakRoles;
+import sparkles.support.javalin.springdata.auditing.Auditing;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
 import static sparkles.support.javalin.BaseApp.requires;
-import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
-import static sparkles.support.javalin.spring.data.crud.CrudRepositoryHandler.crudHandler;
+import static sparkles.support.javalin.springdata.SpringDataExtension.springData;
+import static sparkles.support.javalin.springdata.crud.CrudRepositoryHandler.crudHandler;
 
 @Slf4j
 public class FooApi implements Extension {
