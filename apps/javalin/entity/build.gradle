@@ -57,12 +57,7 @@ docker {
 }
 
 run.doFirst {
-  mkdir('tmp/sqlite')
   environment 'ENVIRONMENT', 'develop'
-}
-
-test.doFirst {
-  mkdir('tmp/sqlite')
 }
 
 testlogger {

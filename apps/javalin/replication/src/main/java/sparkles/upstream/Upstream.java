@@ -1,6 +1,6 @@
 package sparkles.upstream;
 
-import org.hsqldb.jdbc.JDBCDataSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,8 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.common.Environment;
-import sparkles.support.javalin.BaseApp;
+import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.spring.data.SpringData;
+import sparkles.support.javalin.spring.data.SpringDataExtension;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
 import sparkles.support.replication.Subscription;
@@ -30,11 +31,9 @@ public class Upstream {
     final DataSource dataSource = createDataSource();
     final OkHttpClient okHttpClient = new OkHttpClient();
 
-    return BaseApp.customize("upstream")
-      .dataSource(dataSource)
-      .flywayScriptPath("persistence/migrations")
-      .hibernateProperties(createHibernateProperties(dataSource))
-      .create()
+    return Javalin.create()
+      .register(FlywayExtension.create(dataSource, "persistence/migrations"))
+      .register(SpringDataExtension.create("upstream", createHibernateProperties(dataSource)))
       .get("/replication/subscription/:id", (ctx) -> {
         String id = ctx.pathParam("id");
         String since = ctx.queryParam("since", "");
@@ -100,9 +99,10 @@ public class Upstream {
   }
 
   private static DataSource createDataSource() {
-    final JDBCDataSource ds = new JDBCDataSource();
-    ds.setUrl(Environment.value("JDBC_URL", "jdbc:sqlite:sqlite/sample.db")); // jdbc:sqlite:sample.db | "jdbc:sqlite::memory"
-    ds.setUser(Environment.value("JDBC_USER", ""));
+    final DriverManagerDataSource ds = new DriverManagerDataSource();
+    ds.setDriverClassName(Environment.value("JDBC_DRIVER", "org.sqlite.JDBC"));
+    ds.setUrl(Environment.value("JDBC_URL", "jdbc:sqlite:tmp/sqlite/upstream.db"));
+    ds.setUsername(Environment.value("JDBC_USER", ""));
     ds.setPassword(Environment.value("JDBC_PASSWORD", ""));
 
     return ds;
@@ -115,7 +115,7 @@ public class Upstream {
       .put("hibernate.show_sql", Environment.isDevelop())
       .put("hibernate.format_sql", false)
       .put("hibernate.hbm2ddl.auto", "validate")
-      .put("hibernate.dialect", Environment.value("HIBERNATE_DIALECT", "org.hibernate.dialect.HSQLDialect"))
+      .put("hibernate.dialect", Environment.value("HIBERNATE_DIALECT", "org.hibernate.dialect.SQLiteDialect"))
       .build();
   }
 
