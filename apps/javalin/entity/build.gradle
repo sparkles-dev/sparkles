@@ -30,7 +30,7 @@ dependencies {
   // project
   implementation project(':support:common:util')
   implementation project(':support:common:flyway')
-  implementation project(':support:javalin:common')
+  implementation project(':support:javalin:api')
   implementation project(':support:javalin:flyway')
   implementation project(':support:javalin:jwt')
   implementation project(':support:javalin:keycloak-security')

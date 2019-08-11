@@ -7,11 +7,9 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  implementation project(':support:javalin:common')
-
+  implementation 'com.google.guava:guava:27.0.1-jre'
   implementation 'io.javalin:javalin:2.8+'
   implementation 'io.jsonwebtoken:jjwt:0.9.1'
-  implementation 'com.google.guava:guava:27.0.1-jre'
 
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'

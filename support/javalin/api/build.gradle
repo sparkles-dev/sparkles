@@ -7,12 +7,16 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  implementation 'io.javalin:javalin:2.8+'
+  api project(':support:javalin:flyway')
+  api project(':support:javalin:jwt')
+  api project(':support:javalin:keycloak-security')
+  api project(':support:javalin:spring-data')
+  api 'io.javalin:javalin:2.8+'
 
+  testImplementation project(':support:javalin:testing')
   testImplementation 'com.squareup.okhttp3:okhttp:3.+'
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
-  testImplementation project(':support:javalin:testing')
 }
 
 testlogger {
