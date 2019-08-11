@@ -19,7 +19,3 @@ allprojects {
     mavenCentral()
   }
 }
-
-docker {
-  name 'hello-world'
-}

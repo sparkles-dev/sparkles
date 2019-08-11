@@ -17,7 +17,7 @@ jobs:
           command: ./gradlew test || ./gradlew test --info --scan
           name: Tests
       - run:
-          command: ./gradlew docker
+          command: ./gradlew apps:javalin:entity:docker apps:javalin:replication:docker
           name: Build Docker Images
       - save_cache:
           key: sparkles-gradle-002-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
