@@ -8,8 +8,6 @@ jobs:
       - image: gradle:4.10.3-jdk8
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - restore_cache:
           key: sparkles-gradle-002-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
       - run:
@@ -18,9 +16,6 @@ jobs:
       - run:
           command: ./gradlew test || ./gradlew test --info --scan
           name: Tests
-      - run:
-          command: ./gradlew apps:javalin:entity:docker apps:javalin:replication:docker
-          name: Build Docker Images
       - save_cache:
           key: sparkles-gradle-002-{{ checksum "build.gradle" }}-{{ checksum "settings.gradle" }}
           paths:
