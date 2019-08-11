@@ -18,7 +18,7 @@ import sparkles.support.testing.TestApp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static spark.Spark.get;
-import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequest;
+import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequests;
 
 @RunWith(SparkTestRunner.class)
 public class JwtTests {
@@ -38,7 +38,7 @@ public class JwtTests {
           Charset.forName("UTF-8"));
 
         // Enable jwt support
-        filterAuthenticatedRequest(new SimplePublicKeyProvider(publicKey));
+        filterAuthenticatedRequests(new SimplePublicKeyProvider(publicKey));
       } catch (IOException e) {
         throw new RuntimeException("Public Key for JWT support not readable. Initialization failed.", e);
       }
