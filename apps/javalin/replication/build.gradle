@@ -48,10 +48,10 @@ dependencies {
 }
 
 docker {
-  name 'sparkles/upstream'
-  dockerfile file('../../tools/docker/gradle-app/Dockerfile')
+  name 'sparkles/replication'
+  dockerfile file("${rootDir}/tools/docker/gradle-app/Dockerfile")
   files tasks.distZip.outputs
-  buildArgs([bin: 'stuff', zip: tasks.distZip.archiveName])
+  buildArgs([bin: 'replication', zip: tasks.distZip.archiveName])
   pull true
 }
 
