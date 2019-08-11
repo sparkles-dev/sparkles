@@ -1,4 +1,4 @@
-package sparkles.support.javalin.keycloak.security;
+package sparkles.support.javalin.keycloak;
 
 import io.javalin.security.Role;
 

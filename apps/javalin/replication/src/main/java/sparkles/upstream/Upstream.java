@@ -15,13 +15,13 @@ import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.flyway.FlywayExtension;
-import sparkles.support.javalin.spring.data.SpringData;
-import sparkles.support.javalin.spring.data.SpringDataExtension;
+import sparkles.support.javalin.springdata.SpringData;
+import sparkles.support.javalin.springdata.SpringDataExtension;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
 import sparkles.support.replication.Subscription;
 
-import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
+import static sparkles.support.javalin.springdata.SpringDataExtension.springData;
 
 @Slf4j
 public class Upstream {

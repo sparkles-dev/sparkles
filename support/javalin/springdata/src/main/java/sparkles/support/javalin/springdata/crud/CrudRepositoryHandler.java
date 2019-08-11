@@ -1,4 +1,4 @@
-package sparkles.support.javalin.spring.data.crud;
+package sparkles.support.javalin.springdata.crud;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 import io.javalin.Context;
 import io.javalin.apibuilder.CrudHandler;
-import sparkles.support.javalin.spring.data.SpringData;
+import sparkles.support.javalin.springdata.SpringData;
 
 public abstract class CrudRepositoryHandler<R extends CrudRepository<T, ID>, T, ID> implements CrudHandler {
   private static final Logger log = LoggerFactory.getLogger(CrudRepositoryHandler.class);

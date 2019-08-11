@@ -1,4 +1,4 @@
-package sparkles.support.javalin.spring.data;
+package sparkles.support.javalin.springdata;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
@@ -17,8 +17,10 @@ import io.javalin.Javalin;
 import io.javalin.JavalinEvent;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 public class SpringDataExtension implements Extension {
 
   private final Supplier<EntityManagerFactory> entityManagerFactory;
@@ -27,7 +29,9 @@ public class SpringDataExtension implements Extension {
   public void registerOnJavalin(Javalin app) {
 
     app.event(JavalinEvent.SERVER_STARTING, () -> {
+        log.debug("Creating EntityManagerFactory for JPA/Hibernate...");
         app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
+        log.info("Created EntityManagarFactory.");
       })
       .before(ctx -> {
         // EntityManagerFactory is application scoped
@@ -52,7 +56,9 @@ public class SpringDataExtension implements Extension {
         entityManager.close();
       })
       .event(JavalinEvent.SERVER_STOPPING, () -> {
+        log.debug("Closing EntityManagerFactory...");
         app.attribute(EntityManagerFactory.class).close();
+        log.info("Closed EntityManagarFactory.");
       });
 
   }

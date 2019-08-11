@@ -6,9 +6,9 @@ import sparkles.entity.FooApi;
 
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.BaseApp;
-import sparkles.support.javalin.keycloak.security.KeycloakAccessManager;
-import sparkles.support.javalin.keycloak.security.KeycloakRoles;
-import sparkles.support.javalin.spring.data.auditing.AuditingExtension;
+import sparkles.support.javalin.keycloak.KeycloakAccessManager;
+import sparkles.support.javalin.keycloak.KeycloakRoles;
+import sparkles.support.javalin.springdata.auditing.AuditingExtension;
 
 public class EntityApp {
 

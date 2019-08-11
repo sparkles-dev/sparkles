@@ -1,4 +1,4 @@
-package sparkles.support.javalin.spring.data;
+package sparkles.support.javalin.springdata;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.repository.Repository;
