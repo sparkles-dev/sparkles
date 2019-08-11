@@ -14,6 +14,9 @@ import javax.sql.DataSource;
 
 import io.javalin.Javalin;
 
+import sparkles.entity.FooEntity;
+import sparkles.entity.FooRepository;
+
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
@@ -28,15 +31,15 @@ import static sparkles.support.javalin.security.Security.requires;
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 import static sparkles.support.javalin.spring.data.crud.CrudRepositoryHandler.crudHandler;
 
-public class StuffApp {
+public class EntityApp {
   static {
     System.setProperty(org.slf4j.impl.SimpleLogger.LOG_KEY_PREFIX + "sparkles", Environment.logLevel());
   }
 
-  private static final Logger LOG = LoggerFactory.getLogger(StuffApp.class);
+  private static final Logger LOG = LoggerFactory.getLogger(EntityApp.class);
 
   public static void main(String[] args) {
-    new StuffApp().init().start();
+    new EntityApp().init().start();
   }
 
   public Javalin init() {
@@ -60,10 +63,10 @@ public class StuffApp {
         }
       ))
       .get("/", (ctx) -> {
-        StuffRepository repository = springData(ctx).createRepository(StuffRepository.class);
+        FooRepository repository = springData(ctx).createRepository(FooRepository.class);
 
-        List<StuffEntity> stuffs = repository.findAll();
-        for (StuffEntity stuff : stuffs) {
+        List<FooEntity> stuffs = repository.findAll();
+        for (FooEntity stuff : stuffs) {
           LOG.info("stuff is {} // {}", stuff.createdAt, stuff.createdBy);
         }
 
@@ -73,18 +76,18 @@ public class StuffApp {
         Object auditor = Auditing.getStrategy().resolveCurrentContext().getCurrentAuditor().get();
         LOG.info("Current auditor is {}", auditor);
 
-        StuffEntity e = new StuffEntity().withName("foobararar").addKind(StuffEntity.Kind.FOO);
+        FooEntity e = new FooEntity().withName("foobararar").addKind(FooEntity.Kind.FOO);
         if (Math.random() < 0.5) {
-          e.addKind(StuffEntity.Kind.FOOBAR);
+          e.addKind(FooEntity.Kind.FOOBAR);
         }
 
-        StuffRepository repository = springData(ctx).createRepository(StuffRepository.class);
-        StuffEntity entity = repository.save(e);
+        FooRepository repository = springData(ctx).createRepository(FooRepository.class);
+        FooEntity entity = repository.save(e);
 
         ctx.json(entity).status(201);
       })
       .routes(() -> {
-        crud("stuff/:id", crudHandler(StuffRepository.class, StuffEntity.class, UUID::fromString));
+        crud("stuff/:id", crudHandler(FooRepository.class, FooEntity.class, UUID::fromString));
       });
   }
 

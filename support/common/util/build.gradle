@@ -3,12 +3,12 @@ plugins {
   id 'com.adarshr.test-logger'
 }
 
-group = 'sparkles.support'
+group = 'sparkles.support.common'
+archivesBaseName = "${group}-${name}"
 
 dependencies {
   implementation 'com.google.guava:guava:27.0.1-jre'
 
-  testImplementation project(':support:testing')
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
 }

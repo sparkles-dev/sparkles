@@ -15,6 +15,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+  // project
+  implementation project(':support:common:util')
+  implementation project(':support:javalin:common')
+  implementation project(':support:javalin:spring-data')
+  implementation project(':support:javalin:flyway')
+  implementation project(':support:features:replication')
+
   // 3rd party
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
   implementation 'com.google.guava:guava:27.0.1-jre'
@@ -35,12 +42,7 @@ dependencies {
 
   // apt
   processor 'org.projectlombok:lombok:1.18.8'
-  // project
-  implementation project(':support:common')
-  implementation project(':support:javalin:common')
-  implementation project(':support:javalin:spring-data')
-  implementation project(':support:javalin:flyway')
-  implementation project(':support:replication')
+
   // testing
   testImplementation project(':support:javalin:testing')
 }

@@ -4,16 +4,16 @@ plugins {
   id 'org.inferred.processors'
 }
 
-group = 'sparkles.support'
+group = 'sparkles.support.common'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  processor 'org.projectlombok:lombok:1.18.8'
+  implementation project(':support:common:util')
 
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
-  implementation project(':support:common')
 
-  testImplementation project(':support:testing')
+  processor 'org.projectlombok:lombok:1.18.8'
+
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
 }

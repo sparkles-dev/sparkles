@@ -11,6 +11,6 @@ dependencies {
   implementation 'io.javalin:javalin:2.8+'
   implementation 'org.slf4j:slf4j-api:1.7.28'
 
-  implementation project(':support:flyway')
+  implementation project(':support:common:flyway')
   implementation project(':support:javalin:common')
 }

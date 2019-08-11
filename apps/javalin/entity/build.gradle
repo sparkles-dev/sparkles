@@ -28,13 +28,13 @@ dependencies {
   implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
 
   // project
-  implementation project(':support:common')
+  implementation project(':support:common:util')
+  implementation project(':support:common:flyway')
   implementation project(':support:javalin:common')
   implementation project(':support:javalin:flyway')
   implementation project(':support:javalin:jwt')
   implementation project(':support:javalin:keycloak-security')
   implementation project(':support:javalin:spring-data')
-  implementation project(':support:flyway')
 
   // testing
   testImplementation project(':support:javalin:testing')

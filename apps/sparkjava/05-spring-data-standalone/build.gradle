@@ -14,6 +14,11 @@ run.doFirst {
 }
 
 dependencies {
+  // project
+  implementation project(':support:common:flyway')
+  implementation project(':support:spark:moshi')
+  implementation project(':support:spark:spring-data')
+
   // 3rd party
   implementation 'com.google.guava:guava:27.0.1-jre'
   implementation 'com.sparkjava:spark-core:2.9.1'
@@ -27,11 +32,6 @@ dependencies {
   implementation 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
   implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
   implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
-
-  // project
-  implementation project(':support:flyway')
-  implementation project(':support:spark:moshi')
-  implementation project(':support:spark:spring-data')
 
   // testing
   testImplementation 'junit:junit:4.+'

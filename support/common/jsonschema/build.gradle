@@ -3,6 +3,9 @@ plugins {
   id 'com.adarshr.test-logger'
 }
 
+group = 'sparkles.support.common'
+archivesBaseName = "${group}-${name}"
+
 dependencies {
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
   implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'

@@ -21,7 +21,7 @@ import sparkles.support.javalin.spring.data.auditing.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class StuffEntity {
+public class FooEntity {
 
   @Id
   @GeneratedValue(generator = "UUID")
@@ -47,7 +47,7 @@ public class StuffEntity {
   @Convert(converter = KindsConverter.class)
   private List<Kind> kinds = new ArrayList<>();
 
-  public StuffEntity withName(String name) {
+  public FooEntity withName(String name) {
     this.name = name;
 
     return this;
@@ -57,7 +57,7 @@ public class StuffEntity {
     return new ArrayList<>(kinds);
   }
 
-  public StuffEntity addKind(Kind kind) {
+  public FooEntity addKind(Kind kind) {
     if (!kinds.contains(kind)) {
       kinds.add(kind);
     }
@@ -65,7 +65,7 @@ public class StuffEntity {
     return this;
   }
 
-  public StuffEntity setKinds(List<Kind> kinds) {
+  public FooEntity setKinds(List<Kind> kinds) {
     this.kinds = new ArrayList<>(kinds);
 
     return this;
