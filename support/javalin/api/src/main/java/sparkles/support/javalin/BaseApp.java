@@ -114,7 +114,7 @@ public final class BaseApp {
     private static DataSource createDataSource(String databaseName) {
       final DriverManagerDataSource ds = new DriverManagerDataSource();
       ds.setDriverClassName(Environment.value("JDBC_DRIVER", "org.sqlite.JDBC"));
-      ds.setUrl(Environment.value("JDBC_URL", "jdbc:sqlite:sqlite/" + databaseName + ".db"));
+      ds.setUrl(Environment.value("JDBC_URL", "jdbc:sqlite:tmp/sqlite/" + databaseName + ".db"));
       ds.setUsername(Environment.value("JDBC_USER", ""));
       ds.setPassword(Environment.value("JDBC_PASSWORD", ""));
 
