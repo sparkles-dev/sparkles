@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.common.Environment;
-import sparkles.support.javalin.JavalinApp;
+import sparkles.support.javalin.BaseApp;
 import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.spring.data.SpringData;
 import sparkles.support.javalin.spring.data.SpringDataExtension;
@@ -33,7 +33,7 @@ public class Upstream {
     final DataSource dataSource = createDataSource();
     final OkHttpClient okHttpClient = new OkHttpClient();
 
-    return JavalinApp.create()
+    return BaseApp.create()
       .register(FlywayExtension.create(() -> dataSource, "persistence/migrations"))
       .register(SpringDataExtension.create(() -> Persistence.createEntityManagerFactory(
         "replicator", createHibernateProperties(dataSource))))

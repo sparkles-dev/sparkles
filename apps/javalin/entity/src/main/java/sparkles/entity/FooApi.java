@@ -5,12 +5,12 @@ import io.javalin.Javalin;
 import java.util.UUID;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import sparkles.support.javalin.JavalinApp;
+import sparkles.support.javalin.BaseApp;
 import sparkles.support.javalin.keycloak.security.KeycloakRoles;
 import sparkles.support.javalin.spring.data.auditing.Auditing;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
-import static sparkles.support.javalin.JavalinApp.requires;
+import static sparkles.support.javalin.BaseApp.requires;
 import static sparkles.support.javalin.spring.data.SpringDataExtension.springData;
 import static sparkles.support.javalin.spring.data.crud.CrudRepositoryHandler.crudHandler;
 

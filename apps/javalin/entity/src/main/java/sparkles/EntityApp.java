@@ -5,7 +5,7 @@ import io.javalin.Javalin;
 import sparkles.entity.FooApi;
 
 import sparkles.support.common.Environment;
-import sparkles.support.javalin.JavalinApp;
+import sparkles.support.javalin.BaseApp;
 import sparkles.support.javalin.keycloak.security.KeycloakAccessManager;
 import sparkles.support.javalin.keycloak.security.KeycloakRoles;
 import sparkles.support.javalin.spring.data.auditing.AuditingExtension;
@@ -18,7 +18,7 @@ public class EntityApp {
 
   public Javalin init() {
 
-    return JavalinApp.create("stuff")
+    return BaseApp.create("stuff")
       .register(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";

@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-public class JavalinApp {
+public class BaseApp {
   static {
     System.setProperty(org.slf4j.impl.SimpleLogger.LOG_KEY_PREFIX + "sparkles", Environment.logLevel());
   }

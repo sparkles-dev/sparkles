@@ -9,7 +9,6 @@ import okhttp3.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import sparkles.support.javalin.JavalinApp;
 import sparkles.support.javalin.testing.JavalinTestRunner;
 import sparkles.support.javalin.testing.TestApp;
 import sparkles.support.javalin.testing.TestClient;
@@ -25,7 +24,7 @@ public class XsrfExtensionTest {
 
   @TestApp
   public Javalin create() {
-    return JavalinApp.create()
+    return Javalin.create()
       .register(XsrfExtension.create())
       .get("/", ctx -> ctx.result("Hello world"))
       .post("/", ctx -> ctx.status(201));
