@@ -4,6 +4,7 @@ plugins {
   id 'com.adarshr.test-logger'
   id 'com.palantir.git-version'
   id 'com.palantir.docker'
+  id 'org.inferred.processors'
 }
 
 group = 'sparkles'
@@ -35,6 +36,9 @@ dependencies {
   implementation project(':support:javalin:jwt')
   implementation project(':support:javalin:keycloak-security')
   implementation project(':support:javalin:spring-data')
+
+  // apt
+  processor 'org.projectlombok:lombok:1.18.8'
 
   // testing
   testImplementation project(':support:javalin:testing')

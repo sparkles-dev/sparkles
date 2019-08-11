@@ -15,14 +15,14 @@ import sparkles.support.javalin.testing.TestClient;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JavalinTestRunner.class)
-public class StuffTest {
+public class EntityTest {
 
   @TestClient
   public HttpClient testClient;
 
   @TestApp
   public Javalin setUpTestApp() {
-    return new StuffApp().init();
+    return new EntityApp().init();
   }
 
   @Test

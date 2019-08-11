@@ -4,10 +4,16 @@ public enum Environment {
   PRODUCTION,
   DEVELOP;
 
-  public static String value(String name, String defaultValue) {
-    final String systemValue = System.getProperty(name, System.getenv(name));
+  private static String value(String name) {
+    return System.getProperty(name, System.getenv(name));
+  }
 
-    return systemValue != null ? systemValue : defaultValue;
+  public static boolean hasValue(String name) {
+    return value(name) != null;
+  }
+
+  public static String value(String name, String defaultValue) {
+    return hasValue(name) ? value(name) : defaultValue;
   }
 
   public static Environment environment() {
@@ -30,7 +36,11 @@ public enum Environment {
   }
 
   public static String logLevel() {
-    return environment() == DEVELOP ? "debug" : "info";
+    if (hasValue("LOG_LEVEL")) {
+      return value("LOG_LEVEL");
+    } else {
+      return environment() == DEVELOP ? "debug" : "info";
+    }
   }
 
 }

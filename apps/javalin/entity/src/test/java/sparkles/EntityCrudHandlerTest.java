@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 import io.javalin.Javalin;
+
 import okhttp3.Response;
+
+import sparkles.entity.FooEntity;
 import sparkles.support.javalin.testing.HttpClient;
 import sparkles.support.javalin.testing.JavalinTestRunner;
 import sparkles.support.javalin.testing.TestApp;
@@ -16,14 +19,14 @@ import sparkles.support.javalin.testing.TestClient;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JavalinTestRunner.class)
-public class StuffCrudHandlerTest {
+public class EntityCrudHandlerTest {
 
   @TestClient
   public HttpClient testClient;
 
   @TestApp
   public Javalin setUpTestApp() {
-    return new StuffApp().init();
+    return new EntityApp().init();
   }
 
   @Test
@@ -34,7 +37,7 @@ public class StuffCrudHandlerTest {
       .send();
 
     assertThat(response.code()).isEqualTo(200);
-    assertThat(testClient.jsonResponse(StuffEntity.class).id).isNotNull();
+    assertThat(testClient.jsonResponse(FooEntity.class).id).isNotNull();
   }
 
   @Test
@@ -43,12 +46,12 @@ public class StuffCrudHandlerTest {
       .post("/stuff")
       .json("{ \"name\": \"foo\" }")
       .send();
-    UUID createdId = testClient.jsonResponse(StuffEntity.class).id;
+    UUID createdId = testClient.jsonResponse(FooEntity.class).id;
 
     final Response response = testClient
       .get("/stuff/" + createdId.toString())
       .send();
-    final StuffEntity responseEntity = testClient.jsonResponse(StuffEntity.class);
+    final FooEntity responseEntity = testClient.jsonResponse(FooEntity.class);
     assertThat(response.code()).isEqualTo(200);
     assertThat(responseEntity.id).isEqualTo(createdId);
     assertThat(responseEntity.name).isEqualTo("foo");
@@ -68,7 +71,7 @@ public class StuffCrudHandlerTest {
     final Response response = testClient
       .get("/stuff")
       .send();
-    final List<StuffEntity> responseEntities = testClient.jsonResponse(List.class);
+    final List<FooEntity> responseEntities = testClient.jsonResponse(List.class);
     assertThat(response.code()).isEqualTo(200);
     assertThat(responseEntities.size()).isGreaterThan(2);
   }
