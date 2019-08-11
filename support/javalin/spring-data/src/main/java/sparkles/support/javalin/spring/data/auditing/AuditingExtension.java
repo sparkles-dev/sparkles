@@ -17,8 +17,10 @@ public class AuditingExtension<T> implements Extension {
     app.before((ctx) -> {
         T currentAuditor = resolver.resolve(ctx);
 
-        Auditing.getStrategy().resolveCurrentContext().clearCurrentAuditor();
-        Auditing.getStrategy().resolveCurrentContext().setCurrentAuditor(currentAuditor);
+        @SuppressWarnings("unchecked")
+        final AuditingContext<T> audit = (AuditingContext<T>) Auditing.getStrategy().resolveCurrentContext();
+        audit.clearCurrentAuditor();
+        audit.setCurrentAuditor(currentAuditor);
 
       })
       .after((ctx) -> {
@@ -30,7 +32,7 @@ public class AuditingExtension<T> implements Extension {
   }
 
   public static <T> AuditingExtension<T> create(AuditorResolver<T> resolver) {
-    return new AuditingExtension(resolver);
+    return new AuditingExtension<T>(resolver);
   }
 
 }

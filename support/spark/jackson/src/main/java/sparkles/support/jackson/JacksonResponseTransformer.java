@@ -2,8 +2,6 @@ package sparkles.support.jackson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Arrays;
-import java.util.List;
 import spark.ResponseTransformer;
 
 public class JacksonResponseTransformer<T> implements ResponseTransformer  {
@@ -28,7 +26,7 @@ public class JacksonResponseTransformer<T> implements ResponseTransformer  {
   }
 
   public static <T> JacksonResponseTransformer<T> jacksonTransformer(ObjectMapper om) {
-    return new JacksonResponseTransformer(om);
+    return new JacksonResponseTransformer<T>(om);
   }
 
 }

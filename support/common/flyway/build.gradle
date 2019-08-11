@@ -1,0 +1,8 @@
+apply plugin: 'java-library'
+
+group = 'sparkles.support.common'
+archivesBaseName = "${group}-${name}"
+
+dependencies {
+  implementation 'org.flywaydb:flyway-core:5.0.7'
+}

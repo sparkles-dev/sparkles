@@ -8,6 +8,8 @@ import java.util.function.Supplier;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.sql.DataSource;
 
 import io.javalin.Context;
 import io.javalin.Extension;
@@ -57,6 +59,10 @@ public class SpringDataExtension implements Extension {
 
   public static SpringDataExtension create(Supplier<EntityManagerFactory> entityManagerFactory) {
     return new SpringDataExtension(entityManagerFactory);
+  }
+
+  public static SpringDataExtension create(String persistenceUnitName, Map<String, Object> hibernateProperties) {
+    return create(() -> Persistence.createEntityManagerFactory(persistenceUnitName, hibernateProperties));
   }
 
   public static SpringDataContext springData(Context ctx) {

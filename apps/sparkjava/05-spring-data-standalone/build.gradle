@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = 'sparkles'
+version = '1.0-SNAPSHOT'
+description = 'Examples for Spark Java Microframework'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'sparkles.SparklesApp'
+
+run.doFirst {
+  environment 'ENVIRONMENT', 'develop'
+}
+
+dependencies {
+  // project
+  implementation project(':support:common:flyway')
+  implementation project(':support:spark:moshi')
+  implementation project(':support:spark:spring-data')
+
+  // 3rd party
+  implementation 'com.google.guava:guava:27.0.1-jre'
+  implementation 'com.sparkjava:spark-core:2.9.1'
+  implementation 'com.squareup.moshi:moshi:1.8.0'
+  implementation 'io.jsonwebtoken:jjwt:0.9.1'
+  implementation 'org.hsqldb:hsqldb:2.5.0'
+  implementation 'org.slf4j:slf4j-api:1.7.28'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
+  implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+  implementation 'org.hibernate:hibernate-core:5.4.4.Final'
+  implementation 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
+  implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
+
+  // testing
+  testImplementation 'junit:junit:4.+'
+}

@@ -16,7 +16,6 @@ dependencies {
   implementation 'org.slf4j:slf4j-api:1.7.28'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
 
-  testImplementation project(':support:testing')
   testImplementation 'io.fabric8:mockwebserver:0.1.2'
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'

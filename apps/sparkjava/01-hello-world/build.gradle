@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = 'sparkles'
+version = '1.0-SNAPSHOT'
+description = 'Examples for Spark Java Microframework'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'sparkles.SparklesApp'
+
+dependencies {
+  // 3rd party
+  implementation 'com.sparkjava:spark-core:2.9.1'
+  implementation 'org.slf4j:slf4j-api:1.7.28'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
+  // testing
+  testImplementation 'junit:junit:4.+'
+}

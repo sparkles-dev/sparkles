@@ -1,0 +1,24 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles.support.common'
+archivesBaseName = "${group}-${name}"
+
+dependencies {
+  implementation project(':support:common:util')
+
+  implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+
+  processor 'org.projectlombok:lombok:1.18.8'
+
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}

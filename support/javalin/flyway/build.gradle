@@ -1,16 +1,18 @@
 plugins {
   id 'java-library'
   id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
 }
 
 group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  implementation 'org.flywaydb:flyway-core:5.0.7'
   implementation 'io.javalin:javalin:2.8+'
+  implementation 'org.flywaydb:flyway-core:5.0.7'
   implementation 'org.slf4j:slf4j-api:1.7.28'
 
-  implementation project(':support:flyway')
-  implementation project(':support:javalin:common')
+  // apt
+  processor 'org.projectlombok:lombok:1.18.8'
+
 }

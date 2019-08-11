@@ -1,0 +1,60 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.palantir.git-version'
+  id 'com.palantir.docker'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles'
+version = gitVersion()
+description = 'Demonstrates data upstream using HTTP pub/sub'
+
+mainClassName = 'sparkles.ReplicationDemo'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+  // project
+  implementation project(':support:common:util')
+  implementation project(':support:javalin:api')
+  implementation project(':support:javalin:spring-data')
+  implementation project(':support:javalin:flyway')
+  implementation project(':support:features:replication')
+
+  // 3rd party
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
+  implementation 'com.google.guava:guava:27.0.1-jre'
+  implementation 'io.javalin:javalin:2.8+'
+  implementation 'org.hsqldb:hsqldb:2.5.0'
+  implementation 'org.xerial:sqlite-jdbc:3.28.0'
+  implementation 'org.hibernate:hibernate-core:5.4.4.Final'
+  implementation 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
+  implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+  implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
+  implementation 'org.slf4j:slf4j-api:1.7.28'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
+  implementation 'com.squareup.okhttp3:okhttp:3.+'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+  implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+  implementation 'com.squareup.retrofit2:converter-moshi:2.6.1'
+
+  // apt
+  processor 'org.projectlombok:lombok:1.18.8'
+
+  // testing
+  testImplementation project(':support:javalin:testing')
+}
+
+docker {
+  name 'sparkles/upstream'
+  dockerfile file('../../tools/docker/gradle-app/Dockerfile')
+  files tasks.distZip.outputs
+  buildArgs([bin: 'stuff', zip: tasks.distZip.archiveName])
+  pull true
+}
+
+run.doFirst {
+  environment 'ENVIRONMENT', 'develop'
+}
