@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import sparkles.support.jwt.SimplePublicKeyProvider;
 
 import static spark.Spark.*;
-import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequest;
+import static sparkles.support.jwt.JwtSupport.filterAuthenticatedRequests;
 import static sparkles.support.moshi.MoshiResponseTransformer.moshiTransformer;
 
 public class SparklesApp {
@@ -15,7 +15,7 @@ public class SparklesApp {
   public static void main(String[] args) {
     try {
       String publicKey = Resources.toString(Resources.getResource("jwt/public.key"), Charset.forName("UTF-8"));
-      filterAuthenticatedRequest(new SimplePublicKeyProvider(publicKey));
+      filterAuthenticatedRequests(new SimplePublicKeyProvider(publicKey));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

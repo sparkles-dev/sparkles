@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.auditing.AuditingHandler;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.mapping.context.PersistentEntities;
-import spark.Request;
-import spark.Response;
 
 import static spark.Spark.before;
 import static spark.Spark.afterAfter;
@@ -38,8 +36,9 @@ public final class Auditing {
     enableAuditing(resolver, new AuditingHandler(new PersistentEntities(Collections.emptyList())), strategy);
   }
 
+  @SuppressWarnings("unchecked")
   public static <T> void enableAuditing(AuditorResolver<T> resolver, AuditingHandler handler, Strategy strategy) {
-    adapter = new AuditingAdapter(handler, resolver);
+    adapter = new AuditingAdapter<T>(handler, resolver);
     adapter.setStrategy(strategy);
 
     before((request, response) -> {
@@ -74,11 +73,11 @@ public final class Auditing {
 
     private void setStrategy(Strategy strategy) {
       if (strategy == Strategy.INHERITED_THREAD_LOCAL) {
-        aware = new InheritableThreadLocalStrategy();
+        aware = new InheritableThreadLocalStrategy<T>();
       } else if (strategy == Strategy.GLOBAL) {
-        aware = new GlobalStrategy();
+        aware = new GlobalStrategy<T>();
       } else if (strategy == Strategy.THREAD_LOCAL) {
-        aware = new ThreadLocalStrategy();
+        aware = new ThreadLocalStrategy<T>();
       } else {
         LOG.warn("No auditing strategy.");
       }

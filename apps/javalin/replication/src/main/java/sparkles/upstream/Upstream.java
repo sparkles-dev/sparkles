@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import io.javalin.Javalin;
@@ -16,9 +15,7 @@ import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.BaseApp;
-import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.spring.data.SpringData;
-import sparkles.support.javalin.spring.data.SpringDataExtension;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
 import sparkles.support.replication.Subscription;
@@ -33,17 +30,18 @@ public class Upstream {
     final DataSource dataSource = createDataSource();
     final OkHttpClient okHttpClient = new OkHttpClient();
 
-    return BaseApp.create()
-      .register(FlywayExtension.create(() -> dataSource, "persistence/migrations"))
-      .register(SpringDataExtension.create(() -> Persistence.createEntityManagerFactory(
-        "replicator", createHibernateProperties(dataSource))))
+    return BaseApp.customize("upstream")
+      .dataSource(dataSource)
+      .flywayScriptPath("persistence/migrations")
+      .hibernateProperties(createHibernateProperties(dataSource))
+      .create()
       .get("/replication/subscription/:id", (ctx) -> {
         String id = ctx.pathParam("id");
         String since = ctx.queryParam("since", "");
 
         ctx.status(200);
         if ("".equals(since)) {
-          ctx.result("Here are all the results in the world.");
+          ctx.result("For subscription " + id + ": here are all the results in the world.");
         } else {
           ctx.result("Here are your results since " + since);
         }

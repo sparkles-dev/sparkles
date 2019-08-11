@@ -18,7 +18,7 @@ public class EntityApp {
 
   public Javalin init() {
 
-    return BaseApp.create("stuff")
+    return BaseApp.build("entity")
       .register(AuditingExtension.create((ctx) -> {
         // TODO: resolve auditor from request context
         return "foo";

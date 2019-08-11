@@ -11,6 +11,6 @@ public final class CollectionUtil {
   }
 
   public static <K, V> MapBuilder<K, V> newMap() {
-    return new MapBuilder();
+    return new MapBuilder<K, V>();
   }
 }

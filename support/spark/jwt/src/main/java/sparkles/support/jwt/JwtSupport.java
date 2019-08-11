@@ -1,26 +1,18 @@
 package sparkles.support.jwt;
 
 import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
 
 import static spark.Spark.before;
-import static spark.Spark.exception;
 import static spark.Spark.halt;
 
 public class JwtSupport {
-
-  /** @deprecated */
-  public static void filterAuthenticatedRequest(PublicKeyProvider provider) {
-    filterAuthenticatedRequests(provider);
-  }
 
   public static void filterAuthenticatedRequests(PublicKeyProvider provider) {
 

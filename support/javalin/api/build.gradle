@@ -1,6 +1,7 @@
 plugins {
   id 'java-library'
   id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
 }
 
 group = 'sparkles.support.javalin'
@@ -15,6 +16,12 @@ dependencies {
   api 'io.javalin:javalin:2.8+'
   api 'org.slf4j:slf4j-api:1.7.28'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
+  implementation 'org.xerial:sqlite-jdbc:3.28.0'
+  implementation 'com.github.gwenn:sqlite-dialect:0.1.0'
+  implementation 'org.springframework:spring-jdbc:5.1.9.RELEASE'
+
+  // apt
+  processor 'org.projectlombok:lombok:1.18.8'
 
   testImplementation project(':support:javalin:testing')
   testImplementation 'com.squareup.okhttp3:okhttp:3.+'

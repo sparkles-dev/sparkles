@@ -9,8 +9,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import sparkles.support.common.functional.ThrowingFunction;
-import sparkles.support.javalin.BaseApp;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
 import sparkles.support.replication.Subscription;
@@ -21,7 +19,7 @@ public class Downstream {
 
   public Javalin init() {
 
-    return BaseApp.create()
+    return Javalin.create()
       .attribute(OkHttpClient.class, new OkHttpClient())
       .post("/replication/notification", (ctx) -> {
         final Notification notification = ctx.bodyAsClass(Notification.class);
