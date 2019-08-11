@@ -2,5 +2,5 @@
 set -e
 
 node_modules/.bin/standard-version \
-  --message "release: cut release for version %s" \
+  --releaseCommitMessageFormat "release: cut release for version {{currentTag}}" \
   --prerelease mosella
