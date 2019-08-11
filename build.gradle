@@ -6,13 +6,6 @@ plugins {
   id 'org.inferred.processors' version '2.2.0'
 }
 
-allprojects  {
-  repositories {
-    jcenter()
-    mavenCentral()
-  }
-}
-
 allprojects {
   version = gitVersion()
 
@@ -20,4 +13,13 @@ allprojects {
     termsOfServiceUrl = 'https://gradle.com/terms-of-service'
     termsOfServiceAgree = 'yes'
   }
+
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+}
+
+docker {
+  name 'hello-world'
 }
