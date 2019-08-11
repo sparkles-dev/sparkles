@@ -1,6 +1,40 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.1.0-mosella.1](https://github.com/sparkles-dev/sparkles/compare/v0.1.0-mosella.0...v0.1.0-mosella.1) (2019-08-11)
+
+
+### Bug Fixes
+
+* experiment w/ sqlite instead of hsql ([#475](https://github.com/sparkles-dev/sparkles/issues/475)) ([c7e612f](https://github.com/sparkles-dev/sparkles/commit/c7e612f))
+* migrate code base to ng 8 ([b6fb845](https://github.com/sparkles-dev/sparkles/commit/b6fb845))
+* update angular cli and core dependencies ([#451](https://github.com/sparkles-dev/sparkles/issues/451)) ([78c36ec](https://github.com/sparkles-dev/sparkles/commit/78c36ec))
+* update angular cli and core to latest 8.x versions ([#415](https://github.com/sparkles-dev/sparkles/issues/415)) ([52715b7](https://github.com/sparkles-dev/sparkles/commit/52715b7))
+* update angular cli to 8.0.6, angular core to 8.1.0-rc.0 and nrwl to 8.2.0 ([#410](https://github.com/sparkles-dev/sparkles/issues/410)) ([72eaff5](https://github.com/sparkles-dev/sparkles/commit/72eaff5))
+* update angular monorepo ([#428](https://github.com/sparkles-dev/sparkles/issues/428)) ([61460ad](https://github.com/sparkles-dev/sparkles/commit/61460ad))
+* update angular monorepo to v8.1.0-next.3 ([#401](https://github.com/sparkles-dev/sparkles/issues/401)) ([f77f834](https://github.com/sparkles-dev/sparkles/commit/f77f834))
+* update angular monorepo to v8.2.0-next.1 ([#421](https://github.com/sparkles-dev/sparkles/issues/421)) ([c81c053](https://github.com/sparkles-dev/sparkles/commit/c81c053))
+* update angular monorepo to v9.0.0-next.1 ([#472](https://github.com/sparkles-dev/sparkles/issues/472)) ([e0806ac](https://github.com/sparkles-dev/sparkles/commit/e0806ac))
+* update dependency @angular/cdk to v8 ([#378](https://github.com/sparkles-dev/sparkles/issues/378)) ([c47fd51](https://github.com/sparkles-dev/sparkles/commit/c47fd51))
+* update dependency rxjs-compat to v6.5.2 ([#322](https://github.com/sparkles-dev/sparkles/issues/322)) ([32b34b6](https://github.com/sparkles-dev/sparkles/commit/32b34b6))
+* update javalin to latest version 2.8 ([#331](https://github.com/sparkles-dev/sparkles/issues/331)) ([182ecc5](https://github.com/sparkles-dev/sparkles/commit/182ecc5))
+* update ngrx monorepo to v8 ([#393](https://github.com/sparkles-dev/sparkles/issues/393)) ([6550b80](https://github.com/sparkles-dev/sparkles/commit/6550b80))
+* update ngrx monorepo to v8.1.0 ([#418](https://github.com/sparkles-dev/sparkles/issues/418)) ([42c3c54](https://github.com/sparkles-dev/sparkles/commit/42c3c54))
+* update ngrx monorepo to v8.2.0 ([#454](https://github.com/sparkles-dev/sparkles/issues/454)) ([4f64292](https://github.com/sparkles-dev/sparkles/commit/4f64292))
+* update nrwl monorepo to 7.8.6 and angular monorepo to 7.2.15 ([#371](https://github.com/sparkles-dev/sparkles/issues/371)) ([b5ef2de](https://github.com/sparkles-dev/sparkles/commit/b5ef2de))
+* update nrwl monorepo to v8.4.2 ([#447](https://github.com/sparkles-dev/sparkles/issues/447)) ([9fe91fc](https://github.com/sparkles-dev/sparkles/commit/9fe91fc))
+* update nrwl monorepo to v8.4.3 ([#455](https://github.com/sparkles-dev/sparkles/issues/455)) ([5ef2ed6](https://github.com/sparkles-dev/sparkles/commit/5ef2ed6))
+* update nrwl monorepo to v8.4.6 ([#466](https://github.com/sparkles-dev/sparkles/issues/466)) ([e13a035](https://github.com/sparkles-dev/sparkles/commit/e13a035))
+* update nrwl workspace and nrwl dependencies to 8.1.2 ([#402](https://github.com/sparkles-dev/sparkles/issues/402)) ([833c221](https://github.com/sparkles-dev/sparkles/commit/833c221))
+* update to nx v8 ([3402cce](https://github.com/sparkles-dev/sparkles/commit/3402cce))
+
+
+### Features
+
+* add googlemaps development app ([#355](https://github.com/sparkles-dev/sparkles/issues/355)) ([5006111](https://github.com/sparkles-dev/sparkles/commit/5006111))
+* add webcomponents demo w/ and w/o embedding external dependencies ([#333](https://github.com/sparkles-dev/sparkles/issues/333)) ([db0f978](https://github.com/sparkles-dev/sparkles/commit/db0f978))
+* **components:** add utilities for hammer events, content children, fullscreen api and dom outlets ([#332](https://github.com/sparkles-dev/sparkles/issues/332)) ([8211864](https://github.com/sparkles-dev/sparkles/commit/8211864))
 
 # 0.1.0-mosella.0 (2019-05-01)
 
