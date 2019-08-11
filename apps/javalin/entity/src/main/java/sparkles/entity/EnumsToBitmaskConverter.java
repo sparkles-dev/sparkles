@@ -1,4 +1,4 @@
-package sparkles;
+package sparkles.entity;
 
 import java.util.Collections;
 import java.util.List;

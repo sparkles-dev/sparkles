@@ -8,9 +8,9 @@ plugins {
 
 group = 'sparkles'
 version = gitVersion()
-description = 'A stuffing application that does stuff'
+description = 'An entity framework for Javalin'
 
-mainClassName = 'sparkles.StuffApp'
+mainClassName = 'sparkles.EntityApp'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

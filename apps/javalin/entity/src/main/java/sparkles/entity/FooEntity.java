@@ -1,4 +1,4 @@
-package sparkles;
+package sparkles.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
@@ -18,7 +18,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import sparkles.support.javalin.spring.data.auditing.AuditingEntityListener;
-
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
