@@ -121,7 +121,8 @@
     "tslib": "^1.10.0",
     "tslint": "~5.18.0",
     "typescript": "~3.5.3",
-    "verdaccio": "^4.0.0-alpha.6"
+    "verdaccio": "^4.0.0-alpha.6",
+    "@nrwl/node": "8.4.6"
   },
   "husky": {
     "hooks": {

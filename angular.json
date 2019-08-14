@@ -935,11 +935,11 @@
     "packageManager": "yarn"
   },
   "schematics": {
-    "@nrwl/schematics:library": {
+    "@nrwl/angular:library": {
       "unitTestRunner": "jest",
       "framework": "angular"
     },
-    "@nrwl/schematics:application": {
+    "@nrwl/angular:application": {
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
