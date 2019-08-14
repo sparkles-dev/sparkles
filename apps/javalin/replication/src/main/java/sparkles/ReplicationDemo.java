@@ -6,8 +6,8 @@ import sparkles.upstream.Upstream;
 public class ReplicationDemo {
 
   public static void main(String[] args) {
-    new Upstream().init().port(7000).start();
-    new Downstream().init().port(7001).start();
+    new Upstream().init().start(7000);
+    new Downstream().init().start(7001);
   }
 
 }

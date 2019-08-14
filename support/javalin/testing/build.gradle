@@ -14,7 +14,7 @@ dependencies {
   implementation 'com.squareup.moshi:moshi:1.8.0'
   implementation 'com.squareup.okhttp3:okhttp:3.+'
   implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
-  implementation 'io.javalin:javalin:2.8+'
+  implementation 'io.javalin:javalin:3.+'
   implementation 'junit:junit:4.+'
   implementation 'org.assertj:assertj-core:3.13.2'
 

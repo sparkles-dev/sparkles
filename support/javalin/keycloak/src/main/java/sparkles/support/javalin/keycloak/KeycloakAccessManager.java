@@ -1,8 +1,8 @@
 package sparkles.support.javalin.keycloak;
 
+import io.javalin.core.security.AccessManager;
 import sparkles.support.javalin.jwt.JwtAccessManager;
 import sparkles.support.javalin.jwt.RoleProvider;
-import io.javalin.security.AccessManager;
 
 public class KeycloakAccessManager extends JwtAccessManager {
 

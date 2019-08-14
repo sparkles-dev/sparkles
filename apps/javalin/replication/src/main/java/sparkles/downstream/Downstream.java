@@ -69,5 +69,6 @@ public class Downstream {
         ctx.header("X-Subscription-Url", response.headers().get("Location"));
         ctx.status(200);
       });
+
   }
 }

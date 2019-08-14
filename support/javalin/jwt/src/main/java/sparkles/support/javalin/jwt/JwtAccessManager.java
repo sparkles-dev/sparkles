@@ -6,10 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Set;
 
-import io.javalin.Context;
-import io.javalin.Handler;
-import io.javalin.security.AccessManager;
-import io.javalin.security.Role;
+import io.javalin.core.security.AccessManager;
+import io.javalin.core.security.Role;
+import io.javalin.http.Context;
+import io.javalin.http.Handler;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;

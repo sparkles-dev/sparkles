@@ -13,7 +13,7 @@ dependencies {
   api project(':support:javalin:jwt')
   api project(':support:javalin:keycloak')
   api project(':support:javalin:springdata')
-  api 'io.javalin:javalin:2.8+'
+  api 'io.javalin:javalin:3.+'
   api 'org.slf4j:slf4j-api:1.7.28'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
   implementation 'org.xerial:sqlite-jdbc:3.28.0'

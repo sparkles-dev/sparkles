@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.sql.DataSource;
-
 import io.javalin.Javalin;
+
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
@@ -31,9 +31,11 @@ public class Upstream {
     final DataSource dataSource = createDataSource();
     final OkHttpClient okHttpClient = new OkHttpClient();
 
-    return Javalin.create()
-      .register(FlywayExtension.create(dataSource, "persistence/migrations"))
-      .register(SpringDataExtension.create("upstream", createHibernateProperties(dataSource)))
+    return Javalin
+      .create(cfg -> {
+        cfg.registerPlugin(FlywayExtension.create(dataSource, "persistence/migrations"));
+        cfg.registerPlugin(SpringDataExtension.create("upstream", createHibernateProperties(dataSource)));
+      })
       .get("/replication/subscription/:id", (ctx) -> {
         String id = ctx.pathParam("id");
         String since = ctx.queryParam("since", "");
@@ -96,6 +98,7 @@ public class Upstream {
 
         ctx.status(200);
       });
+
   }
 
   private static DataSource createDataSource() {

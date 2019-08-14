@@ -1,14 +1,15 @@
 package sparkles.support.javalin.security;
 
+import io.javalin.http.Context;
+import io.javalin.http.Handler;
+import io.javalin.http.UnauthorizedResponse;
+
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.Predicate;
 
-import io.javalin.Context;
-import io.javalin.Handler;
-import io.javalin.UnauthorizedResponse;
 
 public class XsrfFilter implements Handler {
 

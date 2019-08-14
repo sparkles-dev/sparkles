@@ -1,6 +1,6 @@
 package sparkles.support.javalin.springdata.auditing;
 
-import io.javalin.Context;
+import io.javalin.http.Context;
 
 /**
  * Maps a request, response-pair to the current auditor.

@@ -8,7 +8,7 @@ archivesBaseName = "${group}-${name}"
 
 dependencies {
   implementation 'com.google.guava:guava:27.0.1-jre'
-  implementation 'io.javalin:javalin:2.8+'
+  implementation 'io.javalin:javalin:3.+'
   implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
   testImplementation 'junit:junit:4.+'
