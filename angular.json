@@ -1051,7 +1051,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/common/pptr-api/jest.config.js",
-            "tsConfig": "apps/common/pptr-api/tsconfig.spec.json"
+            "tsConfig": "apps/common/pptr-api/tsconfig.spec.json",
+            "setupFile": "apps/common/pptr-api/src/test-setup.ts"
           }
         }
       }
