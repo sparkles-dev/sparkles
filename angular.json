@@ -21,14 +21,18 @@
               "apps/sparkles/src/favicon.ico",
               "apps/sparkles/src/assets"
             ],
-            "styles": ["apps/sparkles/src/styles.main.scss"],
+            "styles": [
+              "apps/sparkles/src/styles.main.scss"
+            ],
             "scripts": [
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["packages/styles/dist"]
+              "includePaths": [
+                "packages/styles/dist"
+              ]
             }
           },
           "configurations": {
@@ -82,7 +86,10 @@
               "apps/sparkles/tsconfig.app.json",
               "apps/sparkles/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/sparkles/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sparkles/**"
+            ]
           }
         },
         "test": {
@@ -118,7 +125,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/sparkles-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/sparkles-e2e/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sparkles-e2e/**"
+            ]
           }
         }
       }
@@ -147,7 +157,10 @@
               "libs/domain/tsconfig.lib.json",
               "libs/domain/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/domain/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/domain/**"
+            ]
           }
         }
       }
@@ -173,7 +186,10 @@
               "libs/forms/tsconfig.lib.json",
               "libs/forms/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/forms/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/forms/**"
+            ]
           }
         }
       }
@@ -191,7 +207,10 @@
               "libs/shared/tsconfig.lib.json",
               "libs/shared/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/**"
+            ]
           }
         },
         "test": {
@@ -224,7 +243,10 @@
               "packages/components/tsconfig.lib.json",
               "packages/components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!packages/components/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!packages/components/**"
+            ]
           }
         },
         "test": {
@@ -268,7 +290,10 @@
               "libs/reframed/tsconfig.lib.json",
               "libs/reframed/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/reframed/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/reframed/**"
+            ]
           }
         },
         "test": {
@@ -299,7 +324,9 @@
               "apps/reframed/ping/src/favicon.ico",
               "apps/reframed/ping/src/assets"
             ],
-            "styles": ["apps/reframed/ping/src/styles.scss"],
+            "styles": [
+              "apps/reframed/ping/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -354,7 +381,10 @@
               "apps/reframed/ping/tsconfig.app.json",
               "apps/reframed/ping/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/reframed/ping/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/reframed/ping/**"
+            ]
           }
         },
         "test": {
@@ -388,7 +418,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/reframed/ping-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/reframed/ping-e2e/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/reframed/ping-e2e/**"
+            ]
           }
         }
       }
@@ -411,7 +444,9 @@
               "apps/reframed/pong/src/favicon.ico",
               "apps/reframed/pong/src/assets"
             ],
-            "styles": ["apps/reframed/pong/src/styles.scss"],
+            "styles": [
+              "apps/reframed/pong/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -466,7 +501,10 @@
               "apps/reframed/pong/tsconfig.app.json",
               "apps/reframed/pong/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/reframed/pong/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/reframed/pong/**"
+            ]
           }
         },
         "test": {
@@ -500,7 +538,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/reframed/pong-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/reframed/pong-e2e/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/reframed/pong-e2e/**"
+            ]
           }
         }
       }
@@ -518,7 +559,10 @@
               "libs/testing/tsconfig.lib.json",
               "libs/testing/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/testing/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/testing/**"
+            ]
           }
         },
         "test": {
@@ -544,7 +588,10 @@
               "libs/demos/app/tsconfig.lib.json",
               "libs/demos/app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/demos/app/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/demos/app/**"
+            ]
           }
         },
         "test": {
@@ -580,7 +627,9 @@
               "apps/webcomponents/demo-element/src/favicon.ico",
               "apps/webcomponents/demo-element/src/assets"
             ],
-            "styles": ["apps/webcomponents/demo-element/src/styles.scss"],
+            "styles": [
+              "apps/webcomponents/demo-element/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -637,7 +686,10 @@
               "apps/webcomponents/demo-element/tsconfig.app.json",
               "apps/webcomponents/demo-element/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/webcomponents/demo-element/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/webcomponents/demo-element/**"
+            ]
           }
         },
         "test": {
@@ -672,7 +724,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/webcomponents/demo-element-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/webcomponents/demo-element-e2e/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/webcomponents/demo-element-e2e/**"
+            ]
           }
         }
       }
@@ -700,7 +755,9 @@
               "apps/webcomponents/ng-app/src/favicon.ico",
               "apps/webcomponents/ng-app/src/assets"
             ],
-            "styles": ["apps/webcomponents/ng-app/src/styles.scss"],
+            "styles": [
+              "apps/webcomponents/ng-app/src/styles.scss"
+            ],
             "scripts": [
               "node_modules/core-js/client/core.min.js",
               "node_modules/zone.js/dist/zone.min.js",
@@ -767,7 +824,10 @@
               "apps/webcomponents/ng-app/tsconfig.app.json",
               "apps/webcomponents/ng-app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/webcomponents/ng-app/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/webcomponents/ng-app/**"
+            ]
           }
         },
         "test": {
@@ -802,7 +862,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/webcomponents/ng-app-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/webcomponents/ng-app-e2e/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/webcomponents/ng-app-e2e/**"
+            ]
           }
         }
       }
@@ -830,7 +893,9 @@
               "apps/rivers/rivers/src/favicon.ico",
               "apps/rivers/rivers/src/assets"
             ],
-            "styles": ["apps/rivers/rivers/src/styles.scss"],
+            "styles": [
+              "apps/rivers/rivers/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -885,7 +950,10 @@
               "apps/rivers/rivers/tsconfig.app.json",
               "apps/rivers/rivers/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/rivers/rivers/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/rivers/rivers/**"
+            ]
           }
         },
         "test": {
@@ -920,7 +988,71 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/rivers/rivers-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/rivers/rivers-e2e/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/rivers/rivers-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "common-pptr-api": {
+      "root": "apps/common/pptr-api",
+      "sourceRoot": "apps/common/pptr-api/src",
+      "projectType": "application",
+      "prefix": "common-pptr-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/common/pptr-api",
+            "main": "apps/common/pptr-api/src/main.ts",
+            "tsConfig": "apps/common/pptr-api/tsconfig.app.json",
+            "assets": [
+              "apps/common/pptr-api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/common/pptr-api/src/environments/environment.ts",
+                  "with": "apps/common/pptr-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "common-pptr-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "tslint",
+            "tsConfig": [
+              "apps/common/pptr-api/tsconfig.app.json",
+              "apps/common/pptr-api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/common/pptr-api/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/common/pptr-api/jest.config.js",
+            "tsConfig": "apps/common/pptr-api/tsconfig.spec.json",
+            "setupFile": "apps/common/pptr-api/src/test-setup.ts"
           }
         }
       }
@@ -935,11 +1067,11 @@
     "packageManager": "yarn"
   },
   "schematics": {
-    "@nrwl/schematics:library": {
+    "@nrwl/angular:library": {
       "unitTestRunner": "jest",
       "framework": "angular"
     },
-    "@nrwl/schematics:application": {
+    "@nrwl/angular:application": {
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },

@@ -6,7 +6,9 @@
     },
     "sparkles": {
       "tags": [],
-      "implicitDependencies": ["styles"]
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "sparkles-e2e": {
       "tags": []
@@ -19,7 +21,9 @@
     },
     "components": {
       "tags": [],
-      "implicitDependencies": ["styles"]
+      "implicitDependencies": [
+        "styles"
+      ]
     },
     "styles": {
       "tags": []
@@ -28,13 +32,17 @@
       "tags": []
     },
     "reframed-ping": {
-      "tags": ["reframed"]
+      "tags": [
+        "reframed"
+      ]
     },
     "reframed-ping-e2e": {
       "tags": []
     },
     "reframed-pong": {
-      "tags": ["reframed"]
+      "tags": [
+        "reframed"
+      ]
     },
     "reframed-pong-e2e": {
       "tags": []
@@ -61,6 +69,9 @@
       "tags": []
     },
     "rivers-rivers-e2e": {
+      "tags": []
+    },
+    "common-pptr-api": {
       "tags": []
     }
   },
