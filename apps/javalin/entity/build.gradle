@@ -48,19 +48,6 @@ dependencies {
   testImplementation 'org.assertj:assertj-core:3.13.2'
 }
 
-processResources {
-
-  with copySpec {
-    from 'src/main/filteredResources'
-    filter(ReplaceTokens, tokens: [
-      buildApp: 'momed',
-      buildVersion: gitVersion(),
-      buildTime: new Date().format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\''),
-      gradleVersion: gradle.gradleVersion
-    ])
-  }
-}
-
 docker {
   name 'sparkles/entity'
   dockerfile file("${rootDir}/tools/docker/gradle-app/Dockerfile")
