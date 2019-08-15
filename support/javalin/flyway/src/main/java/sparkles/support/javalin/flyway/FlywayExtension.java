@@ -29,15 +29,14 @@ public class FlywayExtension implements Plugin {
         app.attribute(DataSource.class, ds);
 
         log.debug("Running Flyway database migrations...");
-        Flyway flyway = new Flyway();
-        flyway.setDataSource(ds);
-        flyway.setBaselineOnMigrate(true);
-        flyway.setLocations(
-          String.format("classpath:%1$s", migrationScriptPath)
-        );
+        final int numMigrations = Flyway.configure()
+          .dataSource(ds)
+          .baselineOnMigrate(true)
+          .locations(String.format("classpath:%1$s", migrationScriptPath))
+          .load()
+          .migrate();
 
-        flyway.migrate();
-        log.info("Applied Flyway database migrations.");
+        log.info("Applied Flyway database migrations. Number of migrations: {}", numMigrations);
       });
     });
 
