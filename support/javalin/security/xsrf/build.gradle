@@ -1,0 +1,19 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles.support.javalin'
+archivesBaseName = "${group}-security-${name}"
+
+dependencies {
+  api 'io.javalin:javalin:3.+'
+
+  testImplementation project(':support:javalin:testing')
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}

@@ -2,10 +2,7 @@ package sparkles.support.javalin.springdata.auditing;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.auditing.AuditingHandler;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.util.Assert;
 
 /**
@@ -20,7 +17,6 @@ import org.springframework.util.Assert;
  * @link https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/auditing/AnnotationAuditingMetadata.java#L38-L47
  */
 public class AuditingEntityListener {
-  private static final Logger LOG = LoggerFactory.getLogger(AuditorAware.class);
 
   @PrePersist
   public void touchForCreate(Object target) {

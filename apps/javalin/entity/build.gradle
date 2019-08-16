@@ -35,8 +35,8 @@ dependencies {
   implementation project(':support:common:flyway')
   implementation project(':support:javalin:api')
   implementation project(':support:javalin:flyway')
-  implementation project(':support:javalin:jwt')
-  implementation project(':support:javalin:keycloak')
+  implementation project(':support:javalin:security:jwt')
+  implementation project(':support:javalin:security:keycloak')
   implementation project(':support:javalin:springdata')
 
   // apt

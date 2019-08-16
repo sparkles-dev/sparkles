@@ -1,7 +1,5 @@
 package sparkles.support.javalin.springdata.auditing;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.auditing.AuditingHandler;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.mapping.context.PersistentEntities;
@@ -10,7 +8,6 @@ import java.util.Collections;
 import java.util.Optional;
 
 public class AuditingContext<T> implements AuditorAware<T> {
-  private static final Logger LOG = LoggerFactory.getLogger(AuditingContext.class);
 
   private AuditingHandler handler;
   private T currentAuditor;

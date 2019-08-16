@@ -1,18 +1,19 @@
 package sparkles.support.javalin.springdata.crud;
 
+import io.javalin.apibuilder.CrudHandler;
 import io.javalin.http.Context;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 import java.util.function.Function;
 
-import io.javalin.apibuilder.CrudHandler;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.data.repository.CrudRepository;
+
 import sparkles.support.javalin.springdata.SpringData;
 
+@Slf4j
 public abstract class CrudRepositoryHandler<R extends CrudRepository<T, ID>, T, ID> implements CrudHandler {
-  private static final Logger log = LoggerFactory.getLogger(CrudRepositoryHandler.class);
 
   private final Class<R> repoClz;
   private final Class<T> entityClz;
