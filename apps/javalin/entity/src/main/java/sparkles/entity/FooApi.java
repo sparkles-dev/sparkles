@@ -43,10 +43,13 @@ public class FooApi implements Plugin {
       FooEntity entity = repository.save(e);
 
       ctx.json(entity).status(201);
-    })
-    .routes(() -> {
+    });
+
+    /* https://github.com/tipsy/javalin/issues/709#issuecomment-521722888
+    app.routes(() -> {
       crud("stuff/:id", crudHandler(FooRepository.class, FooEntity.class, UUID::fromString));
     });
+    */
 
   }
 }

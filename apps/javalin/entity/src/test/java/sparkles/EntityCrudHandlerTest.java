@@ -1,6 +1,7 @@
 package sparkles;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 import java.util.List;
@@ -18,7 +19,12 @@ import sparkles.support.javalin.testing.TestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * TODO: move to support package
+ * https://github.com/tipsy/javalin/issues/709#issuecomment-521722888
+ */
 @RunWith(JavalinTestRunner.class)
+@Ignore
 public class EntityCrudHandlerTest {
 
   @TestClient
