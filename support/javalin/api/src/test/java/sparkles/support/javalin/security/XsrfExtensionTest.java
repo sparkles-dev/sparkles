@@ -24,8 +24,9 @@ public class XsrfExtensionTest {
 
   @TestApp
   public Javalin create() {
-    return Javalin.create()
-      .register(XsrfExtension.create())
+    return Javalin.create(cfg -> {
+        cfg.registerPlugin(XsrfExtension.create());
+      })
       .get("/", ctx -> ctx.result("Hello world"))
       .post("/", ctx -> ctx.status(201));
   }
