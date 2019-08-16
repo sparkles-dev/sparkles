@@ -18,8 +18,8 @@ dependencies {
   // project
   implementation project(':support:common:util')
   implementation project(':support:javalin:api')
-  implementation project(':support:javalin:springdata')
-  implementation project(':support:javalin:flyway')
+  implementation project(':support:javalin:persistence:springdata')
+  implementation project(':support:javalin:persistence:flyway')
   implementation project(':support:features:replication')
 
   // 3rd party

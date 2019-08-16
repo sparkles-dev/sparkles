@@ -7,16 +7,16 @@ import org.springframework.data.mapping.context.PersistentEntities;
 import java.util.Collections;
 import java.util.Optional;
 
-public class AuditingContext<T> implements AuditorAware<T> {
+public class ContextAware<T> implements AuditorAware<T> {
 
   private AuditingHandler handler;
   private T currentAuditor;
 
-  protected AuditingContext() {
+  protected ContextAware() {
     this(new AuditingHandler(new PersistentEntities(Collections.emptyList())));
   }
 
-  protected AuditingContext(AuditingHandler handler) {
+  protected ContextAware(AuditingHandler handler) {
     this.handler = handler;
   }
 

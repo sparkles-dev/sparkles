@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
-public class SpringDataExtension implements Plugin {
+public class SpringDataPlugin implements Plugin {
 
   private final Supplier<EntityManagerFactory> entityManagerFactory;
 
@@ -66,11 +66,11 @@ public class SpringDataExtension implements Plugin {
 
   }
 
-  public static SpringDataExtension create(Supplier<EntityManagerFactory> entityManagerFactory) {
-    return new SpringDataExtension(entityManagerFactory);
+  public static SpringDataPlugin create(Supplier<EntityManagerFactory> entityManagerFactory) {
+    return new SpringDataPlugin(entityManagerFactory);
   }
 
-  public static SpringDataExtension create(String persistenceUnitName, Map<String, Object> hibernateProperties) {
+  public static SpringDataPlugin create(String persistenceUnitName, Map<String, Object> hibernateProperties) {
     return create(() -> Persistence.createEntityManagerFactory(persistenceUnitName, hibernateProperties));
   }
 

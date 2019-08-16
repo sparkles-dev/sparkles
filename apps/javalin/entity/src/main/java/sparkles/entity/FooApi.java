@@ -11,7 +11,7 @@ import sparkles.support.javalin.springdata.auditing.Auditing;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
 import static sparkles.support.javalin.BaseApp.requires;
-import static sparkles.support.javalin.springdata.SpringDataExtension.springData;
+import static sparkles.support.javalin.springdata.SpringDataPlugin.springData;
 
 @Slf4j
 public class FooApi implements Plugin {

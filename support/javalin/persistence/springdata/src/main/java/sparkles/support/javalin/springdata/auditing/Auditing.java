@@ -4,26 +4,26 @@ public final class Auditing {
   private static Strategy contextStrategy = Strategy.INHERITED_THREAD_LOCAL;
 
   interface ContextResolvingStrategy<T> {
-    AuditingContext<T> resolveCurrentContext();
+    ContextAware<T> resolveCurrentContext();
   }
 
   public enum Strategy implements ContextResolvingStrategy {
     GLOBAL {
-      private AuditingContext holder; // = new AuditingContext(new AuditingHandler());
+      private ContextAware holder; // = new ContextAware(new AuditingHandler());
 
       @Override
-      public AuditingContext resolveCurrentContext() {
+      public ContextAware resolveCurrentContext() {
         return holder;
       }
     },
     INHERITED_THREAD_LOCAL {
-      private final ThreadLocal<AuditingContext> holder = new InheritableThreadLocal<>();
+      private final ThreadLocal<ContextAware> holder = new InheritableThreadLocal<>();
 
       @Override
-      public AuditingContext resolveCurrentContext() {
-        AuditingContext ctx = holder.get();
+      public ContextAware resolveCurrentContext() {
+        ContextAware ctx = holder.get();
         if (ctx == null) {
-          ctx = new AuditingContext();
+          ctx = new ContextAware();
           holder.set(ctx);
         }
 
@@ -31,10 +31,10 @@ public final class Auditing {
       }
     },
     THREAD_LOCAL {
-      private final ThreadLocal<AuditingContext> holder = new ThreadLocal<>();
+      private final ThreadLocal<ContextAware> holder = new ThreadLocal<>();
 
       @Override
-      public AuditingContext resolveCurrentContext() {
+      public ContextAware resolveCurrentContext() {
         return holder.get();
       }
     };

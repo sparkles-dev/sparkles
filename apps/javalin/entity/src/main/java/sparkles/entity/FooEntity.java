@@ -17,10 +17,10 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import sparkles.support.javalin.springdata.auditing.AuditingEntityListener;
+import sparkles.support.javalin.springdata.auditing.EntityPersistenceListener;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(EntityPersistenceListener.class)
 public class FooEntity {
 
   @Id
