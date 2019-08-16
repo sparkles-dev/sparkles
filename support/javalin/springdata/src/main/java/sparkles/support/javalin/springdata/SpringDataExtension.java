@@ -1,5 +1,7 @@
 package sparkles.support.javalin.springdata;
 
+import io.javalin.core.plugin.Plugin;
+import io.javalin.http.Context;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
 import java.util.HashMap;
@@ -9,29 +11,35 @@ import java.util.function.Supplier;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.sql.DataSource;
 
-import io.javalin.Context;
-import io.javalin.Extension;
 import io.javalin.Javalin;
-import io.javalin.JavalinEvent;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
-public class SpringDataExtension implements Extension {
+public class SpringDataExtension implements Plugin {
 
   private final Supplier<EntityManagerFactory> entityManagerFactory;
 
   @Override
-  public void registerOnJavalin(Javalin app) {
+  public void apply(Javalin app) {
 
-    app.event(JavalinEvent.SERVER_STARTING, () -> {
-        log.debug("Creating EntityManagerFactory for JPA/Hibernate...");
-        app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
-        log.info("Created EntityManagarFactory.");
+    app
+      .events(evts -> {
+        evts.serverStarting(() -> {
+          log.debug("Creating EntityManagerFactory for JPA/Hibernate...");
+          app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
+          log.info("Created EntityManagarFactory.");
+
+        });
+
+        evts.serverStopping(() -> {
+          log.debug("Closing EntityManagerFactory...");
+          app.attribute(EntityManagerFactory.class).close();
+          log.info("Closed EntityManagarFactory.");
+        });
       })
       .before(ctx -> {
         // EntityManagerFactory is application scoped
@@ -54,11 +62,6 @@ public class SpringDataExtension implements Extension {
         // Commit and close transaction
         entityManager.getTransaction().commit();
         entityManager.close();
-      })
-      .event(JavalinEvent.SERVER_STOPPING, () -> {
-        log.debug("Closing EntityManagerFactory...");
-        app.attribute(EntityManagerFactory.class).close();
-        log.info("Closed EntityManagarFactory.");
       });
 
   }

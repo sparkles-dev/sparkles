@@ -1,12 +1,12 @@
 package sparkles.entity;
 
-import io.javalin.Extension;
 import io.javalin.Javalin;
 import java.util.UUID;
 import java.util.List;
+
+import io.javalin.core.plugin.Plugin;
 import lombok.extern.slf4j.Slf4j;
-import sparkles.support.javalin.BaseApp;
-import sparkles.support.javalin.keycloak.KeycloakRoles;
+import sparkles.support.javalin.jwt.JwtRoles;
 import sparkles.support.javalin.springdata.auditing.Auditing;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
@@ -15,10 +15,10 @@ import static sparkles.support.javalin.springdata.SpringDataExtension.springData
 import static sparkles.support.javalin.springdata.crud.CrudRepositoryHandler.crudHandler;
 
 @Slf4j
-public class FooApi implements Extension {
+public class FooApi implements Plugin {
 
   @Override
-  public void registerOnJavalin (Javalin app) {
+  public void apply (Javalin app) {
 
     app.get("/", (ctx) -> {
       FooRepository repository = springData(ctx).createRepository(FooRepository.class);
@@ -29,7 +29,7 @@ public class FooApi implements Extension {
       }
 
       ctx.result("count: " + stuffs.size());
-    }, requires(KeycloakRoles.ANYONE))
+    }, requires(JwtRoles.ANYONE))
     .post("/", (ctx) -> {
       Object auditor = Auditing.getStrategy().resolveCurrentContext().getCurrentAuditor().get();
       log.info("Current auditor is {}", auditor);
@@ -43,10 +43,13 @@ public class FooApi implements Extension {
       FooEntity entity = repository.save(e);
 
       ctx.json(entity).status(201);
-    })
-    .routes(() -> {
+    });
+
+    /* https://github.com/tipsy/javalin/issues/709#issuecomment-521722888
+    app.routes(() -> {
       crud("stuff/:id", crudHandler(FooRepository.class, FooEntity.class, UUID::fromString));
     });
+    */
 
   }
 }

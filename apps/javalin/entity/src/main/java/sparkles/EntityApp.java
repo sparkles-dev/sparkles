@@ -6,8 +6,8 @@ import sparkles.entity.FooApi;
 
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.BaseApp;
+import sparkles.support.javalin.jwt.JwtRoles;
 import sparkles.support.javalin.keycloak.KeycloakAccessManager;
-import sparkles.support.javalin.keycloak.KeycloakRoles;
 import sparkles.support.javalin.springdata.auditing.AuditingExtension;
 
 public class EntityApp {
@@ -18,20 +18,23 @@ public class EntityApp {
 
   public Javalin init() {
 
-    return BaseApp.build("entity")
-      .register(AuditingExtension.create((ctx) -> {
-        // TODO: resolve auditor from request context
-        return "foo";
-      }))
-      .accessManager(KeycloakAccessManager.create(
-        Environment.value("KEYCLOAK_URL",  "https://foobar"),
-        Environment.value("KEYCLOAK_REALM", "realm"),
-        (claims) -> {
-          // TODO: resolve role from keycloak stuff
-          return KeycloakRoles.ANYONE;
-        }
-      ))
-      .register(new FooApi());
+    AuditingExtension auditing = AuditingExtension.create((ctx) -> {
+      // TODO: resolve auditor from request context
+      return "foo";
+    });
+
+    return BaseApp.customize("entity")
+      .with(cfg -> {
+        cfg.accessManager(KeycloakAccessManager.create(
+          Environment.value("KEYCLOAK_URL",  "https://foobar"),
+          Environment.value("KEYCLOAK_REALM", "realm"),
+          (claims) -> {
+            // TODO: resolve role from keycloak stuff
+            return JwtRoles.ANYONE;
+          }
+        ));
+      })
+      .create(auditing, new FooApi());
 
   }
 

@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.*
+
 plugins {
   id 'java'
   id 'application'
@@ -18,7 +20,7 @@ targetCompatibility = 1.8
 dependencies {
   // 3rd party
   implementation 'com.google.guava:guava:27.0.1-jre'
-  implementation 'io.javalin:javalin:2.8+'
+  implementation 'io.javalin:javalin:3.+'
   implementation 'io.jsonwebtoken:jjwt:0.9.1'
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   implementation 'org.hibernate:hibernate-core:5.4.4.Final'
@@ -43,9 +45,22 @@ dependencies {
   // testing
   testImplementation project(':support:javalin:testing')
   testImplementation 'com.squareup.okhttp3:okhttp:3.+'
-  testImplementation 'io.javalin:javalin:2.8+'
+  testImplementation 'io.javalin:javalin:3.+'
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
+}
+
+processResources {
+
+  with copySpec {
+    from 'src/main/filteredResources'
+    filter(ReplaceTokens, tokens: [
+      buildApp: 'momed',
+      buildVersion: gitVersion(),
+      buildTime: new Date().format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\''),
+      gradleVersion: gradle.gradleVersion
+    ])
+  }
 }
 
 docker {

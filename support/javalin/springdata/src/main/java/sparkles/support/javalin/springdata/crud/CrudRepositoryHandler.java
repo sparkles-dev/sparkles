@@ -1,5 +1,6 @@
 package sparkles.support.javalin.springdata.crud;
 
+import io.javalin.http.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.CrudRepository;
@@ -7,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 import java.util.function.Function;
 
-import io.javalin.Context;
 import io.javalin.apibuilder.CrudHandler;
 import sparkles.support.javalin.springdata.SpringData;
 

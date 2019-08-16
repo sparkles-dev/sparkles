@@ -1,19 +1,20 @@
 package sparkles.support.javalin;
 
 import io.javalin.Javalin;
-import io.javalin.security.Role;
+import io.javalin.core.JavalinConfig;
+import io.javalin.core.plugin.Plugin;
+import io.javalin.core.security.Role;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.springdata.SpringDataExtension;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -24,19 +25,33 @@ public final class BaseApp {
   }
 
   private final String appName;
+  private Consumer<JavalinConfig> customizations;
 
   private BaseApp(String appName) {
     this.appName = appName;
   }
 
   /** Creates Javalin instance. */
-  public Javalin create() {
+  public Javalin create(Plugin... appPlugins) {
     final DataSource dataSource = DevOps.createDataSource(appName);
     final Map<String, Object> hibernateProperties = DevOps.createHibernateProperties(dataSource);
 
-    return Javalin.create()
-      .register(FlywayExtension.create(dataSource, DevOps.FLYWAY_SCRIPT_PATH))
-      .register(SpringDataExtension.create(appName, hibernateProperties));
+    return Javalin.create(cfg -> {
+      // Register base plugins
+      cfg.registerPlugin(FlywayExtension.create(dataSource, DevOps.FLYWAY_SCRIPT_PATH));
+      cfg.registerPlugin(SpringDataExtension.create(appName, hibernateProperties));
+
+      if (customizations != null) {
+        customizations.accept(cfg);
+      }
+
+      Arrays.stream(appPlugins).forEach(cfg::registerPlugin);
+    });
+  }
+
+  public BaseApp with(Consumer<JavalinConfig> customizations) {
+    this.customizations = customizations;
+    return this;
   }
 
   /**
@@ -55,8 +70,8 @@ public final class BaseApp {
    * @param appName
    * @return
    */
-  public static Javalin build(String appName) {
-    return customize(appName).create();
+  public static Javalin build(String appName, Plugin... appPlugin) {
+    return new BaseApp(appName).create(appPlugin);
   }
 
   /** Pre-configured defaults for a BaseApp. */
