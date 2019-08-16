@@ -32,7 +32,6 @@ public class SpringDataPlugin implements Plugin {
           log.debug("Creating EntityManagerFactory for JPA/Hibernate...");
           app.attribute(EntityManagerFactory.class, entityManagerFactory.get());
           log.info("Created EntityManagarFactory.");
-
         });
 
         evts.serverStopping(() -> {
