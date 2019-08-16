@@ -16,12 +16,12 @@ import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.flyway.FlywayExtension;
 import sparkles.support.javalin.springdata.SpringData;
-import sparkles.support.javalin.springdata.SpringDataExtension;
+import sparkles.support.javalin.springdata.SpringDataPlugin;
 import sparkles.support.replication.Notification;
 import sparkles.support.replication.ReplicationApi;
 import sparkles.support.replication.Subscription;
 
-import static sparkles.support.javalin.springdata.SpringDataExtension.springData;
+import static sparkles.support.javalin.springdata.SpringDataPlugin.springData;
 
 @Slf4j
 public class Upstream {
@@ -34,7 +34,7 @@ public class Upstream {
     return Javalin
       .create(cfg -> {
         cfg.registerPlugin(FlywayExtension.create(dataSource, "persistence/migrations"));
-        cfg.registerPlugin(SpringDataExtension.create("upstream", createHibernateProperties(dataSource)));
+        cfg.registerPlugin(SpringDataPlugin.create("upstream", createHibernateProperties(dataSource)));
       })
       .get("/replication/subscription/:id", (ctx) -> {
         String id = ctx.pathParam("id");

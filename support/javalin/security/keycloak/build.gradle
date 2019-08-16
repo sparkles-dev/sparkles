@@ -1,0 +1,26 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles.support.javalin'
+archivesBaseName = "${group}-security-${name}"
+
+dependencies {
+  api project(':support:common:keycloak')
+  api project(':support:javalin:security:jwt')
+  api 'com.google.guava:guava:27.0.1-jre'
+  api 'io.javalin:javalin:3.+'
+  api 'io.jsonwebtoken:jjwt:0.9.1'
+
+  implementation project(':support:ok:okhttp')
+  implementation project(':support:ok:retrofit')
+
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+}
+
+testlogger {
+  theme 'mocha'
+}

@@ -1,18 +1,17 @@
 package sparkles.entity;
 
 import io.javalin.Javalin;
-import java.util.UUID;
+
 import java.util.List;
 
 import io.javalin.core.plugin.Plugin;
 import lombok.extern.slf4j.Slf4j;
-import sparkles.support.javalin.jwt.JwtRoles;
+import sparkles.support.javalin.security.jwt.JwtRoles;
 import sparkles.support.javalin.springdata.auditing.Auditing;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
 import static sparkles.support.javalin.BaseApp.requires;
-import static sparkles.support.javalin.springdata.SpringDataExtension.springData;
-import static sparkles.support.javalin.springdata.crud.CrudRepositoryHandler.crudHandler;
+import static sparkles.support.javalin.springdata.SpringDataPlugin.springData;
 
 @Slf4j
 public class FooApi implements Plugin {

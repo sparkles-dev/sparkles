@@ -9,9 +9,9 @@ group = 'sparkles.support'
 dependencies {
   processor 'org.projectlombok:lombok:1.18.8'
 
-  implementation 'com.squareup.okhttp3:okhttp:3.+'
-  implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
-  implementation 'org.slf4j:slf4j-api:1.7.28'
+  api 'com.squareup.okhttp3:okhttp:3.+'
+  api 'com.squareup.okhttp3:logging-interceptor:3.+'
+  api 'org.slf4j:slf4j-api:1.7.28'
 
   testImplementation 'io.fabric8:mockwebserver:0.1.2'
   testImplementation 'junit:junit:4.+'

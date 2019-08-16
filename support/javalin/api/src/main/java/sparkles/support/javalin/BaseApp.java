@@ -7,7 +7,7 @@ import io.javalin.core.security.Role;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.javalin.flyway.FlywayExtension;
-import sparkles.support.javalin.springdata.SpringDataExtension;
+import sparkles.support.javalin.springdata.SpringDataPlugin;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -39,7 +39,7 @@ public final class BaseApp {
     return Javalin.create(cfg -> {
       // Register base plugins
       cfg.registerPlugin(FlywayExtension.create(dataSource, DevOps.FLYWAY_SCRIPT_PATH));
-      cfg.registerPlugin(SpringDataExtension.create(appName, hibernateProperties));
+      cfg.registerPlugin(SpringDataPlugin.create(appName, hibernateProperties));
 
       if (customizations != null) {
         customizations.accept(cfg);
