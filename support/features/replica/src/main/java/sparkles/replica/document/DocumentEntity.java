@@ -1,12 +1,9 @@
 package sparkles.replica.document;
 
+import com.google.common.base.Charsets;
 import java.util.UUID;
 import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Converter;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 

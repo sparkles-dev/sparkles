@@ -1,9 +1,11 @@
 package sparkles.replica.document;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.Query;
-import java.util.List;
+
 import java.util.UUID;
+
+import javax.persistence.EntityManager;
 
 public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> {
 
@@ -15,4 +17,17 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> 
   List<DocumentEntity> findAll(String collection);
   */
 
+  static boolean existsByIdAndCollection(UUID id, String collectionName, EntityManager em) {
+
+    try {
+      return em
+        .createNativeQuery("SELECT COUNT(d.id) FROM DocumentEntity d JOIN CollectionEntity c ON d.collection_id = c.id WHERE d.id =? and c.name =?")
+        .setParameter(1, id)
+        .setParameter(2, collectionName)
+        .getSingleResult() != null;
+    } catch (Exception e) {
+      LoggerFactory.getLogger(DocumentRepository.class).debug("Exception thrown", e);
+      return false;
+    }
+  }
 }

@@ -75,7 +75,7 @@ public class ReplicaTest {
   @Test
   public void collection_POST() {
     client.post("/collection")
-      .json("{\"name\":\"foo;CREATE TABLE other;;\"}")
+      .json("{\"name\":\"foo\"}")
       .send();
     assertThat(client.response().code()).isEqualTo(201);
     assertThat(client.response().header("Location")).isNotEmpty();
@@ -87,8 +87,12 @@ public class ReplicaTest {
       .json("{\"name\":\"John Doe\",\"age\":40 }")
       .send();
     assertThat(client.response().code()).isEqualTo(201);
-    assertThat(client.response.header("Location")).isEmpty();
-    assertThat(client.response().body()).isEmpty();
+    final String documentUrl = client.response().header("Location");
+    assertThat(documentUrl).startsWith("collection/foo/");
+    assertThat(client.responseBodyJson().getString("_id")).isNotEmpty();
+
+    client.head(documentUrl.substring(0, documentUrl.length() - 2)).send();
+    assertThat(client.response().code()).isEqualTo(204);
   }
 
 }
