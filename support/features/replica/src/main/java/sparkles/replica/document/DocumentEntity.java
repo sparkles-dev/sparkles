@@ -1,6 +1,7 @@
 package sparkles.replica.document;
 
 import com.google.common.base.Charsets;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
