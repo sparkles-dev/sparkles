@@ -41,6 +41,7 @@ public final class HttpClient {
   public HttpClient(OkHttpClient client, Request requestTemplate) {
     this.okHttp = client;
     this.requestTemplate = requestTemplate;
+    enableLogging(HttpLoggingInterceptor.Level.BASIC);
   }
 
   public void enableLogging() {
@@ -150,6 +151,14 @@ public final class HttpClient {
   }
 
   public Response lastResponse() {
+    return lastResponse;
+  }
+
+  public Response response() {
+    return lastResponse;
+  }
+
+  public Response res() {
     return lastResponse;
   }
 
