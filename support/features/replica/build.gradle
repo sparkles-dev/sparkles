@@ -1,0 +1,32 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles.features.replica'
+archivesBaseName = "${group}-${name}"
+
+dependencies {
+  api 'javax.json:javax.json-api:1.1.4'
+  api project(':support:javalin:api')
+  api project(':support:common:util')
+
+  implementation 'org.glassfish:javax.json:1.1.4'
+  implementation 'org.xerial:sqlite-jdbc:3.28.0'
+  implementation 'com.github.gwenn:sqlite-dialect:0.1.0'
+  implementation 'org.springframework:spring-jdbc:5.1.9.RELEASE'
+
+  processor 'org.projectlombok:lombok:1.18.8'
+
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'com.google.guava:guava:27.0.1-jre'
+  testImplementation project(':support:common:util')
+  testImplementation project(':support:javalin:testing')
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}
