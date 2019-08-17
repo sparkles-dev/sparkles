@@ -12,7 +12,7 @@ import io.javalin.Javalin;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-import sparkles.support.common.collections.CollectionUtil;
+import sparkles.support.common.collections.Collections;
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.flyway.FlywayPlugin;
 import sparkles.support.javalin.springdata.SpringData;
@@ -112,7 +112,7 @@ public class Upstream {
   }
 
   private static Map<String, Object> createHibernateProperties(DataSource dataSource) {
-    return CollectionUtil.<String, Object> newMap()
+    return Collections.<String, Object> newMap()
       .put("javax.persistence.nonJtaDataSource", dataSource)
       .put("javax.persistence.transactionType", "RESOURCE_LOCAL")
       .put("hibernate.show_sql", Environment.isDevelop())

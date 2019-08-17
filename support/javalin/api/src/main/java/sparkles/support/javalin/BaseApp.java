@@ -5,7 +5,7 @@ import io.javalin.core.JavalinConfig;
 import io.javalin.core.plugin.Plugin;
 import io.javalin.core.security.Role;
 import sparkles.support.common.Environment;
-import sparkles.support.common.collections.CollectionUtil;
+import sparkles.support.common.collections.Collections;
 import sparkles.support.javalin.flyway.FlywayPlugin;
 import sparkles.support.javalin.springdata.SpringDataPlugin;
 
@@ -93,7 +93,7 @@ public final class BaseApp {
 
     /** Defaults for hibernate. */
     private static Map<String, Object> createHibernateProperties(DataSource dataSource) {
-      return CollectionUtil.<String, Object> newMap()
+      return Collections.<String, Object> newMap()
         .put("javax.persistence.nonJtaDataSource", dataSource)
         .put("javax.persistence.transactionType", "RESOURCE_LOCAL")
         .put("hibernate.show_sql", Environment.isDevelop())

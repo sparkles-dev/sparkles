@@ -1,4 +1,4 @@
-package sparkles.support.common;
+package sparkles.support.common.properties;
 
 import com.google.common.io.Resources;
 
@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
-import sparkles.support.common.functional.OptionalUtil;
+import sparkles.support.common.functional.Optionals;
 import sparkles.support.common.functional.ThrowingSupplier;
 
 public final class PropertiesUtil {
@@ -38,7 +38,7 @@ public final class PropertiesUtil {
   }
 
   private static PropertiesUtil fromSupplierOrEmpty(ThrowingSupplier<PropertiesUtil> supplier) {
-    return OptionalUtil.fromThrowing(supplier)
+    return Optionals.fromThrowing(supplier)
       .orElse(emptyProperties());
   }
 

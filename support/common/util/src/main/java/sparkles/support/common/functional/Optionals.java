@@ -2,7 +2,7 @@ package sparkles.support.common.functional;
 
 import java.util.Optional;
 
-public final class OptionalUtil {
+public final class Optionals {
 
   public static <T> Optional<T> fromThrowing(ThrowingSupplier<T> supplier) {
     try {
