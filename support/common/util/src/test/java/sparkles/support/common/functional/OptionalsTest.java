@@ -6,25 +6,25 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OptionalUtilTest {
+public class OptionalsTest {
 
   @Test
   public void fromThrowing_shouldReturnEmptyWhenExceptionThrown() {
-    final Optional<?> optional = OptionalUtil.fromThrowing(() -> { throw new Exception(); });
+    final Optional<?> optional = Optionals.fromThrowing(() -> { throw new Exception(); });
 
     assertThat(optional.isPresent()).isFalse();
   }
 
   @Test
   public void fromThrowing_shouldReturnValueWhenNoException() {
-    final Optional<?> optional = OptionalUtil.fromThrowing(() -> 123);
+    final Optional<?> optional = Optionals.fromThrowing(() -> 123);
 
     assertThat(optional.get()).isEqualTo(123);
   }
 
   @Test
   public void fromThrowing_shouldHandleNullables() {
-    final Optional<?> optional = OptionalUtil.fromThrowing(() -> null);
+    final Optional<?> optional = Optionals.fromThrowing(() -> null);
 
     assertThat(optional.isPresent()).isFalse();
   }

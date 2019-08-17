@@ -1,8 +1,4 @@
-package sparkles.support.common;
-
-import com.google.common.io.Resources;
-
-import java.util.Properties;
+package sparkles.support.common.properties;
 
 import org.junit.Test;
 
