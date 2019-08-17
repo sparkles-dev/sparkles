@@ -9,9 +9,9 @@ archivesBaseName = "${group}-${name}"
 
 dependencies {
   api project(':support:common:util')
-  api project(':support:javalin:persistence:flyway')
   api project(':support:javalin:security:jwt')
   api project(':support:javalin:security:keycloak')
+  api project(':support:javalin:persistence:flyway')
   api project(':support:javalin:persistence:springdata')
   api 'io.javalin:javalin:3.+'
   api 'org.slf4j:slf4j-api:1.7.28'
