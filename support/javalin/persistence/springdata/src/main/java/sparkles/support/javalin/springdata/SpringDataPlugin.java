@@ -53,7 +53,6 @@ public class SpringDataPlugin implements Plugin {
 
         // Begin a transaction per request (transaction boundary is request boundary)
         entityManager.getTransaction().begin();
-
       })
       .after(ctx -> {
         EntityManager entityManager = springData(ctx).entityManager();
@@ -73,42 +72,11 @@ public class SpringDataPlugin implements Plugin {
     return create(() -> Persistence.createEntityManagerFactory(persistenceUnitName, hibernateProperties));
   }
 
-  public static SpringDataContext springData(Context ctx) {
-    return new SpringDataContext(ctx);
-  }
-
-  @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-  public static class SpringDataContext {
-    private final Context ctx;
-    private final Map<Class, Object> repos = new HashMap<>();
-
-    /**
-     * Returns the EntityManager for the request context
-     * @return EntityManager
-     */
-    public EntityManager entityManager() {
-      return ctx.use(EntityManager.class);
-    }
-
-    /**
-     * Returns the JpaRepositoryFactory the request context
-     * @return
-     */
-    public JpaRepositoryFactory jpaRepositoryFactory() {
-      return ctx.use(JpaRepositoryFactory.class);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <T> T createRepository(Class<T> repositoryClazz) {
-      if (repos.containsKey(repositoryClazz)) {
-        return (T) repos.get(repositoryClazz);
-      } else {
-        T repo = jpaRepositoryFactory().getRepository(repositoryClazz);
-        repos.put(repositoryClazz, repo);
-
-        return repo;
-      }
-    }
+  public static SpringData springData(Context ctx) {
+    return new SpringData(
+      ctx.use(EntityManager.class),
+      ctx.use(JpaRepositoryFactory.class)
+    );
   }
 
 }
