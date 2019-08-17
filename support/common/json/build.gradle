@@ -10,7 +10,7 @@ archivesBaseName = "${group}-${name}"
 dependencies {
   api 'javax.json:javax.json-api:1.1.4'
 
-  implementation 'org.glassfish:javax.json:1.1'
+  implementation 'org.glassfish:javax.json:1.1.4'
 
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
