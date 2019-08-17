@@ -25,4 +25,12 @@ public class DocumentEntity {
   @Lob
   public byte[] json;
 
+  public void setJson(String data) {
+    json = data.getBytes(Charsets.UTF_8);
+  }
+
+  public String getJson() {
+    return new String(json, Charsets.UTF_8);
+  }
+
 }

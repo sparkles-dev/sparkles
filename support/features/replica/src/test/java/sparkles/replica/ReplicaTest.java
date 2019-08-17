@@ -86,8 +86,9 @@ public class ReplicaTest {
     client.post("/collection/foo/document")
       .json("{\"name\":\"John Doe\",\"age\":40 }")
       .send();
-      assertThat(client.response().code()).isEqualTo(201);
+    assertThat(client.response().code()).isEqualTo(201);
+    assertThat(client.response.header("Location")).isEmpty();
+    assertThat(client.response().body()).isEmpty();
   }
-
 
 }
