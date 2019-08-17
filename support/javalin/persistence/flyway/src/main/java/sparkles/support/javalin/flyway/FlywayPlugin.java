@@ -15,7 +15,7 @@ import org.flywaydb.core.Flyway;
 
 @RequiredArgsConstructor
 @Slf4j
-public class FlywayExtension implements Plugin {
+public class FlywayPlugin implements Plugin {
   private final Supplier<DataSource> dataSource;
   private final String migrationScriptPath;
 
@@ -42,11 +42,11 @@ public class FlywayExtension implements Plugin {
 
   }
 
-  public static FlywayExtension create(Supplier<DataSource> dataSource, String migrationScriptPath) {
-    return new FlywayExtension(dataSource, migrationScriptPath);
+  public static FlywayPlugin create(Supplier<DataSource> dataSource, String migrationScriptPath) {
+    return new FlywayPlugin(dataSource, migrationScriptPath);
   }
 
-  public static FlywayExtension create(DataSource dataSource, String migrationScriptPath) {
+  public static FlywayPlugin create(DataSource dataSource, String migrationScriptPath) {
     return create(() -> dataSource, migrationScriptPath);
   }
 

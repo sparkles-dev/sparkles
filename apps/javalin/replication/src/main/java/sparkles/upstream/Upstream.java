@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import sparkles.support.common.collections.CollectionUtil;
 import sparkles.support.common.Environment;
-import sparkles.support.javalin.flyway.FlywayExtension;
+import sparkles.support.javalin.flyway.FlywayPlugin;
 import sparkles.support.javalin.springdata.SpringData;
 import sparkles.support.javalin.springdata.SpringDataPlugin;
 import sparkles.support.replication.Notification;
@@ -33,7 +33,7 @@ public class Upstream {
 
     return Javalin
       .create(cfg -> {
-        cfg.registerPlugin(FlywayExtension.create(dataSource, "persistence/migrations"));
+        cfg.registerPlugin(FlywayPlugin.create(dataSource, "persistence/migrations"));
         cfg.registerPlugin(SpringDataPlugin.create("upstream", createHibernateProperties(dataSource)));
       })
       .get("/replication/subscription/:id", (ctx) -> {
