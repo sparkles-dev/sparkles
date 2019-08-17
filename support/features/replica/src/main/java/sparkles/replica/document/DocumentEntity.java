@@ -19,6 +19,10 @@ public class DocumentEntity {
 
   public UUID version;
 
+  public ZonedDateTime created;
+
+  public ZonedDateTime lastModified;
+
   @Lob
   public byte[] json;
 

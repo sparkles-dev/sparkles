@@ -10,10 +10,6 @@ Replica
 
 Creates a new collection.
 
-Implementation:
- - `INSERT INTO COLLECTIONS VALUES (:name)`
- - `CREATE TABLE DOCUMMENTS_<name> <...>`
-
 ```http request
 POST collection
 { "name": "foo" }
@@ -21,6 +17,10 @@ POST collection
 201 Created
 Location: collection/:name
 ```
+
+Implementation:
+ - `INSERT INTO COLLECTIONS VALUES (:name)`
+ - `CREATE TABLE DOCUMMENTS_<name> <...>`
 
 
 Check if collection exists:
