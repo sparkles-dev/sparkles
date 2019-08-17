@@ -26,6 +26,10 @@ dependencies {
   testImplementation project(':support:javalin:testing')
 }
 
+test.doFirst {
+  mkdir 'tmp/sqlite'
+}
+
 testlogger {
   theme 'mocha'
   showStandardStreams true
