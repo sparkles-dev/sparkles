@@ -1,6 +1,5 @@
 package sparkles.support.javalin.testing;
 
-import com.squareup.moshi.Json;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
