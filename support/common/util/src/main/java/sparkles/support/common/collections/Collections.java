@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public final class CollectionUtil {
+public final class Collections {
 
   public static <T> List<T> toList(Iterable<T> iterable) {
     return Lists.newArrayList(iterable);

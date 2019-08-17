@@ -8,10 +8,12 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 import lombok.extern.slf4j.Slf4j;
+
 import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -184,7 +186,7 @@ public final class HttpClient {
   }
 
   public JsonObject responseBodyJson() {
-    try (final JsonReader reader = javax.json.Json.createReader(new StringReader(stringResponse()))) {
+    try (final JsonReader reader = Json.createReader(new StringReader(stringResponse()))) {
       return reader.readObject();
     }
   }

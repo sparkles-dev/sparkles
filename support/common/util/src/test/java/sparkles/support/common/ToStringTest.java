@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ToStringBuilderTest {
+public class ToStringTest {
 
   private static class Foo {
     public String id;
@@ -12,7 +12,7 @@ public class ToStringBuilderTest {
 
     @Override
     public String toString() {
-      return new ToStringBuilder(Foo.class)
+      return new ToString(Foo.class)
         .append("id", id)
         .append("order", order)
         .toString();

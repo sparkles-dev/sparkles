@@ -1,0 +1,22 @@
+plugins {
+  id 'java-library'
+  id 'com.adarshr.test-logger'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles.support.common'
+archivesBaseName = "${group}-${name}"
+
+dependencies {
+  api 'javax.json:javax.json-api:1.1.4'
+
+  implementation 'org.glassfish:javax.json:1.1'
+
+  testImplementation 'junit:junit:4.+'
+  testImplementation 'org.assertj:assertj-core:3.13.2'
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}
