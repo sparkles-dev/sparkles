@@ -8,9 +8,9 @@ group = 'sparkles.features.replica'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  api 'javax.json:javax.json-api:1.1.4'
-  api project(':support:javalin:api')
+  api project(':support:common:json')
   api project(':support:common:util')
+  api project(':support:javalin:api')
 
   implementation 'org.glassfish:javax.json:1.1.4'
   implementation 'org.xerial:sqlite-jdbc:3.28.0'

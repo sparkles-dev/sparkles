@@ -3,6 +3,9 @@ package sparkles.replica.document;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import sparkles.support.jpa.QueryUtils;
+
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
@@ -30,4 +33,14 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> 
       return false;
     }
   }
+
+  static Optional<DocumentEntity> findByIdAndCollection(UUID id, String collectionName, EntityManager em) {
+
+    return QueryUtils.findOne(
+      em.createQuery("SELECT d FROM DocumentEntity d JOIN CollectionEntity c ON d.collectionId = c.id WHERE d.id = :id and c.name = :name", DocumentEntity.class)
+        .setParameter("id", id)
+        .setParameter("name", collectionName)
+    );
+  }
+
 }

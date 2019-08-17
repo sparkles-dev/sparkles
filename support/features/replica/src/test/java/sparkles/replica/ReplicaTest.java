@@ -92,6 +92,10 @@ public class ReplicaTest {
 
     client.head(documentUrl.substring(0, documentUrl.length() - 2)).send();
     assertThat(client.response().code()).isEqualTo(204);
+
+    client.get(documentUrl).send();
+    assertThat(client.response().code()).isEqualTo(200);
+    assertThat(client.responseBodyJson()).isEmpty();
   }
 
 }

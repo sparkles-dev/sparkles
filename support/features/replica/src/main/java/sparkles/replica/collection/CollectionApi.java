@@ -27,7 +27,7 @@ public class CollectionApi implements Plugin {
 
       final boolean exists = ctx.use(SpringData.class)
         .repository(CollectionRepository.class)
-        .existsByName(ctx.pathParam("name"));
+        .existsByName(entity.name);
       if (exists) {
         throw new ConflictResponse();
       }

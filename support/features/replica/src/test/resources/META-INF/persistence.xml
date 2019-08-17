@@ -5,6 +5,7 @@
 
   <persistence-unit name="replica">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>sparkles.replica.changes.ChangeEntity</class>
     <class>sparkles.replica.collection.CollectionEntity</class>
     <class>sparkles.replica.document.DocumentEntity</class>
   </persistence-unit>
