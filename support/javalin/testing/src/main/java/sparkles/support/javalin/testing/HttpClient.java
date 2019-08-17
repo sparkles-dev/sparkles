@@ -1,11 +1,15 @@
 package sparkles.support.javalin.testing;
 
+import com.squareup.moshi.Json;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Call;
@@ -177,6 +181,12 @@ public final class HttpClient {
     lastResponseBody = lastResponse.body();
 
     return lastResponseBody;
+  }
+
+  public JsonObject responseBodyJson() {
+    try (final JsonReader reader = javax.json.Json.createReader(new StringReader(stringResponse()))) {
+      return reader.readObject();
+    }
   }
 
   public String stringResponse() {
