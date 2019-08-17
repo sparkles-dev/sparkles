@@ -14,9 +14,12 @@ dependencies {
   api 'com.squareup.okhttp3:okhttp:3.+'
   api 'com.squareup.okhttp3:logging-interceptor:3.+'
   api 'io.javalin:javalin:3.+'
+  api 'javax.json:javax.json-api:1.1.4'
   api 'junit:junit:4.+'
   api 'org.assertj:assertj-core:3.13.2'
   api 'org.slf4j:slf4j-simple:1.7.28'
+
+  implementation 'org.glassfish:javax.json:1.1.4'
 
   processor 'org.projectlombok:lombok:1.18.8'
 
