@@ -6,6 +6,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonString;
 import javax.json.JsonStructure;
@@ -65,6 +66,14 @@ public class R {
     }
 
     return entity;
+  }
+
+  public JsonObject bodyJsonObject() {
+    return body().asJsonObject();
+  }
+
+  public JsonArray bodyJsonArray() {
+    return body().asJsonArray();
   }
 
   public JsonValue jsonProperty(String pointer) {

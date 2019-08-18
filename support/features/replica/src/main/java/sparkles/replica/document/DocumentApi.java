@@ -46,17 +46,36 @@ public class DocumentApi implements Plugin {
       .orElseThrow(NotFoundResponse::new);
   }
 
-  private static JsonObject jsonBody(Context ctx) {
-    return jsonObject(ctx.body());
-  }
+  public static void verifyConditionalRequest(DocumentEntity entity, Context ctx) {
 
-  private static JsonObject jsonObject(String value) {
-    final JsonReader reader = Json.createReader(new StringReader(value));
-    try {
-      return reader.readObject();
-    } finally {
-      reader.close();
+    // Conditional request handling: If-None-Match
+    if (ctx.header("If-None-Match") != null) {
+      UUID version;
+      try {
+        version = UUID.fromString(ctx.header("If-None-Match"));
+      } catch (Exception e) {
+        throw new PreconditionFailedResponse();
+      }
+
+      if (entity.version.equals(version)) {
+        throw new NotModifiedResponse();
+      }
     }
+
+    // Conditional request handling: If-Modified-Since
+    if (ctx.header("If-Modified-Since") != null) {
+      ZonedDateTime modifiedSince;
+      try {
+        modifiedSince = ZonedDateTime.parse(ctx.header("If-Modified-Since"));
+      } catch (Exception e) {
+        throw new PreconditionFailedResponse();
+      }
+
+      if (entity.lastModified.isAfter(modifiedSince) || entity.lastModified.isEqual(modifiedSince)) {
+        throw new NotModifiedResponse();
+      }
+    }
+
   }
 
   private static JsonObjectBuilder buildUpon(JsonObject object) {
@@ -65,7 +84,7 @@ public class DocumentApi implements Plugin {
       .orElse(Json.createObjectBuilder());
   }
 
-  private static JsonObject toPublicDocument(DocumentEntity entity) {
+  public static JsonObject toPublicDocument(DocumentEntity entity) {
     return toPublicDocument(
       entity,
       JavaxJson.readJsonObject(entity.getJson())
@@ -96,7 +115,7 @@ public class DocumentApi implements Plugin {
     app.post("collection/:name/document", ctx -> {
       final CollectionEntity collection = verifyCollectionOr404(ctx);
 
-      final JsonObject document = jsonBody(ctx);
+      final JsonObject document = ctx.use(R.class).bodyJsonObject();
       log.info("JSON document: {}", document.toString());
 
       final UUID id = UUID.fromString(document.getString("_id", UUID.randomUUID().toString()));
@@ -123,7 +142,7 @@ public class DocumentApi implements Plugin {
     // Update document
     app.put("collection/:name/document", ctx -> {
       // Parse request body
-      final JsonObject document = jsonBody(ctx);
+      final JsonObject document = ctx.use(R.class).bodyJsonObject();
       final UUID documentId = ctx.use(R.class).jsonPropertyUuid("/_id");
       final UUID versionId = ctx.use(R.class).jsonPropertyUuid("/_meta/version");
       log.debug("Updating document: {}", documentId);
@@ -137,7 +156,7 @@ public class DocumentApi implements Plugin {
 
       // Check version matches, or 409 Conflict
       if (!versionId.equals(entity.version)) {
-        throw new ConflictResponse();
+        throw new ConflictResponse("Version in JSON body does not match w/ current server state. You would override existing data.");
       }
 
       // Generate JSON patches for change streams
@@ -208,38 +227,6 @@ public class DocumentApi implements Plugin {
     app.exception(JsonException.class, jsonExceptionResponse(400));
     app.exception(IllegalArgumentException.class, jsonExceptionResponse(400));
     app.exception(RuntimeException.class, jsonExceptionResponse(500));
-
-  }
-
-  public static void verifyConditionalRequest(DocumentEntity entity, Context ctx) {
-
-    // Conditional request handling: If-None-Match
-    if (ctx.header("If-None-Match") != null) {
-      UUID version;
-      try {
-        version = UUID.fromString(ctx.header("If-None-Match"));
-      } catch (Exception e) {
-        throw new PreconditionFailedResponse();
-      }
-
-      if (entity.version.equals(version)) {
-        throw new NotModifiedResponse();
-      }
-    }
-
-    // Conditional request handling: If-Modified-Since
-    if (ctx.header("If-Modified-Since") != null) {
-      ZonedDateTime modifiedSince;
-      try {
-        modifiedSince = ZonedDateTime.parse(ctx.header("If-Modified-Since"));
-      } catch (Exception e) {
-        throw new PreconditionFailedResponse();
-      }
-
-      if (entity.lastModified.isAfter(modifiedSince) || entity.lastModified.isEqual(modifiedSince)) {
-        throw new NotModifiedResponse();
-      }
-    }
 
   }
 
