@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 import io.javalin.Javalin;
 import io.javalin.core.plugin.Plugin;
 import okhttp3.Response;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -32,47 +34,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(JavalinTestRunner.class)
 @Slf4j
 public class ReplicaTest {
-  static {
-    System.setProperty(org.slf4j.impl.SimpleLogger.LOG_KEY_PREFIX + "sparkles", "debug");
-  }
-
-  private static DataSource createDataSource() {
-    final DriverManagerDataSource ds = new DriverManagerDataSource();
-    ds.setDriverClassName(Environment.value("JDBC_DRIVER", "org.sqlite.JDBC"));
-    ds.setUrl(Environment.value("JDBC_URL", "jdbc:sqlite:tmp/sqlite/replica-test.db"));
-    ds.setUsername(Environment.value("JDBC_USER", ""));
-    ds.setPassword(Environment.value("JDBC_PASSWORD", ""));
-
-    return ds;
-  }
-
-  private static Map<String, Object> createHibernateProperties(DataSource dataSource) {
-    return Collections.<String, Object> newMap()
-      .put("javax.persistence.nonJtaDataSource", dataSource)
-      .put("javax.persistence.transactionType", "RESOURCE_LOCAL")
-      .put("hibernate.show_sql", true || Environment.isDevelop())
-      .put("hibernate.format_sql", true)
-      .put("hibernate.hbm2ddl.auto", "create")
-      .put("hibernate.dialect", Environment.value("HIBERNATE_DIALECT", "org.hibernate.dialect.SQLiteDialect"))
-      .build();
-  }
 
   @TestApp
-  private Javalin app = Javalin.create(cfg -> {
-    final DataSource ds = createDataSource();
-
-    cfg.registerPlugin(FlywayPlugin.create(ds, "persistence/migration"));
-    cfg.registerPlugin(SpringDataPlugin.create("replica", createHibernateProperties(ds)));
-
-    cfg.registerPlugin(R.createPlugin());
-    cfg.registerPlugin(new CollectionApi());
-    cfg.registerPlugin(new DocumentApi());
-    cfg.registerPlugin(new VersionApi());
-
-    cfg.requestLogger((ctx, ms) -> {
-      log.info("{} {} served in {} msec", ctx.method(), ctx.path(), ms);
-    });
-  }).get("/hello", ctx -> { ctx.status(204); });
+  private Javalin app = TestCommons.createTestApp(log, cfg -> {});
 
   @TestClient
   private HttpClient client;
@@ -85,6 +49,7 @@ public class ReplicaTest {
   }
 
   @Test
+  @Ignore
   public void collectionAndDocumentWalkthrough() {
     // POST: create collection
     client.post("/collection")
@@ -140,7 +105,6 @@ public class ReplicaTest {
       .header("If-None-Match", JavaxJson.propertyString(updatedDocument, "/_meta/version"))
       .send();
     assertThat(client.response().code()).isEqualTo(304);
-
 
     // ... work in progress ...
     client.get("collection/foo/byVersion/" + documentId + "/" + documentVersion)
