@@ -12,6 +12,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 import lombok.extern.slf4j.Slf4j;
+
 import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -171,12 +172,6 @@ public final class HttpClient {
     okHttp.connectionPool().evictAll();
   }
 
-  private final Moshi moshi = new Moshi.Builder()
-    .add(UuidAdapter.TYPE, new UuidAdapter())
-    .add(LocalDateTimeAdapter.TYPE, new LocalDateTimeAdapter())
-    .add(ZonedDateTimeAdapter.TYPE, new ZonedDateTimeAdapter())
-    .build();
-
   public ResponseBody responseBody() {
     lastResponseBody = lastResponse.body();
 
@@ -184,12 +179,12 @@ public final class HttpClient {
   }
 
   public JsonObject responseBodyJson() {
-    try (final JsonReader reader = Json.createReader(new StringReader(stringResponse()))) {
+    try (final JsonReader reader = Json.createReader(new StringReader(responseBodyString()))) {
       return reader.readObject();
     }
   }
 
-  public String stringResponse() {
+  public String responseBodyString() {
     final ResponseBody body = responseBody();
     if (body != null) {
       try {
@@ -202,9 +197,22 @@ public final class HttpClient {
     }
   }
 
+  /** @deprecated */
+  public String stringResponse() {
+    log.warn("[DEPRECATED] stringResponse() called. Use responseBodyString() instead.");
+
+    return responseBodyString();
+  }
+
   public <T> T jsonResponse(Class<T> clz) {
     return fromJson(clz, stringResponse());
   }
+
+  private final Moshi moshi = new Moshi.Builder()
+    .add(UuidAdapter.TYPE, new UuidAdapter())
+    .add(LocalDateTimeAdapter.TYPE, new LocalDateTimeAdapter())
+    .add(ZonedDateTimeAdapter.TYPE, new ZonedDateTimeAdapter())
+    .build();
 
   public <T> String toJson(Class<T> clz, T value) {
     return moshi.adapter(clz).toJson(value);

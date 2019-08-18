@@ -5,7 +5,6 @@ import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 

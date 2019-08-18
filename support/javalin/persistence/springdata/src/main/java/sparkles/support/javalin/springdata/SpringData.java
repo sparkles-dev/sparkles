@@ -20,10 +20,10 @@ public class SpringData {
   @Getter
   private final JpaRepositoryFactory jpaRepositoryFactory;
 
-  private final Map<Class, Object> repos = new HashMap<>();
+  private final Map<Class<?>, Object> repos = new HashMap<>();
 
-  public <T extends Repository> T repository(Class<T> repoClz) {
-    return jpaRepositoryFactory.getRepository(repoClz);
+  public <T extends Repository<?, ?>> T repository(Class<T> repoClz) {
+    return createRepository(repoClz);
   }
 
   @SuppressWarnings("unchecked")
