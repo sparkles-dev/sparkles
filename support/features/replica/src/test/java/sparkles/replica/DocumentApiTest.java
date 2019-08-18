@@ -33,7 +33,11 @@ public class DocumentApiTest {
 
   @Test
   public void document_POST() {
-    // TODO: ensure collection exists
+    // POST: ensure collection exists
+    client.post("/collection")
+      .json("{\"name\":\"foo\"}")
+      .send();
+    assertThat(client.response().code()).isEqualTo(201);
 
     // POST: create document
     client.post("/collection/foo/document")
