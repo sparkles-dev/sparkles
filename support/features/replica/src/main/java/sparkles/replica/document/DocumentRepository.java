@@ -23,11 +23,15 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> 
   static boolean existsByIdAndCollection(UUID id, String collectionName, EntityManager em) {
 
     try {
-      return em
+      final Object result = em
         .createNativeQuery("SELECT COUNT(d.id) FROM DocumentEntity d JOIN CollectionEntity c ON d.collection_id = c.id WHERE d.id =? and c.name =?")
         .setParameter(1, id)
         .setParameter(2, collectionName)
-        .getSingleResult() != null;
+        .getSingleResult();
+
+      LoggerFactory.getLogger(DocumentRepository.class).info("SQL query result: {}", result);
+
+      return (result != null) && (result instanceof Integer) && ((Integer) result > 0);
     } catch (Exception e) {
       LoggerFactory.getLogger(DocumentRepository.class).debug("Exception thrown", e);
       return false;

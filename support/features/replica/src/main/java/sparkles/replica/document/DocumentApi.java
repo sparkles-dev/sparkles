@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.json.Json;
+import javax.json.JsonException;
 import javax.json.JsonReader;
 import javax.json.JsonStructure;
 import javax.json.JsonObject;
@@ -16,6 +17,7 @@ import io.javalin.Javalin;
 import io.javalin.core.plugin.Plugin;
 import io.javalin.http.ConflictResponse;
 import io.javalin.http.Context;
+import io.javalin.http.ExceptionHandler;
 import io.javalin.http.NotFoundResponse;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,19 @@ import sparkles.support.json.JavaxJson;
 
 @Slf4j
 public class DocumentApi implements Plugin {
+
+  private static <T extends Exception> ExceptionHandler<T> jsonExceptionResponse(int status) {
+    return (e, ctx) -> {
+      final JsonObject msg = Json.createObjectBuilder()
+        .add("code", status)
+        .add("type", e.getClass().getCanonicalName())
+        .add("message", e.getMessage())
+        .build();
+
+      ctx.status(status);
+      jsonResult(msg, ctx);
+    };
+  }
 
   private static CollectionEntity verifyCollectionOr404(Context ctx) {
     return ctx.use(SpringData.class)
@@ -100,22 +115,26 @@ public class DocumentApi implements Plugin {
 
     // Update document
     app.put("collection/:name/document", ctx -> {
-      /*
-      UUID.fromString(ctx.pathParam("id")),
-      ctx.pathParam("name"),
-      */
+      // Parse request body
       final JsonObject document = jsonBody(ctx);
-      final UUID documentId = UUID.fromString(document.getString("_id"));
+      final UUID documentId = UUID.fromString(JavaxJson.propertyString(document, "/_id"));
       final UUID versionId = UUID.fromString(JavaxJson.propertyString(document, "/_meta/version"));
       log.debug("Updating document: {}", documentId);
 
-      final DocumentEntity entity = DocumentRepository.findByIdAndCollection(
+      // Check if document exists, or 404
+      final DocumentEntity entity = ctx.use(SpringData.class)
+        .repository(DocumentRepository.class)
+        .findById(documentId)
+        .orElseThrow(NotFoundResponse::new);
+      /*
+      DocumentRepository.findByIdAndCollection(
         documentId,
         ctx.pathParam("name"),
         ctx.use(SpringData.class).entityManager()
       ).orElseThrow(NotFoundResponse::new);
+      */
 
-      // check version matches or 409 Conflict
+      // Check version matches, or 409 Conflict
       if (!versionId.equals(entity.version)) {
         throw new ConflictResponse();
       }
@@ -175,6 +194,9 @@ public class DocumentApi implements Plugin {
       final JsonObject json = JavaxJson.readJsonObject(entity.getJson());
       jsonResult(json, ctx);
     });
+
+    app.exception(JsonException.class, jsonExceptionResponse(400));
+    app.exception(IllegalArgumentException.class, jsonExceptionResponse(400));
 
   }
 

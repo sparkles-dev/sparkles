@@ -1,6 +1,9 @@
 package sparkles.replica;
 
 import java.util.Map;
+import java.util.UUID;
+
+import javax.json.JsonObject;
 import javax.sql.DataSource;
 import io.javalin.Javalin;
 import okhttp3.Response;
@@ -11,6 +14,7 @@ import sparkles.replica.collection.CollectionApi;
 import sparkles.replica.document.DocumentApi;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.Collections;
+import sparkles.support.json.JavaxJson;
 import sparkles.support.javalin.flyway.FlywayPlugin;
 import sparkles.support.javalin.springdata.SpringDataPlugin;
 import sparkles.support.javalin.testing.JavalinTestRunner;
@@ -72,26 +76,42 @@ public class ReplicaTest {
   }
 
   @Test
-  public void collection_POST() {
+  public void collectionAndDocumentWalkthrough() {
+    // POST: create collection
     client.post("/collection")
       .json("{\"name\":\"foo\"}")
       .send();
     assertThat(client.response().code()).isEqualTo(201);
     assertThat(client.response().header("Location")).isNotEmpty();
 
+    // HEAD: collection should exist
     client.head(client.response().header("Location")).send();
     assertThat(client.response().code()).isEqualTo(204);
 
+    // POST: create document
     client.post("/collection/foo/document")
       .json("{\"name\":\"John Doe\",\"age\":40 }")
       .send();
     assertThat(client.response().code()).isEqualTo(201);
     final String documentUrl = client.response().header("Location");
     assertThat(documentUrl).startsWith("collection/foo/");
-    assertThat(client.responseBodyJson().getString("_id")).isNotEmpty();
+    final JsonObject documentJson = client.responseBodyJson();
+    assertThat(documentJson).isNotNull();
+    final String documentId = JavaxJson.propertyString(documentJson, "/_id");
+    assertThat(documentId).isNotEmpty();
+    final String documentVersion = JavaxJson.propertyString(documentJson, "/_meta/version");
+    assertThat(documentVersion).isNotEmpty();
 
-    client.head(documentUrl.substring(0, documentUrl.length() - 2)).send();
+    // HEAD: document should exist
+    client.head(documentUrl).send();
     assertThat(client.response().code()).isEqualTo(204);
+
+    // PUT to update document
+    client.put("/collection/foo/document")
+      .json("{\"name\":\"Alice\",\"_id\":\"" + documentId + "\",\"_meta\":{\"version\":\"" + UUID.randomUUID() + "\"}}")
+      .send();
+    assertThat(client.responseBodyString()).isEmpty();
+    assertThat(client.response().code()).isEqualTo(200);
 
     client.get(documentUrl).send();
     assertThat(client.response().code()).isEqualTo(200);

@@ -179,7 +179,7 @@ public final class HttpClient {
   }
 
   public JsonObject responseBodyJson() {
-    try (final JsonReader reader = Json.createReader(new StringReader(stringResponse()))) {
+    try (final JsonReader reader = Json.createReader(new StringReader(responseBodyString()))) {
       return reader.readObject();
     }
   }
