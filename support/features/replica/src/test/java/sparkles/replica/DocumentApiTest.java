@@ -63,8 +63,8 @@ public class DocumentApiTest {
   @Test
   @Ignore
   public void document_GET_HEAD_conditional() {
-    final String documentUrl;
-    final JsonObject updatedDocument;
+    final String documentUrl = null;
+    final JsonObject updatedDocument = null;
 
     // GET: conditional If-Modified-Since
     client.get(documentUrl)
