@@ -1,0 +1,57 @@
+import org.apache.tools.ant.filters.*
+
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.adarshr.test-logger'
+  id 'com.palantir.git-version'
+  id 'com.palantir.docker'
+  id 'org.inferred.processors'
+}
+
+group = 'sparkles'
+version = gitVersion()
+description = 'A JSON-litweight document storage'
+
+mainClassName = 'sparkles.ReplicaApp'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+  implementation project(':support:features:replica')
+  implementation 'org.glassfish:javax.json:1.1.4'
+  implementation 'org.xerial:sqlite-jdbc:3.28.0'
+  implementation 'com.github.gwenn:sqlite-dialect:0.1.0'
+  implementation 'org.springframework:spring-jdbc:5.1.9.RELEASE'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
+}
+
+processResources {
+  with copySpec {
+    from 'src/main/filteredResources'
+    filter(ReplaceTokens, tokens: [
+      buildApp: 'momed',
+      buildVersion: gitVersion(),
+      buildTime: new Date().format('yyyy-MM-dd\'T\'HH:mm:ss\'Z\''),
+      gradleVersion: gradle.gradleVersion
+    ])
+  }
+}
+
+docker {
+  name 'sparkles/replica'
+  dockerfile file("${rootDir}/tools/docker/gradle-app/Dockerfile")
+  files tasks.distZip.outputs
+  buildArgs([bin: 'entity', zip: tasks.distZip.archiveName])
+  pull true
+}
+
+run.doFirst {
+  mkdir 'tmp/sqlite'
+  environment 'ENVIRONMENT', 'develop'
+}
+
+testlogger {
+  theme 'mocha'
+  showStandardStreams true
+}

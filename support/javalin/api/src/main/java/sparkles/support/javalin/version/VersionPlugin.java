@@ -1,8 +1,5 @@
 package sparkles.support.javalin.version;
 
-public class VersionPlugin {}
-
-/*
 import com.google.common.io.Resources;
 import io.javalin.Javalin;
 import io.javalin.core.plugin.Plugin;
@@ -15,6 +12,8 @@ import java.util.Properties;
 @Slf4j
 public class VersionPlugin implements Plugin {
   private static String VERSION;
+
+  private VersionPlugin() {}
 
   @Override
   public void apply(Javalin app) {
@@ -36,7 +35,10 @@ public class VersionPlugin implements Plugin {
       ctx.result("{\"version\":\"" + VERSION + "\"}");
     });
 
-	}
+  }
+
+  public static VersionPlugin create() {
+    return new VersionPlugin();
+  }
 
 }
-*/
