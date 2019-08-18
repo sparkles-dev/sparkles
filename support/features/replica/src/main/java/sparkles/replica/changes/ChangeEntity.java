@@ -6,7 +6,6 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 import com.google.common.base.Charsets;
 
@@ -14,21 +13,25 @@ import com.google.common.base.Charsets;
 public class ChangeEntity {
 
   @Id
+  @Column(updatable = false, nullable = false)
   public UUID id = UUID.randomUUID();
 
-  @Column(name = "document_id")
+  @Column(name = "document_id", updatable = false, nullable = false)
   public UUID documentId;
 
-  public ZonedDateTime changeDate;
+  @Column(updatable = false, nullable = false)
+  public ZonedDateTime date;
 
-  public UUID versionBefore;
+  @Column(updatable = false, nullable = false)
+  public UUID versionFrom;
 
-  public UUID versionAfter;
+  @Column(updatable = false, nullable = false)
+  public UUID versionTo;
 
-  @Lob
+  @Column(updatable = false, nullable = false)
   public byte[] patchForward;
 
-  @Lob
+  @Column(updatable = false, nullable = false)
   public byte[] patchReverse;
 
   public String getPatchForward() {

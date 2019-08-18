@@ -29,7 +29,7 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, UUID> 
         .setParameter(2, collectionName)
         .getSingleResult();
 
-      LoggerFactory.getLogger(DocumentRepository.class).info("SQL query result: {}", result);
+      LoggerFactory.getLogger(DocumentRepository.class).debug("SQL query result: {}", result);
 
       return (result != null) && (result instanceof Integer) && ((Integer) result > 0);
     } catch (Exception e) {

@@ -4,6 +4,7 @@ import java.util.List;
 import io.javalin.Javalin;
 import io.javalin.core.plugin.Plugin;
 import io.javalin.http.ConflictResponse;
+import io.javalin.http.NotFoundResponse;
 import sparkles.support.javalin.springdata.SpringData;
 
 public class CollectionApi implements Plugin {
@@ -55,7 +56,13 @@ public class CollectionApi implements Plugin {
     });
 
     app.get("collection/:name", ctx -> {
-      ctx.status(501);
+      final CollectionEntity entity = ctx.use(SpringData.class)
+        .repository(CollectionRepository.class)
+        .findByName(ctx.pathParam("name"))
+        .orElseThrow(NotFoundResponse::new);
+
+      ctx.status(200);
+      ctx.json(entity);
     });
 
   }

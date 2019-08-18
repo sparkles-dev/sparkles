@@ -23,6 +23,12 @@ public class JavaxJson {
     }
   }
 
+  public static JsonStructure readJson(String value) {
+    try (final JsonReader reader = Json.createReader(new StringReader(value))) {
+      return reader.read();
+    }
+  }
+
   public static String propertyString(JsonStructure structure, String jsonPointer) {
     final JsonValue value = structure.getValue(jsonPointer);
 

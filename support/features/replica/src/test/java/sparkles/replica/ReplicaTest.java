@@ -1,17 +1,21 @@
 package sparkles.replica;
 
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.json.JsonObject;
 import javax.sql.DataSource;
 import io.javalin.Javalin;
+import io.javalin.core.plugin.Plugin;
 import okhttp3.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import sparkles.replica.collection.CollectionApi;
 import sparkles.replica.document.DocumentApi;
+import sparkles.replica.version.VersionApi;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.Collections;
 import sparkles.support.json.JavaxJson;
@@ -28,6 +32,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(JavalinTestRunner.class)
 @Slf4j
 public class ReplicaTest {
+  static {
+    System.setProperty(org.slf4j.impl.SimpleLogger.LOG_KEY_PREFIX + "sparkles", "debug");
+  }
 
   private static DataSource createDataSource() {
     final DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -57,8 +64,10 @@ public class ReplicaTest {
     cfg.registerPlugin(FlywayPlugin.create(ds, "persistence/migration"));
     cfg.registerPlugin(SpringDataPlugin.create("replica", createHibernateProperties(ds)));
 
+    cfg.registerPlugin(R.createPlugin());
     cfg.registerPlugin(new CollectionApi());
     cfg.registerPlugin(new DocumentApi());
+    cfg.registerPlugin(new VersionApi());
 
     cfg.requestLogger((ctx, ms) -> {
       log.info("{} {} served in {} msec", ctx.method(), ctx.path(), ms);
@@ -106,16 +115,38 @@ public class ReplicaTest {
     client.head(documentUrl).send();
     assertThat(client.response().code()).isEqualTo(204);
 
-    // PUT to update document
+    // PUT: update document
     client.put("/collection/foo/document")
-      .json("{\"name\":\"Alice\",\"_id\":\"" + documentId + "\",\"_meta\":{\"version\":\"" + UUID.randomUUID() + "\"}}")
+      .json("{\"name\":\"Alice\",\"_id\":\"" + documentId + "\",\"_meta\":{\"version\":\"" + documentVersion + "\"}}")
       .send();
-    assertThat(client.responseBodyString()).isEmpty();
+    final JsonObject updatedDocument = client.responseBodyJson();
+    assertThat(JavaxJson.propertyString(updatedDocument, "/_id")).isEqualTo(documentId);
+    assertThat(JavaxJson.propertyString(updatedDocument, "/_meta/version")).isNotEqualTo(documentVersion);
     assertThat(client.response().code()).isEqualTo(200);
+    assertThat(client.response().header("Location")).startsWith("collection/foo/document/");
 
     client.get(documentUrl).send();
     assertThat(client.response().code()).isEqualTo(200);
-    assertThat(client.responseBodyJson()).isEmpty();
+    assertThat(client.responseBodyString()).contains("\"name\":\"Alice\"");
+
+    // GET: conditional If-Modified-Since
+    client.get(documentUrl)
+      .header("If-Modified-Since", JavaxJson.propertyString(updatedDocument, "/_meta/lastModified"))
+      .send();
+    assertThat(client.response().code()).isEqualTo(304);
+
+    // HEAD: conditional If-None-Match
+    client.head(documentUrl)
+      .header("If-None-Match", JavaxJson.propertyString(updatedDocument, "/_meta/version"))
+      .send();
+    assertThat(client.response().code()).isEqualTo(304);
+
+
+    // ... work in progress ...
+    client.get("collection/foo/byVersion/" + documentId + "/" + documentVersion)
+      .send();
+    System.out.println(client.responseBodyString());
+    assertThat(client.response().code()).isEqualTo(501);
   }
 
 }
