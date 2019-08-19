@@ -3,7 +3,6 @@ package sparkles.support.javalin;
 import io.javalin.Javalin;
 import io.javalin.core.JavalinConfig;
 import io.javalin.core.plugin.Plugin;
-import io.javalin.core.security.Role;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.Collections;
 import sparkles.support.javalin.flyway.FlywayPlugin;
@@ -11,9 +10,7 @@ import sparkles.support.javalin.springdata.SpringDataPlugin;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 
@@ -38,8 +35,8 @@ public final class BaseApp {
 
     return Javalin.create(cfg -> {
       // Register base plugins
-      cfg.registerPlugin(FlywayPlugin.create(dataSource, DevOps.FLYWAY_SCRIPT_PATH));
       cfg.registerPlugin(SpringDataPlugin.create(appName, hibernateProperties));
+      cfg.registerPlugin(FlywayPlugin.create(dataSource, DevOps.FLYWAY_SCRIPT_PATH));
 
       if (customizations != null) {
         customizations.accept(cfg);
@@ -103,10 +100,6 @@ public final class BaseApp {
         .build();
     }
 
-  }
-
-  public static Set<Role> requires(Role... roles) {
-    return Arrays.stream(roles).collect(Collectors.toSet());
   }
 
 }

@@ -6,6 +6,7 @@ import sparkles.entity.FooApi;
 
 import sparkles.support.common.Environment;
 import sparkles.support.javalin.BaseApp;
+import sparkles.support.javalin.flyway.FlywayPlugin;
 import sparkles.support.javalin.security.jwt.JwtRoles;
 import sparkles.support.javalin.security.keycloak.KeycloakAccessManager;
 import sparkles.support.javalin.springdata.auditing.AuditingPlugin;
@@ -23,7 +24,7 @@ public class EntityApp {
       return "foo";
     });
 
-    return BaseApp.customize("entity")
+    return javalin = BaseApp.customize("entity")
       .with(cfg -> {
         cfg.accessManager(KeycloakAccessManager.create(
           Environment.value("KEYCLOAK_URL",  "https://foobar"),
@@ -33,9 +34,10 @@ public class EntityApp {
             return JwtRoles.ANYONE;
           }
         ));
+
+        cfg.getPlugin(FlywayPlugin.class).runBeforeServerStart(true);
       })
       .create(auditing, new FooApi());
-
   }
 
 }
