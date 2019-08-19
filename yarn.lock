@@ -1444,31 +1444,31 @@
     tree-kill "1.2.1"
     webpack-sources "1.3.0"
 
-"@nrwl/angular@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-8.4.6.tgz#6c8441d45d368038398195eb285a83310653bcde"
-  integrity sha512-Xh3nhD4GPqF6DwG1kT/Hf1ngYvUX+i1JZD2d8Zy76NdtQ6F9WOm163OgcQ8KpEU+uB36jS1aYsnSJEaUKj+F/Q==
+"@nrwl/angular@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-8.4.12.tgz#1ba9ec45fc33b27c2ebc7407584e01618c4c4ff6"
+  integrity sha512-rOd+qKArM3JVSTueMVeez+sCvrDfow+L6IJf0pxaWgvGjxaq+WOG2WeExplyLP8Sp5TBb73+fkrKEj61hfqxrQ==
   dependencies:
     "@angular-devkit/schematics" "8.1.1"
-    "@nrwl/cypress" "8.4.6"
-    "@nrwl/jest" "8.4.6"
+    "@nrwl/cypress" "8.4.12"
+    "@nrwl/jest" "8.4.12"
     "@schematics/angular" "8.1.1"
     jasmine-marbles "~0.6.0"
 
-"@nrwl/cli@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-8.4.6.tgz#ed0719bfb1e3a5a8c14bf3b036c36322c236e1e5"
-  integrity sha512-sG3VSm3n8pKrtvKSKx2ume2QQdv29wkQ3dehZGKuyQq2EAdzJm4l0uJrKG1ZUO3UqCMnT97JHPUpXvBqXiQNzA==
+"@nrwl/cli@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-8.4.12.tgz#7d041bb90076099d9fbe7d0af0f7cbed7f51e74e"
+  integrity sha512-qz0YyuaAN524Z1uErmY8t5x/WTTH0yjlaaJxrsW6j2tEw8PCXUIEVjaLsubBfF8Q0YOFSRSdmgdtHPwAqdQ5bA==
   dependencies:
-    "@nrwl/tao" "8.4.6"
+    "@nrwl/tao" "8.4.12"
     tmp "0.0.33"
     yargs "^11.0.0"
     yargs-parser "10.0.0"
 
-"@nrwl/cypress@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-8.4.6.tgz#415b6ae69c7c99e84310f93b6962e133cf469a36"
-  integrity sha512-U9uvIbbxGhpGKFs2Z8z+KcBPmezw5nyd5anWlMESt3lYN2ea3Up/GZ3dX+8bp9DOvZK1sgvb45TJcFdlKR1BjQ==
+"@nrwl/cypress@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-8.4.12.tgz#59a96134d49faf7d7831cb9abd39b1da612a87c7"
+  integrity sha512-Pp443aZGhOMz+ZhRqnMFhhZAriIdUNJcU8yvCRnFhlnwP87Odjq18UFGWbLb7S9vAMPYAWrEmgt4s0zZl6lCZA==
   dependencies:
     "@angular-devkit/architect" "0.801.1"
     "@angular-devkit/core" "8.1.1"
@@ -1478,19 +1478,19 @@
     tsconfig-paths-webpack-plugin "3.2.0"
     webpack-node-externals "1.7.2"
 
-"@nrwl/jest@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-8.4.6.tgz#7fa62d95df47f27b6300221ca26775e61fcc76fd"
-  integrity sha512-VEJEbm6KELSZELn/Riu48PDPycrKwytQT15OkbpjJaXS1gEpjqZzd5DTE+UU0aRTHs/Oo3ijSgMRkBXhCAyrYA==
+"@nrwl/jest@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-8.4.12.tgz#70fc3ff974d3eaf447f1dff8b03d785ec0e825d9"
+  integrity sha512-GlfyT35V+HEJp2XCnyuvz8XL9r5n34sYtD0jGXnJhJrtkUfSqmkul+YM0JtVbTG5Jez5nU/ZnltMXJmunwYh2w==
   dependencies:
     "@angular-devkit/architect" "0.801.1"
     "@angular-devkit/core" "8.1.1"
     "@angular-devkit/schematics" "8.1.1"
 
-"@nrwl/linter@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-8.4.6.tgz#01559774311f7cd232bafd738520f9c5a257d25b"
-  integrity sha512-pAEEdnFx0KfaoHDRdXCGwCzhRj7K/NVTim2VN/UVzFqddVJKNdgzfQf+nRy3XMGa/Ne4PWdn5sL3+4nks8faGA==
+"@nrwl/linter@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-8.4.12.tgz#61cb9e7cb9c7ef9396be78d6e7dd215f1d6855b8"
+  integrity sha512-s1BmlatMEcge/664GJK6mEFDCADOuxFGCCVK9FE860vQByQM22MWx/OzUEusTj0UDLXfcnbv7hEf7kfii5B4bg==
   dependencies:
     "@angular-devkit/architect" "0.801.1"
     "@angular-devkit/build-angular" "0.801.1"
@@ -1498,17 +1498,17 @@
     "@angular/compiler" "8.1.2"
     "@angular/compiler-cli" "8.1.2"
 
-"@nrwl/node@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/node/-/node-8.4.6.tgz#c8e571beed7128b6649e7f8b76cf351e4655108b"
-  integrity sha512-OLV0Cv1jTCrABvafMthxarcjSLzfJX1RfuXOp3poYiFmd3QexppWd+7Ooqjv+o4nLRKX/Z8np8vpBor9wZ7WLA==
+"@nrwl/node@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/node/-/node-8.4.12.tgz#c949a6ead25aed6335ef2a41d0fceb8ab7802945"
+  integrity sha512-xaOWa05CXkHchqx+vW+6WpfLqoWcTI17Lx5+6qOwy5iYgjfWOnYEtlB/8fB72VwCr9KWDbzuXHV1Rl29C1NOrg==
   dependencies:
     "@angular-devkit/architect" "0.801.1"
     "@angular-devkit/build-webpack" "0.801.1"
     "@angular-devkit/core" "8.1.1"
     "@angular-devkit/schematics" "8.1.1"
-    "@nrwl/jest" "8.4.6"
-    "@nrwl/linter" "8.4.6"
+    "@nrwl/jest" "8.4.12"
+    "@nrwl/linter" "8.4.12"
     circular-dependency-plugin "^5.0.2"
     copy-webpack-plugin "4.6.0"
     fork-ts-checker-webpack-plugin "0.4.9"
@@ -1521,10 +1521,10 @@
     webpack-dev-server "3.1.14"
     webpack-node-externals "1.7.2"
 
-"@nrwl/tao@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-8.4.6.tgz#821cc1a051952bcdd2a8a014b299808e9bc33111"
-  integrity sha512-fIftH1dW46gRkZRZ5uab+gwRWJ5JadIn6P+qO3HwCrn23O4qxx0kpz70umZAbqVbtPjPLR+GOdpsYynfvvhTUQ==
+"@nrwl/tao@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-8.4.12.tgz#d253c8be3182ba28be1832295027dc96db520454"
+  integrity sha512-xSLjjOtZlMcDORQHyR1xpo0Dq9XSlq/wakJC5DKRqQqyx7sbfABo85cZ31vW7vuDSrDEBpeBRURcUW6tMWNr7w==
   dependencies:
     "@angular-devkit/architect" "0.801.1"
     "@angular-devkit/core" "8.1.1"
@@ -1532,14 +1532,14 @@
     inquirer "^6.3.1"
     minimist "^1.2.0"
 
-"@nrwl/workspace@8.4.6":
-  version "8.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-8.4.6.tgz#ec5478821fcf7ec06034a39e444adcb33d9ef384"
-  integrity sha512-Sdacf+s3pOQa56VLPTHJnDGWpdhARlkqBDxeVNH4TXlW0rzFQKnvRpZ91Kjo3qYGQbdwbW3Aogn5Ha2VQT+nAA==
+"@nrwl/workspace@8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-8.4.12.tgz#e1b42457c97f038a28f1bb8cdf12e2f7c0681a02"
+  integrity sha512-rc73XbVeHQ+RSXGV+6j5/4sreNQ3H6mmAfPOVnkL8Rph4u7fovOQROwB0tEUjRlRY4pfMyNrtj0Uu51TuDZJIA==
   dependencies:
     "@angular-devkit/core" "8.1.1"
     "@angular-devkit/schematics" "8.1.1"
-    "@nrwl/cli" "8.4.6"
+    "@nrwl/cli" "8.4.12"
     chalk "2.4.2"
     cosmiconfig "4.0.0"
     fs-extra "6.0.0"
