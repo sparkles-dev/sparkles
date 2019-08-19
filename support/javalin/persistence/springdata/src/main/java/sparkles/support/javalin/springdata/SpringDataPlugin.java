@@ -29,6 +29,7 @@ public class SpringDataPlugin implements Plugin {
 
     // Register event listener for creation/closing of database connection
     app.events(evts -> {
+
       evts.serverStarting(() -> {
         log.debug("Creating EntityManagerFactory for JPA/Hibernate...");
         app.attribute(EntityManagerFactory.class, entityManagerFactory.get());

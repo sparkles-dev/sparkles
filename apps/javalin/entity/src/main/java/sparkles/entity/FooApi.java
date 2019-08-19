@@ -9,8 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import sparkles.support.javalin.security.jwt.JwtRoles;
 import sparkles.support.javalin.springdata.auditing.Auditing;
 
-import static io.javalin.apibuilder.ApiBuilder.crud;
-import static sparkles.support.javalin.BaseApp.requires;
+import static sparkles.support.javalin.security.Roles.requires;
 import static sparkles.support.javalin.springdata.SpringDataPlugin.springData;
 
 @Slf4j
