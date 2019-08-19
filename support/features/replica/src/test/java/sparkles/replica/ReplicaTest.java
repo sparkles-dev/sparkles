@@ -27,16 +27,14 @@ import sparkles.support.javalin.testing.JavalinTestRunner;
 import sparkles.support.javalin.testing.HttpClient;
 import sparkles.support.javalin.testing.TestApp;
 import sparkles.support.javalin.testing.TestClient;
-import lombok.extern.slf4j.Slf4j;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JavalinTestRunner.class)
-@Slf4j
 public class ReplicaTest {
 
   @TestApp
-  private Javalin app = TestCommons.createTestApp(log, cfg -> {});
+  private Javalin app = TestCommons.createTestApp(ReplicaTest.class, cfg -> {});
 
   @TestClient
   private HttpClient client;

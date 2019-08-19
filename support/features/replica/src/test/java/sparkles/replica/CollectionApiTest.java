@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.javalin.Javalin;
-import lombok.extern.slf4j.Slf4j;
 import sparkles.replica.collection.CollectionApi;
 import sparkles.support.javalin.testing.HttpClient;
 import sparkles.support.javalin.testing.JavalinTestRunner;
@@ -14,11 +13,10 @@ import sparkles.support.javalin.testing.TestClient;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JavalinTestRunner.class)
-@Slf4j
 public class CollectionApiTest {
 
   @TestApp
-  private Javalin app = TestCommons.createTestApp(log, cfg -> {
+  private Javalin app = TestCommons.createTestApp(CollectionApiTest.class, cfg -> {
     cfg.registerPlugin(new CollectionApi());
   });
 
