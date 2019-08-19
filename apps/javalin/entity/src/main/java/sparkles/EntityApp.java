@@ -24,7 +24,7 @@ public class EntityApp {
       return "foo";
     });
 
-    return javalin = BaseApp.customize("entity")
+    return BaseApp.customize("entity")
       .with(cfg -> {
         cfg.accessManager(KeycloakAccessManager.create(
           Environment.value("KEYCLOAK_URL",  "https://foobar"),
