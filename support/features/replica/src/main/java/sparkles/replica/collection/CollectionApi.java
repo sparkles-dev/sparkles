@@ -25,17 +25,13 @@ public class CollectionApi implements Plugin {
     // Create collection
     app.post("collection", ctx -> {
       final CollectionEntity entity = ctx.bodyAsClass(CollectionEntity.class);
+      final CollectionRepository repository = ctx.use(SpringData.class).repository(CollectionRepository.class);
 
-      final boolean exists = ctx.use(SpringData.class)
-        .repository(CollectionRepository.class)
-        .existsByName(entity.name);
-      if (exists) {
+      if (repository.existsByName(entity.name)) {
         throw new ConflictResponse();
       }
 
-      final CollectionEntity result = ctx.use(SpringData.class)
-        .repository(CollectionRepository.class)
-        .save(entity);
+      final CollectionEntity result = repository.save(entity);
 
       ctx.status(201);
       ctx.header("Location", "collection/" + result.name);
