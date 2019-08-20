@@ -20,19 +20,39 @@ app.get('/healthz', async(req, res) => {
 
 app.post('/pptr/crawl', async (req, res) => {
   if (req.body.url) {
-    const result = await buildAndSendResponse(res, req.body.url, req.body.options);
-
-    res.contentType('application/json');
-    res.send(result);
+    crawlUrl(req.body.url, req.body.options)
+      .then(result => {
+        res.contentType('application/json');
+        res.send(result);
+      })
+      .catch(err => {
+        res.status(205);
+        res.contentType('application/json');
+        res.send(err);
+      });
   } else {
     res.send('no url specified in the body of this post request');
   }
 });
 
-async function buildAndSendResponse(res, url, options: any = {}) {
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'], executablePath: chromePath, ignoreHTTPSErrors: true });
-  const page = await browser.newPage();
+/**
+ * Opens a chrome headless instance, instruments the browser to wait for a given selector and return its result.
+ *
+ * @param url
+ * @param options
+ */
+async function crawlUrl(url, options: any = {}) {
+  // Override user agent to hide headless chrome
+  // https://medium.com/@jsoverson/how-to-bypass-access-denied-pages-with-headless-chrome-87ddd5f3413c
+  const userAgent = process.env.CHROME_USER_AGENT || 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', `--user-agent ${userAgent}`],
+    executablePath: chromePath,
+    ignoreHTTPSErrors: true
+  });
 
+  // Set up pptr
+  const page = await browser.newPage();
   page.on('console', msg => {
     if (msg.args().length > 0) {
       console.log(new Date().toJSON() + ' headless console: ');
@@ -42,14 +62,10 @@ async function buildAndSendResponse(res, url, options: any = {}) {
     }
   });
 
-  //await page.emulateMedia('print');
-
-  await page.evaluateOnNewDocument((msg) => {
-    console.log(msg);
-  }, "Hello puppeteer!");
-
+  let response;
   try {
-    await page.goto(url, {
+    // Load target web page
+    response = await page.goto(url, {
       waitUntil: 'load'
     });
 
@@ -57,21 +73,31 @@ async function buildAndSendResponse(res, url, options: any = {}) {
       await page.waitForSelector(options.waitForSelector);
     }
 
-    const result = await page.evaluate(() => document.querySelector('html').innerHTML);
+    const querySelector = options.querySelector || 'html';
+    const result = await page.evaluate((selector) => document.querySelector(selector).innerHTML, querySelector);
 
-    console.log(result);
-
-    //const pdfBuffer = await page.pdf(Object.assign({}, options.pdfOptions));
-
-    await browser.close();
+    // console.log(result);
+    // await page.emulateMedia('print');
+    // const pdfBuffer = await page.pdf(Object.assign({}, options.pdfOptions));
 
     return { result };
-  } catch(error) {
+  } catch(err) {
+    console.error(err);
+    const screenshot = await page.screenshot({ encoding: 'base64' });
+
+    throw {
+      error: err,
+      screenshot,
+      response: {
+        status: response.status(),
+        statusText: response.statusText(),
+        url: response.url(),
+        headers: response.headers()
+      }
+    };
+  } finally {
     await browser.close();
-
-    console.error(error);
   }
-
 }
 
-app.listen(PORT, () => console.log(`pdf-server listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`pptr-api listening on port ${PORT}`));
