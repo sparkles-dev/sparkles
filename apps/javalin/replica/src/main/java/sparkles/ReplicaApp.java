@@ -1,17 +1,11 @@
 package sparkles;
 
 import io.javalin.Javalin;
-import io.javalin.core.plugin.Plugin;
 
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Map;
-import java.util.UUID;
 
-import javax.json.JsonObject;
 import javax.sql.DataSource;
 
-import okhttp3.Response;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +16,6 @@ import sparkles.replica.version.VersionApi;
 import sparkles.replica.R;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.Collections;
-import sparkles.support.json.JavaxJson;
-import sparkles.support.javalin.flyway.FlywayPlugin;
 import sparkles.support.javalin.springdata.SpringDataPlugin;
 import sparkles.support.javalin.version.VersionPlugin;
 

@@ -45,7 +45,7 @@ public class R {
 
   }
 
-  public static <T extends Exception> ExceptionHandler<T> jsonExceptionResponse(int status) {
+  public static <T extends Exception> ExceptionHandler<T> jsonExceptionResponse(final int status) {
     return (e, ctx) -> {
       final JsonObject msg = Json.createObjectBuilder()
         .add("code", status)

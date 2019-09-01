@@ -23,6 +23,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import sparkles.support.common.Environment;
 import sparkles.support.moshi.LocalDateTimeAdapter;
 import sparkles.support.moshi.UuidAdapter;
 import sparkles.support.moshi.ZonedDateTimeAdapter;
@@ -46,7 +47,11 @@ public final class HttpClient {
   public HttpClient(OkHttpClient client, Request requestTemplate) {
     this.okHttp = client;
     this.requestTemplate = requestTemplate;
-    enableLogging(HttpLoggingInterceptor.Level.BASIC);
+    if (Environment.logLevel().equals("debug")) {
+      enableLogging(HttpLoggingInterceptor.Level.BODY);
+    } else {
+      enableLogging(HttpLoggingInterceptor.Level.BASIC);
+    }
   }
 
   public void enableLogging() {

@@ -8,6 +8,7 @@ group = 'sparkles.support.javalin'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
+  api project(':support:common:util')
   api project(':support:ok:moshi')
   api project(':support:ok:okhttp')
   api 'com.squareup.moshi:moshi:1.8.0'
