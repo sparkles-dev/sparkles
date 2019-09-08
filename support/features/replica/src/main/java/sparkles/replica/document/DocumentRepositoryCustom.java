@@ -18,12 +18,14 @@ public class DocumentRepositoryCustom {
   }
 
   public DocumentEntity create(DocumentEntity entity) {
+    // TODO: persist to DOCUMENTS_<collectionName> table
     ctx.use(EntityManager.class).persist(entity);
 
     return entity;
   }
 
   public DocumentEntity update(DocumentEntity entity) {
+    // TODO: persist to DOCUMENTS_<collectionName> table
     ctx.use(EntityManager.class).merge(entity);
 
     return entity;
