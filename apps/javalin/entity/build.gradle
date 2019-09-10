@@ -40,7 +40,7 @@ dependencies {
   implementation project(':support:javalin:persistence:springdata')
 
   // apt
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   // testing
   testImplementation project(':support:javalin:testing')

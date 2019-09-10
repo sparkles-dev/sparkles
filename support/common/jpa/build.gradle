@@ -12,7 +12,7 @@ dependencies {
 
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
 
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'

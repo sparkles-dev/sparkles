@@ -21,7 +21,7 @@ dependencies {
   implementation 'org.springframework:spring-jdbc:5.1.9.RELEASE'
 
   // apt
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation project(':support:javalin:testing')
   testImplementation 'com.squareup.okhttp3:okhttp:3.+'
