@@ -16,7 +16,7 @@ dependencies {
   implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
   implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
 
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'

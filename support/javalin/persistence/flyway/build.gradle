@@ -13,6 +13,6 @@ dependencies {
   implementation 'org.slf4j:slf4j-api:1.7.28'
 
   // apt
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
 }

@@ -7,7 +7,7 @@ plugins {
 group = 'sparkles.support'
 
 dependencies {
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   api 'com.squareup.okhttp3:okhttp:3.+'
   api 'com.squareup.okhttp3:logging-interceptor:3.+'

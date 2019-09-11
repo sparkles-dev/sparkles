@@ -22,7 +22,7 @@ dependencies {
 
   implementation 'org.glassfish:javax.json:1.1.4'
 
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation 'org.assertj:assertj-core:3.13.2'
   testImplementation 'com.google.guava:guava:27.0.1-jre'

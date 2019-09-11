@@ -17,7 +17,7 @@ dependencies {
   implementation 'com.github.gwenn:sqlite-dialect:0.1.0'
   implementation 'org.springframework:spring-jdbc:5.1.9.RELEASE'
 
-  processor 'org.projectlombok:lombok:1.18.8'
+  processor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
