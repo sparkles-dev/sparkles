@@ -4,5 +4,5 @@ group = 'sparkles.support.common'
 archivesBaseName = "${group}-${name}"
 
 dependencies {
-  implementation 'org.flywaydb:flyway-core:6.0.2'
+  implementation 'org.flywaydb:flyway-core:6.0.3'
 }
