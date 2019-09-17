@@ -10,8 +10,8 @@ archivesBaseName = "${group}-persistence-${name}"
 dependencies {
   api project(':support:common:jpa')
   api 'io.javalin:javalin:3.+'
-  api 'org.hibernate:hibernate-core:5.4.4.Final'
-  api 'org.hibernate:hibernate-entitymanager:5.4.4.Final'
+  api 'org.hibernate:hibernate-core:5.4.5.Final'
+  api 'org.hibernate:hibernate-entitymanager:5.4.5.Final'
   api 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
   api 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
   api 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
