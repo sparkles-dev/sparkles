@@ -23,7 +23,7 @@ dependencies {
   implementation project(':support:features:replication')
 
   // 3rd party
-  implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
   implementation 'com.google.guava:guava:27.0.1-jre'
   implementation 'io.javalin:javalin:3.+'
   implementation 'org.hsqldb:hsqldb:2.5.0'
