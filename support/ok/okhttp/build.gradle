@@ -13,7 +13,7 @@ dependencies {
   api 'com.squareup.okhttp3:logging-interceptor:3.+'
   api 'org.slf4j:slf4j-api:1.7.28'
 
-  testImplementation 'io.fabric8:mockwebserver:0.1.4'
+  testImplementation 'io.fabric8:mockwebserver:0.1.7'
   testImplementation 'junit:junit:4.+'
   testImplementation 'org.assertj:assertj-core:3.13.2'
   testImplementation 'org.slf4j:slf4j-simple:1.7.28'
