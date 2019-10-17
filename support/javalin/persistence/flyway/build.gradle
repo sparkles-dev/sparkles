@@ -9,7 +9,7 @@ archivesBaseName = "${group}-persistence-${name}"
 
 dependencies {
   implementation 'io.javalin:javalin:3.+'
-  implementation 'org.flywaydb:flyway-core:6.0.3'
+  implementation 'org.flywaydb:flyway-core:6.0.7'
   implementation 'org.slf4j:slf4j-api:1.7.28'
 
   // apt
