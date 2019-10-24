@@ -11,7 +11,7 @@ dependencies {
   implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'
   implementation 'com.fasterxml.jackson.core:jackson-core:2.9.9'
   implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.10.0'
-  implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
+  implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.0'
   implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.10.0'
   // https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema
   implementation 'com.kjetland:mbknor-jackson-jsonschema_2.13.0-M4:1.0.33'
