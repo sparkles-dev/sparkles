@@ -13,6 +13,7 @@ import io.javalin.core.JavalinConfig;
 import sparkles.support.common.Environment;
 import sparkles.support.common.collections.Collections;
 import sparkles.support.javalin.flyway.FlywayPlugin;
+import sparkles.support.javalin.logger.Slf4jRequestLogger;
 import sparkles.support.javalin.springdata.SpringDataPlugin;
 
 public final class TestCommons {
@@ -41,7 +42,7 @@ public final class TestCommons {
       .build();
   }
 
-  static Javalin createTestApp(Logger log, Consumer<JavalinConfig> appCfg) {
+  static Javalin createTestApp(Class<?> testClz, Consumer<JavalinConfig> appCfg) {
 
     return Javalin
       .create(cfg -> {
@@ -50,9 +51,8 @@ public final class TestCommons {
         cfg.registerPlugin(FlywayPlugin.create(ds, "persistence/migration"));
         cfg.registerPlugin(SpringDataPlugin.create("replica", createHibernateProperties(ds)));
 
-        cfg.requestLogger((ctx, ms) -> {
-          log.info("{} {} served in {} msec", ctx.method(), ctx.path(), ms);
-        });
+        cfg.requestLogger(new Slf4jRequestLogger(testClz));
+
         cfg.registerPlugin(R.createPlugin());
 
         appCfg.accept(cfg);

@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 import sparkles.replica.R;
 import sparkles.replica.changes.ChangeEntity;
 import sparkles.replica.changes.ChangeRepository;
+import sparkles.replica.changes.ChangeRepositoryCustom;
 import sparkles.replica.collection.CollectionEntity;
 import sparkles.replica.collection.CollectionRepository;
 import sparkles.support.javalin.http.NotModifiedResponse;
@@ -35,6 +36,7 @@ import sparkles.support.javalin.springdata.SpringData;
 import sparkles.support.json.JavaxJson;
 
 import static sparkles.replica.R.jsonExceptionResponse;
+import static sparkles.support.javalin.Extend.inject;
 
 @Slf4j
 public class DocumentApi implements Plugin {
@@ -130,9 +132,12 @@ public class DocumentApi implements Plugin {
       final JsonObject storageDoc = toStorageDocument(publicDocument);
       entity.setJson(storageDoc.toString());
 
+      inject(DocumentRepositoryCustom.class, ctx).create(entity);
+      /*
       ctx.use(SpringData.class)
         .repository(DocumentRepository.class)
         .save(entity);
+      */
 
       ctx.status(201);
       ctx.header("Location", "collection/" + collection.name + "/document/" + entity.id.toString());
@@ -176,17 +181,25 @@ public class DocumentApi implements Plugin {
       change.versionTo = newVersionId;
       change.setPatchForward(forward.toString());
       change.setPatchReverse(reverse.toString());
+
+      inject(ChangeRepositoryCustom.class, ctx).create(change);
+      /*
       ctx.use(SpringData.class)
         .repository(ChangeRepository.class)
         .save(change);
+      */
 
       // Persist document entity
       entity.lastModified = ZonedDateTime.now();
       entity.version = newVersionId;
       entity.setJson(updated.toString());
+      inject(DocumentRepositoryCustom.class, ctx).update(entity);
+
+      /*
       ctx.use(SpringData.class)
         .repository(DocumentRepository.class)
         .save(entity);
+      */
 
       // Return current state of document
       ctx.status(200);
@@ -196,11 +209,13 @@ public class DocumentApi implements Plugin {
 
     // Check if document exists
     app.head("collection/:name/document/:id", ctx -> {
-      final DocumentEntity entity = DocumentRepository.findByIdAndCollection(
-        UUID.fromString(ctx.pathParam("id")),
-        ctx.pathParam("name"),
-        ctx.use(SpringData.class).entityManager()
-      ).orElseThrow(NotFoundResponse::new);
+      final DocumentEntity entity = inject(DocumentRepositoryCustom.class, ctx)
+        .findByIdAndCollection(
+          UUID.fromString(ctx.pathParam("id")),
+          ctx.pathParam("name"),
+          ctx.use(SpringData.class).entityManager()
+        )
+        .orElseThrow(NotFoundResponse::new);
 
       verifyConditionalRequest(entity, ctx);
 
@@ -209,11 +224,13 @@ public class DocumentApi implements Plugin {
 
     // Get document
     app.get("collection/:name/document/:id", ctx -> {
-      final DocumentEntity entity = DocumentRepository.findByIdAndCollection(
-        UUID.fromString(ctx.pathParam("id")),
-        ctx.pathParam("name"),
-        ctx.use(SpringData.class).entityManager()
-      ).orElseThrow(NotFoundResponse::new);
+      final DocumentEntity entity = inject(DocumentRepositoryCustom.class, ctx)
+        .findByIdAndCollection(
+          UUID.fromString(ctx.pathParam("id")),
+          ctx.pathParam("name"),
+          ctx.use(SpringData.class).entityManager()
+        )
+        .orElseThrow(NotFoundResponse::new);
 
       log.debug("found document: {}", entity.getJson());
       verifyConditionalRequest(entity, ctx);
