@@ -23,7 +23,7 @@ dependencies {
   implementation 'io.javalin:javalin:3.+'
   implementation 'io.jsonwebtoken:jjwt:0.9.1'
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
-  implementation 'org.hibernate:hibernate-core:5.4.5.Final'
+  implementation 'org.hibernate:hibernate-core:5.4.7.Final'
   implementation 'org.hsqldb:hsqldb:2.5.0'
   implementation 'org.slf4j:slf4j-api:1.7.28'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
