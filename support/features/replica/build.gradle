@@ -20,7 +20,7 @@ dependencies {
   processor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation 'junit:junit:4.+'
-  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'org.assertj:assertj-core:3.14.0'
   testImplementation 'com.google.guava:guava:27.0.1-jre'
   testImplementation project(':support:common:util')
   testImplementation project(':support:javalin:testing')

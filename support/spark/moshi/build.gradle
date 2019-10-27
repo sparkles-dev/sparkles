@@ -8,7 +8,7 @@ dependencies {
   implementation 'com.squareup.moshi:moshi:1.8.0'
 
   testImplementation group: 'junit', name: 'junit', version: '4.+'
-  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'org.assertj:assertj-core:3.14.0'
 }
 
 testlogger {
