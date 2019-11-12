@@ -27,8 +27,8 @@ dependencies {
   implementation 'org.hsqldb:hsqldb:2.5.0'
   implementation 'org.slf4j:slf4j-api:1.7.28'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
-  implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
-  implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
+  implementation 'org.springframework.data:spring-data-commons:2.2.1.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.2.1.RELEASE'
 
   // project
   implementation project(':support:common:util')
