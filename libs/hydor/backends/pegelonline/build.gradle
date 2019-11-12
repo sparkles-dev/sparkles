@@ -18,7 +18,7 @@ dependencies {
 
   testImplementation 'io.fabric8:mockwebserver:0.1.7'
   testImplementation 'junit:junit:4.+'
-  testImplementation 'org.assertj:assertj-core:3.13.2'
+  testImplementation 'org.assertj:assertj-core:3.14.0'
 }
 
 testlogger {
