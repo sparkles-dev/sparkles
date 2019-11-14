@@ -33,7 +33,7 @@ dependencies {
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   implementation 'org.springframework.data:spring-data-commons:2.2.1.RELEASE'
   implementation 'org.springframework.data:spring-data-jpa:2.2.1.RELEASE'
-  implementation 'org.slf4j:slf4j-api:1.7.28'
+  implementation 'org.slf4j:slf4j-api:1.7.29'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
   implementation 'com.squareup.okhttp3:okhttp:3.+'
   implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
