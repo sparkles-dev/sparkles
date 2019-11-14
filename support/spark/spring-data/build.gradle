@@ -6,6 +6,6 @@ dependencies {
   implementation 'org.hibernate:hibernate-core:5.4.8.Final'
   implementation 'org.hibernate:hibernate-entitymanager:5.4.8.Final'
   implementation 'org.slf4j:slf4j-api:1.7.28'
-  implementation 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
-  implementation 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
+  implementation 'org.springframework.data:spring-data-commons:2.2.1.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.2.1.RELEASE'
 }
