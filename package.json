@@ -114,7 +114,7 @@
     "karma-jasmine": "~2.0.0",
     "karma-jasmine-html-reporter": "^1.0.0",
     "ng-packagr": "^5.4.3",
-    "ngx-build-plus": "^8.0.3",
+    "ngx-build-plus": "^9.0.0",
     "npm-cli-login": "^0.1.1",
     "patch-package": "^6.1.2",
     "prettier": "1.18.2",
