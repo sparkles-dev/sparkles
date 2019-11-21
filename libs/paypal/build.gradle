@@ -13,7 +13,7 @@ dependencies {
   //implementation 'com.squareup.okio:okio:2.4.1'
   implementation 'com.squareup.retrofit2:retrofit:2.6.2'
   implementation 'com.squareup.retrofit2:converter-moshi:2.6.2'
-  implementation 'org.slf4j:slf4j-api:1.7.28'
+  implementation 'org.slf4j:slf4j-api:1.7.29'
   implementation 'org.slf4j:slf4j-simple:1.7.28'
   implementation project(':support:ok:okhttp')
 
