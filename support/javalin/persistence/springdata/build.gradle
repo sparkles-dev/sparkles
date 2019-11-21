@@ -19,7 +19,7 @@ dependencies {
   api 'org.springframework.data:spring-data-commons:2.1.10.RELEASE'
   api 'org.springframework.data:spring-data-jpa:2.1.10.RELEASE'
 
-  implementation 'org.springframework:spring-jdbc:5.2.0.RELEASE'
+  implementation 'org.springframework:spring-jdbc:5.2.1.RELEASE'
 
   processor 'org.projectlombok:lombok:1.18.10'
 }
