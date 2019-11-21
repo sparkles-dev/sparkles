@@ -15,7 +15,7 @@ dependencies {
   api project(':support:javalin:persistence:springdata')
   api 'io.javalin:javalin:3.+'
   api 'org.slf4j:slf4j-api:1.7.29'
-  implementation 'org.slf4j:slf4j-simple:1.7.28'
+  implementation 'org.slf4j:slf4j-simple:1.7.29'
   implementation 'org.xerial:sqlite-jdbc:3.28.0'
   implementation 'com.github.gwenn:sqlite-dialect:0.1.0'
   implementation 'org.springframework:spring-jdbc:5.2.1.RELEASE'
