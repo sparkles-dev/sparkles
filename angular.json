@@ -1036,7 +1036,7 @@
         "lint": {
           "builder": "@nrwl/linter:lint",
           "options": {
-            "linter": "tslint",
+            "linter": "eslint",
             "tsConfig": [
               "apps/common/pptr-api/tsconfig.app.json",
               "apps/common/pptr-api/tsconfig.spec.json"
