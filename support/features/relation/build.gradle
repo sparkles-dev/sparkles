@@ -13,8 +13,8 @@ dependencies {
   implementation 'org.slf4j:slf4j-api:1.7.29'
   implementation 'org.hibernate:hibernate-core:5.4.10.Final'
   implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
-  implementation 'org.springframework.data:spring-data-commons:2.2.1.RELEASE'
-  implementation 'org.springframework.data:spring-data-jpa:2.2.1.RELEASE'
+  implementation 'org.springframework.data:spring-data-commons:2.2.3.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.2.3.RELEASE'
 
   processor 'org.projectlombok:lombok:1.18.10'
 
