@@ -36,3 +36,7 @@ include ':support:spark:testing'
 include ':support:spark:xsrf'
 
 rootProject.name = 'sparkles'
+
+plugins {
+  id 'com.gradle.build-scan' version '3.1
+}
