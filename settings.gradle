@@ -1,3 +1,9 @@
+plugins {
+  id 'com.gradle.enterprise' version '3.1'
+}
+
+rootProject.name = 'sparkles'
+
 include ':apps:javalin:entity'
 include ':apps:javalin:replica'
 include ':apps:javalin:replication'
@@ -34,5 +40,3 @@ include ':support:spark:moshi'
 include ':support:spark:spring-data'
 include ':support:spark:testing'
 include ':support:spark:xsrf'
-
-rootProject.name = 'sparkles'
