@@ -30,8 +30,8 @@ dependencies {
   implementation 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
   implementation 'org.hibernate:hibernate-core:5.4.10.Final'
   implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
-  implementation 'org.springframework.data:spring-data-commons:2.2.1.RELEASE'
-  implementation 'org.springframework.data:spring-data-jpa:2.2.1.RELEASE'
+  implementation 'org.springframework.data:spring-data-commons:2.2.3.RELEASE'
+  implementation 'org.springframework.data:spring-data-jpa:2.2.3.RELEASE'
 
   // testing
   testImplementation 'junit:junit:4.+'

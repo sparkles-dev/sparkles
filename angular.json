@@ -1034,9 +1034,8 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "linter": "tslint",
             "tsConfig": [
               "apps/common/pptr-api/tsconfig.app.json",
               "apps/common/pptr-api/tsconfig.spec.json"
