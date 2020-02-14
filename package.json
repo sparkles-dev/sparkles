@@ -60,7 +60,7 @@
     "@nrwl/angular": "8.9.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "body-parser": "^1.19.0",
-    "core-js": "^2.5.4",
+    "core-js": "^3.0.0",
     "document-register-element": "^1.7.2",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
