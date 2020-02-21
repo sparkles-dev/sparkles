@@ -33,7 +33,7 @@
     "help": "./node_modules/.bin/nx help",
     "commit": "commit",
     "commitlint": "commitlint",
-    "postinstall": "yarn patch-package",
+    "postinstall": "yarn patch-package && ngcc",
     "tools:schema:generate": "ts-node tools/json-schema/generate.ts",
     "apps:ping:serve": "ng serve reframed-ping",
     "apps:pong:serve": "ng serve reframed-pong --port 4440 --base-href pong --serve-path pong",
