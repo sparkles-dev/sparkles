@@ -33,7 +33,7 @@ jobs:
   # Frontend (Angular)
   build_frontend:
     docker:
-    - image: angular/ngcontainer:latest
+    - image: circleci/node:12-buster-browsers:latest
     working_directory: ~/workspace
     steps:
       - checkout
@@ -86,7 +86,7 @@ jobs:
   # GitHub Pages Deployment
   deploy:
     docker:
-    - image: angular/ngcontainer:latest
+    - image: circleci/node:12-buster-browsers:latest
     working_directory: ~/workspace
     steps:
       # Deploy from CircleCI to GitHub Pages
