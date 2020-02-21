@@ -33,13 +33,13 @@ jobs:
   # Frontend (Angular)
   build_frontend:
     docker:
-    - image: angular/ngcontainer:latest
+    - image: circleci/node:12-buster-browsers
     working_directory: ~/workspace
     steps:
       - checkout
       - restore_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile --ignore-engines
+      - run: yarn install --frozen-lockfile
       - save_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
           paths:
@@ -68,13 +68,13 @@ jobs:
   # Project Linting
   lint:
     docker:
-    - image: angular/ngcontainer:latest
+    - image: circleci/node:12-buster-browsers
     working_directory: ~/workspace
     steps:
       - checkout
       - restore_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile --ignore-engines
+      - run: yarn install --frozen-lockfile
       - save_cache:
           key: sparkles-frontend-002-{{ checksum "yarn.lock" }}
           paths:
@@ -86,7 +86,7 @@ jobs:
   # GitHub Pages Deployment
   deploy:
     docker:
-    - image: angular/ngcontainer:latest
+    - image: circleci/node:12-buster-browsers
     working_directory: ~/workspace
     steps:
       # Deploy from CircleCI to GitHub Pages

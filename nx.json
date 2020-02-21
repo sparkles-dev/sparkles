@@ -6,12 +6,11 @@
     },
     "sparkles": {
       "tags": [],
-      "implicitDependencies": [
-        "styles"
-      ]
+      "implicitDependencies": ["styles"]
     },
     "sparkles-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["sparkles"]
     },
     "forms": {
       "tags": []
@@ -21,9 +20,7 @@
     },
     "components": {
       "tags": [],
-      "implicitDependencies": [
-        "styles"
-      ]
+      "implicitDependencies": ["styles"]
     },
     "styles": {
       "tags": []
@@ -32,20 +29,18 @@
       "tags": []
     },
     "reframed-ping": {
-      "tags": [
-        "reframed"
-      ]
+      "tags": ["reframed"]
     },
     "reframed-ping-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["reframed-ping"]
     },
     "reframed-pong": {
-      "tags": [
-        "reframed"
-      ]
+      "tags": ["reframed"]
     },
     "reframed-pong-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["reframed-pong"]
     },
     "testing": {
       "tags": []
@@ -57,19 +52,22 @@
       "tags": []
     },
     "webcomponents-demo-element-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["webcomponents-demo-element"]
     },
     "webcomponents-ng-app": {
       "tags": []
     },
     "webcomponents-ng-app-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["webcomponents-ng-app"]
     },
     "rivers-rivers": {
       "tags": []
     },
     "rivers-rivers-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["rivers-rivers"]
     },
     "common-pptr-api": {
       "tags": []

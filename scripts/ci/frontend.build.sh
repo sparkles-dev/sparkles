@@ -2,4 +2,4 @@
 set -e
 source scripts/ci/.affectedrc
 
-yarn affected:build ${AFFECTED_ARGS}
+yarn affected:build ${AFFECTED_ARGS} --exclude common-pptr-api
