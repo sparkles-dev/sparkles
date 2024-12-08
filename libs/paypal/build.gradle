@@ -13,8 +13,8 @@ dependencies {
   //implementation 'com.squareup.okio:okio:2.4.2'
   implementation 'com.squareup.retrofit2:retrofit:2.7.0'
   implementation 'com.squareup.retrofit2:converter-moshi:2.7.0'
-  implementation 'org.slf4j:slf4j-api:1.7.29'
-  implementation 'org.slf4j:slf4j-simple:1.7.29'
+  implementation 'org.slf4j:slf4j-api:1.7.36'
+  implementation 'org.slf4j:slf4j-simple:1.7.36'
   implementation project(':support:ok:okhttp')
 
   testImplementation 'io.fabric8:mockwebserver:0.1.7'
